@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss'],
+  selector: 'app-video',
+  templateUrl: './video.component.html',
+  styleUrls: ['./video.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingComponent implements OnInit {
+export class VideoComponent implements OnInit {
 
   constructor() { }
 
