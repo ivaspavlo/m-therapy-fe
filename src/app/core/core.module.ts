@@ -3,9 +3,7 @@ import { CoreRoutingModule } from './core-routing.module';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CoreRoutingModule
-  ]
+  imports: [CoreRoutingModule],
+  exports: [CoreRoutingModule]
 })
 export class CoreModule { }
