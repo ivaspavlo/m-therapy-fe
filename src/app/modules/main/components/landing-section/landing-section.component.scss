@@ -1,5 +1,18 @@
 .landing {
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
-  background-color: lightblue;
+  display: flex;
+  &__main {
+    width: 45%;
+    height: 100vh;
+    display: flex;
+    background-color: white;
+    z-index: 1;
+  }
+  &__video {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+  }
 }
