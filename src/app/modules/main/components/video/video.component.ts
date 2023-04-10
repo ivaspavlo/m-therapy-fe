@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-video',
@@ -6,11 +6,14 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./video.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VideoComponent implements OnInit {
+export class VideoComponent implements AfterViewInit {
+
+  // @ViewChild('videoElem') public videoElem: ElementRef;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    // this.videoElem.nativeElement.play();
   }
 
 }
