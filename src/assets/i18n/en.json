@@ -5,5 +5,8 @@
     "back-to-main-page": "Main Page",
     "and": "and",
     "add-to-cart": "Add to cart"
+  },
+  "header": {
+    "services": "Services"
   }
 }
