@@ -1,3 +1,6 @@
 <section class="app-header">
-  header to be implemented
+  <app-logo></app-logo>
+  <ul>
+    <li *ngFor="let ctrl of headerControls">{{ ctrl.uiName }}</li>
+  </ul>
 </section>

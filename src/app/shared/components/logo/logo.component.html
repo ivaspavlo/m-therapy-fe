@@ -1,0 +1,8 @@
+<figure class="" [ngClass]="size">
+  <p *ngIf="noUrl" class="w-100 h-100">
+    <img class="width-100 height-auto" src="/assets/images/vector/logo.svg" alt="Logo">
+  </p>
+  <a *ngIf="!noUrl" class="w-100 h-100" routerLink="/">
+    <img class="width-100 height-auto" src="/assets/images/vector/logo.svg" alt="Logo">
+  </a>
+</figure>
