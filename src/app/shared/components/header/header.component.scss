@@ -1,5 +1,14 @@
+@import 'z-index';
+
+:host {
+  width: 100%;
+  display: flex;
+}
+
 .app-header {
   position: fixed;
   top: 0;
   width: 100%;
+  display: flex;
+  z-index: $z-header;
 }
