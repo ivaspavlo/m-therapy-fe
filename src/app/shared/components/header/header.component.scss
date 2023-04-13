@@ -1,4 +1,5 @@
 @import 'z-index';
+@import 'colors';
 
 :host {
   width: 100%;
@@ -6,9 +7,26 @@
 }
 
 .app-header {
-  position: fixed;
-  top: 0;
+  position: fixed; top: 0;
   width: 100%;
+  padding: 16px;
   display: flex;
+  justify-content: center;
   z-index: $z-header;
+
+  &__item {
+    height: 100%;
+    margin: 0 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__link {
+    font-size: 16px;
+    font-weight: bold;
+    color: $primary;
+    transition: .3s;
+    &:hover { opacity: .7; }
+  }
 }
