@@ -1,0 +1,12 @@
+@import 'mixins/_all';
+
+.max-width-992 { max-width: 992px; }
+.max-width-1200 { max-width: 1200px; }
+
+@include sm { }
+
+@include md { }
+
+@include lg { }
+
+@include xl { }

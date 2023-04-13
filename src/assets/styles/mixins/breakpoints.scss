@@ -1,25 +1,25 @@
-@import "~bootstrap-4-grid/scss/grid";
+@import '~bootstrap-4-grid/scss/grid';
 
 @mixin sm {
-  @media only screen and (min-width: map-get($grid-breakpoints, "sm")) {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'sm')) {
     @content;
   }
 }
 
 @mixin md {
-  @media only screen and (min-width: map-get($grid-breakpoints, "md")) {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'md')) {
     @content;
   }
 }
 
 @mixin lg {
-  @media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'lg')) {
     @content;
   }
 }
 
 @mixin xl {
-  @media only screen and (min-width: map-get($grid-breakpoints, "xl")) {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'xl')) {
     @content;
   }
 }

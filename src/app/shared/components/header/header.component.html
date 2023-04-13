@@ -1,6 +1,10 @@
 <section class="app-header">
-  <app-logo></app-logo>
-  <ul>
-    <li *ngFor="let ctrl of headerControls">{{ ctrl.uiName }}</li>
-  </ul>
+  <div class="w-100 d-flex max-width-992">
+    <app-logo class="mr-5"></app-logo>
+    <ul class="d-flex flex-grow-1 justify-content-start">
+      <li class="app-header__item" *ngFor="let ctrl of headerControls">
+        <a class="app-header__link">{{ ctrl.uiName | uppercase }}</a>
+      </li>
+    </ul>
+  </div>
 </section>
