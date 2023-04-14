@@ -23,8 +23,11 @@
   }
 
   &__link {
+    height: 100%;
     font-size: 16px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
     color: $primary;
     transition: .3s;
     &:hover { opacity: .7; }
