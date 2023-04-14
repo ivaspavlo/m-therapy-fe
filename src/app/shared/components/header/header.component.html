@@ -1,9 +1,9 @@
 <section class="app-header">
-  <div class="w-100 d-flex max-width-992">
+  <div class="w-100 d-flex max-width-1200">
 
-    <app-logo class="mr-5"></app-logo>
+    <app-logo class="mr-4"></app-logo>
 
-    <ul class="d-flex flex-grow-1 justify-content-start">
+    <ul class="d-flex flex-grow-1 justify-content-start align-items-center">
       <li class="app-header__item" *ngFor="let ctrl of headerControls">
         <a class="app-header__link">{{ ctrl.uiName | uppercase }}</a>
       </li>
@@ -12,9 +12,12 @@
           <app-icon name="user" size="xl"></app-icon>
         </a>
       </li>
-      <!-- <li class="app-header__item">
-        <a></a>
-      </li> -->
+      <li class="app-header__item app-header__item--delimiter"></li>
+      <li class="app-header__item">
+        <a>
+          <app-icon name="cart" size="xl"></app-icon>
+        </a>
+      </li>
     </ul>
 
   </div>

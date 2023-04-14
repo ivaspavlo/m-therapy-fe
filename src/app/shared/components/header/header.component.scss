@@ -20,6 +20,12 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    &--delimiter {
+      height: 50%;
+      width: 1px;
+      margin: 0;
+      background-color: $primary;
+    }
   }
 
   &__link {
