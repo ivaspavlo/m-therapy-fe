@@ -1,7 +1,7 @@
-<section class="app-header">
+<section class="app-header" [ngClass]="{'app-header--is-shrinked': isShrinked$ | async}">
   <div class="w-100 d-flex max-width-1200">
 
-    <app-logo class="mr-4"></app-logo>
+    <app-logo [size]="(isShrinked$ | async) ? 'sm' : 'md'" class="mr-4"></app-logo>
 
     <ul class="d-flex flex-grow-1 justify-content-start align-items-center">
       <li class="app-header__item" *ngFor="let ctrl of headerControls">

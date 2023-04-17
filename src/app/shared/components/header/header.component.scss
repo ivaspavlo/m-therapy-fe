@@ -12,13 +12,25 @@
   padding: 16px;
   display: flex;
   justify-content: center;
+  transition: .5s;
   z-index: $z-header;
+
+  &--is-shrinked {
+    padding: 10px;
+    .app-header__item {
+      margin: 0 6px;
+    }
+    .app-header__link {
+      font-size: 14px;
+    }
+  }
 
   &__item {
     height: 100%;
     margin: 0 16px;
     display: flex;
     align-items: center;
+    transition: .5s;
     cursor: pointer;
     &--delimiter {
       height: 50%;
@@ -35,7 +47,7 @@
     display: flex;
     align-items: center;
     color: $primary;
-    transition: .3s;
+    transition: .5s;
     &:hover { opacity: .7; }
   }
 }

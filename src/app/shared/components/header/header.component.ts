@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -18,20 +19,24 @@ export class HeaderComponent implements OnInit {
     { uiName: 'gifts', link: '' },
     { uiName: 'blog', link: '' }
   ];
+  public isShrinked$: Observable<boolean>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document
-  ) {
-    // @ts-ignore
-    this.scrollOrigin = this.scrollOrigin || this.document.documentElement;
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.listenToScroll();
+    this.initIsShrinkedObservable();
   }
 
-  private listenToScroll(): void {
-    fromEvent(this.scrollOrigin, 'scroll').subscribe(console.log);
+  private initIsShrinkedObservable(): void {
+    this.isShrinked$ = fromEvent(this.scrollOrigin || this.document.body, 'scroll').pipe(
+      map((event: Event) => {
+        return event.target instanceof Element ?
+          event.target.scrollTop > this.document.documentElement.clientHeight / 2 :
+          false;
+      })
+    );
   }
 
 }
