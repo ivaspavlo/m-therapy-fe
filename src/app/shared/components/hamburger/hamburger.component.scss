@@ -1,0 +1,57 @@
+@import 'mixins/_all';
+@import 'colors';
+
+:host {
+	position: relative;
+}
+
+.burger {
+	height: 26px;
+	width: 40px;
+
+	span,
+	&:before, 
+	&:after {
+		display: block;
+		position: absolute;
+		height: 6px;
+		width: 100%;
+		background-color: grey;
+		border-radius: 6px;
+		opacity: 1;
+		box-shadow: 0 1px 2px $primary;
+	}
+	&:before, 
+	&:after {
+		content: '';
+		transition: top .35s cubic-bezier(.23,1,.32,1), transform .35s cubic-bezier(.23,1,.32,1);
+	}
+
+	span {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	&:before {
+		top: 0;
+	}
+	&:after {
+		top: calc(100% - 6px);
+		box-shadow: none;
+	}
+
+	&.is-on {
+		span {
+			opacity: 0;
+		}
+		&:before,
+		&:after  {
+			top: 40%;
+		}
+		&:before {
+			transform: rotate(45deg);
+		}
+		&:after {
+			transform: rotate(-45deg);
+		}
+	}
+}
