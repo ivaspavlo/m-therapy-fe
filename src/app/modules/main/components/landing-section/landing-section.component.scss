@@ -2,6 +2,7 @@
   width: 100vw;
   min-height: 200vh;
   display: flex;
+
   &__main {
     width: 45%;
     height: 100vh;
@@ -9,6 +10,7 @@
     background-color: white;
     z-index: 1;
   }
+
   &__video {
     position: fixed;
     top: 0;
