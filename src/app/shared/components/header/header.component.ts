@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
 
   @Input() scrollOrigin: HTMLElement;
+  public isOpen = false;
 
   public headerControls = [
     { uiName: 'services', link: '' },

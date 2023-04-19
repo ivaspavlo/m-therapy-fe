@@ -39,6 +39,7 @@
       background-color: $primary;
     }
     &--mobile {
+      height: auto;
       margin: 0 8px;
     }
   }
@@ -52,5 +53,25 @@
     color: $primary;
     transition: .5s;
     &:hover { opacity: .7; }
+    &--mobile {
+      color: $white;
+    }
+  }
+
+  &__burger {
+    margin-left: 12px;
+    z-index: 1;
+  }
+
+  &__mobile-menu {
+    position: absolute; top: 0;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: rgba(0,0,0,.5);
   }
 }
