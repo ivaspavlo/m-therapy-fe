@@ -38,6 +38,9 @@
       margin: 0;
       background-color: $primary;
     }
+    &--mobile {
+      margin: 0 8px;
+    }
   }
 
   &__link {
