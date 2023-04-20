@@ -40,7 +40,11 @@
     }
     &--mobile {
       height: auto;
-      margin: 0 8px;
+      margin: 0 0 16px;
+    }
+    &--mobile-icon {
+      height: auto;
+      margin: 0 10px;
     }
   }
 
@@ -59,7 +63,7 @@
   }
 
   &__burger {
-    margin-left: 12px;
+    margin-left: 18px;
     z-index: 1;
   }
 

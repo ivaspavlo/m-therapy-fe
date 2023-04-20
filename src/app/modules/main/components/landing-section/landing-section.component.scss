@@ -1,14 +1,19 @@
+@import 'mixins/breakpoints';
+
 .landing {
   width: 100vw;
   min-height: 200vh;
   display: flex;
 
   &__main {
-    width: 45%;
+    width: 100%;
     height: 100vh;
     display: flex;
     background-color: white;
     z-index: 1;
+    @include md {
+      width: 45%;
+    }
   }
 
   &__video {
@@ -16,5 +21,16 @@
     top: 0;
     width: 100vw;
     height: 100vh;
+    display: none;
+    @include md {
+      display: flex;
+    }
+  }
+
+  &__title {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 80px;
+    letter-spacing: 2%;
   }
 }
