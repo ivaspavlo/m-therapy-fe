@@ -14,8 +14,10 @@
     max-width: 1200px;
     height: 100%;
     transform: translateX(-50%);
-    align-items: center;
+    padding: 0 16px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 2;
   }
 
@@ -40,19 +42,22 @@
       display: flex;
     }
   }
+
+  &__button {
+    margin: 56px 8px 0;
+  }
 }
 
 .landing-title {
-  font-size: 56px;
-  font-weight: 900;
-  line-height: 80px;
+  font-size: 64px;
+  line-height: 82px;
   letter-spacing: 1px;
   font-style: normal;
   display: flex;
   flex-direction: column;
 
   &__text {
-    color: $dark-grey;
+    color: $secondary;
     font-family: 'PlayfairDisplay';
 
     &--accent {

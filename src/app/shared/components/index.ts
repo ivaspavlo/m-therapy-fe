@@ -1,3 +1,4 @@
+import { ButtonComponent } from './button/button.component';
 import { FooterComponent } from './footer/footer.component';
 import { HamburgerComponent } from './hamburger/hamburger.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,5 +11,6 @@ export const COMPONENTS = [
   FooterComponent,
   LogoComponent,
   IconComponent,
-  HamburgerComponent
+  HamburgerComponent,
+  ButtonComponent
 ];
