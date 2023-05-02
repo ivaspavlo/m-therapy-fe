@@ -1,4 +1,7 @@
 {
+  "main": {
+
+  },
   "core": {
     "address": "Kyiv, Saratovska str. 10",
     "not-found": "Seems to be this page doesn't exist...",

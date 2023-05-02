@@ -1,0 +1,22 @@
+@import 'colors';
+
+.app-button {
+  height: 54px;
+  padding: 14px 28px;
+  border: 0;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 140%;
+  color: red;
+}
+
+.primary {
+  background: linear-gradient(4.01deg, #059669 3.04%, #36DCA5 96.51%);
+  color: $white;
+}
+
+.secondary {
+  border: 1px solid #10B981;
+  color: #10B981;
+}
