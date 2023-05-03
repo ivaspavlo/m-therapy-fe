@@ -1,0 +1,83 @@
+
+$text-color: #7dc9bd;
+
+@mixin item {
+	min-width: 60px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+:host {
+  width: 100%;
+}
+
+.menu {
+	position: relative;
+	&:hover {
+		.menu__current {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			color: #fff;
+			background-color: rgba(125,201,189,.8);
+		}
+		.menu__list {
+			transform: scale(1);
+			opacity: 1;
+		}
+		.menu__item {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+	&__current {
+		@include item;
+		border-radius: 4px;
+    transition: .3s ease;
+		color: $text-color;
+		cursor: pointer;
+		&--no-items {
+			border-radius: 4px;
+		}
+	}
+	&__list {
+		position: absolute; top: 100%;
+		transition: .3s ease;
+		transform-origin: 0 0;
+		transform: scale(0);
+		opacity: 0;
+		border-radius: 4px;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+		background-color: rgba(125,201,189,.8);
+		z-index: 3;
+	}
+	&__item {
+		@include item;
+    white-space: nowrap;
+		transition: .1s;
+		overflow: hidden;
+  	text-overflow: ellipsis;
+    color: #fff;
+		$delay: 100;
+    cursor: pointer;
+		&:hover {
+			opacity: .5;
+		}
+		@for $i from 1 through 10 {
+			&:nth-child(#{$i}) {
+				transition-delay: #{$delay}ms;
+				$delay: $delay + 50;
+			}
+		}
+	}
+	&__icon {
+		width: 20px;
+		height: 20px;
+		margin: 0 3px;
+		display: inline-flex;
+		background-position: center;
+		background-size: cover;
+	}
+}
