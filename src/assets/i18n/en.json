@@ -1,15 +1,8 @@
 {
   "main": {
-
-  },
-  "core": {
-    "address": "Kyiv, Saratovska str. 10",
-    "not-found": "Seems to be this page doesn't exist...",
-    "back-to-main-page": "Main Page",
-    "and": "and",
-    "add-to-cart": "Add to cart"
-  },
-  "header": {
-    "services": "Services"
+    "landing": {
+      "register": "Become a member",
+      "pricing": "See pricing"
+    }
   }
 }
