@@ -1,0 +1,9 @@
+<ul *ngIf="(current$ | async) as currentItem" class="menu">
+  <a (click)="onMenuClick()" class="menu__current">
+    <span>{{currentItem.name}}</span>
+    <i *ngIf="currentItem.icon" [ngStyle]="{'background-image': 'url(' + currentItem.icon + ')'}" class="menu__icon"></i>
+  </a>
+  <ul class="menu__list">
+    <li (click)="onItemClick($event, item)" *ngFor="let item of listItems$ | async; let index = index;" class="menu__item" [id]="'lang-bar-item' + index">{{item.name}}</li>
+  </ul>
+</ul>
