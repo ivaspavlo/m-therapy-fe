@@ -1,13 +1,6 @@
-
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-
-export interface ILanguageBarItem {
-  name: string;
-  id: string;
-  icon?: string;
-}
 
 @Component({
   selector: 'app-language-bar',
@@ -16,41 +9,41 @@ export interface ILanguageBarItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LanguageBarComponent implements OnInit {
-  
-  @Input() items: ILanguageBarItem[];
-  @Input() current: ILanguageBarItem;
+
+  @Input() items: string[];
+  @Input() current: string;
+
   @Output() languageChange: EventEmitter<string> = new EventEmitter();
-  
-  public current$: BehaviorSubject<ILanguageBarItem> = new BehaviorSubject(null);
-  public listItems$: BehaviorSubject<ILanguageBarItem[]> = new BehaviorSubject(null);
-  public isOpened$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public checkId = 'lang-bar-item';
-  
+
+  public current$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public listItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  public isOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   private componentDestroyed$: Subject<void> = new Subject();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.setValues(this.current || this.items[0] || null);
+    this.setValues(this.current || this.items[0] || '');
   }
-  
+
   public onMenuClick(): void {
     this.isOpened$.next(!this.isOpened$.value);
   }
-  
-  public onItemClick(event: MouseEvent, item: ILanguageBarItem): void {
+
+  public onItemClick(event: MouseEvent, item: string): void {
     event.preventDefault();
     event.stopPropagation();
     this.isOpened$.next(false);
     this.setValues(item);
-    this.languageChange.emit(item.id);
+    this.languageChange.emit(item);
   }
-  
-  private setValues(item: ILanguageBarItem): void {
+
+  private setValues(item: string): void {
     this.current$.next(item);
-    this.listItems$.next(this.items.filter(i => i.id !== item.id));
+    this.listItems$.next(this.items.filter(i => i !== item));
   }
-  
+
   ngOnDestroy(): void {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();

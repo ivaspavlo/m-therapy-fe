@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LANGUAGES } from '@app/core/constants';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { map } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
 
   @Input() scrollOrigin: HTMLElement;
+
   public isOpen = false;
+  public languages = Object.values(LANGUAGES);
 
   public headerControls = [
     { uiName: 'services', link: '' },
@@ -28,6 +31,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initIsShrinkedObservable();
+  }
+
+  public onLanguageChange(language: string): void {
+    console.log(language);
   }
 
   private initIsShrinkedObservable(): void {
