@@ -1,5 +1,4 @@
-
-$text-color: #7dc9bd;
+@import 'variables';
 
 @mixin item {
 	min-width: 60px;
@@ -35,7 +34,7 @@ $text-color: #7dc9bd;
 		@include item;
 		border-radius: 4px;
     transition: .3s ease;
-		color: $text-color;
+		color: $primary;
 		cursor: pointer;
 		&--no-items {
 			border-radius: 4px;
