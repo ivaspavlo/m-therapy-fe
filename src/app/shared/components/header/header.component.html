@@ -19,6 +19,9 @@
           <app-icon name="cart" size="xl"></app-icon>
         </a>
       </li>
+      <li class="app-header__item">
+        <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
+      </li>
     </ul>
 
   </div>
