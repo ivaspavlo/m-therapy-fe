@@ -1,3 +1,4 @@
+import { AdCountdownComponent } from './ad-countdown/ad-countdown.component';
 import { ButtonComponent } from './button/button.component';
 import { FooterComponent } from './footer/footer.component';
 import { HamburgerComponent } from './hamburger/hamburger.component';
@@ -14,5 +15,6 @@ export const COMPONENTS = [
   IconComponent,
   HamburgerComponent,
   ButtonComponent,
-  LanguageBarComponent
+  LanguageBarComponent,
+  AdCountdownComponent
 ];
