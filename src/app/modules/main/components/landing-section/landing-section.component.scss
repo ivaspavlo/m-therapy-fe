@@ -44,25 +44,32 @@
   }
 
   &__button {
-    margin: 56px 8px 0;
+    margin: 24px 8px 0;
+    @include md {
+      margin: 56px 8px 0;
+    }
   }
 }
 
 .landing-title {
-  font-size: 64px;
-  line-height: 82px;
+  font-size: 48px;
+  line-height: 64px;
   letter-spacing: 1px;
   font-style: normal;
   display: flex;
   flex-direction: column;
+  @include md {
+    font-size: 64px;
+    line-height: 82px;
+  }
 
   &__text {
     color: $secondary;
-    font-family: 'PlayfairDisplay';
+    font-family: $playfair;
 
     &--accent {
       color: $primary;
-      font-family: 'PlayfairDisplay';
+      font-family: $playfair;
     }
   }
 }
