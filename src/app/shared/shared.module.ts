@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { COMPONENTS } from './components';
 
 
@@ -8,7 +9,8 @@ import { COMPONENTS } from './components';
     ...COMPONENTS
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreTranslationModule.forChild()
   ],
   exports: [
     ...COMPONENTS

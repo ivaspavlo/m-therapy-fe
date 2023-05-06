@@ -8,8 +8,6 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogoComponent {
-
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
-  @Input() noUrl = false;
-
+  @Input() isClickable = false;
 }

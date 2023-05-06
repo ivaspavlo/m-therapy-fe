@@ -1,4 +1,8 @@
 {
+  "header": {
+    "logo-button": "Back to the main page",
+    "logo-image": "Logo image"
+  },
   "main": {
     "landing": {
       "register": "Become a member",

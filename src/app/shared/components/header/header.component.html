@@ -2,7 +2,7 @@
 
   <div class="w-100 d-none d-md-flex max-width-1200">
 
-    <app-logo [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4"></app-logo>
+    <app-logo [isClickable]="true" [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4"></app-logo>
 
     <ul class="d-flex flex-grow-1 justify-content-start align-items-center">
       <li class="app-header__item" *ngFor="let ctrl of headerControls">

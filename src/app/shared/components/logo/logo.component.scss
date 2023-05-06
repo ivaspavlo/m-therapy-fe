@@ -1,6 +1,11 @@
 .app-logo {
   transition: .5s;
   display: flex;
+  border: 0;
+  background-color: transparent;
+  &__button {
+    cursor: pointer;
+  }
 }
 
 .xs { width: 25px; height: 25px; }
