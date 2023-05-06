@@ -1,10 +1,16 @@
-<a *ngIf="noUrl" href="/" [ngClass]="size" class="app-logo">
+<button
+  *ngIf="isClickable"
+  [attr.aria-label]="'header.logo-button' | translate"
+  href="/"
+  [ngClass]="size"
+  class="app-logo app-logo__button"
+>
   <figure class="w-100 h-100">
-    <img class="w-100" src="/assets/images/vector/logo.svg" alt="Logo">
+    <img class="w-100" src="/assets/images/vector/logo.svg" [alt]="'header.logo-image' | translate">
   </figure>
-</a>
+</button>
 
-<p *ngIf="!noUrl" [ngClass]="size" class="app-logo">
+<p *ngIf="!isClickable" [ngClass]="size" class="app-logo">
   <figure class="w-100 h-100">
     <img class="w-100" src="/assets/images/vector/logo.svg" alt="Logo">
   </figure>
