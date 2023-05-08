@@ -5,7 +5,8 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
+      "@env/*": ["environments/*"],
+      "@interfaces/*": ["app/interfaces/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,

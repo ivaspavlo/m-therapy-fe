@@ -3,6 +3,11 @@
     "logo-button": "Back to the main page",
     "logo-image": "Logo image"
   },
+  "language-bar": {
+    "title": "Language dropdown list. Selected item: {{x}}. Click here to open the list.",
+    "en": "English",
+    "ua": "Ukrainian"
+  },
   "main": {
     "landing": {
       "register": "Become a member",
