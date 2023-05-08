@@ -2,7 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LANGUAGES } from '@app/core/constants';
+import { LANGUAGES_ITEMS } from '@app/core/constants';
+import { ILanguage } from '@interfaces';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   @Input() scrollOrigin: HTMLElement;
 
   public isOpen = false;
-  public languages = Object.values(LANGUAGES);
+  public languages: ILanguage[] = LANGUAGES_ITEMS;
 
   public headerControls = [
     { uiName: 'services', link: '' },

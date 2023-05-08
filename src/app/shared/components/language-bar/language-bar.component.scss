@@ -1,5 +1,9 @@
 @import 'variables';
 
+:host {
+  width: 100%;
+}
+
 @mixin item {
 	min-width: 60px;
 	height: 40px;
@@ -8,12 +12,11 @@
 	align-items: center;
 }
 
-:host {
-  width: 100%;
-}
-
 .menu {
 	position: relative;
+	&:focus {
+		outline: 1px solid $primary;
+	}
 	&:hover {
 		.menu__current {
 			border-bottom-left-radius: 0;
