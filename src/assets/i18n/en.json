@@ -6,7 +6,8 @@
   "language-bar": {
     "title": "Language dropdown list. Selected item: {{x}}. Click here to open the list.",
     "en": "English",
-    "ua": "Ukrainian"
+    "ua": "Ukrainian",
+    "activate": "{{x}} language. Click to activate"
   },
   "main": {
     "landing": {

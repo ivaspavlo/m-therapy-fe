@@ -1,10 +1,11 @@
 <button
   *ngIf="(current$ | async) as currentItem"
+  #activateButton
   (click)="onToggleMenu()"
   clickOutside
   (clickOutside)="onCloseMenu()"
-  tabindex="0" 
-  [attr.aria-label]="'language-bar.title' | translate"
+  tabindex="0"
+  [attr.aria-label]="'language-bar.title' | translate:{'x': currentItem.aria | translate}"
   [ngClass]="{'menu--active': (isOpened$ | async)}"
   class="menu">
     <a id="currentItem" class="menu__current">
@@ -15,6 +16,7 @@
         *ngFor="let item of listItems$ | async; let index = index;"
         (click)="onItemClick($event, item)"
         (keyup.enter)="onItemClick($event, item)"
+        [attr.aria-label]="'language-bar.activate' | translate:{'x': item.aria | translate}"
         tabindex="0"
         class="menu__item"
       >{{ item.title | uppercase }}</a>
