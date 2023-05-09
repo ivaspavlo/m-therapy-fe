@@ -1,4 +1,4 @@
-import { ILanguage } from "@interfaces";
+import { ILanguage } from '@app/interfaces';
 
 
 export enum LANGUAGES {
