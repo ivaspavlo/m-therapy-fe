@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ILanguage } from '@app/interfaces';
 import { BehaviorSubject, Subject } from 'rxjs';
 
@@ -15,6 +15,8 @@ export class LanguageBarComponent implements OnInit {
   @Input() current: ILanguage;
 
   @Output() languageChange: EventEmitter<ILanguage> = new EventEmitter();
+
+  @ViewChild('activateButton') activateButton: ElementRef;
 
   public current$: BehaviorSubject<ILanguage | null> = new BehaviorSubject<ILanguage | null>(null);
   public listItems$: BehaviorSubject<ILanguage[]> = new BehaviorSubject<ILanguage[]>([]);
@@ -48,6 +50,7 @@ export class LanguageBarComponent implements OnInit {
     this.isOpened$.next(false);
     this.setValues(item);
     this.languageChange.emit(item);
+    this.activateButton.nativeElement.blur();
   }
 
   private setValues(item: ILanguage | null): void {
