@@ -4,9 +4,7 @@
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@app/*": ["app/*"],
-      "@env/*": ["environments/*"],
-      "@interfaces/*": ["app/interfaces/*"]
+      "@app/*": ["app/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,

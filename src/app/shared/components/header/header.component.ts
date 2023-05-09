@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angu
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LANGUAGES_ITEMS } from '@app/core/constants';
-import { ILanguage } from '@interfaces';
+import { ILanguage } from '@app/interfaces';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
     this.initIsShrinkedObservable();
   }
 
-  public onLanguageChange(language: string): void {
+  public onLanguageChange(language: ILanguage): void {
     console.log(language);
   }
 

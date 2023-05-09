@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ILanguage } from '@app/interfaces';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 
@@ -10,13 +11,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class LanguageBarComponent implements OnInit {
 
-  @Input() items: string[];
-  @Input() current: string;
+  @Input() items: ILanguage[];
+  @Input() current: ILanguage;
 
-  @Output() languageChange: EventEmitter<string> = new EventEmitter();
+  @Output() languageChange: EventEmitter<ILanguage> = new EventEmitter();
 
-  public current$: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public listItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  public current$: BehaviorSubject<ILanguage | null> = new BehaviorSubject<ILanguage | null>(null);
+  public listItems$: BehaviorSubject<ILanguage[]> = new BehaviorSubject<ILanguage[]>([]);
   public isOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private componentDestroyed$: Subject<void> = new Subject();
@@ -24,14 +25,24 @@ export class LanguageBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.setValues(this.current || this.items[0] || '');
+    this.setValues(this.current || this.items[0] || null);
   }
 
-  public onMenuClick(): void {
-    this.isOpened$.next(!this.isOpened$.value);
+  public onToggleMenu(): void {
+    this.isOpened$.value ?
+      this.onCloseMenu() :
+      this.onOpenMenu();
   }
 
-  public onItemClick(event: MouseEvent, item: string): void {
+  public onOpenMenu(): void {
+    this.isOpened$.next(true);
+  }
+
+  public onCloseMenu(): void {
+    this.isOpened$.next(false);
+  }
+
+  public onItemClick(event: Event, item: ILanguage): void {
     event.preventDefault();
     event.stopPropagation();
     this.isOpened$.next(false);
@@ -39,14 +50,14 @@ export class LanguageBarComponent implements OnInit {
     this.languageChange.emit(item);
   }
 
-  private setValues(item: string): void {
+  private setValues(item: ILanguage | null): void {
     this.current$.next(item);
-    this.listItems$.next(this.items.filter(i => i !== item));
+    const listItems = item ? this.items.filter(i => i.title !== item.title) : this.items;
+    this.listItems$.next(listItems);
   }
 
   ngOnDestroy(): void {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();
   }
-
 }

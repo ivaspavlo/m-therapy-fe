@@ -1,4 +1,4 @@
-import { LANGUAGES } from "@app/core/constants"
+import { LANGUAGES } from '@app/core/constants';
 
 
 export interface ILanguage {
