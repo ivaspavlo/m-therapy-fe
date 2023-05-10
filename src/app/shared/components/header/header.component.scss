@@ -26,7 +26,6 @@
 
   &__item {
     height: 100%;
-    margin: 0 14px;
     display: flex;
     align-items: center;
     transition: .5s;
@@ -50,12 +49,18 @@
   &__link {
     height: 100%;
     font-size: 14px;
+    padding: 0 14px;
     font-weight: bold;
     display: flex;
     align-items: center;
     color: $primary;
     transition: .5s;
-    &:hover { opacity: .7; }
+    &:hover {
+      opacity: .7;
+    }
+    &:focus {
+      outline: 1px solid $primary;
+    }
     &--mobile {
       color: $white;
     }
