@@ -1,23 +1,23 @@
 <button
   *ngIf="(current$ | async) as currentItem"
   #activateButton
-  (click)="onToggleMenu()"
   clickOutside
   (clickOutside)="onCloseMenu()"
+  (click)="onToggleMenu()"
   tabindex="0"
   [attr.aria-label]="'language-bar.title' | translate:{'x': currentItem.aria | translate}"
-  [ngClass]="{'menu--active': (isOpened$ | async)}"
+  [ngClass]="{'menu--active': isOpened$ | async}"
   class="menu">
     <a id="currentItem" class="menu__current">
       <span>{{ currentItem.title | uppercase }}</span>
     </a>
     <div class="menu__list">
       <a
-        *ngFor="let item of listItems$ | async; let index = index;"
+        *ngFor="let item of listItems$ | async; let index = index; let isLast = last;"
         (click)="onItemClick($event, item)"
         (keyup.enter)="onItemClick($event, item)"
         [attr.aria-label]="'language-bar.activate' | translate:{'x': item.aria | translate}"
-        tabindex="0"
+        [attr.tabindex]="(isOpened$ | async) ? 0 : -1"
         class="menu__item"
       >{{ item.title | uppercase }}</a>
     </div>

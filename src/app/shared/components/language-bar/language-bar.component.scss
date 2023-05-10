@@ -16,6 +16,8 @@
 }
 
 .menu {
+	min-width: 60px;
+	height: 40px;
 	font-size: 16px;
 	position: relative;
 	background-color: $transparent;
@@ -52,7 +54,8 @@
 		}
 	}
 	&__list {
-		position: absolute; top: 100%;
+		position: absolute;
+		top: 100%;
 		transition: .3s ease;
 		transform-origin: 0 0;
 		transform: scale(0);
