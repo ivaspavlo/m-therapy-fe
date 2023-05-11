@@ -1,9 +1,14 @@
+@import 'variables';
+
 .app-logo {
   transition: .5s;
   display: flex;
   border: 0;
   background-color: transparent;
   &__button {
+    &:focus {
+      outline: 1px solid $primary;
+    }
     cursor: pointer;
   }
 }

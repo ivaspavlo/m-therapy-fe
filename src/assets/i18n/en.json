@@ -1,7 +1,9 @@
 {
   "header": {
     "logo-button": "Back to the main page",
-    "logo-image": "Logo image"
+    "logo-image": "Logo image",
+    "user-button": "User profile button",
+    "cart-button": "Cart button"
   },
   "language-bar": {
     "title": "Language dropdown list. Selected item: {{x}}. Click here to open the list.",

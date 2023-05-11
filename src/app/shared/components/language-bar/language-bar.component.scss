@@ -5,7 +5,7 @@
 }
 
 @mixin item {
-	min-width: 60px;
+	min-width: 40px;
 	height: 40px;
 	display: flex;
 	justify-content: center;
@@ -16,8 +16,9 @@
 }
 
 .menu {
-	min-width: 60px;
+	min-width: 40px;
 	height: 40px;
+	margin: 0 8px;
 	font-size: 16px;
 	position: relative;
 	background-color: $transparent;
