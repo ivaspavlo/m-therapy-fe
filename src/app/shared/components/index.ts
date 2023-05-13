@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { IconComponent } from './icon/icon.component';
 import { LanguageBarComponent } from './language-bar/language-bar.component';
 import { LogoComponent } from './logo/logo.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 export const COMPONENTS = [
@@ -16,5 +17,6 @@ export const COMPONENTS = [
   HamburgerComponent,
   ButtonComponent,
   LanguageBarComponent,
-  AdCountdownComponent
+  AdCountdownComponent,
+  SpinnerComponent
 ];
