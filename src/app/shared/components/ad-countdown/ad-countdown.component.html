@@ -1,17 +1,30 @@
-<div class="count-down-timer">
-  <p *ngIf="false">Countdown to {{ currentTime }}</p>
+<div tabindex="0" [attr.aria-label]="('countdown.title' | translate) + ' ' + targetTimeString" class="countdown-timer">
+  <p *ngIf="isTargetTimeVisible" class="mb-2">Countdown to {{ targetTimeString }}</p>
   <div class="wrapper">
-    <div class="description">
-      <p>Days</p>
-      <p>Hours</p>
-      <p>Minutes</p>
-      <p>Seconds</p>
+    <div>
+      <p class="desc">{{ 'countdown.days' | translate }}</p>
+      <p class="times">{{ days | number:'2.0' }}</p>
     </div>
-    <div class="times">
-      <p #days></p>
-      <p #hours></p>
-      <p #minutes></p>
-      <p #seconds></p>
+
+    <div class="delimiter">:</div>
+
+    <div>
+      <p class="desc">{{ 'countdown.hours' | translate }}</p>
+      <p class="times">{{ hours | number:'2.0' }}</p>
+    </div>
+
+    <div class="delimiter">:</div>
+
+    <div>
+      <p class="desc">{{ 'countdown.minutes' | translate }}</p>
+      <p class="times">{{ minutes | number:'2.0' }}</p>
+    </div>
+
+    <div class="delimiter">:</div>
+
+    <div>
+      <p class="desc">{{ 'countdown.seconds' | translate }}</p>
+      <p class="times">{{ seconds | number:'2.0' }}</p>
     </div>
   </div>
 </div>

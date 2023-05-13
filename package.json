@@ -22,6 +22,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "bootstrap-4-grid": "^3.4.0",
+    "ngx-spinner": "^15.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
