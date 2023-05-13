@@ -16,5 +16,12 @@
       "register": "Become a member",
       "pricing": "See pricing"
     }
+  },
+  "countdown": {
+    "title": "Countdown to",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
   }
 }

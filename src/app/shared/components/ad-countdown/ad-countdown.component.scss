@@ -1,56 +1,44 @@
 @import 'variables';
 
-.count-down-timer {
+.countdown-timer {
   box-shadow: 2px 6px 9px 2px rgba(0,0,0,.2);
-  max-width: 400px;
-  min-width: 340px;
+  width: 420px;
   background: linear-gradient(360deg, #059669 0.08%, #10B981 100%);
-  color: #fff;
+  color: $white;
   padding: 20px 52px;
   font-family: sans-serif;
   display: flex;
-
-  > p {
-    margin: 5px 0 15px 0;
-  }
-
-  .wrapper {
-    .description,
-    .times {
-      display: grid;
-      grid-template-columns: repeat(4, calc(25% - 8px));
-      grid-column-gap: 10px;
-    }
-
-    .description {
-      > p {
-        margin: 0;
-        font: normal 14px sans-serif;
-      }
-    }
-
-    .times {
-      p {
-        letter-spacing: -5px;
-        position: relative;
-        margin: 0;
-        font: normal 40px courier, sans-serif;
-        ::ng-deep img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 30px;
-          display: block;
-          height: 30px;
-        }
-      }
-    }
+  flex-direction: column;
+  &:focus {
+    outline: 1px solid $white;
   }
 }
 
-@media screen and (max-width: 430px) {
-  .count-down-timer {
-    margin: 20px;
-  }
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.desc {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.times {
+  width: 60px;
+  font-weight: 600;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.delimiter {
+  font-weight: 600;
+  font-size: 48px;
+  display: flex;
+  flex-grow: 1;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 4px;
 }
