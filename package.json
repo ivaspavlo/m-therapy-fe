@@ -10,7 +10,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^15.2.9",
+    "@angular/animations": "^16.0.1",
+    "@angular/cdk": "^16.0.1",
     "@angular/common": "^15.2.9",
     "@angular/compiler": "^15.2.9",
     "@angular/core": "^15.2.9",
@@ -21,6 +22,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "bootstrap-4-grid": "^3.4.0",
+    "ngx-spinner": "^15.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
