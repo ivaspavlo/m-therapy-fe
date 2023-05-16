@@ -1,4 +1,4 @@
-@import '~bootstrap-4-grid/scss/grid';
+@import 'node_modules/bootstrap-4-grid/scss/grid';
 
 @mixin sm {
   @media only screen and (min-width: map-get($grid-breakpoints, 'sm')) {
