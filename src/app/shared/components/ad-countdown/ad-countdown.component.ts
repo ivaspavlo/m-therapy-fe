@@ -41,10 +41,6 @@ export class AdCountdownComponent implements AfterViewInit {
       this.tickTock();
       this.difference = this.targetTime - this.now;
       this.difference = this.difference / (1000 * 60 * 60 * 24);
-
-      // !isNaN(this.days.nativeElement.innerText)
-      //   ? (this.days.nativeElement.innerText = Math.floor(this.difference))
-      //   : (this.days.nativeElement.innerHTML = `<img src="https://i.gifer.com/VAyR.gif" />`);
     }, 1000);
   }
 
