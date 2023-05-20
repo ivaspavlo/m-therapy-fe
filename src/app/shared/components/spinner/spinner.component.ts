@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -11,10 +10,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SpinnerComponent implements OnInit {
 
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
+  @Input() color: 'primary' | 'secondary' | 'default' = 'default';
 
-  constructor(
-    private spinnerService: NgxSpinnerService
-  ) { }
+  constructor( ) { }
 
   ngOnInit(): void { }
 

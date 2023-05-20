@@ -11,7 +11,7 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, I
 export class AdCountdownComponent implements AfterViewInit {
 
   @Input('targetDate') targetDate: Date = new Date(2023, 6, 11);
-  @Input('isTargetTimeVisible') isTargetTimeVisible: boolean = true;
+  @Input('isTargeDateVisible') isTargeDateVisible: boolean = false;
 
   public currentTime: string = '';
   public days: number;
