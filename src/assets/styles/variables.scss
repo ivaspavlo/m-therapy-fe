@@ -6,6 +6,9 @@ $primary: #0db981;
 $secondary: #044E3B;
 $dark-grey: #1F2937;
 
+// background-color
+$bg-primary: linear-gradient(360deg, #059669 0.08%, #10B981 100%);
+
 // transition
 $transition-1: .3s;
 
@@ -15,7 +18,7 @@ $z-two: 2;
 $z-three: 3;
 $z-header: 1000;
 
-// font
+// font-style
 $playfair: 'PlayfairDisplay';
 
 // border-radius
