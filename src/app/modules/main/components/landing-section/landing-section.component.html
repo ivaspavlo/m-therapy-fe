@@ -10,7 +10,13 @@
       <app-button type="primary" title="{{ 'main.landing.register' | translate }}" class="landing__button"></app-button>
       <app-button type="secondary" title="{{ 'main.landing.pricing' | translate }}" class="landing__button"></app-button>
     </div>
-    <app-ad-countdown class="landing__countdown"></app-ad-countdown>
+    <div class="landing-countdown">
+      <header class="landing-countdown__header">
+        <p class="landing-countdown__title">Grand Opening</p>
+        <p>All items are 25% Discount for New Member</p>
+      </header>
+      <app-ad-countdown class="landing-countdown__timer"></app-ad-countdown>
+    </div>
   </div>
 
   <div class="landing__left"></div>
