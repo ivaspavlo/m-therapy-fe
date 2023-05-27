@@ -45,6 +45,11 @@
 	}
 
 	&.is-on {
+		span,
+		&:before,
+		&:after {
+			background-color: $orange;
+		}
 		span {
 			opacity: 0;
 		}
