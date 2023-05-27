@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins/breakpoints';
 
 :host {
   width: 100%;
@@ -8,19 +9,37 @@
 .app-header {
   position: fixed; top: 0;
   width: 100%;
-  padding: 16px;
   display: flex;
   justify-content: center;
-  transition: .5s;
+  transition: $transition-2;
   z-index: $z-header;
 
-  &--is-shrinked {
-    padding: 10px 16px;
-    .app-header__item {
-      margin: 0 6px;
+  &__desktop-mode {
+    width: 100%;
+    max-width: $width-2;
+    padding: 16px;
+    display: none;
+    &--shrinked {
+      padding: 10px 16px;
+      .app-header__item {
+        margin: 0 6px;
+      }
+      .app-header__link {
+        font-size: 14px;
+      }
     }
-    .app-header__link {
-      font-size: 14px;
+    @include md {
+      display: flex;
+    }
+  }
+
+  &__mobile-mode {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    @include md {
+      display: none;
     }
   }
 
@@ -70,16 +89,28 @@
     margin-left: 18px;
     z-index: 1;
   }
+}
 
-  &__mobile-menu {
-    position: absolute; top: 0;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: rgba(0,0,0,.5);
+.overlay-menu {
+  position: absolute; top: 0;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $bg-overlay;
+
+  &__list {
+    opacity: 0;
+    transition: all $transition-1;
+    transform: scalse(.8) translateY(-100px);
+    background-color: white;
+    animation-delay: 1s;
+    &--visible {
+      opacity: 1;
+      transform: scalse(1) translateY(0);
+    }
   }
 }

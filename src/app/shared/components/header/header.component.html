@@ -1,6 +1,6 @@
-<section class="app-header" [ngClass]="{'app-header--is-shrinked': isShrinked$ | async}">
+<section class="app-header">
 
-  <div class="w-100 d-none d-md-flex max-width-1200">
+  <div [ngClass]="{'app-header__desktop-mode--shrinked': isShrinked$ | async}" class="app-header__desktop-mode">
 
     <app-logo [isClickable]="true" [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4"></app-logo>
 
@@ -27,7 +27,7 @@
 
   </div>
 
-  <div class="w-100 d-flex d-md-none justify-content-between">
+  <div class="app-header__mobile-mode">
 
     <app-logo size="sm" class="mr-4"></app-logo>
 
@@ -35,25 +35,30 @@
       <li>
         <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
       </li>
+      <li class="app-header__item app-header__item--delimiter"></li>
       <li class="app-header__item app-header__item--mobile-icon">
         <a class="app-header__link">
           <app-icon name="user" size="xl"></app-icon>
         </a>
       </li>
+      <li class="app-header__item app-header__item--delimiter"></li>
       <li class="app-header__item app-header__item--mobile-icon">
         <a class="app-header__link">
           <app-icon name="cart" size="xl"></app-icon>
         </a>
       </li>
+      <li class="app-header__item app-header__item--delimiter"></li>
       <app-hamburger (isOn)="isOpen = $event" class="app-header__burger"></app-hamburger>
     </div>
 
   </div>
 
-  <ul *ngIf="isOpen" class="app-header__mobile-menu">
-    <li class="app-header__item app-header__item--mobile" *ngFor="let ctrl of headerControls">
-      <a class="app-header__link app-header__link--mobile">{{ ctrl.uiName | uppercase }}</a>
-    </li>
-  </ul>
+  <div *ngIf="isOpen" class="overlay-menu">
+    <ul [ngClass]="{'overlay-menu__list--visible': isOpen}" class="overlay-menu__list">
+      <li class="app-header__item app-header__item--mobile" *ngFor="let ctrl of headerControls">
+        <a class="app-header__link app-header__link--mobile">{{ ctrl.uiName | uppercase }}</a>
+      </li>
+    </ul>
+  </div>
 
 </section>

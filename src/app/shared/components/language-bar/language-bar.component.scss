@@ -65,7 +65,7 @@
 		border-top-right-radius: 0;
 		border-top-left-radius: 0;
 		background-color: $primary;
-		z-index: $z-three;
+		z-index: 3;
 	}
 	&__item {
 		@include item;
