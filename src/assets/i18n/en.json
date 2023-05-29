@@ -23,5 +23,8 @@
     "hours": "hours",
     "minutes": "minutes",
     "seconds": "seconds"
+  },
+  "footer": {
+    "empovered-by": "Empovered by ivaspavlo"
   }
 }
