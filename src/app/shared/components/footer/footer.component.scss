@@ -1,0 +1,64 @@
+@import 'mixins';
+@import 'variables';
+
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.app-footer {
+  width: 100%;
+  min-height: 30vh;
+  max-width: $width-2;
+  padding: 1rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: grey;
+  position: relative;
+
+  &__copyright {
+    position: absolute; bottom: 0;
+    width: 100%;
+    font-size: rem(12px);
+    display: flex;
+    color: $secondary;
+  }
+
+  @include md {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 rem(8px);
+  font-size: rem(12px);
+  color: $secondary;
+
+  &__title {
+    font-size: rem(16px);
+  }
+}
+
+.item {
+  padding: rem(6px) 0;
+  transition: $transition-1;
+  cursor: pointer;
+  &:hover {
+    opacity: .7;
+  }
+  &--title {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: $secondary;
+  }
+  &__link {
+    color: $primary;
+  }
+}
