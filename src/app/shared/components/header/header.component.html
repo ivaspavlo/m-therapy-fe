@@ -53,12 +53,12 @@
 
   </div>
 
-  <div *ngIf="isOpen" class="overlay-menu">
-    <ul [ngClass]="{'overlay-menu__list--visible': isOpen}" class="overlay-menu__list">
-      <li class="app-header__item app-header__item--mobile" *ngFor="let ctrl of headerControls">
-        <a class="app-header__link app-header__link--mobile">{{ ctrl.uiName | uppercase }}</a>
-      </li>
-    </ul>
-  </div>
+  <div *ngIf="isOpen" class="overlay"></div>
+
+  <ul [ngClass]="{'mobile-menu--visible': isOpen}" class="mobile-menu">
+    <li *ngFor="let ctrl of headerControls" class="my-3">
+      <a class="mobile-menu__link">{{ ctrl.uiName | uppercase }}</a>
+    </li>
+  </ul>
 
 </section>

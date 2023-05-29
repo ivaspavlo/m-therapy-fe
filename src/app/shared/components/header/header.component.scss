@@ -91,26 +91,37 @@
   }
 }
 
-.overlay-menu {
+.overlay {
   position: absolute; top: 0;
   width: 100vw;
   height: 100vh;
-  padding-top: rem(100px);
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: $bg-overlay;
+}
 
-  &__list {
-    opacity: 0;
-    transition: all $transition-1;
-    transform: scalse(.8) translateY(rem(-100px));
-    background-color: white;
-    animation-delay: 1s;
-    &--visible {
-      opacity: 1;
-      transform: scalse(1) translateY(0);
+.mobile-menu {
+  position: absolute; top: 0;
+  margin-top: rem(100px);
+  opacity: 0;
+  transition: all $transition-1;
+  transform: scale(.6) translateY(rem(-100px));
+  z-index: 1;
+  &--visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  &__link {
+    font-size: 2rem;
+    color: $white;
+    font-weight: bolder;
+    transition: $transition-1;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
     }
   }
 }
