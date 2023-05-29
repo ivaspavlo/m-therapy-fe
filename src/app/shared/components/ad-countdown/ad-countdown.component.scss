@@ -1,10 +1,10 @@
 @import 'variables';
-@import 'mixins/breakpoints';
+@import 'mixins';
 
 .countdown-timer {
-  width: 300px;
-  min-height: 82px;
-  padding: 8px 16px;
+  width: rem(300px);
+  min-height: rem(82px);
+  padding: rem(8px) rem(16px);
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
   background: $bg-primary;
   box-shadow: $b-shadow-1;
   &:focus {
-    outline: 1px solid $white;
+    outline: $outline-2;
   }
   &__wrapper {
     width: 100%;
@@ -22,39 +22,39 @@
     justify-content: space-between;
   }
   @include lg {
-    width: 420px;
-    min-height: 110px;
-    padding: 18px 42px;
+    width: rem(420px);
+    min-height: rem(110px);
+    padding: rem(18px) rem(42px);
   }
 }
 
 .desc {
   font-weight: 600;
-  font-size: 12px;
-  padding-left: 2px;
+  font-size: rem(12px);
+  padding-left: rem(2px);
 }
 
 .times {
-  width: 50px;
+  width: rem(50px);
   font-weight: 600;
-  font-size: 40px;
+  font-size: rem(40px);
   display: flex;
   justify-content: flex-start;
   @include lg {
-    font-size: 48px;
+    font-size: rem(48px);
   }
 }
 
 .delimiter {
   font-weight: 600;
-  font-size: 40px;
+  font-size: rem(40px);
   display: flex;
   flex-grow: 1;
   align-items: flex-start;
   justify-content: center;
   transform: translateY(-5px);
   @include lg {
-    font-size: 48px;
-    margin: 0 4px;
+    font-size: rem(48px);
+    margin: 0 rem(4px);
   }
 }

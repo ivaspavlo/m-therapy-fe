@@ -1,5 +1,5 @@
 @import 'variables';
-@import 'mixins/breakpoints';
+@import 'mixins';
 
 :host {
   width: 100%;
@@ -17,15 +17,15 @@
   &__desktop-mode {
     width: 100%;
     max-width: $width-2;
-    padding: 16px;
+    padding: 1rem;
     display: none;
     &--shrinked {
-      padding: 10px 16px;
+      padding: rem(10px) rem(16px);
       .app-header__item {
-        margin: 0 6px;
+        margin: 0 rem(6px);
       }
       .app-header__link {
-        font-size: 14px;
+        font-size: rem(14px);
       }
     }
     @include md {
@@ -35,7 +35,7 @@
 
   &__mobile-mode {
     width: 100%;
-    padding: 16px;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     @include md {
@@ -51,34 +51,34 @@
     cursor: pointer;
     &--delimiter {
       height: 50%;
-      width: 1px;
+      width: rem(1px);
       margin: 0;
       background-color: $primary;
     }
     &--mobile {
       height: auto;
-      margin: 0 0 16px;
+      margin: 0 0 1rem;
     }
     &--mobile-icon {
       height: auto;
-      margin: 0 10px;
+      margin: 0 rem(10px);
     }
   }
 
   &__link {
     height: 100%;
-    font-size: 14px;
-    padding: 0 14px;
+    font-size: rem(14px);
+    padding: 0 rem(14px);
     font-weight: bold;
     display: flex;
     align-items: center;
     color: $primary;
-    transition: .5s;
+    transition: $transition-2;
     &:hover {
       opacity: .7;
     }
     &:focus {
-      outline: 1px solid $primary;
+      outline: $outline-1;
     }
     &--mobile {
       color: $white;
@@ -86,7 +86,7 @@
   }
 
   &__burger {
-    margin-left: 18px;
+    margin-left: rem(18px);
     z-index: 1;
   }
 }
@@ -95,7 +95,7 @@
   position: absolute; top: 0;
   width: 100vw;
   height: 100vh;
-  padding-top: 100px;
+  padding-top: rem(100px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -105,7 +105,7 @@
   &__list {
     opacity: 0;
     transition: all $transition-1;
-    transform: scalse(.8) translateY(-100px);
+    transform: scalse(.8) translateY(rem(-100px));
     background-color: white;
     animation-delay: 1s;
     &--visible {
