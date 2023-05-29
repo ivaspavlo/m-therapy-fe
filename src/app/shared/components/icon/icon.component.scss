@@ -1,5 +1,7 @@
-.xs { width: 5px; height: 5px; }
-.sm { width: 10px; height: 10px; }
-.md { width: 15px; height: 15px; }
-.lg { width: 20px; height: 20px; }
-.xl { width: 25px; height: 25px; }
+@import 'mixins';
+
+.xs { width: rem(5px); height: rem(5px); }
+.sm { width: rem(10px); height: rem(10px); }
+.md { width: rem(15px); height: rem(15px); }
+.lg { width: rem(20px); height: rem(20px); }
+.xl { width: rem(25px); height: rem(25px); }

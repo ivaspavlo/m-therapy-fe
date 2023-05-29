@@ -2,19 +2,19 @@
 @import 'variables';
 
 .app-button {
-  height: 54px;
-  padding: 14px 28px;
+  height: rem(54px);
+  padding: rem(14px) rem(28px);
   border: 0;
   background-color: transparent;
   font-weight: 500;
-  font-size: 18px;
+  font-size: rem(18px);
   line-height: 140%;
   color: $white;
   transition: .3s;
   cursor: pointer;
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 2px 5px 0px grey;
+    box-shadow: 0px 2px 5px 0px $medium-grey;
   }
 }
 
@@ -24,6 +24,6 @@
 }
 
 .secondary {
-  border: 1px solid #10B981;
-  color: #10B981;
+  border: 1px solid $primary;
+  color: $primary;
 }

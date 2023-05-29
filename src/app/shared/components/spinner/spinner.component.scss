@@ -1,13 +1,15 @@
+@import 'mixins';
+
 :host {
   display: flex;
   flex-grow: 0;
   justify-content: center;
 }
 
-.xs { width: 25px; height: 25px; }
-.sm { width: 50px; height: 50px; }
-.md { width: 75px; height: 75px; }
-.lg { width: 100px; height: 100px; }
+.xs { width: rem(25px); height: rem(25px); }
+.sm { width: rem(50px); height: rem(50px); }
+.md { width: rem(75px); height: rem(75px); }
+.lg { width: rem(100px); height: rem(100px); }
 
 .primary { filter: invert(47%) sepia(97%) saturate(362%) hue-rotate(109deg) brightness(100%) contrast(102%); }
 .secondary { filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%); }

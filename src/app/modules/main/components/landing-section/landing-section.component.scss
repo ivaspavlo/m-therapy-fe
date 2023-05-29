@@ -1,4 +1,4 @@
-@import 'mixins/_all';
+@import 'mixins';
 @import 'variables';
 
 .landing {
@@ -8,13 +8,11 @@
   position: relative;
 
   &__content {
-    position: absolute;
-    left: 50%;
-    width: 100%;
-    max-width: 1200px;
+    position: absolute; left: 50%; width: 100%;
+    max-width: $width-2;
     height: 100%;
     transform: translateX(-50%);
-    padding: 0 16px;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,23 +42,23 @@
   }
 
   &__button {
-    margin: 0 8px;
+    margin: 0 0 rem(8px);
     @include md {
-      margin: 0 8px;
+      margin: 0 rem(8px);
     }
   }
 }
 
 .landing-title {
-  font-size: 48px;
-  line-height: 64px;
-  letter-spacing: 1px;
+  font-size: rem(48px);
+  line-height: rem(64px);
+  letter-spacing: rem(1px);
   font-style: normal;
   display: flex;
   flex-direction: column;
   @include md {
-    font-size: 64px;
-    line-height: 82px;
+    font-size: rem(64px);
+    line-height: rem(82px);
   }
 
   &__text {
@@ -76,22 +74,22 @@
 
 .landing-countdown {
   position: absolute;
-  bottom: 24px;
-  right: 24px;
+  bottom: rem(24px);
+  right: rem(24px);
   background-color: $white;
   &__header {
-    padding: 10px 8px 0;
-    font-size: 12px;
+    padding: rem(10px) rem(8px) 0;
+    font-size: rem(12px);
     color: $primary;
     display: flex;
     justify-content: space-between;
     align-items: center;
     @include lg {
-      padding: 8px 8px 0;
+      padding: rem(8px) rem(8px) 0;
     }
   }
   &__title {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
     display: none;
     @include lg {
@@ -100,11 +98,11 @@
   }
   &__timer {
     position: relative;
-    top: 8px;
-    right: 8px;
+    top: rem(8px);
+    right: rem(8px);
     @include lg {
-      top: 10px;
-      right: 10px;
+      top: rem(10px);
+      right: rem(10px);
     }
   }
 }

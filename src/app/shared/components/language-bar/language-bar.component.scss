@@ -5,30 +5,30 @@
 }
 
 @mixin item {
-	min-width: 40px;
-	height: 40px;
+	min-width: rem(40px);
+	height: rem(40px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	&:focus {
-		outline: 1px solid $primary;
+		outline: $outline-1;
 	}
 }
 
 .menu {
-	min-width: 40px;
-	height: 40px;
-	margin: 0 8px;
-	font-size: 16px;
+	min-width: rem(40px);
+	height: rem(40px);
+	margin: 0 rem(8px);
+	font-size: rem(16px);
 	position: relative;
 	background-color: $transparent;
 	border: 0;
 	&:focus {
-		outline: 1px solid $primary;
+		outline: $outline-1;
 	}
 	&--active {
 		.menu__current {
-			color: #fff;
+			color: $white;
 			background-color: $primary;
 		}
 		.menu__current {
@@ -55,8 +55,7 @@
 		}
 	}
 	&__list {
-		position: absolute;
-		top: 100%;
+		position: absolute; top: 100%;
 		transition: .3s ease;
 		transform-origin: 0 0;
 		transform: scale(0);
@@ -87,9 +86,9 @@
 		}
 	}
 	&__icon {
-		width: 20px;
-		height: 20px;
-		margin: 0 3px;
+		width: rem(20px);
+		height: rem(20px);
+		margin: 0 rem(3px);
 		display: inline-flex;
 		background-position: center;
 		background-size: cover;

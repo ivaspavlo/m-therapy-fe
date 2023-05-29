@@ -1,0 +1,35 @@
+@import 'node_modules/bootstrap-4-grid/scss/grid';
+
+$html-font-size: 16px;
+
+@function stripUnit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function rem($pxValue) {
+  @return #{stripUnit($pxValue) / stripUnit($html-font-size)}rem;
+}
+
+@mixin bg-img($img: '', $bg-repeat: no-repeat, $bg-pos: center, $bg-color: transparent, $bg-size: cover) {
+  @if $img != '' { background-image: url('#{$img}'); }
+  background-size: $bg-size;
+  background-repeat: $bg-repeat;
+  background-position: $bg-pos;
+  background-color: $bg-color;
+}
+
+@mixin sm {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'sm')) { @content; }
+}
+
+@mixin md {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'md')) { @content; }
+}
+
+@mixin lg {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'lg')) { @content; }
+}
+
+@mixin xl {
+  @media only screen and (min-width: map-get($grid-breakpoints, 'xl')) { @content; }
+}
