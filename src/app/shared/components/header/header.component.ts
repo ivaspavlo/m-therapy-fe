@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLanguageChange(language: ILanguage): void {
-    console.log(language);
+    
   }
 
   private initIsShrinkedObservable(): void {
