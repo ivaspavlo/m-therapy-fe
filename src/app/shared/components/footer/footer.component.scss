@@ -5,6 +5,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: $white;
 }
 
 .app-footer {
@@ -48,17 +49,24 @@
 
 .item {
   padding: rem(6px) 0;
-  transition: $transition-1;
-  cursor: pointer;
-  &:hover {
-    opacity: .7;
-  }
+  display: flex;
+  align-items: flex-end;
   &--title {
     margin-bottom: 1rem;
     font-weight: bold;
     color: $secondary;
   }
   &__link {
+    display: flex;
+    color: $primary;
+    transition: $transition-1;
+    cursor: pointer;
+    &:hover {
+      opacity: .7;
+    }
+  }
+  &__text {
+    display: flex;
     color: $primary;
   }
 }
