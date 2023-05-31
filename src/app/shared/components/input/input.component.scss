@@ -1,0 +1,88 @@
+$accent-color: #7d6caf;
+$warn-color: #ff6363;
+$text-color: #656565;
+$border-radius: 4px;
+
+:host {
+  display: flex;
+  margin: 15px 0;
+}
+
+.input {
+  width: 100%;
+  position: relative;
+  text-align: left;
+
+  &--invalid {
+    .input__field, .input__text-area { border-color: $warn-color !important; }
+    .input__label { color: $warn-color !important; }
+    .input__error { opacity: 1; }
+  }
+
+  &__field, &__text-area {
+    width: 100%;
+    padding: 18px 45px 18px 12px;
+    font-size: 16px;
+    border: 1px solid;
+    border-color: $accent-color;
+    border-radius: $border-radius;
+    font-family: inherit;
+    display: block;
+    color: $text-color;
+    background-color: transparent;
+    transition: border-color .2s;
+    outline: 0;
+    &:required,
+    &:invalid {
+      box-shadow: none;
+    }
+    &::placeholder {
+      color: transparent;
+      transition: .3s;
+    }
+    &:placeholder-shown ~ label {
+      font-size: 16px;
+      transform: translateY(19px);
+      padding: 0px 0px;
+      cursor: text;
+    }
+    &:focus, &--has-value {
+      border-width: 1px;
+      border-color: $accent-color;
+      ~ label {
+        transform: translateY(-15px);
+        color: $accent-color;
+        font-size: 12px;
+      }
+      &::placeholder {
+        color: $text-color;
+      }
+    }
+  }
+
+  &__text-area {
+    resize: none;
+  }
+
+  &__label {
+    position: absolute; left: 12px; top: 0;
+    transform: translatey(-15px);
+    font-size: 12px;
+    display: block;
+    transition: .3s;
+    color: $text-color;
+  }
+
+  &__error {
+    width: 100%;
+    position: absolute; bottom: -15px;
+    padding: 5px 5px 0 12px;
+    font-size: 10px;
+    letter-spacing: .3px;
+    text-overflow: ellipsis;
+    color: $warn-color;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  
+}

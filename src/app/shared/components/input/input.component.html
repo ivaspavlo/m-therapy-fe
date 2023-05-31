@@ -1,0 +1,12 @@
+<div class="input" [ngClass]="{'input--invalid': control.errors && control.dirty}">
+  
+  <input *ngIf="innerInputType !== 'textarea'" [attr.disabled]="control.disabled || null" class="input__field" [ngClass]="{'input__field--has-value': !!(control.valueChanges | async)}" [id]="controlName" name="input" [placeholder]="placeholder" [type]="innerInputType" [formControl]="innerControl" (focus)="onFocus()" (blur)="onBlur()">
+  <textarea *ngIf="innerInputType === 'textarea'" class="input__text-area" [ngClass]="{'input__field--has-value': !!(control.valueChanges | async)}" [id]="controlName" name="textarea" [placeholder]="placeholder" rows="4" cols="50" [formControl]="innerControl" (focus)="onFocus()" (blur)="onBlur()"></textarea>
+  
+  <label [for]="controlName" class="input__label">{{label}}</label>
+  
+  <p class="input__error">{{control.errors | firstError:errorsMap}}</p>
+  
+  <app-input-icon [type]="type" (togglePasswordVisibility)="onPasswordToggle($event)"></app-input-icon>
+  
+</div>
