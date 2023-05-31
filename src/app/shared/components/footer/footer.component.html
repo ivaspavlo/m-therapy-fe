@@ -8,53 +8,55 @@
     </h5>
   </div>
 
-  <ul class="mx-4 d-flex flex-column">
-    <li class="item--title">
-      <span>{{ 'footer.about' | translate }}</span>
-    </li>
-    <li class="item">
-      <a class="item__link">{{ 'footer.profile' | translate }}</a>
-    </li>
-    <li class="item">
-      <a class="item__link">{{ 'footer.pricing' | translate }}</a>
-    </li>
-  </ul>
-
-  <ul class="mx-4 d-flex flex-column">
-    <li class="item--title">
-      <span>{{ 'footer.about' | translate }}</span>
-    </li>
-    <li class="item">
-      <a class="item__link">{{ 'footer.profile' | translate }}</a>
-    </li>
-    <li class="item">
-      <a class="item__link">{{ 'footer.pricing' | translate }}</a>
-    </li>
-  </ul>
-
-  <ul class="mx-4 d-flex flex-column">
-    <li class="item--title">
-      <span>{{ 'footer.about' | translate }}</span>
-    </li>
-    <li class="item">
-      <p class="item__text">
-        <app-icon name="phone" size="md" class="d-flex align-items-center mr-1"></app-icon>
-        <span>{{ 'footer.profile' | translate }}</span>
-      </p>
-    </li>
-    <li class="item">
-      <p class="item__text">
-        <app-icon name="viber" size="md" class="d-flex align-items-center mr-1"></app-icon>
-        <span>{{ 'footer.pricing' | translate }}</span>
-      </p>
-    </li>
-    <li class="item">
-      <p class="item__text">
-        <app-icon name="telegram" size="md" class="d-flex align-items-center mr-1"></app-icon>
-        <span>{{ 'footer.pricing' | translate }}</span>
-      </p>
-    </li>
-  </ul>
+  <div class="d-flex flex-grow-1 flex-column flex-md-row">
+    <ul class="mx-4 d-flex flex-column">
+      <li class="item--title">
+        <span>{{ 'footer.about' | translate }}</span>
+      </li>
+      <li class="item">
+        <a class="item__link">{{ 'footer.profile' | translate }}</a>
+      </li>
+      <li class="item">
+        <a class="item__link">{{ 'footer.pricing' | translate }}</a>
+      </li>
+    </ul>
+  
+    <ul class="mx-4 d-flex flex-column">
+      <li class="item--title">
+        <span>{{ 'footer.about' | translate }}</span>
+      </li>
+      <li class="item">
+        <a class="item__link">{{ 'footer.profile' | translate }}</a>
+      </li>
+      <li class="item">
+        <a class="item__link">{{ 'footer.pricing' | translate }}</a>
+      </li>
+    </ul>
+  
+    <ul class="mx-4 d-flex flex-column">
+      <li class="item--title">
+        <span>{{ 'footer.about' | translate }}</span>
+      </li>
+      <li class="item">
+        <p class="item__text">
+          <app-icon name="phone" size="md" class="d-flex align-items-center mr-1"></app-icon>
+          <span>{{ 'footer.profile' | translate }}</span>
+        </p>
+      </li>
+      <li class="item">
+        <p class="item__text">
+          <app-icon name="viber" size="md" class="d-flex align-items-center mr-1"></app-icon>
+          <span>{{ 'footer.pricing' | translate }}</span>
+        </p>
+      </li>
+      <li class="item">
+        <p class="item__text">
+          <app-icon name="telegram" size="md" class="d-flex align-items-center mr-1"></app-icon>
+          <span>{{ 'footer.pricing' | translate }}</span>
+        </p>
+      </li>
+    </ul>
+  </div>
 
   <div class="app-footer__copyright">&copy; 2022 {{ 'footer.empovered-by' | translate }}</div>
 
