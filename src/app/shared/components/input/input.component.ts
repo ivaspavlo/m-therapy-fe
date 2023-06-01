@@ -1,22 +1,8 @@
-import { Component, OnInit, Input, Optional, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Input, Optional } from '@angular/core';
 import { ControlContainer, ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-
-@Pipe({
-  name: 'firstError'
-})
-export class FirstErrorPipe implements PipeTransform {
-  transform(errors: {[key:string]: boolean}, errorsMap: {[key:string]: string}): string {
-    if (errors && Object.keys(errors).length) {
-      const [firstKey] = Object.keys(errors);
-      return errorsMap && errorsMap[firstKey] ?
-        errorsMap[firstKey] :
-        firstKey;
-    }
-  }
-}
 
 export type InputTypes = 'text' | 'number' | 'textarea' | 'password';
 
@@ -50,8 +36,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
 
   // ControlValueAccessor
-  private onChange;
-  private onTouched;
+  private onChange: Function;
+  private onTouched: Function;
 
   private componentDestroyed$: Subject<void> = new Subject();
 
@@ -65,11 +51,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
   
   // ControlValueAccessor methods
-  public registerOnChange(fn): void {
+  public registerOnChange(fn: Function): void {
     this.onChange = fn;
   }
   
-  public registerOnTouched(fn): void {
+  public registerOnTouched(fn: Function): void {
     this.onTouched = fn;
   }
   
@@ -95,7 +81,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.hasFocus = false;
   }
 
-  public onInput(value): void {
+  public onInput(value: string): void {
     let formattedValue = value;
     this.innerControl.patchValue(formattedValue, { emitEvent: false, onlySelf: true });
     if (this.onChange) {
@@ -103,7 +89,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
   
-  public onPasswordToggle(isHidden: boolean): void {
+  public onPasswordToggle(isHidden: Event): void {
     this.innerInputType = isHidden ? 'password' : 'text';
   }
   
@@ -118,44 +104,3 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
 }
-
-// private forceNumberValue(value: string): string {
-//   return value.replace(/\D/g, '');
-// }
-
-// private maskFn(value: string, { blocks, separator }: IMaskNumberInput): string {
-//   let valueString = this.forceNumberValue(value);
-//   let maxLength = 0;
-//   let result = '';
-//   for (let index = 0; index < blocks.length; index++) {
-//     const blockSize = blocks[index];
-//     maxLength += blockSize;
-    
-//     const isFirstBlock = index === 0;
-//     const isLastBlock = index === blocks.length - 1;
-    
-//     const separatorsLength = separator.length * index;
-//     const resultLength = result.length - separatorsLength;
-    
-//     const start = isFirstBlock ? 0 : resultLength;
-//     const end = isFirstBlock ? blockSize : resultLength + blockSize;
-    
-//     const stopLoop = valueString.length <= resultLength + blockSize;
-    
-//     for (let n = start; n < end; n++) {
-//       result = valueString[n] === undefined ? result : result + valueString[n];
-//     }
-    
-//     if (stopLoop) {
-//       break;
-//     }
-    
-//     result = isLastBlock ? result : result + separator;
-//   }
-//   return result;
-// }
-
-// export interface IMaskNumberInput {
-//   blocks: number[];
-//   separator: string;
-// }
