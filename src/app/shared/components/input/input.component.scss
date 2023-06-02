@@ -1,7 +1,4 @@
-$accent-color: #7d6caf;
-$warn-color: #ff6363;
-$text-color: #656565;
-$border-radius: 4px;
+@import 'variables';
 
 :host {
   display: flex;
@@ -14,8 +11,8 @@ $border-radius: 4px;
   text-align: left;
 
   &--invalid {
-    .input__field, .input__text-area { border-color: $warn-color !important; }
-    .input__label { color: $warn-color !important; }
+    .input__field, .input__text-area { border-color: $warn !important; }
+    .input__label { color: $warn !important; }
     .input__error { opacity: 1; }
   }
 
@@ -23,12 +20,12 @@ $border-radius: 4px;
     width: 100%;
     padding: 18px 45px 18px 12px;
     font-size: 16px;
-    border: 1px solid;
-    border-color: $accent-color;
-    border-radius: $border-radius;
+    border: 0;
+    border-bottom: 1px solid;
+    border-color: $primary;
     font-family: inherit;
     display: block;
-    color: $text-color;
+    color: $primary;
     background-color: transparent;
     transition: border-color .2s;
     outline: 0;
@@ -47,15 +44,15 @@ $border-radius: 4px;
       cursor: text;
     }
     &:focus, &--has-value {
-      border-width: 1px;
-      border-color: $accent-color;
+      border-width: 2px;
+      border-color: $primary;
       ~ label {
         transform: translateY(-15px);
-        color: $accent-color;
+        color: $primary;
         font-size: 12px;
       }
       &::placeholder {
-        color: $text-color;
+        color: $primary;
       }
     }
   }
@@ -70,7 +67,7 @@ $border-radius: 4px;
     font-size: 12px;
     display: block;
     transition: .3s;
-    color: $text-color;
+    color: $primary;
   }
 
   &__error {
@@ -80,7 +77,7 @@ $border-radius: 4px;
     font-size: 10px;
     letter-spacing: .3px;
     text-overflow: ellipsis;
-    color: $warn-color;
+    color: $warn;
     opacity: 0;
     transition: opacity .3s;
   }
