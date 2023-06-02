@@ -18,7 +18,7 @@
 
   &__field, &__text-area {
     width: 100%;
-    padding: 18px 45px 18px 12px;
+    padding: 8px 45px 8px 8px;
     font-size: 16px;
     border: 0;
     border-bottom: 1px solid;
@@ -39,7 +39,7 @@
     }
     &:placeholder-shown ~ label {
       font-size: 16px;
-      transform: translateY(19px);
+      transform: translateY(10px);
       padding: 0px 0px;
       cursor: text;
     }
@@ -47,7 +47,7 @@
       border-width: 2px;
       border-color: $primary;
       ~ label {
-        transform: translateY(-15px);
+        transform: translateY(-10px);
         color: $primary;
         font-size: 12px;
       }
@@ -62,8 +62,8 @@
   }
 
   &__label {
-    position: absolute; left: 12px; top: 0;
-    transform: translatey(-15px);
+    position: absolute; left: 8px; top: 0;
+    transform: translateY(-10px);
     font-size: 12px;
     display: block;
     transition: .3s;
