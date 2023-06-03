@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
     this.currentYear = `${new Date().getFullYear()}`;
   }
 
-  public onClickLogo(): void {
+  public onClickBrand(): void {
     console.log('test');
   }
 

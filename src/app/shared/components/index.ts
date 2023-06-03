@@ -8,6 +8,7 @@ import { LanguageBarComponent } from './language-bar/language-bar.component';
 import { LogoComponent } from './logo/logo.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { InputComponent } from './input/input.component';
+import { BrandComponent } from './brand/brand.component';
 
 
 export const COMPONENTS = [
@@ -20,5 +21,6 @@ export const COMPONENTS = [
   LanguageBarComponent,
   AdCountdownComponent,
   SpinnerComponent,
-  InputComponent
+  InputComponent,
+  BrandComponent
 ];

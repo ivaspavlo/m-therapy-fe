@@ -37,19 +37,6 @@
   }
 }
 
-.brand {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 rem(8px);
-  font-size: rem(12px);
-  color: $secondary;
-
-  &__title {
-    font-size: rem(16px);
-  }
-}
-
 .item {
   display: flex;
   align-items: flex-end;

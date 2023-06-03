@@ -1,12 +1,6 @@
 <div class="app-footer">
 
-  <a (click)="onClickLogo()" class="d-flex justify-content-center mb-5 cursor-pointer">
-    <app-logo size="xs"></app-logo>
-    <h5 class="brand">
-      <span>Tkachuk</span>
-      <span class="brand__title">Massage Therapy</span>
-    </h5>
-  </a>
+  <app-brand (brandClick)="onClickBrand()" class="d-flex justify-content-center mb-5"></app-brand>
 
   <div class="d-flex flex-grow-1 flex-column flex-lg-row">
 
