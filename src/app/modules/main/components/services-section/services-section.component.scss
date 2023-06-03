@@ -1,9 +1,0 @@
-@import 'mixins';
-@import 'variables';
-
-:host {
-  background-color: white;
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-}
