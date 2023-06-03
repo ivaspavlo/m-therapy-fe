@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -11,10 +11,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class FooterComponent implements OnInit {
 
   public newsletterControl: FormControl = new FormControl('');
+  public currentYear: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
+    this.currentYear = `${new Date().getFullYear()}`;
+  }
+
+  public onClickLogo(): void {
+    console.log('test');
   }
 
 }

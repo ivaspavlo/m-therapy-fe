@@ -1,8 +1,9 @@
 @import 'variables';
+@import 'mixins';
 
 :host {
   display: flex;
-  margin: 15px 0;
+  margin: rem(8px) 0 rem(16px);
 }
 
 .input {
@@ -18,16 +19,16 @@
 
   &__field, &__text-area {
     width: 100%;
-    padding: 8px 45px 8px 8px;
-    font-size: 16px;
+    padding: rem(8px) rem(45px) rem(8px) rem(8px);
+    font-size: 1rem;
     border: 0;
-    border-bottom: 1px solid;
+    border-bottom: rem(1px) solid;
     border-color: $primary;
     font-family: inherit;
     display: block;
     color: $primary;
     background-color: transparent;
-    transition: border-color .2s;
+    transition: border-color $transition-1;
     outline: 0;
     &:required,
     &:invalid {
@@ -35,21 +36,21 @@
     }
     &::placeholder {
       color: transparent;
-      transition: .3s;
+      transition: $transition-1;
     }
     &:placeholder-shown ~ label {
-      font-size: 16px;
-      transform: translateY(10px);
+      font-size: 1rem;
+      transform: translateY(rem(10px));
       padding: 0px 0px;
       cursor: text;
     }
     &:focus, &--has-value {
-      border-width: 2px;
+      border-width: rem(2px);
       border-color: $primary;
       ~ label {
-        transform: translateY(-10px);
+        transform: translateY(rem(-10px));
         color: $primary;
-        font-size: 12px;
+        font-size: rem(12px);
       }
       &::placeholder {
         color: $primary;
@@ -62,24 +63,24 @@
   }
 
   &__label {
-    position: absolute; left: 8px; top: 0;
-    transform: translateY(-10px);
-    font-size: 12px;
+    position: absolute; left: rem(8px); top: 0;
+    transform: translateY(-rem(10px));
+    font-size: rem(12px);
     display: block;
-    transition: .3s;
+    transition: $transition-1;
     color: $primary;
   }
 
   &__error {
     width: 100%;
-    position: absolute; bottom: -15px;
-    padding: 5px 5px 0 12px;
-    font-size: 10px;
-    letter-spacing: .3px;
+    position: absolute; bottom: -rem(16px);
+    padding: rem(5px) rem(5px) 0 rem(12px);
+    font-size: rem(10px);
+    letter-spacing: rem(0.3px);
     text-overflow: ellipsis;
     color: $warn;
     opacity: 0;
-    transition: opacity .3s;
+    transition: opacity $transition-1;
   }
   
 }

@@ -16,7 +16,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: grey;
   position: relative;
 
   &__copyright {
@@ -24,6 +23,10 @@
     width: 100%;
     font-size: rem(12px);
     display: flex;
+    color: $secondary;
+  }
+
+  &__promos {
     color: $secondary;
   }
 
@@ -48,15 +51,17 @@
 }
 
 .item {
-  padding: rem(6px) 0;
   display: flex;
   align-items: flex-end;
+
   &--title {
     margin-bottom: 1rem;
     font-weight: bold;
     color: $secondary;
   }
+
   &__link {
+    padding: rem(6px) 0;
     display: flex;
     color: $primary;
     transition: $transition-1;
@@ -65,7 +70,9 @@
       opacity: .7;
     }
   }
+
   &__text {
+    padding: rem(6px) 0;
     display: flex;
     color: $primary;
   }
