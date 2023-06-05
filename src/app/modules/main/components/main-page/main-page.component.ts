@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
@@ -9,8 +9,6 @@ import { Component, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 })
 export class MainPageComponent {
 
-  constructor(
-    public elementRef: ElementRef
-  ) { }
+  constructor() { }
 
 }
