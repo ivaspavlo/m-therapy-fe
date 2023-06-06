@@ -9,8 +9,6 @@ import { LogoComponent } from './logo/logo.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { InputComponent } from './input/input.component';
 import { BrandComponent } from './brand/brand.component';
-import { SliderComponent } from './slider/slider.component';
-import { CarouselComponent } from './carousel/carousel.component';
 
 
 export const COMPONENTS = [
@@ -24,7 +22,5 @@ export const COMPONENTS = [
   AdCountdownComponent,
   SpinnerComponent,
   InputComponent,
-  BrandComponent,
-  SliderComponent,
-  CarouselComponent
+  BrandComponent
 ];
