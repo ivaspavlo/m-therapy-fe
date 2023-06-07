@@ -1,12 +1,10 @@
-<section tabindex="0" attr.aria-label="{{ 'products.aria' | translate }}" class="w-100 d-flex min-height-100vh bg-white">
-  <ul *ngFor="let product of products" class="product-section">
+<section tabindex="0" attr.aria-label="{{ 'products.aria' | translate }}" class="w-100 d-flex justify-content-center min-height-100vh bg-white">
+  <ul class="product-section">
 
-    <li tabindex="0" class="product">
+    <li *ngFor="let product of products" tabindex="0" class="product">
       <h3 class="product__title">{{ product.title | translate }}</h3>
       <p class="product__price">UAH {{ product.price | number:'2.0' }}</p>
-      <figure class="product__image">
-        <img src="{{ product.img }}" alt="{{ product.title | translate }}">
-      </figure>
+      <div class="product__image" [ngStyle]="{'background-image':'url(' + product.img + ')'}"></div>
       <a tabindex="0" class="product__select-button">
         <span>{{ 'product.select' | translate }}</span>
         <app-icon name="arrow-right"></app-icon>
