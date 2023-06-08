@@ -29,6 +29,7 @@
       transform: scale(1.05);
     }
   }
+
   &__title {
     padding-bottom: rem(24px);
     font-family: $playfair;
@@ -39,6 +40,7 @@
     border-bottom: rem(2px) dashed $thirdly;
     color: $thirdly;
   }
+
   &__price {
     margin: 1rem 0;
     padding: 0 rem(10px);
@@ -50,11 +52,12 @@
     color: $white;
     background-color: $secondary;
   }
+
   &__image {
     width: 100%;
     height: rem(400px);
     margin-bottom: rem(32px);
-    box-shadow: -10px 10px 0px 0px $secondary;
+    box-shadow: -10px 10px 0px 0px #067856;
     transition: $transition-1;
     @include bg-img();
   }
