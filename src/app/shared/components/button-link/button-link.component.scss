@@ -20,7 +20,7 @@
      &:before {
       display: block;
       width: 20px;
-      height: 1px;
+      height: 2px;
       background-color: $white;
       top: 50%;
       transition: width $transition-1 ease-out;
@@ -30,8 +30,8 @@
       display: block;
       width: 10px;
       height: 10px;
-      border-top: 1px solid $white;
-      border-right: 1px solid $white;
+      border-top: 2px solid $white;
+      border-right: 2px solid $white;
       transform: rotate(45deg);
       top: calc(50% - 5px);
       position: absolute;

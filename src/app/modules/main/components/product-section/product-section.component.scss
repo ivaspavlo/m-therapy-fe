@@ -1,17 +1,33 @@
 @import 'variables';
 @import 'mixins';
 
+@keyframes appear-animation {
+  0% {
+    opacity: 0;
+    transform: translateX(rem(-20px));
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 .product-section {
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: $thirdly;
+  overflow: hidden;
 }
 
 .product-content {
   width: 100%;
   max-width: $width-2;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   @include md {
@@ -23,6 +39,7 @@
   height: 100%;
   padding: rem(80px) rem(45px);
   background: linear-gradient(28.58deg, #059669 0%, #10B981 100%);
+  animation: .3s ease-out 0s 1 appear-animation;
   cursor: pointer;
   &:hover {
     .product-tile__image {
