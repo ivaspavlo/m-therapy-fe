@@ -1,6 +1,6 @@
-<section class="app-header">
+<section class="app-header" [ngClass]="{'app-header--shrinked': isShrinked$ | async}">
 
-  <div [ngClass]="{'app-header__desktop-mode--shrinked': isShrinked$ | async}" class="app-header__desktop-mode">
+  <div class="app-header__desktop-mode">
 
     <app-logo [isClickable]="true" [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4 align-items-center"></app-logo>
 
