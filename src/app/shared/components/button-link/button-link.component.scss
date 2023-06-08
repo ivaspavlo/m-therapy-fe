@@ -1,0 +1,48 @@
+@import 'variables';
+@import 'mixins';
+
+.button-link {
+  line-height: 140%;
+  font-weight: 100;
+  font-size: rem(24px);
+  font-weight: 500;
+  border: 0;
+  display: flex;
+  align-items: center;
+  color: $white;
+  background-color: $transparent;
+  cursor: pointer;
+
+  &__icon {
+    position: relative;
+    display: inline-block;
+    padding: 8px 0;
+     &:before {
+      display: block;
+      width: 20px;
+      height: 1px;
+      background-color: $white;
+      top: 50%;
+      transition: width $transition-1 ease-out;
+      content: '';
+    }
+    &:after {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid $white;
+      border-right: 1px solid $white;
+      transform: rotate(45deg);
+      top: calc(50% - 5px);
+      position: absolute;
+      right: 1px;
+      content: '';
+    }
+  }
+
+  &:hover {
+    .button-link__icon::before {
+      width: 30px;
+    }
+  }
+}
