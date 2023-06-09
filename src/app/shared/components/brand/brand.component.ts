@@ -11,6 +11,7 @@ export class BrandComponent {
 
   @Input() hasLogo: boolean = true;
   @Input() isClickable: boolean = true;
+  @Input() size: 'small' | 'medium' | 'large' = 'small';
 
   @Output() brandClick: EventEmitter<void> = new EventEmitter();
 
