@@ -1,0 +1,19 @@
+<div (click)="onGiftClick($event)" class="gift" [ngClass]="{'gift--selected': currentlyClicked}">
+
+  <div class="gift__img">
+    <app-logo size="xs"></app-logo>
+    <h2 class="font-10 font-weight-bold font-family-nexa color-primary-900">Massage Therapy</h2>
+  </div>
+
+  <div class="gift-content">
+    <p class="gift-content__amount">&#8372;{{gift.price}}</p>
+    <p class="gift-content__code">{{gift.title}}</p>
+    <p class="gift-content__desc">{{'booking.gift.redeem' | translate}}</p>
+  </div>
+
+  <div class="gift__confirm-overlay">
+    <app-qty-selector (qtyChange)="currentQty = $event" class="mr-rem-0_5"></app-qty-selector>
+    <app-button-secondary (buttonSecondaryClick)="onAddClick()" title="{{'core.add-to-cart' | translate}}" [disabled]="currentQty < 1" filled="true"></app-button-secondary>
+  </div>
+
+</div>

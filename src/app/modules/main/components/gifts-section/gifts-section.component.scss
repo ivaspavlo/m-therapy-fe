@@ -1,0 +1,17 @@
+@import 'variables';
+@import 'mixins';
+
+.gifts-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: $white;
+}
+
+.gifts-content {
+  width: 100%;
+  max-width: $width-2;
+  display: flex;
+  background-color: grey;
+}
