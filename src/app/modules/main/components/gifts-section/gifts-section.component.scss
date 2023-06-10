@@ -6,12 +6,36 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: $white;
+  position: relative;
+
+  &:before {
+    position: absolute; top: 50%; left: 20%;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    transform: translateY(-50%);
+    background: linear-gradient(30.63deg, #059669 26.17%, #10B981 97.06%);
+    box-shadow: $b-shadow-2;
+    content: '';
+  }
 }
 
 .gifts-content {
   width: 100%;
+  min-height: 50vh;
   max-width: $width-2;
   display: flex;
-  background-color: grey;
+  align-items: center;
+}
+
+.gifts-info {
+  width: 60%;
+  min-height: 70vh;
+  transform: translateX(15%);
+  padding: rem(76px) rem(73px);
+  display: flex;
+  background-color: #ECFDF5;
+  box-shadow: $b-shadow-1;
 }
