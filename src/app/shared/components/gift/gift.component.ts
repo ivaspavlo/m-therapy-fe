@@ -1,6 +1,18 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { IGiftSlot, IProduct } from '../../interfaces';
 
+
+export interface IGiftSlot {
+  id: string;
+  qty: number;
+}
+
+export interface IProduct {
+  id: string;
+  title: string;
+  price: string;
+  subtitle?: string;
+  desc?: string;
+};
 
 @Component({
   selector: 'app-gift',
@@ -10,8 +22,13 @@ import { IGiftSlot, IProduct } from '../../interfaces';
 })
 export class GiftComponent {
 
-  @Input() gift: IProduct;
+  @Input() gift: IProduct = {
+    id: '1',
+    title: '345D 4353 FF77 DFG5',
+    price: '300'
+  };
   @Input() currentlyClicked = false;
+
   @Output() clickGift: EventEmitter<IProduct> = new EventEmitter();
   @Output() addGift: EventEmitter<IGiftSlot> = new EventEmitter();
 
