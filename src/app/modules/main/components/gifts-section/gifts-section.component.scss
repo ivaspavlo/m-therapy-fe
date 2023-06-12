@@ -27,7 +27,11 @@
   min-height: 50vh;
   max-width: $width-2;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  @include md {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .gifts-info {
@@ -36,6 +40,22 @@
   transform: translateX(15%);
   padding: rem(76px) rem(73px);
   display: flex;
-  background-color: #ECFDF5;
+  flex-direction: column;
+  background-color: $thirdly;
   box-shadow: $b-shadow-1;
+
+  &__title {
+    font-family: $playfair;
+    font-weight: 700;
+    font-size: rem(42px);
+    margin: rem(20px) 0;
+    color: $fourthly;
+  }
+
+  &__desc {
+    font-family: $worksans;
+    font-size: rem(18px);
+    font-style: italic;
+    color: $fourthly;
+  }
 }

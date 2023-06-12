@@ -1,7 +1,12 @@
 <section class="gifts-section">
 
   <div class="gifts-content">
-    <div class="gifts-info"></div>
+    <div class="gifts-info">
+      <app-title-tag [title]="'products.gift.tag-title' | translate"></app-title-tag>
+      <h2 class="gifts-info__title">{{ 'products.gift.title' | translate }}</h2>
+      <p class="gifts-info__desc">{{ 'products.gift.desc' | translate }}</p>
+      <app-button type="secondary" title="See details"></app-button>
+    </div>
     <app-gift></app-gift>
   </div>
 
