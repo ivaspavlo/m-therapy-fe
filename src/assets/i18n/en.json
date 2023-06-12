@@ -46,6 +46,9 @@
     "body-scrubs": "Body Treatments with Scrubs",
     "select": "Select package",
     "more-services": "More services",
-    "gift.redeem": "Use this code to redeem your gift card"
+    "gift.redeem": "Use this code to redeem your gift card",
+    "gift.tag-title": "Exclusive gift",
+    "gift.title": "Massage Therapy Card",
+    "gift.desc": ""
   }
 }

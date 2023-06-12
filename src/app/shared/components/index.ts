@@ -11,6 +11,7 @@ import { InputComponent } from './input/input.component';
 import { BrandComponent } from './brand/brand.component';
 import { ButtonLinkComponent } from './button-link/button-link.component';
 import { GiftComponent } from './gift/gift.component';
+import { TitleTagComponent } from './title-tag/title-tag.component';
 
 
 export const COMPONENTS = [
@@ -26,5 +27,6 @@ export const COMPONENTS = [
   InputComponent,
   BrandComponent,
   ButtonLinkComponent,
-  GiftComponent
+  GiftComponent,
+  TitleTagComponent
 ];
