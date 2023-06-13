@@ -82,5 +82,38 @@
     opacity: 0;
     transition: opacity $transition-1;
   }
+
+  &__arrow-icon {
+    position: absolute;
+    display: inline-block;
+    padding: 8px 0;
+     &:before {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: $white;
+      top: 50%;
+      transition: width $transition-1 ease-out;
+      content: '';
+    }
+    &:after {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid $white;
+      border-right: 2px solid $white;
+      transform: rotate(45deg);
+      top: calc(50% - 5px);
+      position: absolute;
+      right: 1px;
+      content: '';
+    }
+  }
+
+  &:hover {
+    .button-link__icon::before {
+      width: 30px;
+    }
+  }
   
 }
