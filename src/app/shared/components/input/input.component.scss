@@ -84,24 +84,27 @@
   }
 
   &__arrow-icon {
-    position: absolute;
+    position: absolute; top: 0; right: 0;
+    transform: translate(-25%, 50%);
     display: inline-block;
     padding: 8px 0;
-     &:before {
+
+    &:before {
       display: block;
       width: 20px;
       height: 2px;
-      background-color: $white;
+      background-color: $primary;
       top: 50%;
       transition: width $transition-1 ease-out;
       content: '';
     }
+
     &:after {
       display: block;
       width: 10px;
       height: 10px;
-      border-top: 2px solid $white;
-      border-right: 2px solid $white;
+      border-top: 2px solid $primary;
+      border-right: 2px solid $primary;
       transform: rotate(45deg);
       top: calc(50% - 5px);
       position: absolute;
@@ -110,10 +113,12 @@
     }
   }
 
-  &:hover {
-    .button-link__icon::before {
-      width: 30px;
+  &:focus {
+    .input__arrow-icon {
+      &:before {
+        width: 30px;
+      }
     }
   }
-  
+
 }
