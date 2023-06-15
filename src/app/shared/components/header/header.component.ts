@@ -2,8 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LANGUAGES_ITEMS } from '@app/core/constants';
+import { LANGUAGES_ITEMS, SECTION_IDS } from '@app/core/constants';
 import { ILanguage } from '@app/interfaces';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -20,14 +21,15 @@ export class HeaderComponent implements OnInit {
   public languages: ILanguage[] = LANGUAGES_ITEMS;
 
   public headerControls = [
-    { uiName: 'services', link: '' },
-    { uiName: 'gifts', link: '' },
-    { uiName: 'blog', link: '' }
+    { uiName: 'header.services', sectionId: SECTION_IDS.services },
+    { uiName: 'header.gifts', sectionId: SECTION_IDS.gifts },
+    { uiName: 'header.blog', link: '' }
   ];
   public isShrinked$: Observable<boolean>;
 
   constructor(
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLanguageChange(language: ILanguage): void {
-    
+    this.translateService.use(language.title);
   }
 
   private initIsShrinkedObservable(): void {

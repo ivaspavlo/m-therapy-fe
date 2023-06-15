@@ -3,7 +3,10 @@
     "logo-button": "Back to the main page",
     "logo-image": "Logo image",
     "user-button": "User profile button",
-    "cart-button": "Cart button"
+    "cart-button": "Cart button",
+    "services": "Services",
+    "gifts": "Gifts",
+    "blog": "Blog"
   },
   "language-bar": {
     "title": "Language dropdown list. Selected item: {{x}}. Click here to open the list.",
@@ -25,7 +28,6 @@
     "seconds": "seconds"
   },
   "footer": {
-    "empovered-by": "Empovered by ivaspavlo",
     "get-promos": "Get early promos",
     "email-control": "Your email",
     "about": "About",
@@ -49,6 +51,6 @@
     "gift.redeem": "Use this code to redeem your gift card",
     "gift.tag-title": "Exclusive gift",
     "gift.title": "Massage Therapy Card",
-    "gift.desc": ""
+    "gift.desc": "Todo: description"
   }
 }
