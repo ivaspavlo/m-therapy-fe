@@ -1,8 +1,56 @@
 {
+  "header": {
+    "logo-button": "Повернутись на головну",
+    "logo-image": "Лого картинка",
+    "user-button": "Профіль користувача",
+    "cart-button": "Корзина",
+    "services": "Послуги",
+    "gifts": "Подарунки",
+    "blog": "Блог"
+  },
+  "language-bar": {
+    "title": "Випадаючий список мов. Обрати: {{x}}. Клікніть, щоб відкрити список.",
+    "en": "Англійська",
+    "ua": "Українська",
+    "activate": "{{x}} мова. Клікніть, щоб активувати"
+  },
   "main": {
     "landing": {
-      "register": "До регістрації",
-      "pricing": "Побачити ціни"
+      "register": "Зареєструватись",
+      "pricing": "Побачити прайс"
     }
+  },
+  "countdown": {
+    "title": "Відлік до",
+    "days": "дні",
+    "hours": "години",
+    "minutes": "хвилини",
+    "seconds": "секунди"
+  },
+  "footer": {
+    "get-promos": "Отримати скидку першим",
+    "email-control": "Ваш email",
+    "about": "Про нас",
+    "team": "Наша команда",
+    "pricing": "Прайс",
+    "articles": "Преса",
+    "blog": "Блог",
+    "promos": "Скидки",
+    "contact": "Контакти",
+    "mobile-phone": "+380 93 123 1234 123",
+    "viber-phone": "+380 93 123 1234 123",
+    "telegram": "@sometelegram"
+  },
+  "products": {
+    "aria": "Перелік масажних послуг",
+    "swedish": "Swedish Deep Tissue Massage",
+    "facial-scrubs": "Facials Massage with Scrubs",
+    "body-scrubs": "Body Treatments with Scrubs",
+    "select": "Обрати масаж",
+    "more-services": "Більше послуг",
+    "gift.redeem": "Використовуйте цей код, щоб активувати подарунковий сертифікат",
+    "gift.tag-title": "Ексклюзивний подарунок",
+    "gift.title": "Massage Therapy Card",
+    "gift.desc": "Todo: description"
   }
 }
