@@ -5,7 +5,7 @@
 
   <label [for]="id" class="input__label">{{ label }}</label>
 
-  <i class="input__arrow-icon"></i>
+  <a *ngIf="hasSubmitButton" (click)="inputSubmit.emit()" class="input__button"></a>
 
   <p class="input__error">{{ control.errors | firstError:errorsMap }}</p>
 

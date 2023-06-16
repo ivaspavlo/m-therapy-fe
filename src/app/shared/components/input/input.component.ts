@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 
@@ -18,6 +18,9 @@ export class InputComponent implements OnInit {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() type: InputTypes = 'text';
+  @Input() hasSubmitButton = false;
+
+  @Output() inputSubmit: EventEmitter<void> = new EventEmitter();
 
   public get isText() { return this.type === 'text'; }
   public get isTextArea() { return this.type === 'textarea'; }
