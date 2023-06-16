@@ -17,7 +17,9 @@
   "main": {
     "landing": {
       "register": "Become a member",
-      "pricing": "See pricing"
+      "pricing": "See pricing",
+      "countdown": "Grand Opening",
+      "countdown-desc": "Up to 25% discount for new members"
     }
   },
   "countdown": {
@@ -48,9 +50,12 @@
     "body-scrubs": "Body Treatments with Scrubs",
     "select": "Select package",
     "more-services": "More services",
-    "gift.redeem": "Use this code to redeem your gift card",
-    "gift.tag-title": "Exclusive gift",
-    "gift.title": "Massage Therapy Card",
-    "gift.desc": "Todo: description"
+    "gift": {
+      "redeem": "Use this code to redeem your gift card",
+      "tag-title": "Exclusive gift",
+      "title": "Massage Therapy Card",
+      "desc": "Todo: description",
+      "details-button": "See details"
+    }
   }
 }

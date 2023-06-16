@@ -17,15 +17,17 @@
   "main": {
     "landing": {
       "register": "Зареєструватись",
-      "pricing": "Побачити прайс"
+      "pricing": "Дивитись прайс",
+      "countdown": "Велике відкриття",
+      "countdown-desc": "Для нових учасників знижки до 25%"
     }
   },
   "countdown": {
     "title": "Відлік до",
-    "days": "дні",
-    "hours": "години",
-    "minutes": "хвилини",
-    "seconds": "секунди"
+    "days": "днів",
+    "hours": "годин",
+    "minutes": "хвилинин",
+    "seconds": "секунд"
   },
   "footer": {
     "get-promos": "Отримати скидку першим",
@@ -48,9 +50,12 @@
     "body-scrubs": "Body Treatments with Scrubs",
     "select": "Обрати масаж",
     "more-services": "Більше послуг",
-    "gift.redeem": "Використовуйте цей код, щоб активувати подарунковий сертифікат",
-    "gift.tag-title": "Ексклюзивний подарунок",
-    "gift.title": "Massage Therapy Card",
-    "gift.desc": "Todo: description"
+    "gift": {
+      "redeem": "Використовуйте цей код, щоб активувати подарунковий сертифікат",
+      "tag-title": "Ексклюзивний подарунок",
+      "title": "Massage Therapy Card",
+      "desc": "Todo: description",
+      "details-button": "Детальніше"
+    }
   }
 }
