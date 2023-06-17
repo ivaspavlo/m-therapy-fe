@@ -1,24 +1,24 @@
 <div tabindex="0" [attr.aria-label]="('countdown.title' | translate) + ' ' + targetTimeString" class="countdown-timer">
-  <app-spinner *ngIf="!days" size="sm"></app-spinner>
+  <app-spinner *ngIf="isSpinnerVisible" size="sm" class="countdown-timer__spinner"></app-spinner>
 
-  <div *ngIf="days" class="countdown-timer__wrapper">
+  <div class="countdown-timer__wrapper">
     <div>
-      <p class="times">{{ days | number:'2.0' }}</p>
+      <p #daysEl class="times"></p>
       <p class="desc">{{ 'countdown.days' | translate }}</p>
     </div>
     <div class="delimiter">:</div>
     <div>
-      <p class="times">{{ hours | number:'2.0' }}</p>
+      <p #hoursEl class="times"></p>
       <p class="desc">{{ 'countdown.hours' | translate }}</p>
     </div>
     <div class="delimiter">:</div>
     <div>
-      <p class="times">{{ minutes | number:'2.0' }}</p>
+      <p #minutesEl class="times"></p>
       <p class="desc">{{ 'countdown.minutes' | translate }}</p>
     </div>
     <div class="delimiter">:</div>
     <div>
-      <p class="times">{{ seconds | number:'2.0' }}</p>
+      <p #secondsEl class="times"></p>
       <p class="desc">{{ 'countdown.seconds' | translate }}</p>
     </div>
   </div>

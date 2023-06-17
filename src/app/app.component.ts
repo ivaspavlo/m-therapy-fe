@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouteTransitionAnimations } from '@app/core/constants';
 
@@ -6,7 +6,8 @@ import { RouteTransitionAnimations } from '@app/core/constants';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  animations: [RouteTransitionAnimations]
+  animations: [RouteTransitionAnimations],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 
