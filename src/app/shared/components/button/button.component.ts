@@ -11,6 +11,7 @@ export class ButtonComponent {
 
   @Input() type: 'primary' | 'secondary' | '' = '';
   @Input() title: string = '';
+  @Input() disabled: boolean = false;
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
 
