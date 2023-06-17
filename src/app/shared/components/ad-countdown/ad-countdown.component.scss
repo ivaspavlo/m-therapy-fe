@@ -13,14 +13,26 @@
   color: $white;
   background: $bg-primary;
   box-shadow: $b-shadow-1;
+
   &:focus {
     outline: $outline-2;
   }
+
   &__wrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
+
+  &__spinner {
+    position: absolute; left: 0;
+    width: 100%;
+    height: 100%;
+    background: $bg-primary;
+    align-items: center;
+    z-index: 1;
+  }
+
   @include lg {
     width: rem(420px);
     min-height: rem(110px);
