@@ -12,9 +12,12 @@
   color: $white;
   transition: .3s;
   cursor: pointer;
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0px 2px 5px 0px $medium-grey;
+  }
+  &:disabled {
+    background: lightgrey;
   }
 }
 
