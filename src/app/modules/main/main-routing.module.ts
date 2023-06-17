@@ -4,7 +4,7 @@ import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { MainPageComponent } from './components/main-page/main-page.component';
 
 
-const coreRouts: Route[] = [
+const mainRouts: Route[] = [
   {
     path: CORE_ROUTE_NAMES.BLANK,
     pathMatch: 'full',
@@ -13,6 +13,6 @@ const coreRouts: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(coreRouts)]
+  imports: [RouterModule.forChild(mainRouts)]
 })
 export class MainRoutingModule { }

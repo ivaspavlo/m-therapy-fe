@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { COMPONENTS } from './components';
@@ -17,6 +18,7 @@ import { PIPES } from './pipes';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     CoreTranslationModule.forChild()
   ],
   exports: [
