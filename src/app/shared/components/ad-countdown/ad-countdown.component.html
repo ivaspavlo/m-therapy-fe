@@ -1,7 +1,7 @@
 <div tabindex="0" [attr.aria-label]="('countdown.title' | translate) + ' ' + targetTimeString" class="countdown-timer">
   <app-spinner *ngIf="isSpinnerVisible" size="sm" class="countdown-timer__spinner"></app-spinner>
 
-  <div class="countdown-timer__wrapper">
+  <div [ngClass]="{'countdown-timer__wrapper--visible': !isSpinnerVisible}" class="countdown-timer__wrapper">
     <div>
       <p #daysEl class="times"></p>
       <p class="desc">{{ 'countdown.days' | translate }}</p>
