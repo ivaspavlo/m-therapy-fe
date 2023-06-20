@@ -22,6 +22,7 @@ import { PIPES } from './pipes';
     CoreTranslationModule.forChild()
   ],
   exports: [
+    RouterModule,
     ...COMPONENTS,
     ...DIRECTIVES,
     ...PIPES

@@ -1,4 +1,4 @@
-import { FormStyle, TranslationWidth, getLocaleMonthNames } from '@angular/common';
+import { DecimalPipe, FormStyle, TranslationWidth, getLocaleMonthNames } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, LOCALE_ID, NgZone, Renderer2, ViewChild } from '@angular/core';
 
 
@@ -6,6 +6,7 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
   selector: 'app-ad-countdown',
   templateUrl: './ad-countdown.component.html',
   styleUrls: ['./ad-countdown.component.scss'],
+  providers: [ DecimalPipe ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdCountdownComponent implements AfterViewInit {
@@ -33,7 +34,8 @@ export class AdCountdownComponent implements AfterViewInit {
     @Inject(LOCALE_ID) public locale: string,
     private zone: NgZone,
     private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private decimalPipe: DecimalPipe
   ) { }
 
   ngOnInit() {
@@ -44,26 +46,28 @@ export class AdCountdownComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
       setInterval(() => {
-        this.tickTock();
         this.difference = this.targetTime - this.now;
         this.difference = this.difference / (1000 * 60 * 60 * 24);
+        this.tickTock();
       }, 1000);
     });
   }
 
   private tickTock() {
+
     this.date = new Date();
     this.now = this.date.getTime();
 
     if (this.isSpinnerVisible) {
       this.isSpinnerVisible = typeof Math.floor(this.difference) !== 'number';
       this.cdr.detectChanges();
+      return;
     }
 
-    this.renderer.setProperty(this.daysEl.nativeElement, 'innerHTML', Math.floor(this.difference));
-    this.renderer.setProperty(this.hoursEl.nativeElement, 'innerHTML', 60 - this.date.getMinutes());
-    this.renderer.setProperty(this.minutesEl.nativeElement, 'innerHTML', 60 - this.date.getMinutes());
-    this.renderer.setProperty(this.secondsEl.nativeElement, 'innerHTML', 60 - this.date.getSeconds());
+    this.renderer.setProperty(this.daysEl.nativeElement, 'innerHTML', this.decimalPipe.transform(Math.floor(this.difference), '2.0'));
+    this.renderer.setProperty(this.hoursEl.nativeElement, 'innerHTML', this.decimalPipe.transform(60 - this.date.getMinutes(), '2.0'));
+    this.renderer.setProperty(this.minutesEl.nativeElement, 'innerHTML', this.decimalPipe.transform(60 - this.date.getMinutes(), '2.0'));
+    this.renderer.setProperty(this.secondsEl.nativeElement, 'innerHTML', this.decimalPipe.transform(60 - this.date.getSeconds(), '2.0'));
   }
 
 }
