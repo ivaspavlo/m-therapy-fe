@@ -1,1 +1,5 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" class="login-form">
+  <app-input [control]="loginForm.get('login')"></app-input>
+  <app-input [control]="loginForm.get('password')"></app-input>
+
+</form>
