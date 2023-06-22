@@ -1,0 +1,17 @@
+@import 'variables';
+
+:host {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-page {
+  width: 80vw;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-color: $primary;
+}

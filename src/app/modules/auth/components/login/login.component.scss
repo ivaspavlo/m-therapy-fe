@@ -1,0 +1,24 @@
+@import 'variables';
+
+.login-form {
+  width: 80%;
+  min-height: 70vh;
+  transform: translateX(15%);
+  padding: rem(76px) rem(73px);
+  display: flex;
+  flex-direction: column;
+  background-color: $thirdly;
+  box-shadow: $b-shadow-1;
+
+  @include lg {
+    width: 60%;
+  }
+
+  &__title {
+    font-family: $playfair;
+    font-weight: 700;
+    font-size: rem(42px);
+    margin: rem(20px) 0;
+    color: $fourthly;
+  }
+}
