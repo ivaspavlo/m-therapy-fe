@@ -1,0 +1,7 @@
+<div class="input" [ngClass]="{ 'input--invalid': (control.dirty || control.touched) && control.errors !== null, 'input--active': (isCalendarVisible$ | async) || control.value }">
+  <label [for]="controlName" class="input__label">{{label}}</label>
+  <input [id]="controlName" #dp="angular-mydatepicker" [attr.disabled]="control.disabled || null" angular-mydatepicker [options]="dpOptions" [(ngModel)]="model" (dateChanged)="onDateChanged($event)" (click)="onInputClick()" [placeholder]="placeholder" name="mydate" class="input__field">
+  <p class="input__error">{{control.errors | firstError:errorsMap}}</p>
+  <i class="input__icon input__icon--calendar"></i>
+  <i *ngIf="control.value" (click)="onClearDate()" class="input__icon input__icon--clear"></i>
+</div>
