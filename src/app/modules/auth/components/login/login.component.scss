@@ -1,5 +1,14 @@
 @import 'variables';
 
+:host {
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .login-form {
   width: 80%;
   min-height: 70vh;

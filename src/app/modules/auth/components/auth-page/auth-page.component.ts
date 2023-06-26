@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { AuthRoutingAnimations } from '../../constants/auth-routing-animations.constant';
+
 
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
-  styleUrls: ['./auth-page.component.scss']
+  styleUrls: ['./auth-page.component.scss'],
+  animations: [ AuthRoutingAnimations ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthPageComponent {
+
+  public prepareRoute(outlet: RouterOutlet): boolean {
+    // console.log(outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState']);
+		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
+	}
 
 }

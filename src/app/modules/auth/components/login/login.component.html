@@ -1,15 +1,5 @@
 <form [formGroup]="loginForm" class="gifts-info">
-  <app-input [control]="$any(loginForm).get('login')"></app-input>
-  <app-input [control]="$any(loginForm).get('password')"></app-input>
-  <app-button title="Test"></app-button>
+  <!-- <app-input [control]="$any(loginForm).get('login')"></app-input>
+  <app-input [control]="$any(loginForm).get('password')"></app-input> -->
+  <app-button title="Register" link="/auth/register" type="secondary"></app-button>
 </form>
-
-<!-- <div class="gifts-info">
-  <app-title-tag [title]="'products.gift.tag-title' | translate"></app-title-tag>
-  <h2 class="gifts-info__title">{{ 'products.gift.title' | translate }}</h2>
-  <p class="gifts-info__desc">{{ 'products.gift.desc' | translate }}</p>
-  <div class="d-flex flex-column align-items-center align-items-lg-start">
-    <app-gift class="d-flex d-lg-none"></app-gift>
-    <app-button type="secondary" title="{{ 'products.gift.details-button' | translate }}" class="mt-4"></app-button>
-  </div>
-</div> -->

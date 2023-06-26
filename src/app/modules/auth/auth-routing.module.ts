@@ -26,15 +26,19 @@ const authRouts: Route[] = [
       redirectTo: AUTH_ROUTE_NAMES.LOGIN
     }, {
       path: AUTH_ROUTE_NAMES.LOGIN,
+      data: { animationState: 'login' },
       component: LoginComponent
     }, {
       path: AUTH_ROUTE_NAMES.REGISTER,
+      data: { animationState: 'register' },
       component: RegisterComponent
     }, {
       path: AUTH_ROUTE_NAMES.REMIND_PASSWORD,
+      data: { animationState: 'remind' },
       component: RemindComponent
     }, {
       path: AUTH_ROUTE_NAMES.UPDATE_PASSWORD,
+      data: { animationState: 'update' },
       component: UpdateComponent
     }]
   }
