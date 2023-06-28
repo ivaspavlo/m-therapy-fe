@@ -1,4 +1,4 @@
-<a (click)="onClick()" [ngClass]="{'cursor-pointer': isClickable}" class="d-flex align-items-center">
+<a (click)="onClick()" [routerLink]="isClickable ? '/' : null" [ngClass]="{'cursor-pointer': isClickable}" class="d-flex align-items-center">
   <app-logo *ngIf="hasLogo" [size]="size" class="mr-2"></app-logo>
   <h5 class="brand" [ngClass]="size">
     <span>Tkachuk</span>
