@@ -30,3 +30,16 @@
   border: 1px solid $primary;
   color: $primary;
 }
+
+.link {
+  padding: rem(10px) rem(20px);
+  font-size: rem(16px);
+  color: $primary;
+  &::after {
+    @include bg-img('/assets/images/vector/arrow-right.svg');
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    content: '';
+  }
+}

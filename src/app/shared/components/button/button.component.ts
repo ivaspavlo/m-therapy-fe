@@ -9,10 +9,10 @@ import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from 
 })
 export class ButtonComponent {
 
-  @Input() type: 'primary' | 'secondary' | '' = '';
+  @Input() type: 'primary' | 'secondary' | 'link' | '' = '';
   @Input() title: string = '';
   @Input() disabled: boolean = false;
-  @Input() link: string = '';
+  @Input() linkUrl: string = '';
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
 
