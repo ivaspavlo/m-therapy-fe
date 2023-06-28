@@ -1,0 +1,14 @@
+@import 'variables';
+
+.auth-page {
+  position: relative;
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 1;
+  }
+}
