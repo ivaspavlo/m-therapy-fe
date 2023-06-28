@@ -13,7 +13,6 @@ import { AuthRoutingAnimations } from '../../constants/auth-routing-animations.c
 export class AuthPageComponent {
 
   public prepareRoute(outlet: RouterOutlet): boolean {
-    console.log(outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState']);
 		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
 	}
 
