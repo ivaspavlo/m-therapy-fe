@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { FormErrors } from '@core/constants';
+import { FormErrors } from '@app/core/constants';
 
 
 @Pipe({

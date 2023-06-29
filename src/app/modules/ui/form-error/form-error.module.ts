@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreTranslationModule } from '@core/core-translation.module';
-
+import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { COMPONENTS } from './components';
 import { PIPES } from './pipes';
 
