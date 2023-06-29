@@ -1,0 +1,10 @@
+$warn-color: #ff6363;
+
+.form-error {
+  padding: 5px 5px 0 12px;
+  font-size: 10px;
+  letter-spacing: .3px;
+  text-overflow: ellipsis;
+  color: $warn-color;
+  transition: opacity .3s;
+}

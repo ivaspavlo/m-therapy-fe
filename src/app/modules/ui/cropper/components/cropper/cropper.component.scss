@@ -1,0 +1,69 @@
+@import '_core-colors';
+@import 'mixins/_all';
+
+:host {
+  width: 100%;
+  --cropper-overlay-color: transparent;
+}
+
+.app-cropper {
+  display: flex;
+  flex-direction: column;
+  &__container {
+    width: 75%;
+    @include sm {
+      width: 50%;
+      padding: 0 16px;
+    }
+  }
+  &__preview {
+    width: 100%;
+    padding: 5px;
+  }
+  &__image {
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+    border-radius: 4px;
+  }
+  &__icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
+    display: flex;
+    &--browse {
+      @include bg-img('/assets/img/svg/browse.svg');
+    }
+    &--load {
+      @include bg-img('/assets/img/svg/upload-cloud.svg');
+    }
+  }
+  &__button {
+    width: 130px;
+    height: 40px;
+    margin: 0 10px;
+    border: 2px solid $main;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $main;
+    background-color: transparent;
+    cursor: pointer;
+    &:disabled {
+      border: 2px solid gray;
+      color: gray;
+      cursor: not-allowed;
+      .app-cropper__icon--load {
+        @include bg-img('/assets/img/svg/upload-cloud-grey.svg');
+      }
+    }
+    &:hover:not([disabled]) {
+      opacity: .8;
+    }
+  }
+}

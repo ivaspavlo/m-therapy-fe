@@ -1,0 +1,10 @@
+<div class="toast" [@fadeAnimation]="{value: animationState, params: { fadeIn: toastConfig?.animation?.fadeIn, fadeOut: toastConfig?.animation?.fadeOut }}" (@fadeAnimation.done)="onFadeFinished($event)">
+  <div class="toast-marker" [ngClass]="data.type">
+    <i></i>
+  </div>
+  <div class="toast__content">
+    <div class="toast__text">{{data.text}}</div>
+    <a class="toast__link" *ngIf="data.href" [routerLink]="data.href">{{data.linkName || data.href}}</a>
+    <a class="toast__close" (click)="close()"></a>
+  </div>
+</div>

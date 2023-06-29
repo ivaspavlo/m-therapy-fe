@@ -1,0 +1,18 @@
+<div class="select" [ngClass]="{'select--invalid': control.errors && (control.dirty || control.touched)}">
+
+  <label class="select__label">
+    <span>{{label | translate}}</span>
+    <span *ngIf="true" class="select__asterisk">*</span>
+  </label>
+
+  <select [formControl]="control" class="select__field">
+    <option *ngFor="let item of options" [value]="item.value" class="select__option">{{ item.uiName | translate }}</option>
+  </select>
+
+  <div class="select__error">
+    <app-form-error [errors]="control.errors"></app-form-error>
+  </div>
+
+  <i class="select__arrow"></i>
+
+</div>
