@@ -1,0 +1,18 @@
+.app-icon {
+  display: flex;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  &.sm {
+    width: 10px;
+    height: 10px;
+  }
+  &.md {
+    width: 15px;
+    height: 15px;
+  }
+  .lg {
+    width: 20px;
+    height: 20px;
+  }
+}

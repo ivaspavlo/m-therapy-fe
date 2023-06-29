@@ -1,0 +1,28 @@
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &.password {
+    background-image: url('/assets/img/svg/password-hidden.svg');
+    cursor: pointer;
+    &:hover { opacity: .4; }
+  }
+  &.password.hidden {
+    background-image: url('/assets/img/svg/password.svg');
+  }
+  &.phone {
+    background-image: url('/assets/img/svg/phone.svg');
+  }
+  &.email {
+    background-image: url('/assets/img/svg/email.svg');
+  }
+  &.date {
+    background-image: url('/assets/img/svg/calendar.svg');
+  }
+}

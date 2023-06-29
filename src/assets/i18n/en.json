@@ -57,5 +57,9 @@
       "desc": "Todo: description",
       "details-button": "See details"
     }
+  },
+  "auth": {
+    "register": "Register",
+    "login": "Login"
   }
 }

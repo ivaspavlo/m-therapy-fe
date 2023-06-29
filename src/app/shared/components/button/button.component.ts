@@ -12,7 +12,7 @@ export class ButtonComponent {
   @Input() type: 'primary' | 'secondary' | 'link' | '' = '';
   @Input() title: string = '';
   @Input() disabled: boolean = false;
-  @Input() linkUrl: string = '';
+  @Input() url: string = '';
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
 
