@@ -24,7 +24,6 @@ export const COMPONENTS = [
   LanguageBarComponent,
   AdCountdownComponent,
   SpinnerComponent,
-  InputComponent,
   BrandComponent,
   ButtonLinkComponent,
   GiftComponent,
