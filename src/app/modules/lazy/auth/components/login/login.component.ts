@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   @Output() login: EventEmitter<ILogin> = new EventEmitter();
 
-  public loginForm: FormGroup;
+  public loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder
