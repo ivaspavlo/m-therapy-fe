@@ -6,6 +6,7 @@ import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthPageComponent } from './auth-page.component';
 import { COMPONENTS } from './components';
+import { InputModule } from '@app/modules/ui';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { COMPONENTS } from './components';
     AuthRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    InputModule,
     CoreTranslationModule.forChild()
   ]
 })
