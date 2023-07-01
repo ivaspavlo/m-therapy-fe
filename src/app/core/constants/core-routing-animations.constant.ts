@@ -6,7 +6,7 @@ export const CoreRoutingAnimations = trigger('triggerName', [
 		style({ position: 'relative' }),
 		query(':enter, :leave', [
 			style({
-				position: 'absolute',
+				position: 'fixed',
 				top: 0,
 				right: 0,
 				width: '100%'
@@ -16,7 +16,7 @@ export const CoreRoutingAnimations = trigger('triggerName', [
 		query(':leave', animateChild()),
 		group([
 			query(':leave', [animate('0.3s ease-out', style({ right: '100%', opacity: 0 }))]),
-			query(':enter', [animate('0.3s ease-out', style({ right: '0%', opacity: 1 }))])
+			query(':enter', [animate('0.3s ease-out', style({ right: '0', opacity: 1 }))])
 		]),
 		query(':enter', animateChild())
 	]),
@@ -34,7 +34,7 @@ export const CoreRoutingAnimations = trigger('triggerName', [
 		query(':leave', animateChild()),
 		group([
 			query(':leave', [animate('0.3s ease-out', style({ left: '100%', opacity: 0 }))]),
-			query(':enter', [animate('0.3s ease-out', style({ left: '0%', opacity: 1 }))])
+			query(':enter', [animate('0.3s ease-out', style({ left: '0', opacity: 1 }))])
 		]),
 		query(':enter', animateChild())
 	])
