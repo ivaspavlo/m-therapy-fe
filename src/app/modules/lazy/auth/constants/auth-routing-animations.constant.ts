@@ -18,7 +18,7 @@ export const AuthRoutingAnimations = trigger('authAnimate', [
 		query(':leave', animateChild(), { optional: true }),
 		group([
 			query(':leave', [animate('0.3s ease-out', style({ top: '100vh', opacity: 0 }))], { optional: true }),
-			query(':enter', [animate('0.3s ease-out', style({ top: '0%', opacity: 1 }))], { optional: true })
+			query(':enter', [animate('0.3s ease-out', style({ top: '0', opacity: 1 }))], { optional: true })
 		]),
 		query(':enter', animateChild(), { optional: true })
 	])
