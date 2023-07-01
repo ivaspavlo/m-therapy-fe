@@ -16,7 +16,7 @@
         <p class="landing-countdown__title">{{ 'main.landing.countdown' | translate }}</p>
         <p>{{ 'main.landing.countdown-desc' | translate }}</p>
       </header>
-      <app-ad-countdown class="landing-countdown__timer"></app-ad-countdown>
+      <app-ad-countdown [targetDate]="targetDate" class="landing-countdown__timer"></app-ad-countdown>
     </div>
   </div>
 

@@ -9,9 +9,18 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class LandingSectionComponent implements OnInit {
 
+  public targetDate!: Date;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.targetDate = this.initTargetDate();
+  }
+
+  public initTargetDate(): Date {
+    const targetDate = new Date();
+    targetDate.setMonth(targetDate.getMonth() + 1);
+    return targetDate;
   }
 
 }
