@@ -60,6 +60,8 @@
   },
   "auth": {
     "register": "Register",
-    "login": "Login"
+    "login": "Login",
+    "back": "Back to Main",
+    "remind": "Forget password"
   }
 }

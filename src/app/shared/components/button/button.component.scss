@@ -32,13 +32,16 @@
 }
 
 .link {
-  padding: rem(10px) rem(20px);
+  padding: rem(8px);
   font-size: rem(16px);
+  display: flex;
+  align-items: center;
   color: $primary;
   &::after {
-    @include bg-img('/assets/images/vector/arrow-right.svg');
+    @include bg-img('/assets/images/vector/arrow-right-primary.svg', $bg-size: 'contain');
     width: 1rem;
     height: 1rem;
+    margin-left: rem(4px);
     display: flex;
     content: '';
   }
