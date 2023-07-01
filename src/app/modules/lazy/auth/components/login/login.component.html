@@ -1,5 +1,7 @@
-<form [formGroup]="loginForm" class="gifts-info">
-  <!-- <app-input [control]="$any(loginForm).get('login')"></app-input>
-  <app-input [control]="$any(loginForm).get('password')"></app-input> -->
-  <app-button title="Register" url="/auth/register" type="link"></app-button>
+<form [formGroup]="loginForm" class="">
+
+  <div class="d-flex">
+    <app-button title="{{ 'auth.register' | translate }}" url="/auth/register" type="link" class="mx-1"></app-button>
+    <app-button title="{{ 'auth.remind' | translate }}" url="/auth/remind" type="link" class="mx-1"></app-button>
+  </div>
 </form>

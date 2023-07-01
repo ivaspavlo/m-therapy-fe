@@ -23,7 +23,7 @@ const authRouts: Route[] = [
     children: [{
       path: AUTH_ROUTE_NAMES.BLANK,
       pathMatch: 'full',
-      redirectTo: AUTH_ROUTE_NAMES.LOGIN
+      redirectTo: AUTH_ROUTE_NAMES.REGISTER
     }, {
       path: AUTH_ROUTE_NAMES.LOGIN,
       data: { animationState: 'login' },
