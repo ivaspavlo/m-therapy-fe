@@ -62,6 +62,24 @@
     "register": "Register",
     "login": "Login",
     "back": "Back to Main",
-    "remind": "Forget password"
+    "remind": "Forget password",
+    "enter": "Enter {{x}}",
+    "firstName": "first name",
+    "lastName": "last name",
+    "email": "email",
+    "phoneNumber": "phone number",
+    "password": "password",
+    "confirmPassword": "confirm password",
+    "submit": "Submit"
+  },
+  "form-errors": {
+    "required": "This field is required",
+    "minlength": "Value is too short",
+    "email": "Email is not correct",
+    "noNumeric": "Must contain numeric symbol",
+    "noUpperCase": "Must contain upper-case symbol",
+    "noLowerCase": "Must contain lower-case symbol",
+    "minEightChar": "Must have at least 8 symbols",
+    "notEqual": "Password is not equal"
   }
 }

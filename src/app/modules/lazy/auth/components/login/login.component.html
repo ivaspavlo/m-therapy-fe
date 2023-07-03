@@ -1,6 +1,8 @@
 <form [formGroup]="loginForm" class="">
 
-  <div class="d-flex">
+  <app-input controlName="login" label="test" plh="test"></app-input>
+
+  <div class="d-flex my-4">
     <app-button title="{{ 'auth.register' | translate }}" url="/auth/register" type="link" class="mx-1"></app-button>
     <app-button title="{{ 'auth.remind' | translate }}" url="/auth/remind" type="link" class="mx-1"></app-button>
   </div>

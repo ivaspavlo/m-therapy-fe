@@ -1,7 +1,19 @@
-<form [formGroup]="registerForm" class="">
+<form [formGroup]="registerForm" class="app-register">
+  <h1 class="app-register__title">{{ 'auth.register' | translate }}</h1>
 
-  <div class="d-flex">
+  <app-input controlName="firstName" label="{{ 'auth.firstName' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.firstName' | translate} }}"></app-input>
+  <app-input controlName="lastName" label="{{ 'auth.lastName' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.lastName' | translate} }}"></app-input>
+  <app-input controlName="email" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}" type="email"></app-input>
+  <app-input controlName="phoneNumber" label="{{ 'auth.phoneNumber' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.phoneNumber' | translate} }}" type="phone"></app-input>
+  <app-input controlName="password" label="{{ 'auth.password' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" type="password"></app-input>
+  <app-input controlName="confirmPassword" label="{{ 'auth.confirmPassword' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" type="password"></app-input>
+
+  <div class="mt-4 d-flex justify-content-center">
+    <app-button title="{{ 'auth.submit' | translate }}" type="primary"></app-button>
+  </div>
+
+  <div class="my-3 d-flex justify-content-between">
     <app-button title="{{ 'auth.back' | translate }}" url="/" type="link" class="mx-1"></app-button>
-    <app-button title="{{ 'auth.register' | translate }}" url="/auth/login" type="link" class="mx-1"></app-button>
+    <app-button title="{{ 'auth.login' | translate }}" url="/auth/login" type="link" class="mx-1"></app-button>
   </div>
 </form>
