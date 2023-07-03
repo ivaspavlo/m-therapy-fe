@@ -11,10 +11,10 @@ import { InputTypes } from '../../interfaces';
 })
 export class InputComponent implements OnInit {
 
-  @Input() controlName = '';
+  @Input() controlName!: string;
   @Input() label = '';
-  @Input() placeholder = '';
-  @Input() type: InputTypes;
+  @Input() plh = '';
+  @Input() type: InputTypes = 'text';
 
   get isTextArea() { return this.innerInputType === 'textarea'; }
 

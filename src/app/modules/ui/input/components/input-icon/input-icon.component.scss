@@ -9,20 +9,20 @@
   background-repeat: no-repeat;
   background-size: cover;
   &.password {
-    background-image: url('/assets/img/svg/password-hidden.svg');
+    background-image: url('/assets/images/vector/password-hidden.svg');
     cursor: pointer;
     &:hover { opacity: .4; }
   }
   &.password.hidden {
-    background-image: url('/assets/img/svg/password.svg');
+    background-image: url('/assets/images/vector/password.svg');
   }
   &.phone {
-    background-image: url('/assets/img/svg/phone.svg');
+    background-image: url('/assets/images/vector/phone.svg');
   }
   &.email {
-    background-image: url('/assets/img/svg/email.svg');
+    background-image: url('/assets/images/vector/email.svg');
   }
   &.date {
-    background-image: url('/assets/img/svg/calendar.svg');
+    background-image: url('/assets/images/vector/calendar.svg');
   }
 }

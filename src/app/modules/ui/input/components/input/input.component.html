@@ -1,10 +1,10 @@
 <div class="input" [ngClass]="{'input--invalid': control.errors && (control.dirty || control.touched)}">
 
-  <input *ngIf="!isTextArea" [attr.disabled]="control.disabled || null" class="input__field" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="input" [placeholder]="placeholder | translate" [type]="innerInputType" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()">
-  <textarea *ngIf="isTextArea" class="input__text-area" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="textarea" [placeholder]="placeholder | translate" rows="4" cols="50" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()"></textarea>
+  <input *ngIf="!isTextArea" [attr.disabled]="control.disabled || null" class="input__field" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="input" [placeholder]="plh | translate" [type]="innerInputType" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()">
+  <textarea *ngIf="isTextArea" class="input__text-area" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="textarea" [placeholder]="plh | translate" rows="4" cols="50" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()"></textarea>
 
   <label [for]="controlName" class="input__label">
-    <span>{{label | translate}}</span>
+    <span>{{ label | translate }}</span>
     <span *ngIf="true" class="input__asterisk">*</span>
   </label>
 
