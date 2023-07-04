@@ -23,7 +23,8 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      dateOfBirth: ['', Validators.required]
     });
   }
 

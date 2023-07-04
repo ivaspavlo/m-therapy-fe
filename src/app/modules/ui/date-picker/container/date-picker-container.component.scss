@@ -1,10 +1,13 @@
-$text-color: #656565;
-$warn-color: #ff6363;
-$accent-color: #7d6caf;
-$border-radius: 4px;
+@import 'variables';
+
+$text-color: $primary;
+$warn-color: $warn;
+$accent-color: $primary;
+$border-radius: 0;
 
 :host {
-  margin: 15px 0;
+  margin: 2rem 0 1rem;
+  display: flex;
 }
 
 .input {
@@ -59,6 +62,11 @@ $border-radius: 4px;
     transition: .3s;
     color: $text-color;
   }
+
+  &__asterisk {
+    padding-left: 3px;
+    color: $warn-color;
+  }
   
   &__icon {
     position: absolute;
@@ -71,15 +79,15 @@ $border-radius: 4px;
     background-repeat: no-repeat;
     background-size: cover;
     &--calendar {
-      background-image: url('/assets/img/svg/calendar.svg');
+      background-image: url('/assets/images/vector/calendar.svg');
     }
     &--clear {
       width: 20px;
       height: 20px;
       right: 40px;
       cursor: pointer;
-      background-image: url('/assets/img/svg/x-button.svg');
-      &:hover { background-image: url('/assets/img/svg/x-button-red.svg'); }
+      background-image: url('/assets/images/vector/x-button.svg');
+      &:hover { background-image: url('/assets/images/vector/x-button-red.svg'); }
     }
   }
   
