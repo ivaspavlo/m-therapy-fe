@@ -3,8 +3,21 @@
     <span>{{ label }}</span>
     <span *ngIf="true" class="input__asterisk">*</span>
   </label>
-  <input [id]="controlName" #dp="angular-mydatepicker" [attr.disabled]="control.disabled || null" angular-mydatepicker [options]="dpOptions" [(ngModel)]="model" (dateChanged)="onDateChanged($event)" (click)="onInputClick()" [placeholder]="plh" name="mydate" class="input__field">
-  <!-- <p class="input__error">{{ control.errors | firstError:errorsMap }}</p> -->
+  <input
+    #dp="angular-mydatepicker"
+    [id]="controlName"
+    [attr.disabled]="control.disabled || null"
+    angular-mydatepicker
+    [options]="dpOptions"
+    [(ngModel)]="model"
+    (keyup.enter)="onInputClick($event)"
+    (click)="onInputClick($event)"
+    (dateChanged)="onDateChanged($event)"
+    [placeholder]="plh"
+    name="mydate"
+    class="input__field"
+  >
+  <p class="input__error">{{ control.errors | firstError:errorsMap }}</p>
   <i class="input__icon input__icon--calendar"></i>
   <i *ngIf="control.value" (click)="onClearDate()" class="input__icon input__icon--clear"></i>
 </div>
