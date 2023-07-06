@@ -2,19 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
-import { FirstErrorPipe } from './pipes/first-error.pipe';
+import { SharedModule } from '@app/shared/shared.module';
+import { FormErrorModule } from '../form-error/form-error.module';
 import { DatePickerContainerComponent } from './container/date-picker-container.component';
 
 
 @NgModule({
   declarations: [
-    FirstErrorPipe,
     DatePickerContainerComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    AngularMyDatePickerModule
+    SharedModule,
+    AngularMyDatePickerModule,
+    FormErrorModule
   ],
   exports: [
     DatePickerContainerComponent

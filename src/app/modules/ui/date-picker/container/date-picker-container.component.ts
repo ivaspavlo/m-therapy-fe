@@ -42,10 +42,11 @@ export class DatePickerContainerComponent {
     const value = this.dpOptions.dateRange
       ? { begin: event.dateRange?.beginJsDate, end: event.dateRange?.endJsDate }
       : event.singleDate?.jsDate;
+    this.control.markAsDirty();
     this.control.patchValue(value);
   }
 
-  public onInputClick(event: Event): void {
+  public onToggleCalendar(): void {
     this.mydp.toggleCalendar();
   }
 
