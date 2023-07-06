@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateValidators, PasswordValidators } from '../../constants';
 
 
 @Component({
@@ -21,10 +22,10 @@ export class RegisterComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      dateOfBirth: ['', Validators.required]
+      phoneNumber: ['', [Validators.required, Validators.minLength(12)]],
+      password: ['',  [Validators.required, PasswordValidators.default]],
+      confirmPassword: ['', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]],
+      dateOfBirth: ['', [Validators.required, DateValidators.birthDate]]
     });
   }
 

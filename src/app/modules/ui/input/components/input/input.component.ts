@@ -12,17 +12,16 @@ import { InputTypes } from '../../interfaces';
 export class InputComponent implements OnInit {
 
   @Input() controlName!: string;
-  @Input() label = '';
-  @Input() plh = '';
+  @Input() label: string = '';
+  @Input() plh: string = '';
   @Input() type: InputTypes = 'text';
 
-  get isTextArea() { return this.innerInputType === 'textarea'; }
-
-  public innerInputType: InputTypes;
-  public hasFocus = false;
-
+  public get isTextArea() { return this.innerInputType === 'textarea'; }
   public get form(): FormGroup { return this.controlContainer.control as FormGroup; }
   public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
+
+  public innerInputType!: InputTypes;
+  public hasFocus: boolean = false;
 
   constructor(
     @Optional() private controlContainer: ControlContainer
@@ -44,7 +43,6 @@ export class InputComponent implements OnInit {
     this.innerInputType = isHidden ? 'password' : 'text';
   }
 
-  // Private mehtods
   private initInnerInputType(): void {
     this.innerInputType = !this.type ? 'text' : this.type;
   }
