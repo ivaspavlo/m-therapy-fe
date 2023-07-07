@@ -1,7 +1,7 @@
 <div class="input" [ngClass]="{ 'input--invalid': (control.dirty || control.touched) && control.errors !== null, 'input--active': (isCalendarVisible$ | async) || control.value }">
   <label [for]="controlName" class="input__label">
     <span>{{ label }}</span>
-    <span *ngIf="true" class="input__asterisk">*</span>
+    <span *ngIf="control | controlRequired" class="input__asterisk">*</span>
   </label>
 
   <input
@@ -13,13 +13,14 @@
     [(ngModel)]="model"
     (keyup.enter)="onToggleCalendar()"
     (click)="onToggleCalendar()"
+    (blur)="onBlur()"
     (dateChanged)="onDateChanged($event)"
     [placeholder]="plh"
     name="mydate"
     class="input__field"
   >
 
-  <div [ngClass]="{'input__error--visible': control.dirty}" class="input__error">
+  <div [ngClass]="{'input__error--visible': control.dirty || control.touched}" class="input__error">
     <app-form-error [errors]="control.errors"></app-form-error>
   </div>
 

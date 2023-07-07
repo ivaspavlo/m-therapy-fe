@@ -6,5 +6,6 @@ export const FormErrors = {
   noUpperCase: 'form-errors.noUpperCase',
   noLowerCase: 'form-errors.noLowerCase',
   minEightChar: 'form-errors.minEightChar',
-  notEqual: 'form-errors.notEqual'
+  notEqual: 'form-errors.notEqual',
+  birthDate: 'form-errors.birthDate'
 };

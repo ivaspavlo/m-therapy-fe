@@ -81,6 +81,7 @@
     "noUpperCase": "Must contain upper-case symbol",
     "noLowerCase": "Must contain lower-case symbol",
     "minEightChar": "Must have at least 8 symbols",
-    "notEqual": "Password is not equal"
+    "notEqual": "Password is not equal",
+    "birthDate": "Incorrect date of birth"
   }
 }
