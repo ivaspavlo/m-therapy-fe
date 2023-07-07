@@ -5,7 +5,7 @@
 
   <label [for]="controlName" class="input__label">
     <span>{{ label | translate }}</span>
-    <span *ngIf="true" class="input__asterisk">*</span>
+    <span *ngIf="control | controlRequired" class="input__asterisk">*</span>
   </label>
 
   <div class="input__error">

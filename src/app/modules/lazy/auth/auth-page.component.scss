@@ -1,7 +1,13 @@
 @import 'variables';
 
 .auth-page {
-  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: $thirdly;
+
+  &__content {
+    position: relative;
+  }
 
   &__header {
     position: fixed;

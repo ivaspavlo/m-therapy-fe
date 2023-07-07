@@ -54,10 +54,13 @@ export class DatePickerContainerComponent {
     this.mydp.clearDate();
   }
 
+  public onBlur(): void {
+    this.control.markAsTouched();
+  }
+
   private initCalendarVisibleObservable(): void {
     this.isCalendarVisible$ = this.mydp.calendarToggle.pipe(
       map((res: number) => res === 1)
     );
   }
-
 }
