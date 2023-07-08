@@ -62,7 +62,7 @@
     "register": "Register",
     "login": "Login",
     "back": "Back to Main",
-    "remind": "Forget password",
+    "remind": "Remind password",
     "enter": "Enter {{x}}",
     "firstName": "first name",
     "lastName": "last name",
