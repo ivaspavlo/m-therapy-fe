@@ -3,7 +3,11 @@
   <app-input controlName="login" label="{{ 'auth.login' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.login' | translate} }}"></app-input>
   <app-input controlName="password" label="{{ 'auth.password' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" type="password"></app-input>
 
-  <div class="d-flex my-4">
+  <div class="mt-4 d-flex justify-content-center">
+    <app-button title="{{ 'auth.submit' | translate }}" type="primary"></app-button>
+  </div>
+
+  <div class="my-4 d-flex justify-content-between">
     <app-button title="{{ 'auth.register' | translate }}" url="/auth/register" type="link" class="mx-1"></app-button>
     <app-button title="{{ 'auth.remind' | translate }}" url="/auth/remind" type="link" class="mx-1"></app-button>
   </div>
