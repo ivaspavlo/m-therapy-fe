@@ -1,2 +1,12 @@
-export * from './login.interface';
-export * from './remind.interface';
+export interface ILogin {
+  login: string;
+  password: string;
+}
+
+export interface IRemind {
+  email: string;
+}
+
+export interface IUpdate {
+  password: string;
+}
