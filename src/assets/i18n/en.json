@@ -63,6 +63,7 @@
     "login": "Login",
     "back": "Back to Main",
     "remind": "Remind password",
+    "change": "Change password",
     "enter": "Enter {{x}}",
     "firstName": "first name",
     "lastName": "last name",

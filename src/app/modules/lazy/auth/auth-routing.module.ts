@@ -13,7 +13,7 @@ const AUTH_ROUTE_NAMES = {
   LOGIN: 'login',
   REGISTER: 'register',
   REMIND_PASSWORD: 'remind',
-  UPDATE_PASSWORD: 'update'
+  UPDATE_PASSWORD: 'update/:token'
 };
 
 const authRouts: Route[] = [
@@ -38,7 +38,6 @@ const authRouts: Route[] = [
       component: RemindComponent
     }, {
       path: AUTH_ROUTE_NAMES.UPDATE_PASSWORD,
-      data: { animationState: 'update' },
       component: UpdateComponent
     }]
   }
