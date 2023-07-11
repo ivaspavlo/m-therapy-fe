@@ -1,1 +1,1 @@
-export const SERVICES = [];
+export * from './core-storage.service';

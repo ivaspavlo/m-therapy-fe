@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { fromEvent, Subject } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
+import { DestroySubscriptions } from '@app/shared/classes';
 
 
 @Component({
@@ -10,17 +11,18 @@ import { first, takeUntil } from 'rxjs/operators';
   styleUrls: ['./hamburger.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HamburgerComponent implements OnInit {
+export class HamburgerComponent extends DestroySubscriptions implements OnInit {
 
-  @Input() init: boolean;
+  @Input() init: boolean = false;
   @Output() isOn: EventEmitter<boolean> = new EventEmitter();
 
-  public _isOn: boolean;
-  private componentDestroyed$: Subject<void> = new Subject();
+  public _isOn!: boolean;
 
   constructor(
     @Inject(DOCUMENT) private document: Document
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this._isOn = this.init || false;
