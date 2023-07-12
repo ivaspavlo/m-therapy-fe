@@ -54,10 +54,10 @@
       </ul>
     </div>
 
-    <div class="mt-3 mt-md-0 d-flex flex-column align-items-lg-start align-items-center">
+    <form [formGroup]="formGroup" class="mt-3 mt-md-0 d-flex flex-column align-items-lg-start align-items-center">
       <h4 class="app-footer__promos">{{ 'footer.get-promos' | translate }}</h4>
-      <app-input [controlName]="controlName" [hasSubmitButton]="true" label="{{'footer.email-control' | translate}}" color="secondary" plh="{{'footer.email-control' | translate}}"></app-input>
-    </div>
+      <app-input [controlName]="controlName" [hasSubmitButton]="true" label="{{'footer.email-control' | translate}}" color="secondary" plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"></app-input>
+    </form>
 
   </div>
 

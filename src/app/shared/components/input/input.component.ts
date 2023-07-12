@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Optional, ChangeDetectionStrategy, EventEmitt
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
 
 
-export type InputTypes = 'text' | 'number' | 'textarea' | 'password' | 'email' | 'phone' | 'standalone';
+export type InputTypes = 'text' | 'number' | 'textarea' | 'password' | 'email' | 'phone';
 
 @Component({
   selector: 'app-input',
@@ -22,7 +22,10 @@ export class InputComponent implements OnInit {
 
   public get isTextArea() { return this.innerInputType === 'textarea'; }
   public get form(): FormGroup { return this.controlContainer.control as FormGroup; }
-  public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
+  public get control(): FormControl {
+    debugger;
+    return this.form.get(this.controlName) as FormControl;
+  }
 
   public innerInputType!: InputTypes;
   public hasFocus: boolean = false;
