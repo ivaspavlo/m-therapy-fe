@@ -25,6 +25,7 @@ $border-radius: 0;
     width: 100%;
     padding: 18px 45px 18px 12px;
     font-size: 16px;
+    border: 0;
     border: 1px solid;
     border-color: $border-color;
     border-radius: $border-radius;
@@ -81,8 +82,8 @@ $border-radius: 0;
   }
 
   &__button {
-    position: absolute; top: 0; right: 0;
-    transform: translate(0, 50%);
+    position: absolute; top: 50%; right: rem(10px);
+    transform: translate(0, -50%);
     display: inline-block;
     padding: 8px 0;
     cursor: pointer;
