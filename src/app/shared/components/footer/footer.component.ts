@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -11,14 +11,19 @@ import { FormControl } from '@angular/forms';
 })
 export class FooterComponent implements OnInit {
 
-  public newsletterControl: FormControl = new FormControl('');
+  public formGroup!: FormGroup;
+  public controlName: string = 'newsletter';
   public currentYear: string = '';
 
   constructor(
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private readonly fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.formGroup = this.fb.group({
+      [this.controlName]: this.fb.control('')
+    });
     this.currentYear = `${new Date().getFullYear()}`;
   }
 

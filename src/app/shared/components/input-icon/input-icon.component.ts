@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { InputTypes } from '../../interfaces';
+import { InputTypes } from '@app/core/constants';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { InputTypes } from '../../interfaces';
 })
 export class InputIconComponent implements OnInit {
   
-  @Input() type: InputTypes;
+  @Input() type!: InputTypes;
   @Output() togglePasswordVisibility: EventEmitter<boolean> = new EventEmitter();
   
   public isPassword = false;

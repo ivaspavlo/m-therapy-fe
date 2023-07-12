@@ -1,4 +1,4 @@
-export const FormErrors = {
+export const FormErrors: {[key:string]: string} = {
   required: 'form-errors.required',
   minlength: 'form-errors.minlength',
   email: 'form-errors.email',

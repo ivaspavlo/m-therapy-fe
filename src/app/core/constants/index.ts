@@ -4,3 +4,4 @@ export * from './section-ids.constant';
 export * from './core-routing-animations.constant';
 export * from './form-errors.constant';
 export * from './keys.constant';
+export * from './input-types.constant';
