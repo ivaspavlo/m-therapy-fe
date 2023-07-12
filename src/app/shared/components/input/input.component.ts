@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Component, OnInit, Input, Optional, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
+import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
 
 
-export type InputTypes = 'text' | 'number' | 'textarea' | 'password';
+export type InputTypes = 'text' | 'number' | 'textarea' | 'password' | 'email' | 'phone' | 'standalone';
 
 @Component({
   selector: 'app-input',
@@ -13,31 +12,43 @@ export type InputTypes = 'text' | 'number' | 'textarea' | 'password';
 })
 export class InputComponent implements OnInit {
 
-  @Input() control: FormControl;
-  @Input() errorsMap: { [key:string]: string; };
-  @Input() label = '';
-  @Input() placeholder = '';
-  @Input() type: InputTypes = 'text';
-  @Input() hasSubmitButton = false;
-
   @Output() inputSubmit: EventEmitter<void> = new EventEmitter();
 
-  public get isText() { return this.type === 'text'; }
-  public get isTextArea() { return this.type === 'textarea'; }
-  public hasFocus = false;
-  public id: string = '';
+  @Input() controlName!: string;
+  @Input() label: string = '';
+  @Input() plh: string = '';
+  @Input() type: InputTypes = 'text';
+  @Input() hasSubmitButton: boolean = false;
 
-  private componentDestroyed$: Subject<void> = new Subject();
+  public get isTextArea() { return this.innerInputType === 'textarea'; }
+  public get form(): FormGroup { return this.controlContainer.control as FormGroup; }
+  public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
 
-  constructor() { }
+  public innerInputType!: InputTypes;
+  public hasFocus: boolean = false;
+
+  constructor(
+    @Optional() private controlContainer: ControlContainer
+  ) { }
 
   ngOnInit(): void {
-    this.id = `${this.label}_${Math.random()}`;
+    this.initInnerInputType();
   }
-  
-  ngOnDestroy() {
-    this.componentDestroyed$.next();
-    this.componentDestroyed$.unsubscribe();
+
+  public onFocus(): void {
+    this.hasFocus = true;
+  }
+
+  public onBlur(): void {
+    this.hasFocus = false;
+  }
+
+  public onPasswordToggle(isHidden: boolean): void {
+    this.innerInputType = isHidden ? 'password' : 'text';
+  }
+
+  private initInnerInputType(): void {
+    this.innerInputType = !this.type ? 'text' : this.type;
   }
 
 }

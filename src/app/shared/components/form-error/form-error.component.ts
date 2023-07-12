@@ -9,6 +9,6 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class FormErrorComponent {
 
-  @Input() errors: {[key:string]: boolean} | null;
+  @Input() errors!: {[key:string]: boolean} | null;
 
 }

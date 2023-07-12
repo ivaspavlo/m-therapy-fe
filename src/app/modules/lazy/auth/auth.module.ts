@@ -6,7 +6,7 @@ import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthPageComponent } from './auth-page.component';
 import { COMPONENTS } from './components';
-import { DatePickerModule, InputModule } from '@app/modules/ui';
+import { DatePickerModule } from '@app/modules/ui';
 
 
 @NgModule({
@@ -19,7 +19,6 @@ import { DatePickerModule, InputModule } from '@app/modules/ui';
     AuthRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    InputModule,
     DatePickerModule,
     CoreTranslationModule.forChild()
   ]

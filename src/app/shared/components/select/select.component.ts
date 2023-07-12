@@ -1,7 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input, Optional } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
-import { ISelectOption } from '../../interfaces';
 
+
+export interface ISelectOption {
+  uiName: string;
+  value: any;
+}
 
 @Component({
   selector: 'app-select',
