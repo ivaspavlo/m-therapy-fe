@@ -1,6 +1,6 @@
 <form [formGroup]="remindForm" class="app-remind">
   <h1 class="app-remind__title">{{ 'auth.remind' | translate }}</h1>
-  <app-input controlName="email" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}"></app-input>
+  <app-input controlName="email" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
     <app-button title="{{ 'auth.submit' | translate }}" type="primary"></app-button>

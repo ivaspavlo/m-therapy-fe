@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Optional, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
+import { INPUT_TYPES } from '@app/core/constants';
 
-
-export type InputTypes = 'text' | 'number' | 'textarea' | 'password' | 'email' | 'phone';
 
 @Component({
   selector: 'app-input',
@@ -17,17 +16,13 @@ export class InputComponent implements OnInit {
   @Input() controlName!: string;
   @Input() label: string = '';
   @Input() plh: string = '';
-  @Input() type: InputTypes = 'text';
-  @Input() hasSubmitButton: boolean = false;
+  @Input() type: INPUT_TYPES = INPUT_TYPES.TEXT;
 
-  public get isTextArea() { return this.innerInputType === 'textarea'; }
+  public get isTextArea() { return this.type === INPUT_TYPES.TEXTAREA; }
+  public get isStandalone() { return this.type === INPUT_TYPES.STANDALONE; }
   public get form(): FormGroup { return this.controlContainer.control as FormGroup; }
-  public get control(): FormControl {
-    debugger;
-    return this.form.get(this.controlName) as FormControl;
-  }
+  public get control(): FormControl { return this.form.get(this.controlName) as FormControl; }
 
-  public innerInputType!: InputTypes;
   public hasFocus: boolean = false;
 
   constructor(
@@ -47,11 +42,11 @@ export class InputComponent implements OnInit {
   }
 
   public onPasswordToggle(isHidden: boolean): void {
-    this.innerInputType = isHidden ? 'password' : 'text';
+    this.type = isHidden ? INPUT_TYPES.PASSWORD : INPUT_TYPES.TEXT;
   }
 
   private initInnerInputType(): void {
-    this.innerInputType = !this.type ? 'text' : this.type;
+    this.type = !this.type ? INPUT_TYPES.TEXT : this.type;
   }
 
 }

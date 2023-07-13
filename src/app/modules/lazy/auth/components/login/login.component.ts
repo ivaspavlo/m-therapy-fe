@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { INPUT_TYPES } from '@app/core/constants';
 import { ILogin } from '../../interfaces';
 
 
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   @Output() login: EventEmitter<ILogin> = new EventEmitter();
 
   public loginForm!: FormGroup;
+  public INPUT_TYPES = INPUT_TYPES;
 
   constructor(
     private fb: FormBuilder
