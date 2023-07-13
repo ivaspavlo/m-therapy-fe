@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { InputTypes } from '@app/core/constants';
+import { INPUT_TYPES } from '@app/core/constants';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { InputTypes } from '@app/core/constants';
 })
 export class InputIconComponent implements OnInit {
   
-  @Input() type!: InputTypes;
+  @Input() type!: INPUT_TYPES;
   @Output() togglePasswordVisibility: EventEmitter<boolean> = new EventEmitter();
   
   public isPassword = false;
@@ -19,7 +19,7 @@ export class InputIconComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.isPassword = this.type === 'password';
+    this.isPassword = this.type === INPUT_TYPES.PASSWORD;
   }
   
   public onClick(): void {

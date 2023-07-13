@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IUpdate } from '../../interfaces';
 import { PasswordValidators, UPDATE_TOKEN } from '../../constants';
+import { INPUT_TYPES } from '@app/core/constants';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class UpdateComponent {
 
   public updateToken: string = '';
   public updateForm!: FormGroup;
+  public INPUT_TYPES = INPUT_TYPES;
 
   constructor(
     private route : ActivatedRoute,

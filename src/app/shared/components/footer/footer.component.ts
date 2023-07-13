@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { INPUT_TYPES } from '@app/core/constants';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class FooterComponent implements OnInit {
   public formGroup!: FormGroup;
   public controlName: string = 'newsletter';
   public currentYear: string = '';
+  public INPUT_TYPES = INPUT_TYPES;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

@@ -1,6 +1,12 @@
-<div class="input" [ngClass]="{'input--invalid': control.errors && (control.dirty || control.touched)}">
+<div
+  [ngClass]="{
+    'input--invalid': control.errors && (control.dirty || control.touched),
+    'input--standalone': isStandalone
+  }"
+  class="input"
+>
 
-  <input *ngIf="!isTextArea" [attr.disabled]="control.disabled || null" class="input__field" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="input" [placeholder]="plh | translate" [type]="innerInputType" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()">
+  <input *ngIf="!isTextArea" [attr.disabled]="control.disabled || null" class="input__field" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="input" [placeholder]="plh | translate" [type]="type" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()">
   <textarea *ngIf="isTextArea" class="input__text-area" [ngClass]="{'input__field--has-value': !!control.value}" [id]="controlName" name="textarea" [placeholder]="plh | translate" rows="4" cols="50" [formControl]="control" (focus)="onFocus()" (blur)="onBlur()"></textarea>
 
   <label [for]="controlName" class="input__label">
@@ -12,8 +18,8 @@
     <app-form-error [errors]="control.errors"></app-form-error>
   </div>
 
-  <a *ngIf="hasSubmitButton" (click)="inputSubmit.emit()" class="input__button"></a>
+  <a *ngIf="isStandalone" (click)="inputSubmit.emit()" class="input__button"></a>
 
-  <app-input-icon *ngIf="!hasSubmitButton" [type]="type" (togglePasswordVisibility)="onPasswordToggle($event)"></app-input-icon>
+  <app-input-icon *ngIf="!isStandalone" [type]="type" (togglePasswordVisibility)="onPasswordToggle($event)"></app-input-icon>
 
 </div>

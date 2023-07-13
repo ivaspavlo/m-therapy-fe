@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm" class="app-login">
   <h1 class="app-login__title">{{ 'auth.login' | translate }}</h1>
   <app-input controlName="login" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}"></app-input>
-  <app-input controlName="password" label="{{ 'auth.password' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" type="password"></app-input>
+  <app-input controlName="password" label="{{ 'auth.password' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
     <app-button title="{{ 'auth.submit' | translate }}" type="primary"></app-button>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { INPUT_TYPES } from '@app/core/constants';
 import { DateValidators, PasswordValidators } from '../../constants';
 
 
@@ -12,6 +13,7 @@ import { DateValidators, PasswordValidators } from '../../constants';
 export class RegisterComponent {
 
   public registerForm!: FormGroup;
+  public INPUT_TYPES = INPUT_TYPES;
 
   constructor(
     private fb: FormBuilder
