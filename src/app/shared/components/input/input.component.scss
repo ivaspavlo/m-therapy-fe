@@ -15,6 +15,10 @@ $border-radius: 0;
   position: relative;
   text-align: left;
 
+  &--standalone {
+    .input__field, .input__text-area { border: 0 !important; border-bottom: 1px solid $border-color !important; border-radius: 0 !important; }
+  }
+
   &--invalid {
     .input__field, .input__text-area { border-color: $warn-color !important; }
     .input__label { color: $warn-color !important; }
