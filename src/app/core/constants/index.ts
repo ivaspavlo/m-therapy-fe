@@ -5,3 +5,4 @@ export * from './core-routing-animations.constant';
 export * from './form-errors.constant';
 export * from './keys.constant';
 export * from './input-types.constant';
+export * from './dialog-sizes.constant';

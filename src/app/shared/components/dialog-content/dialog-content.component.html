@@ -1,0 +1,7 @@
+
+<section class="dialog">
+  <div class="dialog__content" [ngStyle]="{'min-width': size}">
+    <a (click)="dialog.close()" class="dialog__close"></a>
+    <ng-content></ng-content>
+  </div>
+</section>
