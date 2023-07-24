@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogConfig, DialogRef } from '@app/modules/ui';
 
+
 @Component({
   selector: 'app-test-modal',
   templateUrl: './test-modal.component.html',
@@ -13,8 +14,6 @@ export class TestModalComponent implements OnInit {
     private dialog: DialogRef
   ) { }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
 }
