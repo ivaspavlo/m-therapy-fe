@@ -1,4 +1,6 @@
 $z-index-overlay: 1e10;
+$box-shadow-color: #0db981;
+$background-color: whitesmoke;
 
 .overlay {
   position: fixed; top: 0; bottom: 0; left: 0; right: 0;
@@ -19,8 +21,8 @@ $z-index-overlay: 1e10;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 20px 10px rgba(238,118,34,0.75);
-  background-color: whitesmoke;
+  box-shadow: 0px 0px 5px 1px $box-shadow-color;
+  background-color: $background-color;
   animation: dialogIn .3s;
   &--closing {
     animation: dialogOut .3s;
