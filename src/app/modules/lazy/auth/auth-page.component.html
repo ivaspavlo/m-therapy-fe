@@ -2,7 +2,8 @@
   <div [@authAnimate]="prepareRoute(outlet)" class="auth-page__content">
     <header class="auth-page__header">
       <app-brand></app-brand>
-      <button (click)="onTest()">TEST</button>
+      <button (click)="onTestDialog()">TEST DIALOG</button>
+      <button (click)="onTestToast()">TEST TOAST</button>
     </header>
     <router-outlet #outlet="outlet"></router-outlet>
   </div>

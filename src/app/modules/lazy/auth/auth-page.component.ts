@@ -26,7 +26,7 @@ export class AuthPageComponent extends DestroySubscriptions {
 		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
 	}
 
-  public onTest(): void {
+  public onTestDialog(): void {
     const dialogConfig = {
       test: 'TEST'
     };
@@ -37,4 +37,7 @@ export class AuthPageComponent extends DestroySubscriptions {
     });
   }
 
+  public onTestToast(): void {
+    
+  }
 }
