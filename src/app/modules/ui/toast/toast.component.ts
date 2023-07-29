@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastAnimationState, toastAnimations } from './toast.animation';
-import { TOAST_CONFIG_TOKEN, ToastData } from './toast-config';
-import { IToastConfig } from './toast.interface';
 
 
 @Component({
@@ -17,9 +15,7 @@ export class ToastComponent implements OnInit, OnDestroy {
   private intervalId: any;
 
   constructor(
-    readonly data: ToastData,
-    private cdr: ChangeDetectorRef,
-    @Inject(TOAST_CONFIG_TOKEN) public toastConfig: IToastConfig
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
