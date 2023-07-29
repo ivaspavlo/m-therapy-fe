@@ -6,8 +6,8 @@ export const toastAnimations: {
 } = {
   fadeToast: trigger('fadeAnimation', [
     state('default', style({ opacity: 1 })),
-    transition('void => *', [style({ opacity: 0 }), animate('{{ fadeIn }}ms')]),
-    transition('default => closing', animate('{{ fadeOut }}ms', style({ opacity: 0 })))
+    transition('void => *', [style({ opacity: 0 }), animate('0.3ms')]),
+    transition('default => closing', animate('0.3ms', style({ opacity: 0 })))
   ])
 };
 
