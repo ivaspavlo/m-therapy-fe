@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { takeUntil } from 'rxjs/operators';
 import { DialogService } from '@app/modules/ui/dialog';
 import { DestroySubscriptions } from '@app/shared/classes';
@@ -17,7 +18,8 @@ import { TestModalComponent } from './components/test-modal/test-modal.component
 export class AuthPageComponent extends DestroySubscriptions {
 
   constructor(
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private toastrService: ToastrService
   ) {
     super();
   }
@@ -38,6 +40,6 @@ export class AuthPageComponent extends DestroySubscriptions {
   }
 
   public onTestToast(): void {
-    
+    this.toastrService.success('Hello world!', 'Toastr fun!');
   }
 }
