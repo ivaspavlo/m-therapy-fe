@@ -1,7 +1,2 @@
-import { LANGUAGES } from '@app/core/constants';
-
-
-export interface ILanguage {
-  title: LANGUAGES,
-  aria: string
-}
+export * from './language.interface';
+export * from './user.interface';
