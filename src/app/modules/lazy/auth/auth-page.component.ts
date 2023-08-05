@@ -38,8 +38,4 @@ export class AuthPageComponent extends DestroySubscriptions {
       console.log('works');
     });
   }
-
-  public onTestToast(): void {
-    this.toastrService.success('Hello world!', 'Toastr fun!');
-  }
 }
