@@ -3,9 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ToastType } from './toaster.interface';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ToasterService {
 
   constructor(
