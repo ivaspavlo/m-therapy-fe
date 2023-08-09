@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ToastType } from './toaster.interface';
+import { ToastType } from '../constants/toaster.constant';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ToasterService {
 
   constructor(
