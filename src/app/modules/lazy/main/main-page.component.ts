@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ScrollTargetElements } from '@app/core/constants';
 
 
 @Component({
@@ -8,7 +9,5 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent {
-
-  constructor() { }
-
+  public ScrollTargetElements = ScrollTargetElements;
 }

@@ -6,3 +6,4 @@ export * from './form-errors.constant';
 export * from './keys.constant';
 export * from './input-types.constant';
 export * from './dialog-sizes.constant';
+export * from './scroll-target-elements.constant';
