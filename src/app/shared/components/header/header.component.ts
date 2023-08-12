@@ -2,10 +2,17 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LANGUAGES_ITEMS, SECTION_IDS } from '@app/core/constants';
+import { LANGUAGES_ITEMS, ScrollTargetElements } from '@app/core/constants';
 import { ILanguage } from '@app/interfaces';
 import { TranslateService } from '@ngx-translate/core';
+import { ScrollService } from '@app/core/services/scroll.service';
 
+
+interface IHeaderControl {
+  uiName: string,
+  scrollTarget?: ScrollTargetElements,
+  link?: string
+}
 
 @Component({
   selector: 'app-header',
@@ -20,16 +27,17 @@ export class HeaderComponent implements OnInit {
   public isOpen = false;
   public languages: ILanguage[] = LANGUAGES_ITEMS;
 
-  public headerControls = [
-    { uiName: 'header.services', sectionId: SECTION_IDS.services },
-    { uiName: 'header.gifts', sectionId: SECTION_IDS.gifts },
+  public headerControls: IHeaderControl[] = [
+    { uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
+    { uiName: 'header.gifts', scrollTarget: ScrollTargetElements.GIFTS_SECTION },
     { uiName: 'header.blog', link: '' }
   ];
   public isShrinked$: Observable<boolean>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +46,13 @@ export class HeaderComponent implements OnInit {
 
   public onLanguageChange(language: ILanguage): void {
     this.translateService.use(language.title);
+  }
+
+  public onClickHeaderControl(scrollTarget?: ScrollTargetElements): void {
+    if (!scrollTarget) {
+      return;
+    }
+    this.scrollService.scrollToElement(scrollTarget)
   }
 
   private initIsShrinkedObservable(): void {

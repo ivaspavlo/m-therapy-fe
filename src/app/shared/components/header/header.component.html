@@ -6,7 +6,7 @@
 
     <ul class="d-flex flex-grow-1 justify-content-start align-items-center">
       <li class="app-header__item" *ngFor="let ctrl of headerControls">
-        <a tabindex="0" class="app-header__link">{{ ctrl.uiName | translate | uppercase }}</a>
+        <a (click)="onClickHeaderControl(ctrl.scrollTarget)" tabindex="0" class="app-header__link">{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
       <li>
         <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
