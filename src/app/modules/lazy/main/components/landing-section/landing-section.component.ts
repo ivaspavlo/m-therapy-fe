@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ScrollTargetElements } from '@app/core/constants';
+import { ScrollService } from '@app/core/services/scroll.service';
 
 
 @Component({
@@ -11,7 +13,9 @@ export class LandingSectionComponent implements OnInit {
 
   public targetDate!: Date;
 
-  constructor() { }
+  constructor(
+    private scrollService: ScrollService
+  ) { }
 
   ngOnInit(): void {
     this.targetDate = this.initTargetDate();
@@ -23,4 +27,7 @@ export class LandingSectionComponent implements OnInit {
     return targetDate;
   }
 
+  public onPricingClick(): void {
+    this.scrollService.scrollToElement(ScrollTargetElements.SERVICES_SECTION);
+  }
 }

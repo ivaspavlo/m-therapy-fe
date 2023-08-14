@@ -2,7 +2,7 @@
 
   <div class="app-header__desktop-mode">
 
-    <app-logo [isClickable]="true" [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4 align-items-center"></app-logo>
+    <app-logo routerLink="/" [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4 align-items-center"></app-logo>
 
     <ul class="d-flex flex-grow-1 justify-content-start align-items-center">
       <li class="app-header__item" *ngFor="let ctrl of headerControls">
