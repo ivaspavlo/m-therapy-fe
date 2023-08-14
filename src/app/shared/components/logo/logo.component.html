@@ -1,17 +1,15 @@
 <button
-  *ngIf="isClickable"
+  (click)="onClick()"
+  [routerLink]="routerLink"
   [attr.aria-label]="'header.logo-button' | translate"
-  routerLink="/"
   [ngClass]="size"
   class="app-logo app-logo__button"
 >
+  <ng-container [ngTemplateOutlet]="logo"></ng-container>
+</button>
+
+<ng-template #logo>
   <figure class="w-100 h-100">
     <img class="w-100" src="/assets/images/vector/logo.svg" [alt]="'header.logo-image' | translate">
   </figure>
-</button>
-
-<p *ngIf="!isClickable" [ngClass]="size" class="app-logo">
-  <figure class="w-100 h-100">
-    <img class="w-100" src="/assets/images/vector/logo.svg" alt="Logo">
-  </figure>
-</p>
+</ng-template>

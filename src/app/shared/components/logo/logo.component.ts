@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -9,5 +9,11 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class LogoComponent {
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
-  @Input() isClickable = false;
+  @Input() routerLink: string | null = null;
+  @Input() hasScrollTo = false;
+  @Output() logoClick: EventEmitter<void> = new EventEmitter();
+
+  public onClick(): void {
+    this.logoClick.emit();
+  }
 }
