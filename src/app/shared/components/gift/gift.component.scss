@@ -16,6 +16,7 @@
   cursor: pointer;
   &:hover, &--selected {
     transform: scale(1.05);
+    box-shadow: $b-shadow-1;
   }
   &--selected {
     .gift__confirm-overlay {
