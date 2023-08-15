@@ -4,6 +4,7 @@
 .gifts-section {
   width: 100%;
   min-height: 100vh;
+  padding: 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,9 +64,16 @@
   }
 
   &__desc {
+    width: 100%;
+    margin-bottom: rem(28px);
+    text-indent: rem(24px);
     font-family: $worksans;
     font-size: rem(18px);
     font-style: italic;
     color: $fourthly;
+
+    @include lg {
+      width: 90%;
+    }
   }
 }
