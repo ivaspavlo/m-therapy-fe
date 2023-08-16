@@ -7,7 +7,7 @@ export interface IUser {
   isAdmin: string
 }
 
-export interface ISignupReq {
+export interface IRegisterReq {
   firstname: string,
   lastname: string,
   email: string,
