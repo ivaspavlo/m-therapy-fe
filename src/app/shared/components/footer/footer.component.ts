@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { INPUT_TYPES } from '@app/core/constants';
 
 
@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      [this.controlName]: this.fb.control('')
+      [this.controlName]: this.fb.control('', [Validators.required, Validators.email])
     });
     this.currentYear = `${new Date().getFullYear()}`;
   }
