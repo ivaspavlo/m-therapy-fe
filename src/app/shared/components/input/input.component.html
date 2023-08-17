@@ -18,7 +18,7 @@
     <app-form-error [errors]="control.errors"></app-form-error>
   </div>
 
-  <a *ngIf="isStandalone" (click)="inputSubmit.emit()" class="input__button"></a>
+  <a *ngIf="isStandalone" (click)="inputSubmit.emit()" class="input__button" [ngClass]="{'input__button--has-error': control.status !== 'VALID'}"></a>
 
   <app-input-icon *ngIf="!isStandalone" [type]="type" (togglePasswordVisibility)="onPasswordToggle($event)"></app-input-icon>
 

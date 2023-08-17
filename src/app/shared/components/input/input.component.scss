@@ -27,10 +27,10 @@ $border-radius: 0;
 
   &__field, &__text-area {
     width: 100%;
-    padding: 18px 45px 18px 12px;
-    font-size: 16px;
+    padding: rem(18px) rem(45px) rem(18px) rem(12px);
+    font-size: 1rem;
     border: 0;
-    border: 1px solid;
+    border: rem(1px) solid;
     border-color: $border-color;
     border-radius: $border-radius;
     font-family: inherit;
@@ -51,7 +51,7 @@ $border-radius: 0;
       border-width: 1px;
       border-color: $border-color;
       ~ label {
-        transform: translateY(-15px);
+        transform: translateY(rem(-15px));
         color: $border-color;
         font-size: 12px;
       }
@@ -66,7 +66,7 @@ $border-radius: 0;
   }
 
   &__label {
-    position: absolute; left: 12px; top: 0;
+    position: absolute; left: rem(12px); top: 0;
     transform: translateY(19px);
     font-size: 16px;
     display: block;
@@ -75,50 +75,33 @@ $border-radius: 0;
   }
 
   &__asterisk {
-    padding-left: 3px;
+    padding-left: rem(3px);
     color: $warn-color;
   }
 
   &__error {
     width: 100%;
-    position: absolute; bottom: -15px;
+    position: absolute; bottom: rem(-15px);
     opacity: 0;
   }
 
   &__button {
+    @include bg-img('/assets/images/vector/arrow-right.svg', $bg-size: contain);
+    filter: invert(55%) sepia(11%) saturate(3687%) hue-rotate(113deg) brightness(99%) contrast(97%);
+    width: rem(25px);
+    height: rem(20px);
     position: absolute; top: 50%; right: rem(10px);
-    transform: translate(0, -50%);
-    display: inline-block;
-    padding: 8px 0;
+    transform: translateY(-50%) scale(1);
+    transition: $transition-1;
+    display: flex;
     cursor: pointer;
 
-    &:before {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background-color: $primary;
-      top: 50%;
-      transition: width $transition-1 ease-out;
-      content: '';
+    &:hover:not(.input__button--has-error) {
+      transform: translateY(-50%) scale(1.3);
     }
 
-    &:after {
-      display: block;
-      width: 10px;
-      height: 10px;
-      border-top: 2px solid $primary;
-      border-right: 2px solid $primary;
-      transform: rotate(45deg);
-      top: calc(50% - 5px);
-      position: absolute;
-      right: 1px;
-      content: '';
-    }
-
-    &:hover {
-      &:before {
-        width: 30px;
-      }
+    &--has-error {
+      filter: invert(96%) sepia(62%) saturate(0%) hue-rotate(136deg) brightness(89%) contrast(84%);
     }
   }
 }
