@@ -8,6 +8,10 @@
   font-size: rem(10px);
   color: $secondary;
 
+  &:focus {
+    outline: $outline-1;
+  }
+
   &__title {
     color: $primary;
     font-weight: 700;

@@ -1,7 +1,7 @@
 <a (click)="onClick()" [routerLink]="isClickable ? '/' : null" [ngClass]="{'cursor-pointer': isClickable}" class="d-flex align-items-center">
   <app-logo *ngIf="hasLogo" [size]="size" class="mr-2"></app-logo>
-  <h5 class="brand" [ngClass]="size">
+  <h5 tabindex="0" attr.aria-label="{{ brandName }}" class="brand" [ngClass]="size">
     <span>Tkachuk</span>
-    <span class="brand__title">Massage Therapy</span>
+    <span class="brand__title">{{ brandName }}</span>
   </h5>
 </a>
