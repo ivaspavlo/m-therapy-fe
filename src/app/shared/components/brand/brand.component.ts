@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ScrollTargetElements } from '@app/core/constants';
+import { BRAND_NAME, ScrollTargetElements } from '@app/core/constants';
 import { ScrollService } from '@app/core/services/scroll.service';
 
 
@@ -15,6 +15,8 @@ export class BrandComponent {
   @Input() size: 'xs' | 'sm' | 'md' = 'sm';
 
   @Output() brandClick: EventEmitter<void> = new EventEmitter();
+
+  public brandName = BRAND_NAME;
 
   constructor(
     private scrollService: ScrollService
