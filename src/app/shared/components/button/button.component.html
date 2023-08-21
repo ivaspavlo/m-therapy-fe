@@ -1,4 +1,6 @@
 <button
+  tabindex="0"
+  attr.aria-label="{{ 'button' | translate }}: {{ title }}"
   [routerLink]="url"
   [ngClass]="type"
   (click)="buttonClick.emit()"
