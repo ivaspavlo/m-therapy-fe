@@ -12,10 +12,16 @@
   color: $white;
   transition: .3s;
   cursor: pointer;
+
+  &:focus:not(:disabled) {
+    outline: 1px solid $medium-grey;
+  }
+
   &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0px 2px 5px 0px $medium-grey;
   }
+
   &:disabled {
     background: $light-grey;
   }
@@ -37,6 +43,7 @@
   display: flex;
   align-items: center;
   color: $primary;
+
   &::after {
     @include bg-img('/assets/images/vector/arrow-right-primary.svg', $bg-size: 'contain');
     width: 1rem;
