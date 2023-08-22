@@ -10,22 +10,22 @@
           <span>{{ 'footer.about' | translate }}</span>
         </li>
         <li class="item">
-          <a class="item__link">{{ 'footer.team' | translate }}</a>
+          <a (click)="onShowTeamModal()" class="item__link">{{ 'footer.team' | translate }}</a>
         </li>
         <li class="item">
-          <a class="item__link">{{ 'footer.pricing' | translate }}</a>
+          <a (click)="onShowCertificates()" class="item__link">{{ 'footer.certificates' | translate }}</a>
         </li>
       </ul>
     
       <ul class="mx-4 mb-4 d-flex flex-column align-items-center align-items-md-start">
         <li class="item--title">
-          <span>{{ 'footer.articles' | translate }}</span>
+          <span>{{ 'footer.news' | translate }}</span>
         </li>
         <li class="item">
           <a class="item__link">{{ 'footer.blog' | translate }}</a>
         </li>
         <li class="item">
-          <a class="item__link">{{ 'footer.promos' | translate }}</a>
+          <a (click)="onShowUpdates()" class="item__link">{{ 'footer.updates' | translate }}</a>
         </li>
       </ul>
 
