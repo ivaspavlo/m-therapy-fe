@@ -1,6 +1,5 @@
 import { AdCountdownComponent } from './ad-countdown/ad-countdown.component';
 import { ButtonComponent } from './button/button.component';
-import { FooterComponent } from './footer/footer.component';
 import { HamburgerComponent } from './hamburger/hamburger.component';
 import { HeaderComponent } from './header/header.component';
 import { IconComponent } from './icon/icon.component';
@@ -20,7 +19,6 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 
 export const COMPONENTS = [
   HeaderComponent,
-  FooterComponent,
   LogoComponent,
   IconComponent,
   HamburgerComponent,
