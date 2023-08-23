@@ -1,26 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { SharedModule } from '@app/shared/shared.module';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
-import { DatePickerModule } from '@app/modules/ui';
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthPageComponent } from './auth-page.component';
-import { COMPONENTS } from './components';
+import { DialogModule } from '@app/modules/ui/dialog';
+import { FooterComponent } from './footer.component';
+import { TeamModalComponent } from './team-modal/team-modal.component';
 
 
 @NgModule({
   declarations: [
-    AuthPageComponent,
-    ...COMPONENTS
+    FooterComponent,
+    TeamModalComponent
   ],
   imports: [
-    CommonModule,
-    AuthRoutingModule,
     ReactiveFormsModule,
+    CommonModule,
     SharedModule,
-    DatePickerModule,
+    DialogModule,
     CoreTranslationModule.forChild()
+  ],
+  exports: [
+    FooterComponent
   ]
 })
-export class AuthModule { }
+export class FooterModule { }

@@ -16,7 +16,7 @@ import { DialogRef } from '../dialog-ref';
 })
 export class DialogService {
   
-  private dialogComponentRef: ComponentRef<DialogComponent>;
+  private dialogComponentRef!: ComponentRef<DialogComponent>;
   private forceCloseDialog$: Subject<void> = new Subject();
 
   constructor(

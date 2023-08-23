@@ -5,6 +5,7 @@ import { CoreTranslationModule } from '@app/core/core-translation.module';
 import { MainRoutingModule } from './main-routing.module';
 import { MainPageComponent } from './main-page.component';
 import { COMPONENTS } from './components';
+import { FooterModule } from '@app/modules/ui/footer/footer.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { COMPONENTS } from './components';
     CommonModule,
     MainRoutingModule,
     SharedModule,
+    FooterModule,
     CoreTranslationModule.forChild()
   ]
 })

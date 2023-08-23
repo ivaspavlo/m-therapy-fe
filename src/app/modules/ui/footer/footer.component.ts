@@ -1,9 +1,14 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { takeUntil } from 'rxjs/operators';
 import { INPUT_TYPES } from '@app/core/constants';
 import { DialogService } from '@app/modules/ui/dialog';
-import { takeUntil } from 'rxjs/operators';
+import { DestroySubscriptions } from '@app/shared/classes';
+
+import { TeamModalComponent } from './team-modal/team-modal.component';
+import { UpdatesModalComponent } from './updates-modal/updates-modal.component';
+import { CertModalComponent } from './cert-modal/cert-modal.component';
 
 
 @Component({
@@ -12,18 +17,24 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent extends DestroySubscriptions implements OnInit {
 
   public formGroup!: FormGroup;
   public controlName: string = 'newsletter';
   public currentYear: string = '';
   public INPUT_TYPES = INPUT_TYPES;
 
+  private testDialogConfig = {
+    test: 'TEST'
+  };
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private readonly fb: FormBuilder,
     private dialogService: DialogService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -37,18 +48,19 @@ export class FooterComponent implements OnInit {
   }
 
   public onShowTeamModal(): void {
-    const dialogConfig = {
-      test: 'TEST'
-    };
-    // this.dialogService.open(TestModalComponent, dialogConfig).afterClosed.pipe(
-    //   takeUntil(this.componentDestroyed$)
-    // ).subscribe(() => {
-    //   console.log('works');
-    // });
+    this.dialogService.open(TeamModalComponent, this.testDialogConfig).afterClosed.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe(() => {
+      console.log('works');
+    });
   }
 
-  public onShowUpdates(): void { }
+  public onShowUpdates(): void {
+    this.dialogService.open(UpdatesModalComponent, this.testDialogConfig);
+  }
 
-  public onShowCertificates(): void { }
+  public onShowCertificates(): void {
+    this.dialogService.open(CertModalComponent, this.testDialogConfig);
+  }
 
 }
