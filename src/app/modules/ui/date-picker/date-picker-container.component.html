@@ -5,18 +5,13 @@
   </label>
 
   <input
-    #dp="angular-mydatepicker"
+    type="date"
     [id]="controlName"
     [attr.disabled]="control.disabled || null"
-    angular-mydatepicker
-    [options]="dpOptions"
-    [(ngModel)]="model"
     (keyup.enter)="onToggleCalendar()"
     (click)="onToggleCalendar()"
     (blur)="onBlur()"
-    (dateChanged)="onDateChanged($event)"
     [placeholder]="plh"
-    name="mydate"
     class="input__field"
   >
 
@@ -24,6 +19,5 @@
     <app-form-error [errors]="control.errors"></app-form-error>
   </div>
 
-  <i class="input__icon input__icon--calendar"></i>
   <i *ngIf="control.value" (click)="onClearDate()" class="input__icon input__icon--clear"></i>
 </div>

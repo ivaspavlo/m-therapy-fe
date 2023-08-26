@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, Optional, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
-import { FormErrors } from '@app/core/constants';
-import { AngularMyDatePickerDirective, IAngularMyDpOptions, IMyDateModel } from 'angular-mydatepicker';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { FormErrors } from '@app/core/constants';
 
 
 @Component({
@@ -14,19 +13,19 @@ import { map } from 'rxjs/operators';
 })
 export class DatePickerContainerComponent {
 
-  @ViewChild('dp') mydp!: AngularMyDatePickerDirective;
+  // @ViewChild('dp') mydp!: AngularMyDatePickerDirective;
 
   @Input() controlName!: string;
   @Input() plh = 'Please select the date';
   @Input() label = 'test';
   @Input() errorsMap: { [key:string]: string; } = FormErrors;
-  @Input() dpOptions: IAngularMyDpOptions = {
-    dateRange: false,
-    dateFormat: 'dd.mm.yyyy'
-  };
+  // @Input() dpOptions: IAngularMyDpOptions = {
+  //   dateRange: false,
+  //   dateFormat: 'dd.mm.yyyy'
+  // };
 
   public isCalendarVisible$!: Observable<boolean>;
-  public model: IMyDateModel | null = null;
+  // public model: IMyDateModel | null = null;
   public get form(): FormGroup { return this.controlContainer?.control as FormGroup; }
   public get control(): FormControl { return this.form?.get(this.controlName) as FormControl; }
 
@@ -38,20 +37,20 @@ export class DatePickerContainerComponent {
     this.initCalendarVisibleObservable();
   }
 
-  public onDateChanged(event: IMyDateModel): void {
-    const value = this.dpOptions.dateRange
-      ? { begin: event.dateRange?.beginJsDate, end: event.dateRange?.endJsDate }
-      : event.singleDate?.jsDate;
-    this.control.markAsDirty();
-    this.control.patchValue(value);
-  }
+  // public onDateChanged(event: IMyDateModel): void {
+  //   const value = this.dpOptions.dateRange
+  //     ? { begin: event.dateRange?.beginJsDate, end: event.dateRange?.endJsDate }
+  //     : event.singleDate?.jsDate;
+  //   this.control.markAsDirty();
+  //   this.control.patchValue(value);
+  // }
 
   public onToggleCalendar(): void {
-    this.mydp.toggleCalendar();
+    // this.mydp.toggleCalendar();
   }
 
   public onClearDate(): void {
-    this.mydp.clearDate();
+    // this.mydp.clearDate();
   }
 
   public onBlur(): void {
@@ -59,8 +58,8 @@ export class DatePickerContainerComponent {
   }
 
   private initCalendarVisibleObservable(): void {
-    this.isCalendarVisible$ = this.mydp.calendarToggle.pipe(
-      map((res: number) => res === 1)
-    );
+    // this.isCalendarVisible$ = this.mydp.calendarToggle.pipe(
+    //   map((res: number) => res === 1)
+    // );
   }
 }
