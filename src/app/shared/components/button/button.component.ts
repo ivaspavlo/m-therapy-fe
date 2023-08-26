@@ -9,7 +9,7 @@ import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from 
 })
 export class ButtonComponent {
 
-  @Input() type: 'primary' | 'secondary' | 'link' | '' = '';
+  @Input() type: 'primary' | 'secondary' | 'link-forward' | 'link-backward' | '' = '';
   @Input() title: string = '';
   @Input() disabled: boolean = false;
   @Input() url: string = '';
