@@ -28,7 +28,7 @@ $border-radius: 0;
   
   &__field {
     width: 100%;
-    padding: 18px 60px 18px 12px;
+    padding: 18px 12px;
     font-size: 16px;
     border: 1px solid;
     border-color: $accent-color;
@@ -40,6 +40,10 @@ $border-radius: 0;
     transition: border-color .3s;
     outline: 0;
     &::placeholder { color: transparent; transition: .3s; }
+    &::-webkit-calendar-picker-indicator {
+      background: none;
+      background-image: url('/assets/images/vector/calendar.svg');
+    }
   }
   
   &__error {
@@ -66,26 +70,26 @@ $border-radius: 0;
     color: $warn-color;
   }
   
-  &__icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 25px;
-    height: 25px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    &--calendar {
-      background-image: url('/assets/images/vector/calendar.svg');
-    }
-    &--clear {
-      width: 20px;
-      height: 20px;
-      right: 40px;
-      cursor: pointer;
-      background-image: url('/assets/images/vector/x-button.svg');
-      &:hover { background-image: url('/assets/images/vector/x-button-red.svg'); }
-    }
-  }
+  // &__icon {
+  //   position: absolute;
+  //   right: 10px;
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  //   width: 25px;
+  //   height: 25px;
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   &--calendar {
+  //     background-image: url('/assets/images/vector/calendar.svg');
+  //   }
+  //   &--clear {
+  //     width: 20px;
+  //     height: 20px;
+  //     right: 40px;
+  //     cursor: pointer;
+  //     background-image: url('/assets/images/vector/x-button.svg');
+  //     &:hover { background-image: url('/assets/images/vector/x-button-red.svg'); }
+  //   }
+  // }
 }
