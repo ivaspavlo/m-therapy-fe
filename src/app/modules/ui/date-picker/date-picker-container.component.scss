@@ -25,6 +25,21 @@ $border-radius: 0;
     .input__label { color: $warn-color !important; }
     .input__error { opacity: 1; }
   }
+
+  input {
+    color: transparent !important;
+    &:focus, &--has-value {
+      color: $primary !important;
+      border-width: 1px;
+      ~ label {
+        transform: translateY(rem(-15px));
+        font-size: 12px;
+      }
+      &::placeholder {
+        color: $text-color;
+      }
+    }
+  }
   
   &__field {
     width: 100%;

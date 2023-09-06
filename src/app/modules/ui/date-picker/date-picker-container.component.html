@@ -1,8 +1,4 @@
 <div class="input" [ngClass]="{ 'input--invalid': (control.dirty || control.touched) && control.errors !== null, 'input--active': (isCalendarVisible$ | async) || control.value }">
-  <label [for]="controlName" class="input__label">
-    <span>{{ label }}</span>
-    <span *ngIf="control | controlRequired" class="input__asterisk">*</span>
-  </label>
 
   <input
     type="date"
@@ -14,6 +10,11 @@
     [placeholder]="plh"
     class="input__field"
   >
+
+  <label [for]="controlName" class="input__label">
+    <span>{{ label }}</span>
+    <span *ngIf="control | controlRequired" class="input__asterisk">*</span>
+  </label>
 
   <div [ngClass]="{'input__error--visible': control.dirty || control.touched}" class="input__error">
     <app-form-error [errors]="control.errors"></app-form-error>
