@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
 import { DatePickerContainerComponent } from './date-picker-container.component';
 
@@ -12,6 +12,7 @@ import { DatePickerContainerComponent } from './date-picker-container.component'
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   exports: [
