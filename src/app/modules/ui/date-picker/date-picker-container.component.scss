@@ -16,6 +16,7 @@ $border-radius: 0;
   text-align: left;
   
   &--active {
+    &input { color: $primary; }
     .input__label { font-size: 12px; transform: translateY(-15px); }
     .input__field::placeholder { color: $text-color; }
   }
@@ -26,10 +27,10 @@ $border-radius: 0;
     .input__error { opacity: 1; }
   }
 
-  input {
-    color: transparent !important;
+  &input {
+    color: transparent;
     &:focus, &--has-value {
-      color: $primary !important;
+      color: $primary;
       border-width: 1px;
       ~ label {
         transform: translateY(rem(-15px));

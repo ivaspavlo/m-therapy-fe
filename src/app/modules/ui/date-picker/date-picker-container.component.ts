@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { FormErrors } from '@app/core/constants';
 
 
@@ -13,19 +11,11 @@ import { FormErrors } from '@app/core/constants';
 })
 export class DatePickerContainerComponent {
 
-  // @ViewChild('dp') mydp!: AngularMyDatePickerDirective;
-
   @Input() controlName!: string;
   @Input() plh = 'Please select the date';
-  @Input() label = 'test';
+  @Input() label = '';
   @Input() errorsMap: { [key:string]: string; } = FormErrors;
-  // @Input() dpOptions: IAngularMyDpOptions = {
-  //   dateRange: false,
-  //   dateFormat: 'dd.mm.yyyy'
-  // };
 
-  public isCalendarVisible$!: Observable<boolean>;
-  // public model: IMyDateModel | null = null;
   public get form(): FormGroup { return this.controlContainer?.control as FormGroup; }
   public get control(): FormControl { return this.form?.get(this.controlName) as FormControl; }
 
@@ -33,33 +23,11 @@ export class DatePickerContainerComponent {
     @Optional() private controlContainer: ControlContainer
   ) { }
 
-  ngAfterViewInit() {
-    this.initCalendarVisibleObservable();
-  }
-
-  // public onDateChanged(event: IMyDateModel): void {
-  //   const value = this.dpOptions.dateRange
-  //     ? { begin: event.dateRange?.beginJsDate, end: event.dateRange?.endJsDate }
-  //     : event.singleDate?.jsDate;
-  //   this.control.markAsDirty();
-  //   this.control.patchValue(value);
-  // }
-
-  public onToggleCalendar(): void {
-    // this.mydp.toggleCalendar();
+  ngOnInit() {
+    debugger;
   }
 
   public onClearDate(): void {
-    // this.mydp.clearDate();
-  }
-
-  public onBlur(): void {
-    this.control.markAsTouched();
-  }
-
-  private initCalendarVisibleObservable(): void {
-    // this.isCalendarVisible$ = this.mydp.calendarToggle.pipe(
-    //   map((res: number) => res === 1)
-    // );
+    this.control.reset();
   }
 }

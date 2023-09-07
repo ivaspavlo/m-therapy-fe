@@ -1,12 +1,16 @@
-<div class="input" [ngClass]="{ 'input--invalid': (control.dirty || control.touched) && control.errors !== null, 'input--active': (isCalendarVisible$ | async) || control.value }">
+<div
+  [ngClass]="{
+    'input--invalid': (control.dirty || control.touched) && control.errors !== null,
+    'input--active': !!control.value
+  }"
+  class="input" 
+>
 
   <input
     type="date"
     [id]="controlName"
     [attr.disabled]="control.disabled || null"
-    (keyup.enter)="onToggleCalendar()"
-    (click)="onToggleCalendar()"
-    (blur)="onBlur()"
+    [formControl]="control"
     [placeholder]="plh"
     class="input__field"
   >
