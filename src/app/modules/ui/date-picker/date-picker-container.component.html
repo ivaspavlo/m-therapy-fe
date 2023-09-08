@@ -12,6 +12,7 @@
     [attr.disabled]="control.disabled || null"
     [formControl]="control"
     [placeholder]="plh"
+    [ngClass]="{'input__field--has-value': !!control.value}"
     class="input__field"
   >
 
