@@ -12,7 +12,7 @@ import { FormErrors } from '@app/core/constants';
 export class DatePickerContainerComponent {
 
   @Input() controlName!: string;
-  @Input() plh = 'Please select the date';
+  @Input() plh = '';
   @Input() label = '';
   @Input() errorsMap: { [key:string]: string; } = FormErrors;
 
@@ -22,10 +22,6 @@ export class DatePickerContainerComponent {
   constructor(
     @Optional() private controlContainer: ControlContainer
   ) { }
-
-  ngOnInit() {
-    debugger;
-  }
 
   public onClearDate(): void {
     this.control.reset();

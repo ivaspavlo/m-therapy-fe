@@ -1,9 +1,12 @@
 @import 'variables';
+@import 'mixins';
 
 $text-color: $primary;
 $warn-color: $warn;
 $accent-color: $primary;
 $border-radius: 0;
+$transition: .3s;
+$font-size: 1rem;
 
 :host {
   margin: 2rem 0 1rem;
@@ -16,56 +19,62 @@ $border-radius: 0;
   text-align: left;
   
   &--active {
-    &input { color: $primary; }
-    .input__label { font-size: 12px; transform: translateY(-15px); }
+    .input__label { font-size: rem(12px); transform: translateY(-(rem(15px))); }
     .input__field::placeholder { color: $text-color; }
   }
   
   &--invalid {
-    .input__field { border-color: $warn-color !important; }
-    .input__label { color: $warn-color !important; }
+    .input__field { border-color: $warn-color; }
+    .input__label { color: $warn-color; }
     .input__error { opacity: 1; }
   }
-
-  &input {
+  
+  &__field {
+    width: 100%;
+    padding: rem(18px) rem(12px);
+    border: rem(1px) solid;
+    font-size: $font-size;
+    border-color: $accent-color;
+    border-radius: $border-radius;
+    font-family: inherit;
+    display: block;
     color: transparent;
-    &:focus, &--has-value {
+    background-color: transparent;
+    transition: border-color $transition;
+    outline: 0;
+
+    &::placeholder {
+      color: transparent;
+      transition: $transition;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      background: none;
+      background-image: url('/assets/images/vector/calendar.svg');
+      cursor: pointer;
+    }
+
+    &:focus {
       color: $primary;
-      border-width: 1px;
+      border-width: rem(1px);
       ~ label {
         transform: translateY(rem(-15px));
-        font-size: 12px;
+        font-size: rem(12px);
       }
       &::placeholder {
         color: $text-color;
       }
     }
-  }
-  
-  &__field {
-    width: 100%;
-    padding: 18px 12px;
-    font-size: 16px;
-    border: 1px solid;
-    border-color: $accent-color;
-    border-radius: $border-radius;
-    font-family: inherit;
-    display: block;
-    color: $text-color;
-    background-color: transparent;
-    transition: border-color .3s;
-    outline: 0;
-    &::placeholder { color: transparent; transition: .3s; }
-    &::-webkit-calendar-picker-indicator {
-      background: none;
-      background-image: url('/assets/images/vector/calendar.svg');
+
+    &--has-value {
+      color: $primary;
     }
   }
   
   &__error {
+    position: absolute; bottom: -(rem(15px));
     width: 100%;
-    position: absolute; bottom: -15px;
-    transition: .3s;
+    transition: $transition;
     opacity: 0;
     &--visible {
       opacity: 1;
@@ -73,39 +82,35 @@ $border-radius: 0;
   }
   
   &__label {
-    position: absolute; left: 12px; top: 0;
+    position: absolute; left: rem(12px); top: 0;
     transform: translatey(100%);
-    font-size: 16px;
+    font-size: $font-size;
     display: block;
-    transition: .3s;
+    transition: $transition;
     color: $text-color;
   }
 
   &__asterisk {
-    padding-left: 3px;
+    padding-left: rem(3px);
     color: $warn-color;
   }
   
-  // &__icon {
-  //   position: absolute;
-  //   right: 10px;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   width: 25px;
-  //   height: 25px;
-  //   background-position: center;
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
-  //   &--calendar {
-  //     background-image: url('/assets/images/vector/calendar.svg');
-  //   }
-  //   &--clear {
-  //     width: 20px;
-  //     height: 20px;
-  //     right: 40px;
-  //     cursor: pointer;
-  //     background-image: url('/assets/images/vector/x-button.svg');
-  //     &:hover { background-image: url('/assets/images/vector/x-button-red.svg'); }
-  //   }
-  // }
+  &__icon {
+    position: absolute; right: rem(10px); top: 50%;
+    width: rem(25px);
+    height: rem(25px);
+    transform: translateY(-50%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &--clear {
+      right: rem(40px);
+      width: rem(20px);
+      height: rem(20px);
+      background-image: url('/assets/images/vector/x-button.svg');
+      cursor: pointer;
+      &:hover { background-image: url('/assets/images/vector/x-button-red.svg'); }
+    }
+  }
 }

@@ -4,10 +4,15 @@ import { AbstractControl } from '@angular/forms';
 export class DateValidators {
   
   static birthDate(control: AbstractControl): any | null {
+    if (!control.value) {
+      return { birthDate: true };
+    }
     const maxValidYear = new Date().getFullYear() - 12;
     const minValidYear = new Date().getFullYear() - 100;
-    const isDateType = control.value instanceof Date;
-    if (!isDateType || control.value.getFullYear() < minValidYear || control.value.getFullYear() > maxValidYear) {
+
+    const [year] = control.value.split('-');
+
+    if (+year < minValidYear || +year > maxValidYear) {
       return { birthDate: true };
     }
   }
