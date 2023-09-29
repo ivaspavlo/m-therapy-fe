@@ -30,5 +30,4 @@ export class RegisterComponent {
       dateOfBirth: ['', [Validators.required, DateValidators.birthDate]]
     });
   }
-
 }

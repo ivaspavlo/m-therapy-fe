@@ -2,7 +2,6 @@ import { AbstractControl } from '@angular/forms';
 
 
 export class DateValidators {
-  
   static birthDate(control: AbstractControl): any | null {
     if (!control.value) {
       return { birthDate: true };
@@ -16,5 +15,4 @@ export class DateValidators {
       return { birthDate: true };
     }
   }
-  
 }
