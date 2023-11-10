@@ -15,8 +15,9 @@ export class AuthService {
     private http: HttpClient
   ) { }
   
-  public signup(data: IRegisterReq): Observable<IUser> {
-    return this.http.post<IUser>(`${API_URL}/auth/signup`, data);
+  public register(data: IRegisterReq): Observable<IUser> {
+    debugger;
+    return this.http.post<IUser>(`${API_URL}/register`, data);
   }
 
 }

@@ -8,12 +8,10 @@ import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-
   @Input() type: 'primary' | 'secondary' | 'link-forward' | 'link-backward' | '' = '';
   @Input() title: string = '';
   @Input() disabled: boolean = false;
   @Input() url: string = '';
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
-
 }
