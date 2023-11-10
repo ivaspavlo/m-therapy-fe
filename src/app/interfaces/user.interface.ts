@@ -3,8 +3,8 @@ export interface IUser {
   lastname: string,
   email: string,
   phone: string,
-  address: string,
-  isAdmin: string
+  birthday: number,
+  isAdmin: boolean
 }
 
 export interface IRegisterReq {
@@ -12,7 +12,7 @@ export interface IRegisterReq {
   lastname: string,
   email: string,
   phone: string,
-  address: string,
+  birthday: number,
   password: string
 }
 
