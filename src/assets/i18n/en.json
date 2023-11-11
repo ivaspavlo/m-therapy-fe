@@ -73,7 +73,9 @@
     "password": "password",
     "confirmPassword": "confirm password",
     "dateOfBirth": "date of birth",
-    "submit": "Submit"
+    "submit": "Submit",
+    "failure": "Нажаль, не вдалось вас зареєструвати.",
+    "success": "Успішно зареєстровано."
   },
   "form-errors": {
     "required": "This field is required",

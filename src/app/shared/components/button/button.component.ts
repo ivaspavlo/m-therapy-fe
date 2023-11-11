@@ -11,7 +11,7 @@ export class ButtonComponent {
   @Input() type: 'primary' | 'secondary' | 'link-forward' | 'link-backward' | '' = '';
   @Input() title: string = '';
   @Input() disabled: boolean = false;
-  @Input() url: string = '';
+  @Input() url: string | null = null;
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
 }
