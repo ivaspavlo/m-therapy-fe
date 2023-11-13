@@ -41,31 +41,53 @@
   &:disabled {
     background: $light-grey;
   }
-}
 
-.primary {
-  background: linear-gradient(4.01deg, #059669 3.04%, #36DCA5 96.51%);
-  color: $white;
-}
+  &.primary {
+    background: linear-gradient(4.01deg, #059669 3.04%, #36DCA5 96.51%);
+    color: $white;
+  }
 
-.secondary {
-  border: 1px solid $primary;
-  color: $primary;
-}
+  &.secondary {
+    border: 1px solid $primary;
+    color: $primary;
+  }
 
-.link-forward {
-  @include link-button;
-  &::after {
-    @include arrow;
-    margin-left: rem(4px);
+  &.link-forward {
+    @include link-button;
+    &::after {
+      @include arrow;
+      margin-left: rem(4px);
+    }
+  }
+
+  &.link-backward {
+    @include link-button;
+    &::before {
+      @include arrow;
+      margin-right: rem(4px);
+      transform: rotate(-180deg);
+    }
   }
 }
 
-.link-backward {
-  @include link-button;
-  &::before {
-    @include arrow;
-    margin-right: rem(4px);
-    transform: rotate(-180deg);
+.app-button-spinner {
+  width: rem(24px);
+  height: rem(24px);
+  display: flex;
+  align-items: center;
+
+  &__animation {
+    &.primary {
+      // filter: invert(47%) sepia(97%) saturate(362%) hue-rotate(109deg) brightness(100%) contrast(102%);
+    }
+    &.secondary {
+      // filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%);
+    }
+    &.link-forward {
+      // filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%);
+    }
+    &.link-backward {
+      // filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%);
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 
 @Component({
@@ -7,13 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   styleUrls: ['./spinner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpinnerComponent implements OnInit {
-
+export class SpinnerComponent {
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
   @Input() color: 'primary' | 'secondary' | 'default' = 'default';
-
-  constructor( ) { }
-
-  ngOnInit(): void { }
-
 }

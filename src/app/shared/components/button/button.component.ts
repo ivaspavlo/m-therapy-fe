@@ -12,6 +12,7 @@ export class ButtonComponent {
   @Input() title: string = '';
   @Input() disabled: boolean = false;
   @Input() url: string | null = null;
+  @Input() isLoading: boolean = true;
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
 }

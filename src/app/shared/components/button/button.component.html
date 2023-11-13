@@ -1,14 +1,3 @@
-<!-- <button
-  *ngIf="!url"
-  tabindex="0"
-  attr.aria-label="{{ 'button' | translate }}: {{ title }}"
-  [ngClass]="type"
-  (click)="buttonClick.emit()"
-  [disabled]="disabled"
-  type="button"
-  class="app-button"
->{{ title }}</button> -->
-
 <button
   tabindex="0"
   attr.aria-label="{{ 'button' | translate }}: {{ title }}"
@@ -18,4 +7,9 @@
   [disabled]="disabled"
   type="button"
   class="app-button"
->{{ title }}</button>
+>
+  <span *ngIf="!isLoading">{{ title }}</span>
+  <figure class="app-button-spinner">
+    <img src="/assets/images/vector/spinner.svg" alt="Spinner animation" [ngClass]="type" class="app-button-spinner__animation">
+  </figure>
+</button>
