@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { AuthService, ToasterService } from '@app/core/services';
@@ -17,6 +17,7 @@ import { DateValidators, PasswordValidators } from '../../constants';
 export class RegisterComponent {
   public registerForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
+  public isLoading = false;
   private messages = {
     success: 'auth.success',
     failure: 'auth.failure'
@@ -42,11 +43,17 @@ export class RegisterComponent {
   }
 
   public onRegister(): void {
+    this.isLoading = true;
     this.authService.register(this.registerForm.value).pipe(
+      delay(3000),
       catchError(() => of(null))
     ).subscribe((res: any) => {
+      this.isLoading = false;
       if (!res) {
-        this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
+        this.toasterService.show(
+          this.translateService.instant(this.messages.failure),
+          ToastType.ERROR
+        );
       }
     });
   }
