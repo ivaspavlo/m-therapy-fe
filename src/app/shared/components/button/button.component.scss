@@ -20,14 +20,26 @@
 .app-button {
   height: rem(54px);
   padding: rem(14px) rem(28px);
+  position: relative;
   border: 0;
-  background-color: transparent;
   font-weight: 500;
   font-size: rem(18px);
   line-height: 140%;
-  color: $white;
   transition: .3s;
+  color: $white;
+  background-color: transparent;
   cursor: pointer;
+
+  &__title {
+    opacity: 1;
+    &--hidden {
+      opacity: 0;
+    }
+  }
+
+  &:disabled {
+    background: $light-grey;
+  }
 
   &:focus:not(:disabled) {
     outline: 1px solid $medium-grey;
@@ -38,11 +50,7 @@
     box-shadow: 0px 2px 5px 0px $medium-grey;
   }
 
-  &:disabled {
-    background: $light-grey;
-  }
-
-  &.primary {
+  &.primary:not(:disabled) {
     background: linear-gradient(4.01deg, #059669 3.04%, #36DCA5 96.51%);
     color: $white;
   }
@@ -50,6 +58,11 @@
   &.secondary {
     border: 1px solid $primary;
     color: $primary;
+    &:disabled {
+      border: 1px solid $light-grey;
+      background: transparent;
+      color: $light-grey;
+    }
   }
 
   &.link-forward {
@@ -57,6 +70,13 @@
     &::after {
       @include arrow;
       margin-left: rem(4px);
+    }
+    &:disabled {
+      background: transparent;
+      color: $light-grey;
+      &:after {
+        filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(230deg) brightness(94%) contrast(98%);
+      }
     }
   }
 
@@ -67,10 +87,21 @@
       margin-right: rem(4px);
       transform: rotate(-180deg);
     }
+    &:disabled {
+      background: transparent;
+      color: $light-grey;
+      &:before {
+        filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(230deg) brightness(94%) contrast(98%);
+      }
+    }
   }
 }
 
 .app-button-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: rem(24px);
   height: rem(24px);
   display: flex;
@@ -78,16 +109,16 @@
 
   &__animation {
     &.primary {
-      // filter: invert(47%) sepia(97%) saturate(362%) hue-rotate(109deg) brightness(100%) contrast(102%);
+      filter: invert(100%) sepia(0%) saturate(3064%) hue-rotate(131deg) brightness(123%) contrast(97%);
     }
     &.secondary {
-      // filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%);
+      filter: invert(76%) sepia(63%) saturate(6019%) hue-rotate(123deg) brightness(95%) contrast(90%);
     }
     &.link-forward {
-      // filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%);
+      filter: invert(76%) sepia(63%) saturate(6019%) hue-rotate(123deg) brightness(95%) contrast(90%);
     }
     &.link-backward {
-      // filter: invert(22%) sepia(14%) saturate(5316%) hue-rotate(132deg) brightness(87%) contrast(97%);
+      filter: invert(76%) sepia(63%) saturate(6019%) hue-rotate(123deg) brightness(95%) contrast(90%);
     }
   }
 }

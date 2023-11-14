@@ -8,8 +8,9 @@
   type="button"
   class="app-button"
 >
-  <span *ngIf="!isLoading">{{ title }}</span>
-  <figure class="app-button-spinner">
+  <span [ngClass]="{'app-button__title--hidden': isLoading}" class="app-button__title">{{ title }}</span>
+
+  <figure *ngIf="isLoading" class="app-button-spinner">
     <img src="/assets/images/vector/spinner.svg" alt="Spinner animation" [ngClass]="type" class="app-button-spinner__animation">
   </figure>
 </button>
