@@ -1,0 +1,50 @@
+@import 'variables';
+
+.primary {
+  height: rem(54px);
+  padding: rem(14px) rem(28px);
+  position: relative;
+  border: 0;
+  font-weight: 500;
+  font-size: rem(18px);
+  line-height: 140%;
+  transition: .3s;
+  color: $white;
+  background: linear-gradient(4.01deg, #059669 3.04%, #36DCA5 96.51%);
+  cursor: pointer;
+
+  &__title {
+    opacity: 1;
+    &--hidden {
+      opacity: 0;
+    }
+  }
+
+  &:disabled {
+    background: $light-grey;
+  }
+
+  &:focus:not(:disabled) {
+    outline: 1px solid $medium-grey;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0px 2px 5px 0px $medium-grey;
+  }
+}
+
+.primary-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(24px);
+  height: rem(24px);
+  display: flex;
+  align-items: center;
+
+  &__animation {
+    filter: invert(100%) sepia(0%) saturate(3064%) hue-rotate(131deg) brightness(123%) contrast(97%);
+  }
+}

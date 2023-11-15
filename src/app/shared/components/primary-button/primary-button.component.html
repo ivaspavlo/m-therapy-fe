@@ -1,0 +1,15 @@
+<button
+  tabindex="0"
+  attr.aria-label="{{ 'button' | translate }}: {{ title }}"
+  [routerLink]="isLoading ? null : url"
+  (click)="onClick($event)"
+  [disabled]="disabled"
+  type="button"
+  class="primary"
+>
+  <span [ngClass]="{'primary__title--hidden': isLoading}" class="primary__title">{{ title }}</span>
+
+  <figure *ngIf="isLoading" class="primary-spinner">
+    <img src="/assets/images/vector/spinner.svg" alt="Spinner animation" class="primary-spinner__animation">
+  </figure>
+</button>
