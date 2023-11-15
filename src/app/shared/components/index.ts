@@ -15,6 +15,8 @@ import { InputIconComponent } from './input-icon/input-icon.component';
 import { SelectComponent } from './select/select.component';
 import { FormErrorComponent } from './form-error/form-error.component';
 import { DialogContentComponent } from './dialog-content/dialog-content.component';
+import { PrimaryButtonComponent } from './primary-button/primary-button.component';
+import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
 
 
 export const COMPONENTS = [
@@ -34,5 +36,7 @@ export const COMPONENTS = [
   InputIconComponent,
   SelectComponent,
   FormErrorComponent,
-  DialogContentComponent
+  DialogContentComponent,
+  PrimaryButtonComponent,
+  SecondaryButtonComponent
 ];

@@ -1,0 +1,51 @@
+@import 'variables';
+
+.secondary {
+  height: rem(54px);
+  padding: rem(14px) rem(28px);
+  position: relative;
+  border: 0;
+  font-weight: 500;
+  font-size: rem(18px);
+  line-height: 140%;
+  transition: .3s;
+  background-color: transparent;
+  border: 1px solid $primary;
+  color: $primary;  
+  cursor: pointer;
+
+  &__title {
+    opacity: 1;
+    &--hidden {
+      opacity: 0;
+    }
+  }
+
+  &:disabled {
+    border: 1px solid $light-grey;
+    background: transparent;
+    color: $light-grey;
+  }
+
+  &:focus:not(:disabled) {
+    outline: 1px solid $medium-grey;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0px 2px 5px 0px $medium-grey;
+  }
+}
+
+.secondary-spinner {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(24px);
+  height: rem(24px);
+  display: flex;
+  align-items: center;
+
+  &__animation {
+    filter: invert(76%) sepia(63%) saturate(6019%) hue-rotate(123deg) brightness(95%) contrast(90%);
+  }
+}
