@@ -17,6 +17,7 @@ import { FormErrorComponent } from './form-error/form-error.component';
 import { DialogContentComponent } from './dialog-content/dialog-content.component';
 import { PrimaryButtonComponent } from './primary-button/primary-button.component';
 import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
+import { LinkButtonComponent } from './link-button/link-button.component';
 
 
 export const COMPONENTS = [
@@ -38,5 +39,6 @@ export const COMPONENTS = [
   FormErrorComponent,
   DialogContentComponent,
   PrimaryButtonComponent,
-  SecondaryButtonComponent
+  SecondaryButtonComponent,
+  LinkButtonComponent
 ];
