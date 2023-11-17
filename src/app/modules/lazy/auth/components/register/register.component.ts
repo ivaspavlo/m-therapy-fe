@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, delay } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { DateValidators, PasswordValidators } from '../../constants';
 export class RegisterComponent {
   public registerForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
-  public isLoading = false;
+  public isLoading: boolean = false;
   private messages = {
     success: 'auth.success',
     failure: 'auth.failure'
@@ -25,6 +25,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private toasterService: ToasterService,
     private translateService: TranslateService
@@ -32,12 +33,12 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(12)]],
-      password: ['',  [Validators.required, PasswordValidators.default]],
-      confirmPassword: ['', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]],
+      firstname: ['test', Validators.required],
+      lastname: ['test', Validators.required],
+      email: ['test@gmail.com', [Validators.required, Validators.email]],
+      phone: ['111222333444', [Validators.required, Validators.minLength(12)]],
+      password: ['TopSecret+1',  [Validators.required, PasswordValidators.default]],
+      confirmPassword: ['TopSecret+1', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]],
       birthday: ['', [Validators.required, DateValidators.birthDate]]
     });
   }
@@ -49,6 +50,7 @@ export class RegisterComponent {
       catchError(() => of(null))
     ).subscribe((res: any) => {
       this.isLoading = false;
+      this.cdr.markForCheck();
       if (!res) {
         this.toasterService.show(
           this.translateService.instant(this.messages.failure),
