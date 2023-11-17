@@ -4,6 +4,7 @@
   [routerLink]="isLoading ? null : url"
   (click)="onClick($event)"
   [disabled]="disabled"
+  [ngClass]="{'link-button--back': backButton}"
   class="link-button"
 >
   <span [ngClass]="{'link-button__title--hidden': isLoading}" class="link-button__title">{{ title }}</span>

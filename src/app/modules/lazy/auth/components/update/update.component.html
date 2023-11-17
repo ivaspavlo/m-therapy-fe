@@ -5,10 +5,10 @@
   <app-input controlName="confirmPassword" label="{{ 'auth.confirmPassword' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
-    <app-button title="{{ 'auth.submit' | translate }}" type="primary"></app-button>
+    <app-primary-button title="{{ 'auth.submit' | translate }}"></app-primary-button>
   </div>
 
   <div class="my-3 d-flex justify-content-center">
-    <app-button title="{{ 'auth.login' | translate }}" url="/auth/login" type="link-forward" class="mx-1"></app-button>
+    <app-link-button title="{{ 'auth.login' | translate }}" url="/auth/login" class="mx-1"></app-link-button>
   </div>
 </form>

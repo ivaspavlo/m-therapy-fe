@@ -13,7 +13,7 @@ export class PrimaryButtonComponent {
   @Input() url: string | null = null;
   @Input() isLoading: boolean = false;
 
-  @Output() buttonClick: EventEmitter<void> = new EventEmitter();
+  @Output() buttonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
   public onClick(event: MouseEvent): void {
     event.preventDefault();
@@ -21,6 +21,6 @@ export class PrimaryButtonComponent {
     if (this.isLoading) {
       return;
     }
-    this.buttonClick.emit();
+    this.buttonClick.emit(event);
   }
 }

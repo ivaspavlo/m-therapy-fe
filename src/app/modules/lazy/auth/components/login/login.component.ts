@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
+  public isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder
@@ -26,6 +27,10 @@ export class LoginComponent implements OnInit {
       login: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  public onLogin(event: MouseEvent): void {
+
   }
 
 }

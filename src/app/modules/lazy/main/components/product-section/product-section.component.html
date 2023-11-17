@@ -11,17 +11,16 @@
         <h3 class="product-tile__title">{{ product.title | translate }}</h3>
         <p class="product-tile__price">UAH {{ product.price | number:'2.2' }}</p>
         <div class="product-tile__image" [ngStyle]="{'background-image': 'url(' + product.img + ')'}"></div>
-        <app-button-link title="{{ 'products.select' | translate }}"></app-button-link>
+        <app-arrow-link title="{{ 'products.select' | translate }}"></app-arrow-link>
       </li>
     </ng-container>
   </ul>
 
-  <app-button
+  <app-primary-button
     (buttonClick)="onShowMore()"
-    type="primary"
     title="{{ 'products.more-services' | translate }}"
-    class="my-5"
     [disabled]="this.displayLimit > this.products.length"
-  ></app-button>
+    class="my-5"
+  ></app-primary-button>
 
 </section>

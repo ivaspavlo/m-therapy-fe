@@ -12,6 +12,7 @@ export class LinkButtonComponent {
   @Input() disabled: boolean = false;
   @Input() url: string | null = null;
   @Input() isLoading: boolean = false;
+  @Input() backButton: boolean = false;
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
 

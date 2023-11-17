@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'app-button-link',
-  templateUrl: './button-link.component.html',
-  styleUrls: ['./button-link.component.scss'],
+  selector: 'app-arrow-link',
+  templateUrl: './arrow-link.component.html',
+  styleUrls: ['./arrow-link.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonLinkComponent {
+export class ArrowLinkComponent {
 
   @Input() title: string = '';
   @Input() direction: 'top' | 'bottom' | 'left' | 'right' = 'right';

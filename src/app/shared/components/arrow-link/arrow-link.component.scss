@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'mixins';
 
-.button-link {
+.arrow-link {
   line-height: 140%;
   font-weight: 100;
   font-size: rem(24px);
@@ -41,7 +41,7 @@
   }
 
   &:hover {
-    .button-link__icon::before {
+    .arrow-link__icon::before {
       width: 30px;
     }
   }
