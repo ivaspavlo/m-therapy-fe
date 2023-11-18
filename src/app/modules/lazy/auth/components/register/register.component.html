@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" class="app-register">
+<form *ngIf="!isEmailConfirmationRequired" [formGroup]="registerForm" class="app-register">
   <h1 class="app-register__title">{{'auth.register' | translate }}</h1>
 
   <app-input controlName="firstname" label="{{'auth.firstName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.firstName' | translate} }}"></app-input>
@@ -32,3 +32,13 @@
     ></app-link-button>
   </div>
 </form>
+
+<div *ngIf="isEmailConfirmationRequired">
+  <h1 class="app-register__title">
+    <span>{{'auth.registerThanks' | translate }}</span>
+    <span>{{'auth.confirmEmailTitle' | translate }}</span>
+  </h1>
+  <figure class="d-flex justify-content-center">
+    <img src="/assets/images/vector/email.svg" alt="Email icon">
+  </figure>
+</div>

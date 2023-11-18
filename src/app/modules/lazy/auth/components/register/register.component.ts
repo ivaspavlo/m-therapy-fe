@@ -18,6 +18,7 @@ export class RegisterComponent {
   public registerForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
   public isLoading: boolean = false;
+  public isEmailConfirmationRequired: boolean = false;
   private messages = {
     success: 'auth.success',
     failure: 'auth.failure'
@@ -56,7 +57,14 @@ export class RegisterComponent {
           this.translateService.instant(this.messages.failure),
           ToastType.ERROR
         );
+        return;
       }
+      this.isEmailConfirmationRequired = true;
+      this.registerForm.reset();
+      this.toasterService.show(
+        this.translateService.instant(this.messages.success),
+        ToastType.SUCCESS
+      );
     });
   }
 }
