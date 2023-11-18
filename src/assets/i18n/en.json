@@ -74,8 +74,10 @@
     "confirmPassword": "confirm password",
     "dateOfBirth": "date of birth",
     "submit": "Submit",
-    "failure": "Нажаль, не вдалось вас зареєструвати.",
-    "success": "Успішно зареєстровано."
+    "failure": "Something went wrong when trying to register you.",
+    "success": "Confirmation email was sent to the address that you have entered.",
+    "registerThanks": "Thank you for registering!",
+    "confirmEmailTitle": "Please check your email box and follow instructions."
   },
   "form-errors": {
     "required": "This field is required",
