@@ -1,44 +1,63 @@
-<form *ngIf="!isEmailConfirmationRequired" [formGroup]="registerForm" class="app-register">
-  <h1 class="app-register__title">{{'auth.register' | translate }}</h1>
+<ng-container *ngIf="!(isEmailConfirmed$ | async)">
+  <form *ngIf="!isEmailConfirmationRequired" [formGroup]="registerForm" class="app-register">
+    <h1 class="app-register__title">{{'auth.register' | translate }}</h1>
+  
+    <app-input controlName="firstname" label="{{'auth.firstName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.firstName' | translate} }}"></app-input>
+    <app-input controlName="lastname" label="{{'auth.lastName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.lastName' | translate} }}"></app-input>
+    <app-date-picker controlName="birthday" label="{{'auth.dateOfBirth' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.dateOfBirth' | translate} }}"></app-date-picker>
+    <app-input controlName="email" label="{{'auth.email' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
+    <app-input controlName="phone" label="{{'auth.phoneNumber' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.phoneNumber' | translate} }}" [type]="INPUT_TYPES.PHONE"></app-input>
+    <app-input controlName="password" label="{{'auth.password' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
+    <app-input controlName="confirmPassword" label="{{'auth.confirmPassword' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
+  
+    <div class="mt-4 d-flex justify-content-center">
+      <app-primary-button
+        (buttonClick)="onRegister()"
+        [isLoading]="isLoading"
+        [disabled]="!registerForm.valid"
+        title="{{'auth.submit' | translate}}"
+      ></app-primary-button>
+    </div>
+  
+    <div class="my-3 d-flex justify-content-between">
+      <app-link-button
+        [backButton]="true"
+        title="{{'auth.back' | translate}}"
+        url="/"
+        class="mx-1"
+      ></app-link-button>
+      <app-link-button
+        title="{{'auth.login' | translate}}"
+        url="/auth/login"
+        class="mx-1"
+      ></app-link-button>
+    </div>
+  </form>
 
-  <app-input controlName="firstname" label="{{'auth.firstName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.firstName' | translate} }}"></app-input>
-  <app-input controlName="lastname" label="{{'auth.lastName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.lastName' | translate} }}"></app-input>
-  <app-date-picker controlName="birthday" label="{{'auth.dateOfBirth' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.dateOfBirth' | translate} }}"></app-date-picker>
-  <app-input controlName="email" label="{{'auth.email' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
-  <app-input controlName="phone" label="{{'auth.phoneNumber' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.phoneNumber' | translate} }}" [type]="INPUT_TYPES.PHONE"></app-input>
-  <app-input controlName="password" label="{{'auth.password' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
-  <app-input controlName="confirmPassword" label="{{'auth.confirmPassword' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
-
-  <div class="mt-4 d-flex justify-content-center">
-    <app-primary-button
-      (buttonClick)="onRegister()"
-      [isLoading]="isLoading"
-      [disabled]="!registerForm.valid"
-      title="{{'auth.submit' | translate}}"
-    ></app-primary-button>
+  <div *ngIf="isEmailConfirmationRequired">
+    <h1 class="app-register__title">
+      <span>{{'auth.registerThanks' | translate }}</span>
+      <span>{{'auth.confirmEmailTitle' | translate }}</span>
+    </h1>
+    <figure class="app-register__icon">
+      <img src="/assets/images/vector/email.svg" alt="Email icon">
+    </figure>
   </div>
+</ng-container>
 
-  <div class="my-3 d-flex justify-content-between">
-    <app-link-button
-      [backButton]="true"
-      title="{{'auth.back' | translate}}"
-      url="/"
-      class="mx-1"
-    ></app-link-button>
-    <app-link-button
-      title="{{'auth.login' | translate}}"
-      url="/auth/login"
-      class="mx-1"
-    ></app-link-button>
-  </div>
-</form>
-
-<div *ngIf="isEmailConfirmationRequired">
-  <h1 class="app-register__title">
-    <span>{{'auth.registerThanks' | translate }}</span>
-    <span>{{'auth.confirmEmailTitle' | translate }}</span>
-  </h1>
-  <figure class="d-flex justify-content-center">
-    <img src="/assets/images/vector/email.svg" alt="Email icon">
+<div *ngIf="isEmailConfirmed$ | async" class="d-flex flex-column align-items-center">
+  <figure class="app-register__icon">
+    <img src="/assets/images/vector/success.svg" alt="Success icon" class="w-100">
   </figure>
+
+  <h1 class="app-register__title">
+    <span>{{'auth.emailConfirmedThanks' | translate}}</span>
+    <span>{{'auth.goToFirstLogin' | translate}}</span>
+  </h1>
+
+  <app-primary-button
+    url="/auth/login"
+    title="{{'auth.login' | translate}}"
+    class="mt-5"
+  ></app-primary-button>
 </div>
