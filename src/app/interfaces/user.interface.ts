@@ -13,7 +13,8 @@ export interface IRegisterReq {
   email: string,
   phone: string,
   birthday: number,
-  password: string
+  password: string,
+  lang: string
 }
 
 export interface ILoginReq {
@@ -27,4 +28,8 @@ export interface IRemindReq {
 
 export interface IUpdatePassword {
   password: string
+}
+
+export interface IConfirmRegister {
+  token: string
 }

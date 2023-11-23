@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { AuthService, ToasterService } from '@app/core/services';
 import { DateValidators, PasswordValidators } from '../../constants';
@@ -20,7 +19,6 @@ export class RegisterComponent {
   public INPUT_TYPES = INPUT_TYPES;
   public isLoading: boolean = false;
   public isEmailConfirmationRequired: boolean = false;
-  public isEmailConfirmed$: Observable<boolean> | null = null;
   private messages = {
     success: 'auth.success',
     failure: 'auth.failure'
@@ -31,15 +29,10 @@ export class RegisterComponent {
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private toasterService: ToasterService,
-    private translateService: TranslateService,
-    private activatedRoute: ActivatedRoute
+    private translateService: TranslateService
   ) { }
 
   ngOnInit() {
-    this.isEmailConfirmed$ = this.activatedRoute.data.pipe(
-      map(({ data }) => data)
-    );
-
     this.registerForm = this.fb.group({
       firstname: ['test', Validators.required],
       lastname: ['test', Validators.required],
