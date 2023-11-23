@@ -77,7 +77,9 @@
     "failure": "Something went wrong when trying to register you.",
     "success": "Confirmation email was sent to the address that you have entered.",
     "registerThanks": "Thank you for registering!",
-    "confirmEmailTitle": "Please check your email box and follow instructions."
+    "confirmEmailTitle": "Please check your email box and follow instructions.",
+    "emailConfirmedThanks": "Thank you for confirming the email",
+    "goToFirstLogin": "Please log in using your credentials"
   },
   "form-errors": {
     "required": "This field is required",

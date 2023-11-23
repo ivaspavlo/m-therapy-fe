@@ -1,0 +1,25 @@
+<div class="d-flex flex-column align-items-center">
+  <ng-container *ngIf="isEmailConfirmed$ | async">
+    <figure class="app-register__icon">
+      <img src="/assets/images/vector/success.svg" alt="Success icon" class="w-100">
+    </figure>
+  
+    <h1 class="app-register__title">
+      <span>{{'auth.emailConfirmedThanks' | translate}}</span>
+      <span>{{'auth.goToFirstLogin' | translate}}</span>
+    </h1>
+  
+    <app-primary-button
+      url="/auth/login"
+      title="{{'auth.login' | translate}}"
+      class="mt-5"
+    ></app-primary-button>
+  </ng-container>
+
+  <ng-container *ngIf="!(isEmailConfirmed$ | async)">
+    <h1 class="app-register__title">
+      <!-- <span>{{'auth.emailConfirmedThanks' | translate}}</span>
+      <span>{{'auth.goToFirstLogin' | translate}}</span> -->
+    </h1>
+  </ng-container>
+</div>
