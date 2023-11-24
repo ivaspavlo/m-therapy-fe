@@ -40,9 +40,7 @@ const authRouts: Route[] = [
       component: RegisterConfirmComponent,
       resolve: {
         data: (route: ActivatedRouteSnapshot) => {
-          return inject(AuthService).registerConfirm({
-            token: route.paramMap.get('token')!
-          });
+          return inject(AuthService).registerConfirm(route.paramMap.get('token')!);
         }
       }
     }, {
