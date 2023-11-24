@@ -29,7 +29,3 @@ export interface IRemindReq {
 export interface IUpdatePassword {
   password: string
 }
-
-export interface IConfirmRegister {
-  token: string
-}
