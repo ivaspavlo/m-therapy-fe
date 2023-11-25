@@ -3,7 +3,7 @@
   <app-input controlName="email" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
-    <app-primary-button title="{{ 'auth.submit' | translate }}"></app-primary-button>
+    <app-primary-button [disabled]="!remindForm.valid" title="{{ 'auth.submit' | translate }}"></app-primary-button>
   </div>
 
   <div class="my-4 d-flex justify-content-between">

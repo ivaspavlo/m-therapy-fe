@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-register-confirm',
   templateUrl: './register-confirm.component.html',
-  styleUrls: ['./register-confirm.component.scss'],
+  styleUrls: ['./register-confirm.component.scss', '../../auth-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterConfirmComponent implements OnInit {
