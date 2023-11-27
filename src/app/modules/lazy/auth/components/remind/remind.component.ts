@@ -7,7 +7,7 @@ import { IRemind } from '../../interfaces';
 @Component({
   selector: 'app-remind',
   templateUrl: './remind.component.html',
-  styleUrls: ['./remind.component.scss'],
+  styleUrls: ['./remind.component.scss', '../../auth-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RemindComponent {

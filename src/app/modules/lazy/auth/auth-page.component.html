@@ -1,8 +1,6 @@
 <section class="auth-page">
   <div [@authAnimate]="prepareRoute(outlet)">
-    <header class="auth-page__header">
-      <app-brand size="sm"></app-brand>
-    </header>
+    <app-brand size="sm" class="auth-page__brand"></app-brand>
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </section>

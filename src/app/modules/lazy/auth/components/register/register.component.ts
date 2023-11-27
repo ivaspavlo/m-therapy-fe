@@ -11,7 +11,7 @@ import { DateValidators, PasswordValidators } from '../../constants';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss', '../../auth-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent {

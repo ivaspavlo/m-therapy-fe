@@ -14,19 +14,4 @@
   max-width: rem(340px);
   min-height: 100vh;
   padding: 20rem 1rem 0;
-
-  &__title {
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: $primary;
-  }
-
-  &__icon {
-    width: rem(80px);
-    height: rem(80px);
-    margin-bottom: 1rem;
-    display: flex;
-  }
 }
