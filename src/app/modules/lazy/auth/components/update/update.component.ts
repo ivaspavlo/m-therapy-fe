@@ -9,7 +9,7 @@ import { INPUT_TYPES } from '@app/core/constants';
 @Component({
   selector: 'app-update',
   templateUrl: './update.component.html',
-  styleUrls: ['./update.component.scss'],
+  styleUrls: ['./update.component.scss', '../../auth-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateComponent {

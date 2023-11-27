@@ -1,5 +1,3 @@
-@import 'variables';
-
 :host {
   width: 100vw;
   height: 100vh;
@@ -7,14 +5,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.app-remind {
-  width: 100%;
-  max-width: rem(340px);
-  padding: 1rem;
-
-  &__title {
-    color: $primary;
-  }
 }
