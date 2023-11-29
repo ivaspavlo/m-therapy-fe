@@ -51,6 +51,7 @@ export class RegisterComponent {
       ...this.registerForm.value,
       lang: this.translateService.currentLang
     };
+    debugger;
     this.authService.register(req).pipe(
       catchError(() => of(null))
     ).subscribe((res: any) => {
