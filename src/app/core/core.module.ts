@@ -2,6 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreTranslationModule } from './core-translation.module';
+import { CORE_PROVIDERS } from './providers';
 
 
 @NgModule({
@@ -9,6 +10,9 @@ import { CoreTranslationModule } from './core-translation.module';
     CoreRoutingModule,
     ToastrModule.forRoot(),
     CoreTranslationModule.forRoot()
+  ],
+  providers: [
+    ...CORE_PROVIDERS
   ],
   exports: [CoreRoutingModule]
 })

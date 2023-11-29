@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CoreRoutingAnimations } from '@app/core/constants';
+import { CoreRoutingAnimations, LANGUAGES } from '@app/core/constants';
+import { TranslateService } from '@ngx-translate/core';
+import { LOCALE } from './core/providers';
 
 
 @Component({
@@ -9,10 +11,19 @@ import { CoreRoutingAnimations } from '@app/core/constants';
   animations: [ CoreRoutingAnimations ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(
+    @Inject(LOCALE) private localeId: LANGUAGES,
+    private translateService: TranslateService
+  ) { }
+
+  ngOnInit(): void {
+    debugger;
+    this.translateService.use(this.localeId);
+  }
 
   public prepareRoute(outlet: RouterOutlet): boolean {
-    // console.log(outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState']);
 		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState'];
 	}
 
