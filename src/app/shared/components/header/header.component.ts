@@ -2,10 +2,10 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES_ITEMS, ScrollTargetElements } from '@app/core/constants';
 import { ILanguage } from '@app/interfaces';
-import { TranslateService } from '@ngx-translate/core';
-import { ScrollService } from '@app/core/services/scroll.service';
+import { ScrollService } from '@app/core/services';
 
 
 interface IHeaderControl {
@@ -22,7 +22,7 @@ interface IHeaderControl {
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() scrollOrigin: HTMLElement;
+  @Input() scrollOrigin: HTMLElement | null = null;
 
   public isOpen = false;
   public languages: ILanguage[] = LANGUAGES_ITEMS;
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     { uiName: 'header.gifts', scrollTarget: ScrollTargetElements.GIFTS_SECTION },
     { uiName: 'header.blog', link: '' }
   ];
-  public isShrinked$: Observable<boolean>;
+  public isShrinked$!: Observable<boolean>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
