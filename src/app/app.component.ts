@@ -14,13 +14,12 @@ import { LOCALE } from './core/providers';
 export class AppComponent implements OnInit {
 
   constructor(
-    @Inject(LOCALE) private localeId: LANGUAGES,
+    @Inject(LOCALE) private locale: LANGUAGES,
     private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
-    debugger;
-    this.translateService.use(this.localeId);
+    this.translateService.use(this.locale);
   }
 
   public prepareRoute(outlet: RouterOutlet): boolean {
