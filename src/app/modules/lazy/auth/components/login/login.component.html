@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm" class="auth-page__content">
-  <h1 class="auth-page__title">{{ 'auth.login' | translate }}</h1>
+  <h1 class="auth-page__title">{{ 'auth.login.title' | translate }}</h1>
 
-  <app-input controlName="login" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}"></app-input>
+  <app-input controlName="email" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}"></app-input>
   <app-input controlName="password" label="{{ 'auth.password' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
@@ -16,7 +16,7 @@
   <div class="my-4 d-flex justify-content-between">
     <app-link-button
       [backButton]="true"
-      title="{{'auth.register' | translate}}"
+      title="{{'auth.register.title' | translate}}"
       url="/auth/register"
       class="mx-1"
     ></app-link-button>

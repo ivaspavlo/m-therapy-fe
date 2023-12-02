@@ -20,8 +20,8 @@ export class RegisterComponent {
   public isLoading: boolean = false;
   public isEmailConfirmationRequired: boolean = false;
   private messages = {
-    success: 'auth.success',
-    failure: 'auth.failure'
+    success: 'auth.register.success',
+    failure: 'auth.register.failure'
   }
 
   constructor(
@@ -45,13 +45,14 @@ export class RegisterComponent {
     });
   }
 
-  public onRegister(): void {
+  public onRegister(event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
     this.isLoading = true;
     const req = {
       ...this.registerForm.value,
       lang: this.translateService.currentLang
     };
-    debugger;
     this.authService.register(req).pipe(
       catchError(() => of(null))
     ).subscribe((res: any) => {

@@ -60,8 +60,6 @@
     }
   },
   "auth": {
-    "register": "Register",
-    "login": "Login",
     "back": "Back to Main",
     "remind": "Remind password",
     "change": "Change password",
@@ -74,12 +72,23 @@
     "confirmPassword": "confirm password",
     "dateOfBirth": "date of birth",
     "submit": "Submit",
-    "failure": "Something went wrong when trying to register you.",
-    "success": "Confirmation email was sent to the address that you have entered.",
-    "registerThanks": "Thank you for registering!",
-    "confirmEmailTitle": "Please check your email box and follow instructions.",
-    "emailConfirmedThanks": "Thank you for confirming the email",
-    "goToFirstLogin": "Please log in using your credentials"
+    "register": {
+      "title": "Register",
+      "success": "Confirmation email was sent to the address that you have entered.",
+      "failure": "Something went wrong when trying to register you.",
+      "thanks": "Thank you for registering!",
+      "after": "Please check your email box and follow instructions."
+    },
+    "confirmEmail": {
+      "thanks": "Thank you for confirming the email",
+      "after": "Please log in using your credentials",
+      "failure": "Looks like your email was not confirmed timely. Please try to register once more"
+    },
+    "login": {
+      "title": "Login",
+      "success": "Logged in successfully.",
+      "failure": "Oops, something went wrong when logging you in."
+    }
   },
   "form-errors": {
     "required": "This field is required",

@@ -1,5 +1,5 @@
 <form *ngIf="!isEmailConfirmationRequired" [formGroup]="registerForm" class="app-register">
-  <h1 class="auth-page__title">{{'auth.register' | translate }}</h1>
+  <h1 class="auth-page__title">{{'auth.register.title' | translate }}</h1>
 
   <app-input controlName="firstname" label="{{'auth.firstName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.firstName' | translate} }}"></app-input>
   <app-input controlName="lastname" label="{{'auth.lastName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.lastName' | translate} }}"></app-input>
@@ -11,7 +11,7 @@
 
   <div class="mt-4 d-flex justify-content-center">
     <app-primary-button
-      (buttonClick)="onRegister()"
+      (buttonClick)="onRegister($event)"
       [isLoading]="isLoading"
       [disabled]="!registerForm.valid"
       title="{{'auth.submit' | translate}}"
@@ -26,7 +26,7 @@
       class="mx-1"
     ></app-link-button>
     <app-link-button
-      title="{{'auth.login' | translate}}"
+      title="{{'auth.login.title' | translate}}"
       url="/auth/login"
       class="mx-1"
     ></app-link-button>
@@ -35,8 +35,8 @@
 
 <div *ngIf="isEmailConfirmationRequired" class="d-flex flex-column align-items-center">
   <h1 class="auth-page__title">
-    <span>{{'auth.registerThanks' | translate }}</span>
-    <span>{{'auth.confirmEmailTitle' | translate }}</span>
+    <span>{{'auth.register.thanks' | translate }}</span>
+    <span>{{'auth.register.after' | translate }}</span>
   </h1>
   <app-icon name="email" size="xxl" alt="Email icon"></app-icon>
 </div>
