@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -22,12 +22,13 @@ export class LoginComponent implements OnInit {
   public INPUT_TYPES = INPUT_TYPES;
   public isLoading: boolean = false;
   private messages = {
-    success: 'auth.success',
-    failure: 'auth.failure'
+    success: 'auth.login.success',
+    failure: 'auth.login.failure'
   }
 
   constructor(
     private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private toasterService: ToasterService,
     private translateService: TranslateService
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      login: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
       catchError(() => of(null))
     ).subscribe((res: any) => {
       this.isLoading = false;
+      this.cdr.markForCheck();
       if (!res) {
         this.toasterService.show(
           this.translateService.instant(this.messages.failure),
