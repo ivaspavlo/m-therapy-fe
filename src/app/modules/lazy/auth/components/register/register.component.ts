@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { AuthService, ToasterService } from '@app/core/services';
+import { IResponse } from '@app/interfaces/api';
 import { DateValidators, PasswordValidators } from '../../constants';
 
 
@@ -55,7 +56,7 @@ export class RegisterComponent {
     };
     this.authService.register(req).pipe(
       catchError(() => of(null))
-    ).subscribe((res: any) => {
+    ).subscribe((res: null | IResponse<object>) => {
       this.isLoading = false;
       this.cdr.markForCheck();
       if (!res) {
