@@ -1,11 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { INPUT_TYPES, ToastType } from '@app/core/constants';
-import { AuthService, ToasterService } from '@app/core/services';
-import { ILogin } from '../../interfaces';
+import { ACCESS_TOKEN, INPUT_TYPES, ToastType, USER_ID } from '@app/core/constants';
+import { LOCAL_STORAGE } from '@app/core/providers';
+import { AuthService, ToasterService, UserService } from '@app/core/services';
+import { ILoginReq, IUser } from '@app/interfaces';
+import { ILoginRes, IResponse } from '@app/interfaces/api';
 
 
 @Component({
@@ -16,7 +18,7 @@ import { ILogin } from '../../interfaces';
 })
 export class LoginComponent implements OnInit {
 
-  @Output() login: EventEmitter<ILogin> = new EventEmitter();
+  @Output() login: EventEmitter<ILoginReq> = new EventEmitter();
 
   public loginForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
@@ -30,8 +32,10 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
+    private userService: UserService,
     private toasterService: ToasterService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    @Inject(LOCAL_STORAGE) private localStorage: Storage
   ) { }
 
   ngOnInit(): void {
@@ -46,23 +50,41 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
     this.isLoading = true;
     this.authService.login(this.loginForm.value).pipe(
-      catchError(() => of(null))
-    ).subscribe((res: any) => {
+      catchError(() => of(null)),
+      tap((res: null | IResponse<ILoginRes>) => {
+        if (res) {
+          this.localStorage.setItem(ACCESS_TOKEN, res.data.jwtToken);
+          this.localStorage.setItem(USER_ID, res.data.id);
+        }
+      }),
+      switchMap((res: null | IResponse<ILoginRes>) => res
+        ? this.userService.getUserById(res.data.id)
+        : of(res)
+      )
+    ).subscribe((res: null | IResponse<IUser>) => {
       this.isLoading = false;
       this.cdr.markForCheck();
+
+      this.showToastMessage(!!res);
+
       if (!res) {
-        this.toasterService.show(
-          this.translateService.instant(this.messages.failure),
-          ToastType.ERROR
-        );
         return;
       }
+
       this.loginForm.reset();
-      this.toasterService.show(
-        this.translateService.instant(this.messages.success),
-        ToastType.SUCCESS
-      );
     });
+  }
+
+  private showToastMessage(res: boolean): void {
+    res
+      ? this.toasterService.show(
+          this.translateService.instant(this.messages.success),
+          ToastType.SUCCESS
+        )
+      : this.toasterService.show(
+          this.translateService.instant(this.messages.success),
+          ToastType.SUCCESS
+        );
   }
 
 }
