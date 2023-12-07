@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '@env/environment';
 import { IUser } from '@app/interfaces';
-import { IResponse } from '@app/interfaces/api';
+import { IResponse } from '@app/interfaces';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserApiService {
 
   constructor(
     private http: HttpClient

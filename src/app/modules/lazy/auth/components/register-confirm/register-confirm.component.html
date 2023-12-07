@@ -7,7 +7,7 @@
       <span>{{'auth.confirmEmail.after' | translate}}</span>
     </h1>
   
-    <app-primary-button url="/auth/login" title="{{'auth.login' | translate}}" class="mt-5"></app-primary-button>
+    <app-primary-button url="/auth/login" title="{{'auth.login.title' | translate}}" class="mt-5"></app-primary-button>
   </ng-container>
 
   <ng-container *ngIf="!(isEmailConfirmed$ | async)">

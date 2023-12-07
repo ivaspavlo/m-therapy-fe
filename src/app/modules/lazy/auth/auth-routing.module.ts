@@ -1,7 +1,7 @@
 import { NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRouteSnapshot, Route, RouterModule } from '@angular/router';
-import { AuthService } from '@app/core/services';
+import { AuthApiService } from '@app/core/services';
 import { AuthPageComponent } from './auth-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -40,7 +40,7 @@ const authRouts: Route[] = [
       component: RegisterConfirmComponent,
       resolve: {
         data: (route: ActivatedRouteSnapshot) => {
-          return inject(AuthService).registerConfirm(route.paramMap.get('token')!);
+          return inject(AuthApiService).registerConfirm(route.paramMap.get('token')!);
         }
       }
     }, {
