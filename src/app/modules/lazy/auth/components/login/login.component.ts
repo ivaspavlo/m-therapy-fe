@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { ACCESS_TOKEN, INPUT_TYPES, ToastType, USER_ID } from '@app/core/constants';
 import { LOCAL_STORAGE } from '@app/core/providers';
-import { AuthService, ToasterService, UserService } from '@app/core/services';
-import { ILoginReq, IUser } from '@app/interfaces';
-import { ILoginRes, IResponse } from '@app/interfaces/api';
+import { AuthApiService, ToasterService, UserApiService, UserManagementService } from '@app/core/services';
+import { ILoginReq, ILoginRes, IResponse, IUser } from '@app/interfaces';
 
 
 @Component({
@@ -31,10 +31,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private authService: AuthService,
-    private userService: UserService,
+    private authService: AuthApiService,
+    private userApiService: UserApiService,
+    private userManagementService: UserManagementService,
     private toasterService: ToasterService,
     private translateService: TranslateService,
+    private router: Router,
     @Inject(LOCAL_STORAGE) private localStorage: Storage
   ) { }
 
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
         }
       }),
       switchMap((res: null | IResponse<ILoginRes>) => res
-        ? this.userService.getUserById(res.data.id)
+        ? this.userApiService.getUserById(res.data.id)
         : of(res)
       )
     ).subscribe((res: null | IResponse<IUser>) => {
@@ -71,7 +73,9 @@ export class LoginComponent implements OnInit {
         return;
       }
 
+      this.userManagementService.setUser(res.data);
       this.loginForm.reset();
+      this.router.navigateByUrl('/');
     });
   }
 

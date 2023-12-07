@@ -17,15 +17,15 @@ export interface IRegisterReq {
   lang: string
 }
 
-export interface ILoginReq {
-  email: string,
-  password: string
-}
+// export interface ILoginReq {
+//   email: string,
+//   password: string
+// }
 
-export interface IRemindReq {
-  email: string
-}
+// export interface IRemindReq {
+//   email: string
+// }
 
-export interface IUpdatePassword {
-  password: string
-}
+// export interface IUpdatePassword {
+//   password: string
+// }

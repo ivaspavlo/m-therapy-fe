@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '@env/environment';
-import { ILoginReq, IRegisterReq } from '@app/interfaces';
-import { IResponse, ILoginRes } from '@app/interfaces/api';
+import { IRegisterReq } from '@app/interfaces';
+import { IResponse, ILoginRes, ILoginReq } from '@app/interfaces';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthApiService {
 
   constructor(
     private http: HttpClient

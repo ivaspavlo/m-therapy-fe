@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
-import { AuthService, ToasterService } from '@app/core/services';
-import { IResponse } from '@app/interfaces/api';
+import { AuthApiService, ToasterService } from '@app/core/services';
+import { IResponse } from '@app/interfaces';
 import { DateValidators, PasswordValidators } from '../../constants';
 
 
@@ -28,7 +28,7 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private authService: AuthService,
+    private authService: AuthApiService,
     private toasterService: ToasterService,
     private translateService: TranslateService
   ) { }

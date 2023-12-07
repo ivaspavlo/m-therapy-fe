@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IUpdate } from '../../interfaces';
-import { PasswordValidators, UPDATE_TOKEN } from '../../constants';
 import { INPUT_TYPES } from '@app/core/constants';
+import { IUpdateReq } from '@app/interfaces';
+import { PasswordValidators, UPDATE_TOKEN } from '../../constants';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { INPUT_TYPES } from '@app/core/constants';
 })
 export class UpdateComponent {
 
-  @Output() login: EventEmitter<IUpdate> = new EventEmitter();
+  @Output() login: EventEmitter<IUpdateReq> = new EventEmitter();
 
   public updateToken: string = '';
   public updateForm!: FormGroup;

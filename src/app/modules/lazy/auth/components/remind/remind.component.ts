@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { INPUT_TYPES } from '@app/core/constants';
-import { IRemind } from '../../interfaces';
+import { IRemindReq } from '@app/interfaces';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { IRemind } from '../../interfaces';
 })
 export class RemindComponent {
 
-  @Output() login: EventEmitter<IRemind> = new EventEmitter();
+  @Output() login: EventEmitter<IRemindReq> = new EventEmitter();
 
   public remindForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
