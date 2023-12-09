@@ -1,15 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
+import { ClassProvider, Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from '../constants';
-import { LOCAL_STORAGE } from '../providers';
+import { LOCAL_STORAGE } from '.';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
@@ -21,14 +19,11 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.localStorage.get(ACCESS_TOKEN);
+    const token = this.localStorage[ACCESS_TOKEN];
     if (token) {
       request = this.addToken(request, token);
     }
     return next.handle(request).pipe(
-      tap(() => {
-        debugger;
-      }),
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
           // this.authService.logout();
@@ -41,8 +36,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addToken<T>(request: HttpRequest<T>, token: any): HttpRequest<T> {
     return request.clone({
-      setHeaders: { 'Authorization': `Token ${token}` }
+      setHeaders: { 'Authorization': token }
     });
   }
 
+}
+
+export const AuthInterceptorProvider: ClassProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi: true
 }

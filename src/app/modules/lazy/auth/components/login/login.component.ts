@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { ACCESS_TOKEN, INPUT_TYPES, ToastType, USER_ID } from '@app/core/constants';
+import { ACCESS_TOKEN, INPUT_TYPES, ToastType, USER_ID, USER_NAME } from '@app/core/constants';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { AuthApiService, ToasterService, UserApiService, UserManagementService } from '@app/core/services';
 import { ILoginReq, ILoginRes, IResponse, IUser } from '@app/interfaces';
@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
       catchError(() => of(null)),
       tap((res: null | IResponse<ILoginRes>) => {
         if (res) {
-          this.localStorage.setItem(ACCESS_TOKEN, res.data.jwtToken);
-          this.localStorage.setItem(USER_ID, res.data.id);
+          this.localStorage[ACCESS_TOKEN] = res.data.jwtToken;
+          this.localStorage[USER_ID] = res.data.id;
         }
       }),
       switchMap((res: null | IResponse<ILoginRes>) => res
@@ -72,6 +72,8 @@ export class LoginComponent implements OnInit {
       if (!res) {
         return;
       }
+
+      this.localStorage[USER_NAME] = res.data.firstname;
 
       this.userManagementService.setUser(res.data);
       this.loginForm.reset();
