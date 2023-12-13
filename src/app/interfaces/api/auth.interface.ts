@@ -1,6 +1,6 @@
 export interface ILoginReq {
-  email: string;
-  password: string;
+  email: string,
+  password: string
 }
 
 export interface ILoginRes {
@@ -9,9 +9,10 @@ export interface ILoginRes {
 }
 
 export interface IRemindReq {
-  email: string;
+  email: string,
+  lang: string
 }
 
 export interface IUpdateReq {
-  password: string;
+  password: string
 }

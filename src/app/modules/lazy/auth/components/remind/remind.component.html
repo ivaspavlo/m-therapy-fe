@@ -1,13 +1,39 @@
-<form [formGroup]="remindForm" class="auth-page__content">
-  <h1 class="auth-page__title">{{ 'auth.remind' | translate }}</h1>
-  <app-input controlName="email" label="{{ 'auth.email' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
+<form *ngIf="!isRemindLinkSent" [formGroup]="remindForm" class="auth-page__content">
+  <h1 class="auth-page__title">{{'auth.remind.title' | translate}}</h1>
+  <app-input
+    controlName="email"
+    label="{{'auth.email' | translate | titlecase}}"
+    plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}"
+    [type]="INPUT_TYPES.EMAIL"
+  ></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
-    <app-primary-button [disabled]="!remindForm.valid" title="{{ 'auth.submit' | translate }}"></app-primary-button>
+    <app-primary-button
+      (buttonClick)="onRemind($event)"
+      [disabled]="!remindForm.valid"
+      [isLoading]="isLoading"
+      title="{{'auth.submit' | translate}}"
+    ></app-primary-button>
   </div>
 
   <div class="my-4 d-flex justify-content-between">
-    <app-link-button title="{{ 'auth.login.title' | translate }}" url="/auth/login" [backButton]="true" class="mx-1"></app-link-button>
-    <app-link-button title="{{ 'auth.register.title' | translate }}" url="/auth/register" class="mx-1"></app-link-button>
+    <app-link-button
+      title="{{'auth.login.title' | translate}}"
+      url="/auth/login"
+      [backButton]="true"
+      class="mx-1"
+    ></app-link-button>
+    <app-link-button
+      title="{{'auth.register.title' | translate}}"
+      url="/auth/register"
+      class="mx-1"
+    ></app-link-button>
   </div>
 </form>
+
+<div *ngIf="isRemindLinkSent" class="d-flex flex-column align-items-center">
+  <h1 class="auth-page__title">
+    <span>{{'auth.remind.after' | translate }}</span>
+  </h1>
+  <app-icon name="email" size="xxl" alt="Email icon"></app-icon>
+</div>
