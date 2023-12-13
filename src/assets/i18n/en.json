@@ -61,7 +61,6 @@
   },
   "auth": {
     "back": "Back to Main",
-    "remind": "Remind password",
     "change": "Change password",
     "enter": "Enter {{x}}",
     "firstName": "first name",
@@ -88,6 +87,12 @@
       "title": "Login",
       "success": "Logged in successfully.",
       "failure": "Oops, something went wrong when logging you in."
+    },
+    "remind": {
+      "title": "Remind password",
+      "success": "Link was sent to your email",
+      "failure": "Something went wrong when sending the link to your email",
+      "after": "Please check your email box and follow instructions"
     }
   },
   "form-errors": {

@@ -16,7 +16,7 @@ const AUTH_ROUTE_NAMES = {
   REGISTER: 'register',
   REGISTER_CONFIRM: 'register-confirm/:token',
   REMIND_PASSWORD: 'remind',
-  UPDATE_PASSWORD: 'update/:token'
+  UPDATE_PASSWORD: 'reset/:token'
 };
 
 const authRouts: Route[] = [
