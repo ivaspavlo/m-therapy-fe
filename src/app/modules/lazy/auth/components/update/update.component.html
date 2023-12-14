@@ -1,14 +1,50 @@
-<form [formGroup]="updateForm" class="auth-page__content">
-  <h1 class="auth-page__title">{{ 'auth.change' | translate }}</h1>
+<form *ngIf="!isUpdated" [formGroup]="updateForm" class="auth-page__content">
+  <h1 class="auth-page__title">{{'auth.update.title' | translate}}</h1>
 
-  <app-input controlName="password" label="{{ 'auth.password' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
-  <app-input controlName="confirmPassword" label="{{ 'auth.confirmPassword' | translate | titlecase }}" plh="{{ 'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
+  <app-input
+    controlName="password"
+    label="{{'auth.password' | translate | titlecase}}"
+    plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}"
+    [type]="INPUT_TYPES.PASSWORD"
+  ></app-input>
+
+  <app-input
+    controlName="confirmPassword"
+    label="{{'auth.confirmPassword' | translate | titlecase}}"
+    plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}"
+    [type]="INPUT_TYPES.PASSWORD"
+  ></app-input>
 
   <div class="mt-4 d-flex justify-content-center">
-    <app-primary-button title="{{ 'auth.submit' | translate }}"></app-primary-button>
+    <app-primary-button
+      (buttonClick)="onUpdate($event)"
+      [disabled]="!updateForm.valid"
+      [isLoading]="isLoading"
+      title="{{'auth.submit' | translate}}"
+    ></app-primary-button>
   </div>
 
   <div class="my-3 d-flex justify-content-center">
-    <app-link-button title="{{ 'auth.login.title' | translate }}" url="/auth/login" class="mx-1"></app-link-button>
+    <app-link-button
+      title="{{'auth.login.title' | translate}}"
+      url="/auth/login"
+      class="mx-1"
+    ></app-link-button>
   </div>
 </form>
+
+<div *ngIf="isUpdated" class="d-flex flex-column align-items-center">
+  <app-icon size="xxl" name="success" class="mb-3"></app-icon>
+
+  <h1 class="auth-page__title">
+    <span>{{'auth.update.after' | translate }}</span>
+  </h1>
+
+  <div class="my-3 d-flex justify-content-center">
+    <app-link-button
+      title="{{'auth.login.title' | translate}}"
+      url="/auth/login"
+      class="mx-1"
+    ></app-link-button>
+  </div>
+</div>
