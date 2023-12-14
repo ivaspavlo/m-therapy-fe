@@ -1,1 +1,1 @@
-export const UPDATE_TOKEN = 'updateToken';
+export const UPDATE_TOKEN = 'token';

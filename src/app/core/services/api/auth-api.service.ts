@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '@env/environment';
-import { IRegisterReq, IRemindReq } from '@app/interfaces';
+import { IRegisterReq, IRemindReq, IUpdateReq } from '@app/interfaces';
 import { IResponse, ILoginRes, ILoginReq } from '@app/interfaces';
 
 
@@ -29,5 +29,9 @@ export class AuthApiService {
 
   public remind(req: IRemindReq): Observable<IResponse<object>> {
     return this.http.post<IResponse<object>>(`${API_URL}/remind`, req);
+  }
+
+  public update(req: IUpdateReq, token: string): Observable<IResponse<object>> {
+    return this.http.post<IResponse<object>>(`${API_URL}/reset?token=${token}`, req);
   }
 }

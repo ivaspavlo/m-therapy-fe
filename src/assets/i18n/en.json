@@ -61,7 +61,6 @@
   },
   "auth": {
     "back": "Back to Main",
-    "change": "Change password",
     "enter": "Enter {{x}}",
     "firstName": "first name",
     "lastName": "last name",
@@ -93,6 +92,12 @@
       "success": "Link was sent to your email",
       "failure": "Something went wrong when sending the link to your email",
       "after": "Please check your email box and follow instructions"
+    },
+    "update": {
+      "title": "Change password",
+      "success": "Password successfully updated",
+      "failure": "Oops, something went wrong when updating your password",
+      "after": "Please login using your new password"
     }
   },
   "form-errors": {
