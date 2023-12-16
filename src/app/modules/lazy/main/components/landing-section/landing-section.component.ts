@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ScrollTargetElements } from '@app/core/constants';
+import { UserManagementService } from '@app/core/services';
 import { ScrollService } from '@app/core/services/scroll.service';
+import { IUser } from '@app/interfaces';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 @Component({
@@ -12,13 +15,16 @@ import { ScrollService } from '@app/core/services/scroll.service';
 export class LandingSectionComponent implements OnInit {
 
   public targetDate!: Date;
+  public user$ = new Observable<IUser | null>();
 
   constructor(
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private userManagementService: UserManagementService
   ) { }
 
   ngOnInit(): void {
     this.targetDate = this.initTargetDate();
+    this.user$ = this.userManagementService.currentUser$;
   }
 
   public initTargetDate(): Date {
