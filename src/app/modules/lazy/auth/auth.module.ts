@@ -12,7 +12,7 @@ import { COMPONENTS } from './components';
 @NgModule({
   declarations: [
     AuthPageComponent,
-    ...COMPONENTS
+    ...COMPONENTS,
   ],
   imports: [
     CommonModule,
