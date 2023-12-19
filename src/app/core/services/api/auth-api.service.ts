@@ -31,7 +31,7 @@ export class AuthApiService {
     return this.http.post<IResponse<object>>(`${API_URL}/remind`, req);
   }
 
-  public update(req: IUpdateReq, token: string): Observable<IResponse<object>> {
+  public reset(req: IUpdateReq, token: string): Observable<IResponse<object>> {
     return this.http.post<IResponse<object>>(`${API_URL}/reset?token=${token}`, req);
   }
 }

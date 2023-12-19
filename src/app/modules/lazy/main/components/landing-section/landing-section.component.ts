@@ -3,7 +3,7 @@ import { ScrollTargetElements } from '@app/core/constants';
 import { UserManagementService } from '@app/core/services';
 import { ScrollService } from '@app/core/services/scroll.service';
 import { IUser } from '@app/interfaces';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LandingSectionComponent implements OnInit {
 
   public targetDate!: Date;
-  public user$ = new Observable<IUser | null>();
+  public user$!: Observable<IUser | null>;
 
   constructor(
     private scrollService: ScrollService,
