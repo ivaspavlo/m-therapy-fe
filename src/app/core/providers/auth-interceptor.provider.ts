@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from '../constants';
 import { LOCAL_STORAGE } from '.';
+import { UserManagementService } from '../services';
 
 
 @Injectable()
@@ -12,6 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     @Inject(LOCAL_STORAGE) private localStorage: Storage,
+    private userManagementService: UserManagementService,
     private router: Router
   ) { }
 
@@ -26,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
-          // this.authService.logout();
+          this.userManagementService.logout();
           this.router.navigateByUrl(CORE_ROUTE_NAMES.AUTH);
         }
         return throwError(err);
