@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES_ITEMS, ScrollTargetElements } from '@app/core/constants';
 import { ILanguage } from '@app/interfaces';
-import { ScrollService } from '@app/core/services';
+import { ScrollService, UserManagementService } from '@app/core/services';
 
 
 interface IHeaderControl {
@@ -21,11 +21,11 @@ interface IHeaderControl {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-
   @Input() scrollOrigin: HTMLElement | null = null;
 
   public isOpen = false;
   public languages: ILanguage[] = LANGUAGES_ITEMS;
+  public isLoggedIn: boolean = false;
 
   public headerControls: IHeaderControl[] = [
     { uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
@@ -37,11 +37,13 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private translateService: TranslateService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private userManagementService: UserManagementService
   ) { }
 
   ngOnInit(): void {
     this.initIsShrinkedObservable();
+    this.isLoggedIn = this.userManagementService.isLoggedIn();
   }
 
   public onLanguageChange(language: ILanguage): void {
@@ -64,5 +66,4 @@ export class HeaderComponent implements OnInit {
       })
     );
   }
-
 }

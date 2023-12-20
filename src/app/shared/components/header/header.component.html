@@ -1,22 +1,25 @@
 <section class="app-header" [ngClass]="{'app-header--shrinked': isShrinked$ | async}">
-
   <div class="app-header__desktop-mode">
-
     <app-logo routerLink="/" [size]="(isShrinked$ | async) ? 'xs' : 'sm'" class="mr-4 align-items-center"></app-logo>
 
     <ul class="d-flex flex-grow-1 justify-content-start align-items-center">
       <li class="app-header__item" *ngFor="let ctrl of headerControls">
         <a (click)="onClickHeaderControl(ctrl.scrollTarget)" tabindex="0" class="app-header__link">{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
+
       <li>
         <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
       </li>
-      <li class="app-header__item app-header__item--delimiter"></li>
-      <li class="app-header__item">
-        <a tabindex="0" [attr.aria-label]="'header.user-button' | translate" class="app-header__link">
-          <app-icon name="user" size="xl"></app-icon>
-        </a>
-      </li>
+
+      <ng-container *ngIf="isLoggedIn">
+        <li class="app-header__item app-header__item--delimiter"></li>
+        <li class="app-header__item">
+          <a tabindex="0" [attr.aria-label]="'header.user-button' | translate" class="app-header__link">
+            <app-icon name="user" size="xl"></app-icon>
+          </a>
+        </li>
+      </ng-container>
+
       <li class="app-header__item app-header__item--delimiter"></li>
       <li class="app-header__item">
         <a tabindex="0" [attr.aria-label]="'header.cart-button' | translate" class="app-header__link">
@@ -24,33 +27,38 @@
         </a>
       </li>
     </ul>
-
   </div>
 
   <div class="app-header__mobile-mode">
-
     <app-logo size="sm" class="mr-4"></app-logo>
 
     <div class="d-flex align-items-center">
       <li>
         <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
       </li>
+
+      <ng-container *ngIf="isLoggedIn">
+        <li class="app-header__item app-header__item--delimiter"></li>
+
+        <li class="app-header__item app-header__item--mobile-icon">
+          <a class="app-header__link">
+            <app-icon name="user" size="xl"></app-icon>
+          </a>
+        </li>
+      </ng-container>
+
       <li class="app-header__item app-header__item--delimiter"></li>
-      <li class="app-header__item app-header__item--mobile-icon">
-        <a class="app-header__link">
-          <app-icon name="user" size="xl"></app-icon>
-        </a>
-      </li>
-      <li class="app-header__item app-header__item--delimiter"></li>
+
       <li class="app-header__item app-header__item--mobile-icon">
         <a class="app-header__link">
           <app-icon name="cart" size="xl"></app-icon>
         </a>
       </li>
+
       <li class="app-header__item app-header__item--delimiter"></li>
+
       <app-hamburger (isOn)="isOpen = $event" class="app-header__burger"></app-hamburger>
     </div>
-
   </div>
 
   <div *ngIf="isOpen" class="overlay"></div>
@@ -60,5 +68,4 @@
       <a class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
     </li>
   </ul>
-
 </section>
