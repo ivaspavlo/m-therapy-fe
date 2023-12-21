@@ -1,9 +1,8 @@
 import { ClassProvider, Inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from '../constants';
+import { ACCESS_TOKEN } from '../constants';
 import { LOCAL_STORAGE } from '.';
 import { UserManagementService } from '../services';
 
@@ -13,8 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     @Inject(LOCAL_STORAGE) private localStorage: Storage,
-    private userManagementService: UserManagementService,
-    private router: Router
+    private userManagementService: UserManagementService
   ) { }
 
   intercept(
@@ -29,7 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
           this.userManagementService.logout();
-          this.router.navigateByUrl(CORE_ROUTE_NAMES.AUTH);
         }
         return throwError(err);
       })

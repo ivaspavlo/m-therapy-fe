@@ -41,7 +41,6 @@ export class ResetComponent {
   ngOnInit(): void {
     this.resetToken = this.route.snapshot.params[UPDATE_TOKEN];
   
-    debugger;
     this.resetForm = this.fb.group({
       password: ['',  [Validators.required, PasswordValidators.default]],
       confirmPassword: ['', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]]
