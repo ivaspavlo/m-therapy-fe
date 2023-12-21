@@ -93,7 +93,7 @@
       "failure": "Something went wrong when sending the link to your email",
       "after": "Please check your email box and follow instructions"
     },
-    "update": {
+    "reset": {
       "title": "Change password",
       "success": "Password successfully updated",
       "failure": "Oops, something went wrong when updating your password",
