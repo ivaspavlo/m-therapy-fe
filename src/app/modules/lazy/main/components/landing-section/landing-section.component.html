@@ -9,7 +9,7 @@
     </h1>
 
     <div class="d-flex flex-column flex-md-row mt-5">
-      <app-primary-button *ngIf="!isLoggedIn" title="{{ 'main.landing.register' | translate }}" url="/auth" class="landing__button"></app-primary-button>
+      <app-primary-button *ngIf="!isLoggedIn" title="{{ 'main.landing.register' | translate }}" url="/auth/register" class="landing__button"></app-primary-button>
       <app-secondary-button title="{{ 'main.landing.pricing' | translate }}" (buttonClick)="onPricingClick()" class="landing__button"></app-secondary-button>
     </div>
 

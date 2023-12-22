@@ -13,10 +13,15 @@
 
       <ng-container *ngIf="isLoggedIn">
         <li class="app-header__item app-header__item--delimiter"></li>
-        <li class="app-header__item">
+        <li class="app-header__item user-link">
           <a tabindex="0" [attr.aria-label]="'header.user-button' | translate" class="app-header__link">
             <app-icon name="user" size="xl"></app-icon>
           </a>
+          <ul class="user-link__menu">
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
+          </ul>
         </li>
       </ng-container>
 

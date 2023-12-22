@@ -12,10 +12,11 @@
   display: flex;
   justify-content: center;
   transition: $transition-2;
+  background-color: $white;
   z-index: $z-header;
 
   &--shrinked {
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255,255,255,.7);
     .app-header__desktop-mode {
       padding: rem(8px) rem(16px);
       .app-header__item {
@@ -126,6 +127,33 @@
     cursor: pointer;
     &:hover {
       color: $primary;
+    }
+  }
+}
+
+.user-link {
+  position: relative;
+  &:hover, &:focus {
+    .user-link__menu {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  &__menu {
+    position: absolute; top: 100%; left: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0);
+    transform-origin: top;
+    opacity: 0;
+    transition: opacity .4s, transform .1s;
+    background-color: red;
+    // transform: scale(1);
+    // opacity: 1;
+    &:hover, &:focus {
+      transform: scale(1) !important;
+      opacity: 1 !important;
     }
   }
 }

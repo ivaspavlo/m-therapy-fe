@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     private userManagementService: UserManagementService,
     private toasterService: ToasterService,
     private translateService: TranslateService,
+    private router: Router,
     @Inject(LOCAL_STORAGE) private localStorage: Storage
   ) { }
 
@@ -70,6 +72,8 @@ export class LoginComponent implements OnInit {
       if (!res) {
         return;
       }
+
+      this.router.navigateByUrl('/');
 
       this.localStorage[USER_NAME] = res.data.firstname;
 
