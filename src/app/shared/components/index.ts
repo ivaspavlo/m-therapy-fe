@@ -17,6 +17,7 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 import { PrimaryButtonComponent } from './primary-button/primary-button.component';
 import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
+import { HeaderUserMenuComponent } from './header-user-menu/header-user-menu.component';
 
 
 export const COMPONENTS = [
@@ -38,5 +39,6 @@ export const COMPONENTS = [
   DialogContentComponent,
   PrimaryButtonComponent,
   SecondaryButtonComponent,
-  LinkButtonComponent
+  LinkButtonComponent,
+  HeaderUserMenuComponent
 ];
