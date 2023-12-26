@@ -1,0 +1,33 @@
+@import 'variables';
+
+:host {
+  height: 100%;
+}
+
+.header-user-menu {
+  height: 100%;
+  display: flex;
+  position: relative;
+  z-index: $z-header;
+  background-color: transparent;
+  border: 0;
+
+  &__content {
+    position: absolute; top: 100%; left: -1px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: top left;
+    transition: opacity .5s, transform .2s;
+    background-color: $white;
+    border: 1px solid green;
+    z-index: $z-header;
+
+    &--visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}

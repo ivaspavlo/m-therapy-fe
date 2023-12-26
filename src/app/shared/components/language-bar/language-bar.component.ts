@@ -31,9 +31,9 @@ export class LanguageBarComponent implements OnInit {
   }
 
   public onToggleMenu(): void {
-    this.isOpened$.value ?
-      this.onCloseMenu() :
-      this.onOpenMenu();
+    this.isOpened$.value
+      ? this.onCloseMenu()
+      : this.onOpenMenu();
   }
 
   public onOpenMenu(): void {

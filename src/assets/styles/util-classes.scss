@@ -19,3 +19,13 @@
 
 // background
 .bg-white { background-color: $white; }
+
+// hover
+.hover-opacity {
+  &:hover { opacity: .7; }
+}
+
+// focus
+.focus-outline {
+  &:focus { outline: $outline-1; }
+}
