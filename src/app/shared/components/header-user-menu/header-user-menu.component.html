@@ -1,10 +1,20 @@
-<div class="header-user-menu">
-  <div tabindex="0">
-    <ng-content></ng-content>
-  </div>
-  <ul class="user-link__menu">
-    <li tabindex="0">test</li>
-    <li tabindex="0">test</li>
-    <li tabindex="0">test</li>
+<button
+  (mouseenter)="onShowMenu()"
+  (mouseleave)="onHideMenu()"
+  (keyup.enter)="onToggleMenu()"
+  clickOutside
+  (clickOutside)="onHideMenu()"
+  tabindex="0"
+  class="header-user-menu focus-outline"
+>
+  <ng-content></ng-content>
+
+  <ul
+    [ngClass]="{'header-user-menu__content--visible': isMenuVisible$ | async}"
+    class="header-user-menu__content"
+  >
+    <li *ngFor="let item of items">
+      <a [tabindex]="(isMenuVisible$ | async) ? 0 : -1" class="focus-outline">{{item}}</a>
+    </li>
   </ul>
-</div>
+</button>
