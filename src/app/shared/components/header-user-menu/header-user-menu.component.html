@@ -14,7 +14,12 @@
     class="header-user-menu__content"
   >
     <li *ngFor="let item of items">
-      <a [tabindex]="(isMenuVisible$ | async) ? 0 : -1" class="focus-outline">{{item}}</a>
+      <a
+        (keyup.enter)="onClickMenuItem(item, $event)"
+        (click)="onClickMenuItem(item, $event)"
+        [tabindex]="(isMenuVisible$ | async) ? 0 : -1"
+        class="header-user-menu__link focus-outline"
+      >{{item}}</a>
     </li>
   </ul>
 </button>
