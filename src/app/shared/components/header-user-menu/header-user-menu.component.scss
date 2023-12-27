@@ -13,8 +13,7 @@
   border: 0;
 
   &__content {
-    position: absolute; top: 100%; left: -1px;
-    padding: 1rem;
+    position: absolute; top: 100%; left: 0;
     display: flex;
     flex-direction: column;
     transform: scale(0);
@@ -22,12 +21,27 @@
     transform-origin: top left;
     transition: opacity .5s, transform .2s;
     background-color: $white;
-    border: 1px solid green;
+    border: 1px solid $primary;
     z-index: $z-header;
+    border-radius: $b-radius-primary;
+    box-shadow: $b-shadow-2;
 
     &--visible {
       transform: scale(1);
       opacity: 1;
+    }
+  }
+
+  &__link {
+    width: calc(100% + 1px);
+    padding: 0.5rem 1rem;
+    display: flex;
+    color: $primary;
+    transition: $transition-1;
+    cursor: pointer;
+    &:hover, &:focus {
+      color: $white;
+      background-color: $primary;
     }
   }
 }
