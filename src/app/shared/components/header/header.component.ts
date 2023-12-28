@@ -4,15 +4,10 @@ import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES_ITEMS, ScrollTargetElements } from '@app/core/constants';
-import { ILanguage } from '@app/interfaces';
+import { IHeaderControl, ILanguage } from '@app/interfaces';
 import { ScrollService, UserManagementService } from '@app/core/services';
+import { Router } from '@angular/router';
 
-
-interface IHeaderControl {
-  uiName: string,
-  scrollTarget?: ScrollTargetElements,
-  link?: string
-}
 
 @Component({
   selector: 'app-header',
@@ -23,14 +18,23 @@ interface IHeaderControl {
 export class HeaderComponent implements OnInit {
   @Input() scrollOrigin: HTMLElement | null = null;
 
+  private userLogoutButtonId = 'app-header.services.logout';
+
   public isOpen = false;
   public languages: ILanguage[] = LANGUAGES_ITEMS;
   public isLoggedIn: boolean = false;
-
   public headerControls: IHeaderControl[] = [
-    { uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
-    { uiName: 'header.gifts', scrollTarget: ScrollTargetElements.GIFTS_SECTION },
-    { uiName: 'header.blog', link: '' }
+    { id: 'app-header.services.button', uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
+    { id: 'app-header.services.gifts', uiName: 'header.gifts', scrollTarget: ScrollTargetElements.GIFTS_SECTION },
+    { id: 'app-header.services.blog', uiName: 'header.blog', link: '' }
+  ];
+  public authUserControls: IHeaderControl[] = [
+    { id: this.userLogoutButtonId, uiName: 'header.user.logout', link: '/' },
+    { id: 'app-header.services.profile', uiName: 'header.user.profile', link: '/user/profile' },
+    { id: 'app-header.services.orders', uiName: 'header.user.orders', link: '/user/orders' }
+  ];
+  public notAuthUserControls: IHeaderControl[] = [
+    { id: 'app-header.services.login', uiName: 'header.user.login', link: '/auth/login' }
   ];
   public isShrinked$!: Observable<boolean>;
 
@@ -38,7 +42,8 @@ export class HeaderComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private translateService: TranslateService,
     private scrollService: ScrollService,
-    private userManagementService: UserManagementService
+    private userManagementService: UserManagementService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -50,11 +55,24 @@ export class HeaderComponent implements OnInit {
     this.translateService.use(language.title);
   }
 
-  public onClickHeaderControl(scrollTarget?: ScrollTargetElements): void {
+  public onClickHeaderControl(scrollTarget?: string): void {
     if (!scrollTarget) {
       return;
     }
-    this.scrollService.scrollToElement(scrollTarget)
+    this.scrollService.scrollToElement(scrollTarget as ScrollTargetElements);
+  }
+
+  public onClickUserMenu(control: IHeaderControl): void {
+    if (control.id === this.userLogoutButtonId) {
+      this.userManagementService.logout();
+      this.isLoggedIn = false;
+      this.router.navigateByUrl(control.link!);
+    }
+    if (control.link) {
+      control.id === this.userLogoutButtonId && this.userManagementService.logout();
+      this.router.navigateByUrl(control.link);
+      return;
+    }
   }
 
   private initIsShrinkedObservable(): void {

@@ -19,7 +19,7 @@
         (click)="onClickMenuItem(item, $event)"
         [tabindex]="(isMenuVisible$ | async) ? 0 : -1"
         class="header-user-menu__link focus-outline"
-      >{{item}}</a>
+      >{{item.uiName | translate}}</a>
     </li>
   </ul>
 </button>
