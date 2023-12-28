@@ -11,17 +11,15 @@
         <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
       </li>
 
-      <ng-container *ngIf="isLoggedIn">
-        <li class="app-header__item app-header__item--delimiter"></li>
+      <li class="app-header__item app-header__item--delimiter"></li>
 
-        <li class="app-header__item">
-          <app-header-user-menu>
-            <a [attr.aria-label]="'header.user-button' | translate" class="app-header__link default-hover user-link">
-              <app-icon name="user" size="xl"></app-icon>
-            </a>
-          </app-header-user-menu>
-        </li>
-      </ng-container>
+      <li class="app-header__item">
+        <app-header-user-menu (clickMenuItem)="onClickUserMenu($event)" [items]="isLoggedIn ? authUserControls : notAuthUserControls">
+          <a [attr.aria-label]="'header.user-button' | translate" class="app-header__link default-hover user-link">
+            <app-icon name="user" size="xl"></app-icon>
+          </a>
+        </app-header-user-menu>
+      </li>
 
       <li class="app-header__item app-header__item--delimiter"></li>
 

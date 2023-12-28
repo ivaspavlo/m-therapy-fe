@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { IHeaderControl } from '@app/interfaces/header-control.interface';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -9,8 +10,8 @@ import { BehaviorSubject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderUserMenuComponent {
-  @Input() items: string[] = ['item', 'item', 'item'];
-  @Output() clickMenuItem = new EventEmitter<string>();
+  @Input() items: IHeaderControl[] = [];
+  @Output() clickMenuItem = new EventEmitter<IHeaderControl>();
 
   public isMenuVisible$ = new BehaviorSubject<boolean>(false);
 
@@ -32,7 +33,7 @@ export class HeaderUserMenuComponent {
     this.isMenuVisible$.next(!this.isMenuVisible$.value);
   }
 
-  public onClickMenuItem(menuItem: string, event: Event): void {
+  public onClickMenuItem(menuItem: IHeaderControl, event: Event): void {
     event.preventDefault();
     event.stopPropagation();
     const anchorElement: HTMLElement = event.target as HTMLElement;

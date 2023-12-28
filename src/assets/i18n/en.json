@@ -3,11 +3,17 @@
   "header": {
     "logo-button": "Back to the main page",
     "logo-image": "Logo image",
-    "user-button": "User profile button",
+    "user-button": "User menu button",
     "cart-button": "Cart button",
     "services": "Services",
     "gifts": "Gifts",
-    "blog": "Blog"
+    "blog": "Blog",
+    "user": {
+      "logout": "Logout",
+      "profile": "Profile",
+      "orders": "Orders",
+      "login": "Login"
+    }
   },
   "language-bar": {
     "title": "Language dropdown list. Selected item: {{x}}. Click here to open the list.",
