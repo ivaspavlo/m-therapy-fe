@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IHeaderControl } from '@app/interfaces/header-control.interface';
 import { BehaviorSubject } from 'rxjs';
+import { IHeaderControl } from '@app/interfaces';
 
 
 @Component({
@@ -14,9 +14,10 @@ export class HeaderUserMenuComponent {
   @Output() clickMenuItem = new EventEmitter<IHeaderControl>();
 
   public isMenuVisible$ = new BehaviorSubject<boolean>(false);
+  private isBlocked: boolean = false;
 
   public onShowMenu(): void {
-    if (this.isMenuVisible$.value) {
+    if (this.isBlocked || this.isMenuVisible$.value) {
       return;
     }
     this.isMenuVisible$.next(true);
@@ -39,7 +40,13 @@ export class HeaderUserMenuComponent {
     const anchorElement: HTMLElement = event.target as HTMLElement;
     anchorElement.blur();
 
-    this.isMenuVisible$.next(false);
+    this.forceCloseMenu();
     this.clickMenuItem.emit(menuItem);
+  }
+
+  private forceCloseMenu(): void {
+    this.onHideMenu();
+    this.isBlocked = true;
+    setTimeout(() => {this.isBlocked = false;}, 0);
   }
 }
