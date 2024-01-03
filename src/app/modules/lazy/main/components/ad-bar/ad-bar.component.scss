@@ -1,0 +1,30 @@
+@import 'variables';
+
+:host {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $primary;
+  z-index: $z-header;
+}
+
+.ad-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__content {
+    max-width: $width-2;
+    padding: 0.5rem 1rem;
+    position: relative;
+    color: $white;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0.25rem;
+    right: 0;
+    filter: invert(100%) sepia(1%) saturate(7478%) hue-rotate(107deg) brightness(112%) contrast(112%);
+    cursor: pointer;
+  }
+}
