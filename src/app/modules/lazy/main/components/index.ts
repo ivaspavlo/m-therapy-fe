@@ -1,3 +1,4 @@
+import { AdBarComponent } from './ad-bar/ad-bar.component';
 import { GiftsSectionComponent } from './gifts-section/gifts-section.component';
 import { LandingSectionComponent } from './landing-section/landing-section.component';
 import { ProductSectionComponent } from './product-section/product-section.component';
@@ -8,5 +9,6 @@ export const COMPONENTS = [
   LandingSectionComponent,
   VideoComponent,
   ProductSectionComponent,
-  GiftsSectionComponent
+  GiftsSectionComponent,
+  AdBarComponent
 ];
