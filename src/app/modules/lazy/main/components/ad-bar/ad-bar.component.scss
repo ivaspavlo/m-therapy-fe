@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 :host {
   position: fixed;
@@ -16,6 +17,7 @@
   &__content {
     max-width: $width-2;
     padding: 0.5rem 1rem;
+    line-height: 1.25rem;
     position: relative;
     color: $white;
   }
@@ -23,8 +25,7 @@
   &__close {
     position: absolute;
     top: 0.25rem;
-    right: 0;
-    filter: invert(100%) sepia(1%) saturate(7478%) hue-rotate(107deg) brightness(112%) contrast(112%);
+    right: -0.25rem;
     cursor: pointer;
   }
 }

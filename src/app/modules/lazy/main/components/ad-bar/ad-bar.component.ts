@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdBarComponent {
+  @Input() content: string = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+  @Input() link: string | null = null;
 
-  
+  public isVisible: boolean = true;
 
+  public onClose(): void {
+    this.isVisible = false;
+  }
 }
