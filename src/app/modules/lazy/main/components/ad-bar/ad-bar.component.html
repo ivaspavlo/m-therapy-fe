@@ -1,6 +1,6 @@
-<div class="ad-bar">
-  <a class="ad-bar__content">
-    <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia nulla ipsa dolor quae molestiae illo natus illum. Illo deleniti, quas repellendus temporibus, eveniet culpa officia dicta neque, vel eius veritatis.</span>
-    <app-icon name="x-button" class="ad-bar__close"></app-icon>
+<div *ngIf="content && isVisible" class="ad-bar">
+  <a [routerLink]="link" class="ad-bar__content">
+    <span>{{content}}</span>
+    <app-icon (click)="onClose()" name="x-button-white" class="ad-bar__close"></app-icon>
   </a>
 </div>

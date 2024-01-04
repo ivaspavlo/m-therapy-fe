@@ -10,7 +10,7 @@
   box-sizing: border-box;
   opacity: 0;
   transform: translate(-50%, -30%);
-  animation: slide-down 0.18s ease-out 0.5s;
+  animation: slide-down .18s ease-out .5s;
   animation-fill-mode: forwards;
   pointer-events: none;
   color: $white;
