@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   private userLogoutButtonId = 'app-header.services.logout';
 
-  public isOpen = false;
+  public isMenuOpen = false;
+  public isUserMenuOpen = false;
   public languages: ILanguage[] = LANGUAGES_ITEMS;
   public isLoggedIn: boolean = false;
   public headerControls: IHeaderControl[] = [
@@ -63,6 +64,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public onClickUserMenu(control: IHeaderControl): void {
+    this.onToggleUserMenu(false);
     if (control.id === this.userLogoutButtonId) {
       this.userManagementService.logout();
       this.isLoggedIn = false;
@@ -73,6 +75,18 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl(control.link);
       return;
     }
+  }
+
+  public onToggleUserMenu(isOpen?: boolean): void {
+    if (isOpen === false) {
+      this.isUserMenuOpen = false;
+      return;
+    }
+    this.isUserMenuOpen = !this.isUserMenuOpen;
+  }
+
+  public onToggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   private initIsShrinkedObservable(): void {
