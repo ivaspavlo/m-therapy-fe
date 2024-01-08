@@ -68,6 +68,9 @@
       height: auto;
       margin: 0 rem(10px);
     }
+    &--is-open {
+      z-index: 1;
+    }
   }
 
   &__link {
@@ -89,7 +92,9 @@
 
   &__burger {
     margin-left: rem(18px);
-    z-index: 1;
+    &--is-open {
+      z-index: 1;
+    }
   }
 }
 
