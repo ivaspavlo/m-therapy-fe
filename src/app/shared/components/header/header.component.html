@@ -39,28 +39,28 @@
         <app-language-bar [items]="languages" (languageChange)="onLanguageChange($event)"></app-language-bar>
       </li>
 
-      <ng-container *ngIf="isLoggedIn">
-        <li class="app-header__item app-header__item--delimiter"></li>
+      <li class="app-header__item app-header__item--delimiter"></li>
 
-        <li
-          [ngClass]="{'app-header__item--is-open': isUserMenuOpen}"
-          class="app-header__item app-header__item--mobile-icon"
+      <li
+        [ngClass]="{'app-header__item--is-open': isUserMenuOpen}"
+        class="app-header__item app-header__item--mobile-icon"
+      >
+        <a
+          clickOutside
+          (clickOutside)="onToggleUserMenu(false)"
+          (click)="onToggleUserMenu()"
+          (keyup.enter)="onToggleUserMenu()"
+          class="app-header__link"
+          tabindex="0"
         >
-          <a
-            clickOutside
-            (clickOutside)="onToggleUserMenu(false)"
-            (click)="onToggleUserMenu()"
-            class="app-header__link"
-          >
-            <app-icon name="user" size="xl"></app-icon>
-          </a>
-        </li>
-      </ng-container>
+          <app-icon name="user" size="xl"></app-icon>
+        </a>
+      </li>
 
       <li class="app-header__item app-header__item--delimiter"></li>
 
       <li class="app-header__item app-header__item--mobile-icon">
-        <a class="app-header__link">
+        <a tabindex="0" class="app-header__link">
           <app-icon name="cart" size="xl"></app-icon>
         </a>
       </li>
@@ -86,13 +86,13 @@
   <ul [ngClass]="{'mobile-menu--visible': isUserMenuOpen}" class="mobile-menu">
     <ng-container *ngIf="isLoggedIn">
       <li *ngFor="let ctrl of authUserControls" class="my-3">
-        <a (click)="onClickUserMenu(ctrl)" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
+        <a tabindex="0" (click)="onClickUserMenu(ctrl)" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
     </ng-container>
 
     <ng-container *ngIf="!isLoggedIn">
       <li *ngFor="let ctrl of notAuthUserControls" class="my-3">
-        <a (click)="onClickUserMenu(ctrl)" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
+        <a tabindex="0" (click)="onClickUserMenu(ctrl)" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
     </ng-container>
   </ul>
