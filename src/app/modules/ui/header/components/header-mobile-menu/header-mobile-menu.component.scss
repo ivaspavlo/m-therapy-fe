@@ -1,0 +1,12 @@
+@import 'variables';
+
+:host {
+  position: absolute; top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $bg-overlay;
+}

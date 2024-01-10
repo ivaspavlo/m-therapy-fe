@@ -75,26 +75,38 @@
     </div>
   </div>
 
-  <div *ngIf="isMenuOpen || isUserMenuOpen" class="overlay"></div>
-
-  <ul [ngClass]="{'mobile-menu--visible': isMenuOpen}" class="mobile-menu">
-    <li *ngFor="let ctrl of headerControls" class="my-3">
-      <a class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
-    </li>
-  </ul>
-
-  <ul [ngClass]="{'mobile-menu--visible': isUserMenuOpen}" class="mobile-menu">
-    <ng-container *ngIf="isLoggedIn">
-      <li *ngFor="let ctrl of authUserControls" class="my-3">
-        <a tabindex="0" (click)="onClickUserMenu(ctrl)" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
+  <app-header-mobile-menu *ngIf="isMenuOpen">
+    <ul [ngClass]="{'mobile-menu--visible': isMenuOpen}" class="mobile-menu">
+      <li *ngFor="let ctrl of headerControls" class="my-3">
+        <a class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
-    </ng-container>
+    </ul>
+  </app-header-mobile-menu>
 
-    <ng-container *ngIf="!isLoggedIn">
-      <li *ngFor="let ctrl of notAuthUserControls" class="my-3">
-        <a tabindex="0" (click)="onClickUserMenu(ctrl)" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
-      </li>
-    </ng-container>
-  </ul>
+  <app-header-mobile-menu *ngIf="isUserMenuOpen">
+    <ul [ngClass]="{'mobile-menu--visible': isUserMenuOpen}" class="mobile-menu">
+      <ng-container *ngIf="isLoggedIn">
+        <li *ngFor="let ctrl of authUserControls" class="my-3">
+          <a
+            appHeaderMobileMenuItem
+            tabindex="0"
+            (click)="onClickUserMenu(ctrl)"
+            class="mobile-menu__link"
+          >{{ ctrl.uiName | translate | uppercase }}</a>
+        </li>
+      </ng-container>
+  
+      <ng-container *ngIf="!isLoggedIn">
+        <li *ngFor="let ctrl of notAuthUserControls" class="my-3">
+          <a
+            appHeaderMobileMenuItem
+            tabindex="0"
+            (click)="onClickUserMenu(ctrl)"
+            class="mobile-menu__link"
+          >{{ ctrl.uiName | translate | uppercase }}</a>
+        </li>
+      </ng-container>
+    </ul>
+  </app-header-mobile-menu>
 
 </section>

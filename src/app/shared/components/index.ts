@@ -1,6 +1,5 @@
 import { AdCountdownComponent } from './ad-countdown/ad-countdown.component';
 import { HamburgerComponent } from './hamburger/hamburger.component';
-import { HeaderComponent } from './header/header.component';
 import { IconComponent } from './icon/icon.component';
 import { LanguageBarComponent } from './language-bar/language-bar.component';
 import { LogoComponent } from './logo/logo.component';
@@ -17,11 +16,9 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 import { PrimaryButtonComponent } from './primary-button/primary-button.component';
 import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
-import { HeaderUserMenuComponent } from './header-user-menu/header-user-menu.component';
 
 
 export const COMPONENTS = [
-  HeaderComponent,
   LogoComponent,
   IconComponent,
   HamburgerComponent,
@@ -39,6 +36,5 @@ export const COMPONENTS = [
   DialogContentComponent,
   PrimaryButtonComponent,
   SecondaryButtonComponent,
-  LinkButtonComponent,
-  HeaderUserMenuComponent
+  LinkButtonComponent
 ];
