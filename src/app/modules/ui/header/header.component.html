@@ -78,7 +78,7 @@
   <app-header-mobile-menu *ngIf="isMenuOpen">
     <ul [ngClass]="{'mobile-menu--visible': isMenuOpen}" class="mobile-menu">
       <li *ngFor="let ctrl of headerControls" class="my-3">
-        <a class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
+        <a #headerMobileMenuItem tabindex="0" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
     </ul>
   </app-header-mobile-menu>
@@ -88,7 +88,7 @@
       <ng-container *ngIf="isLoggedIn">
         <li *ngFor="let ctrl of authUserControls" class="my-3">
           <a
-            appHeaderMobileMenuItem
+            #headerMobileMenuItem
             tabindex="0"
             (click)="onClickUserMenu(ctrl)"
             class="mobile-menu__link"
@@ -99,7 +99,7 @@
       <ng-container *ngIf="!isLoggedIn">
         <li *ngFor="let ctrl of notAuthUserControls" class="my-3">
           <a
-            appHeaderMobileMenuItem
+            #headerMobileMenuItem
             tabindex="0"
             (click)="onClickUserMenu(ctrl)"
             class="mobile-menu__link"
