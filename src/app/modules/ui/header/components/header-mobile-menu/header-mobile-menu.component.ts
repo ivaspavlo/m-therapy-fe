@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, ElementRef, QueryList } from '@angular/core';
 
 
 @Component({
@@ -7,10 +7,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./header-mobile-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderMobileMenuComponent {
+export class HeaderMobileMenuComponent implements AfterContentInit {
 
-  ngOnInit(): void {
-    
+  @ContentChildren('headerMobileMenuItem', {descendants: true}) details!: QueryList<ElementRef>;
+  private items: HTMLElement[] = [];
+
+  ngAfterContentInit(): void {
+    this.items = this.details.toArray().map(e => e.nativeElement);
   }
 
   private listenToArrowKeysClick(): void {
