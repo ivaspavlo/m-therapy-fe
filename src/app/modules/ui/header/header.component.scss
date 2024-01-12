@@ -126,7 +126,7 @@
     font-weight: bolder;
     transition: $transition-1;
     cursor: pointer;
-    &:hover {
+    &:hover, &:focus {
       color: $primary;
     }
   }
