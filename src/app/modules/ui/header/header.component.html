@@ -68,28 +68,36 @@
       <li class="app-header__item app-header__item--delimiter"></li>
 
       <app-hamburger
-        (isOn)="onToggleMenu()"
+        [isOn]="isMenuOpen"
+        (toggle)="onToggleMenu()"
         [ngClass]="{'app-header__burger--is-open': isMenuOpen}"
         class="app-header__burger"
       ></app-hamburger>
     </div>
   </div>
 
-  <app-header-mobile-menu *ngIf="isMenuOpen">
+  <app-header-mobile-menu *ngIf="isMenuOpen" (close)="onToggleMenu()">
     <ul [ngClass]="{'mobile-menu--visible': isMenuOpen}" class="mobile-menu">
       <li *ngFor="let ctrl of headerControls" class="my-3">
-        <a #headerMobileMenuItem tabindex="0" class="mobile-menu__link">{{ ctrl.uiName | translate | uppercase }}</a>
+        <a
+          #headerMobileMenuItem
+          tabindex="0"
+          (click)="onClickHeaderControl(ctrl.scrollTarget)"
+          (keyup.enter)="onClickHeaderControl(ctrl.scrollTarget)"
+          class="mobile-menu__link"
+        >{{ ctrl.uiName | translate | uppercase }}</a>
       </li>
     </ul>
   </app-header-mobile-menu>
 
-  <app-header-mobile-menu *ngIf="isUserMenuOpen">
+  <app-header-mobile-menu *ngIf="isUserMenuOpen" (close)="onToggleMenu()">
     <ul [ngClass]="{'mobile-menu--visible': isUserMenuOpen}" class="mobile-menu">
       <ng-container *ngIf="isLoggedIn">
         <li *ngFor="let ctrl of authUserControls" class="my-3">
           <a
             #headerMobileMenuItem
             tabindex="0"
+            (keyup.enter)="onClickUserMenu(ctrl)"
             (click)="onClickUserMenu(ctrl)"
             class="mobile-menu__link"
           >{{ ctrl.uiName | translate | uppercase }}</a>
@@ -101,6 +109,7 @@
           <a
             #headerMobileMenuItem
             tabindex="0"
+            (keyup.enter)="onClickUserMenu(ctrl)"
             (click)="onClickUserMenu(ctrl)"
             class="mobile-menu__link"
           >{{ ctrl.uiName | translate | uppercase }}</a>

@@ -60,6 +60,9 @@ export class HeaderComponent implements OnInit {
     if (!scrollTarget) {
       return;
     }
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
     this.scrollService.scrollToElement(scrollTarget as ScrollTargetElements);
   }
 
