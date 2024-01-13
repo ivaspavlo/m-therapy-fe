@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
@@ -11,21 +11,19 @@ import { DestroySubscriptions } from '@app/shared/classes';
   styleUrls: ['./hamburger.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HamburgerComponent extends DestroySubscriptions implements OnInit {
+export class HamburgerComponent extends DestroySubscriptions {
 
-  @Input() init: boolean = false;
-  @Output() isOn: EventEmitter<boolean> = new EventEmitter();
+  @Input() set isOn(value: boolean) {
+    this._isOn = value;
+  };
+  @Output() toggle: EventEmitter<boolean> = new EventEmitter();
 
-  public _isOn!: boolean;
+  public _isOn: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document
   ) {
     super();
-  }
-
-  ngOnInit(): void {
-    this._isOn = this.init || false;
   }
 
   public onBtnClick(event: MouseEvent): void {
@@ -50,7 +48,7 @@ export class HamburgerComponent extends DestroySubscriptions implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this._isOn = !this._isOn;
-    this.isOn.emit(this._isOn);
+    this.toggle.emit(this._isOn);
   }
 
   ngOnDestroy() {
