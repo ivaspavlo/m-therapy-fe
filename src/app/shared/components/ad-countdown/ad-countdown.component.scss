@@ -2,7 +2,7 @@
 @import 'mixins';
 
 .countdown-timer {
-  width: rem(300px);
+  width: rem(280px);
   min-height: rem(82px);
   padding: rem(8px) rem(16px);
   font-family: sans-serif;
@@ -36,12 +36,6 @@
     align-items: center;
     z-index: 1;
   }
-
-  @include lg {
-    width: rem(420px);
-    min-height: rem(110px);
-    padding: rem(18px) rem(42px);
-  }
 }
 
 .desc {
@@ -53,24 +47,17 @@
 .times {
   width: rem(50px);
   font-weight: 600;
-  font-size: rem(40px);
+  font-size: rem(38px);
   display: flex;
   justify-content: flex-start;
-  @include lg {
-    font-size: rem(48px);
-  }
 }
 
 .delimiter {
   font-weight: 600;
-  font-size: rem(40px);
+  font-size: rem(36px);
   display: flex;
   flex-grow: 1;
   align-items: flex-start;
   justify-content: center;
   transform: translateY(-5px);
-  @include lg {
-    font-size: rem(48px);
-    margin: 0 rem(4px);
-  }
 }
