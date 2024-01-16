@@ -83,30 +83,31 @@
   background-color: $white;
 
   &__header {
-    padding: rem(10px) rem(8px) 0;
+    padding: rem(8px) rem(20px) rem(8px) rem(8px);
     font-size: rem(12px);
     color: $primary;
     display: flex;
     flex-direction: column;
-    @include lg {
-      padding: rem(8px) rem(8px) 0;
-    }
   }
 
   &__title {
+    margin-bottom: rem(4px);
     font-size: 1rem;
     font-weight: bold;
-    display: none;
-    @include lg {
-      display: flex;
-    }
+    display: flex;
   }
 
   &__timer {
     position: relative;
-    display: flex;
-    justify-content: flex-end;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__icon {
+    position: absolute;
+    top: rem(-24px);
+    right: rem(-24px);
   }
 }
