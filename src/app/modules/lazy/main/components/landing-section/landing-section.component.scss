@@ -83,11 +83,11 @@
   background-color: $white;
 
   &__header {
-    padding: rem(8px) rem(20px) rem(8px) rem(8px);
-    font-size: rem(12px);
-    color: $primary;
+    padding: rem(8px) rem(30px) 0 rem(8px);
+    font-size: rem(14px);
     display: flex;
     flex-direction: column;
+    color: $secondary;
   }
 
   &__title {
