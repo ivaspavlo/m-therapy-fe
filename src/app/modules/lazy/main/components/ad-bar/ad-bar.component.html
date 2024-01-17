@@ -1,6 +1,6 @@
-<div *ngIf="content && isVisible" class="ad-bar">
-  <a [routerLink]="link" class="ad-bar__content">
-    <span>{{content}}</span>
+<div *ngIf="ad && isVisible" class="ad-bar">
+  <a [routerLink]="ad.link || null" class="ad-bar__content">
+    <span>{{ad.content}}</span>
     <app-icon (click)="onClose()" name="x-button-white" class="ad-bar__close"></app-icon>
   </a>
 </div>

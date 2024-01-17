@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { ScrollTargetElements } from '@app/core/constants';
-import { UserManagementService } from '@app/core/services';
-import { ScrollService } from '@app/core/services/scroll.service';
+import { UserManagementService, ScrollService } from '@app/core/services';
+import { AdType, IAd } from '@app/interfaces';
 
 
 @Component({
@@ -11,6 +11,14 @@ import { ScrollService } from '@app/core/services/scroll.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingSectionComponent implements OnInit {
+  @Input() set ads(value: IAd[] | null) {
+    if (!Array.isArray(value)) {
+      return;
+    }
+    this.ad = value.find(ad => ad.type === AdType.COUNTDOWN);
+  };
+  public ad?: IAd;
+
   public targetDate!: Date;
   public isLoggedIn: boolean = false;
 

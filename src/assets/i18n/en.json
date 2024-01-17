@@ -24,9 +24,7 @@
   "main": {
     "landing": {
       "register": "Become a member",
-      "pricing": "See pricing",
-      "countdown": "Grand Opening",
-      "countdown-desc": "Up to 25% discount for new members"
+      "pricing": "See pricing"
     }
   },
   "countdown": {
