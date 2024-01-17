@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { IResponse } from "@app/interfaces";
-import { API_URL } from "@env/environment";
 import { Observable } from "rxjs";
+import { IResponse, IAd } from "@app/interfaces";
+import { API_URL } from "@env/environment";
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class AdApiService {
     private http: HttpClient
   ) { }
 
-  public getUserById(): Observable<IResponse<any>> {
-    return this.http.get<IResponse<any>>(`${API_URL}/ad`);
+  public getAds(): Observable<IResponse<IAd[]>> {
+    return this.http.get<IResponse<IAd[]>>(`${API_URL}/ad`);
   }
 }

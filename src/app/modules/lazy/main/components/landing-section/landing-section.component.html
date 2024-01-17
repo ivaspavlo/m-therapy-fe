@@ -13,16 +13,20 @@
       <app-secondary-button title="{{ 'main.landing.pricing' | translate }}" (buttonClick)="onPricingClick()" class="landing__button"></app-secondary-button>
     </div>
 
-    <div class="landing-countdown">
+    <a *ngIf="ad" [routerLink]="ad.link || null" class="landing-countdown">
       <app-icon name="discount" size="xxl" class="landing-countdown__icon"></app-icon>
 
       <header class="landing-countdown__header">
-        <p class="landing-countdown__title">{{ 'main.landing.countdown' | translate }}</p>
-        <p>{{ 'main.landing.countdown-desc' | translate }}</p>
+        <!-- "countdown": "Grand Opening",
+        "countdown-desc": "Up to 25% discount for new members" -->
+        <!-- "countdown": "Велике відкриття",
+        "countdown-desc": "Для нових учасників знижки до 25%" -->
+        <p class="landing-countdown__title">{{ad.title}}</p>
+        <p>{{ad.content}}</p>
       </header>
 
       <app-ad-countdown [targetDate]="targetDate" class="landing-countdown__timer"></app-ad-countdown>
-    </div>
+    </a>
   </div>
 
   <div class="landing__left"></div>
