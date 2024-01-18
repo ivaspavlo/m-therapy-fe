@@ -18,8 +18,6 @@ export class LandingSectionComponent implements OnInit {
     this.ad = value.find(ad => ad.type === AdType.COUNTDOWN);
   };
   public ad?: IAd;
-
-  public targetDate!: Date;
   public isLoggedIn: boolean = false;
 
   constructor(
@@ -28,15 +26,14 @@ export class LandingSectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.targetDate = this.initTargetDate();
     this.isLoggedIn = this.userManagementService.isLoggedIn();
   }
 
-  public initTargetDate(): Date {
-    const targetDate = new Date();
-    targetDate.setMonth(targetDate.getMonth() + 1);
-    return targetDate;
-  }
+  // private initTargetDate(): Date {
+  //   const targetDate = new Date();
+  //   targetDate.setMonth(targetDate.getMonth() + 1);
+  //   return targetDate;
+  // }
 
   public onPricingClick(): void {
     this.scrollService.scrollToElement(ScrollTargetElements.SERVICES_SECTION);

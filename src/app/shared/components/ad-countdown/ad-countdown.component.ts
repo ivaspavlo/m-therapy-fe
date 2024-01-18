@@ -11,13 +11,13 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
 })
 export class AdCountdownComponent implements AfterViewInit {
 
+  @Input('targetDate') targetDate?: Date;
+  @Input('isTargeDateVisible') isTargeDateVisible: boolean = false;
+
   @ViewChild('daysEl', { read: ElementRef, static: true }) daysEl!: ElementRef;
   @ViewChild('hoursEl', { read: ElementRef, static: true }) hoursEl!: ElementRef;
   @ViewChild('minutesEl', { read: ElementRef, static: true }) minutesEl!: ElementRef;
   @ViewChild('secondsEl', { read: ElementRef, static: true }) secondsEl!: ElementRef;
-
-  @Input('targetDate') targetDate!: Date;
-  @Input('isTargeDateVisible') isTargeDateVisible: boolean = false;
 
   public isSpinnerVisible: boolean = true;
 
