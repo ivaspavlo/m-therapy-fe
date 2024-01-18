@@ -7,6 +7,6 @@ export interface IAd {
   type: AdType,
   title: string,
   content: string,
-  endDate?: number,
+  endDate?: Date,
   link?: string
 }
