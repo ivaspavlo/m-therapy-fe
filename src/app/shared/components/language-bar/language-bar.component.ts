@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ILanguage } from '@app/interfaces';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -11,18 +11,16 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class LanguageBarComponent implements OnInit {
 
-  @Input() items: ILanguage[];
-  @Input() current: ILanguage;
+  @Input() items: ILanguage[] = [];
+  @Input() current?: ILanguage;
 
   @Output() languageChange: EventEmitter<ILanguage> = new EventEmitter();
 
-  @ViewChild('activateButton') activateButton: ElementRef;
+  @ViewChild('activateButton', {static: true}) activateButton!: ElementRef;
 
   public current$: BehaviorSubject<ILanguage | null> = new BehaviorSubject<ILanguage | null>(null);
   public listItems$: BehaviorSubject<ILanguage[]> = new BehaviorSubject<ILanguage[]>([]);
   public isOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  private componentDestroyed$: Subject<void> = new Subject();
 
   constructor() { }
 
@@ -57,10 +55,5 @@ export class LanguageBarComponent implements OnInit {
     this.current$.next(item);
     const listItems = item ? this.items.filter(i => i.title !== item.title) : this.items;
     this.listItems$.next(listItems);
-  }
-
-  ngOnDestroy(): void {
-    this.componentDestroyed$.next();
-    this.componentDestroyed$.unsubscribe();
   }
 }
