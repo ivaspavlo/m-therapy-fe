@@ -29,12 +29,6 @@ export class LandingSectionComponent implements OnInit {
     this.isLoggedIn = this.userManagementService.isLoggedIn();
   }
 
-  // private initTargetDate(): Date {
-  //   const targetDate = new Date();
-  //   targetDate.setMonth(targetDate.getMonth() + 1);
-  //   return targetDate;
-  // }
-
   public onPricingClick(): void {
     this.scrollService.scrollToElement(ScrollTargetElements.SERVICES_SECTION);
   }
