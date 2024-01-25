@@ -11,7 +11,12 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
 })
 export class AdCountdownComponent implements AfterViewInit {
 
-  @Input('targetDate') targetDate?: Date;
+  @Input('targetDate') set targetDate(value: number | undefined) {
+    if (!value) {
+      return;
+    }
+    this._targetDate = this.getTargetDate();
+  };
   @Input('isTargeDateVisible') isTargeDateVisible: boolean = false;
 
   @ViewChild('daysEl', { read: ElementRef, static: true }) daysEl!: ElementRef;
@@ -19,8 +24,8 @@ export class AdCountdownComponent implements AfterViewInit {
   @ViewChild('minutesEl', { read: ElementRef, static: true }) minutesEl!: ElementRef;
   @ViewChild('secondsEl', { read: ElementRef, static: true }) secondsEl!: ElementRef;
 
+  public _targetDate?: Date;
   public isSpinnerVisible: boolean = true;
-
   public currentTime: string = '';
   public targetTimeString: string = '';
 
@@ -39,12 +44,12 @@ export class AdCountdownComponent implements AfterViewInit {
   ) { }
 
   ngOnInit() {
-    if (!this.targetDate) {
+    if (!this._targetDate) {
       return;
     }
-    this.targetTime = this.targetDate.getTime();
+    this.targetTime = this._targetDate.getTime();
     this.months = getLocaleMonthNames(this.locale, FormStyle.Standalone, TranslationWidth.Wide);
-    this.targetTimeString = `${this.months[this.targetDate.getMonth()]} ${this.targetDate.getDate()}, ${this.targetDate.getFullYear()}`;
+    this.targetTimeString = `${this.months[this._targetDate.getMonth()]} ${this._targetDate.getDate()}, ${this._targetDate.getFullYear()}`;
   }
 
   ngAfterViewInit() {
@@ -72,4 +77,9 @@ export class AdCountdownComponent implements AfterViewInit {
     this.renderer.setProperty(this.secondsEl.nativeElement, 'innerHTML', this.decimalPipe.transform(60 - this.date.getSeconds(), '2.0'));
   }
 
+  private getTargetDate(): Date {
+    const targetDate = new Date();
+    targetDate.setMonth(targetDate.getMonth() + 1);
+    return targetDate;
+  }
 }

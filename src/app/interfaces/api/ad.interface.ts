@@ -1,12 +1,12 @@
 export enum AdType {
-  COUNTDOWN,
-  FOOTER
+  COUNTDOWN = 'COUNTDOWN',
+  FOOTER = 'FOOTER'
 }
 
 export interface IAd {
   type: AdType,
   title: string,
   content: string,
-  endDate?: Date,
+  endDate?: number,
   link?: string
 }
