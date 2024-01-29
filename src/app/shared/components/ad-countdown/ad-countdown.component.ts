@@ -1,5 +1,5 @@
 import { DecimalPipe, FormStyle, TranslationWidth, getLocaleMonthNames } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, LOCALE_ID, NgZone, Renderer2, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, LOCALE_ID, NgZone, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -9,13 +9,15 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
   providers: [ DecimalPipe ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdCountdownComponent implements AfterViewInit {
+export class AdCountdownComponent implements OnDestroy {
 
   @Input('targetDate') set targetDate(value: number | undefined) {
-    if (!value) {
+    if (!value || typeof value !== 'number') {
       return;
     }
-    this._targetDate = this.getTargetDate();
+    this.stop();
+    this.setUp(value);
+    this.start();
   };
   @Input('isTargeDateVisible') isTargeDateVisible: boolean = false;
 
@@ -34,6 +36,7 @@ export class AdCountdownComponent implements AfterViewInit {
   private now!: number;
   private difference!: number;
   private months!: ReadonlyArray<string>;
+  private interval!: any;
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
@@ -43,7 +46,8 @@ export class AdCountdownComponent implements AfterViewInit {
     private decimalPipe: DecimalPipe
   ) { }
 
-  ngOnInit() {
+  private setUp(value: number): void {
+    this._targetDate = this.getTargetDate(value);
     if (!this._targetDate) {
       return;
     }
@@ -52,11 +56,15 @@ export class AdCountdownComponent implements AfterViewInit {
     this.targetTimeString = `${this.months[this._targetDate.getMonth()]} ${this._targetDate.getDate()}, ${this._targetDate.getFullYear()}`;
   }
 
-  ngAfterViewInit() {
-    if (!this.targetDate) {
+  private start(): void {
+    if (!this._targetDate) {
       return;
     }
-    this.zone.runOutsideAngular(() => setInterval(() => this.tickTock(), 1000));
+    this.zone.runOutsideAngular(() => this.interval = setInterval(() => this.tickTock(), 1000));
+  }
+
+  private stop(): void {
+    clearInterval(this.interval);
   }
 
   private tickTock() {
@@ -77,9 +85,13 @@ export class AdCountdownComponent implements AfterViewInit {
     this.renderer.setProperty(this.secondsEl.nativeElement, 'innerHTML', this.decimalPipe.transform(60 - this.date.getSeconds(), '2.0'));
   }
 
-  private getTargetDate(): Date {
-    const targetDate = new Date();
+  private getTargetDate(value: number): Date {
+    const targetDate = new Date(value);
     targetDate.setMonth(targetDate.getMonth() + 1);
     return targetDate;
+  }
+
+  ngOnDestroy(): void {
+    this.stop();
   }
 }

@@ -17,12 +17,8 @@
       <app-icon name="discount" size="xxl" class="landing-countdown__icon"></app-icon>
 
       <header class="landing-countdown__header">
-        <!-- "countdown": "Grand Opening",
-        "countdown-desc": "Up to 25% discount for new members" -->
-        <!-- "countdown": "Велике відкриття",
-        "countdown-desc": "Для нових учасників знижки до 25%" -->
-        <p class="landing-countdown__title">{{ad.title}}</p>
-        <p>{{ad.content}}</p>
+        <p class="landing-countdown__title">{{ad.title | dynamicTranslate}}</p>
+        <p>{{ad.content | dynamicTranslate}}</p>
       </header>
 
       <app-ad-countdown [targetDate]="ad.endDate" class="landing-countdown__timer"></app-ad-countdown>
