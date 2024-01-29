@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { IResponse, IAd } from "@app/interfaces";
-import { API_URL } from "@env/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IResponse, IAd } from '@app/interfaces';
+import { API_URL } from '@env/environment';
 
 
 @Injectable({

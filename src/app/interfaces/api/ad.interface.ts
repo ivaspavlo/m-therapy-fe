@@ -1,3 +1,5 @@
+import { ITranslationDynamic } from "../language.interface";
+
 export enum AdType {
   COUNTDOWN = 'COUNTDOWN',
   FOOTER = 'FOOTER'
@@ -5,8 +7,8 @@ export enum AdType {
 
 export interface IAd {
   type: AdType,
-  title: string,
-  content: string,
+  title: ITranslationDynamic,
+  content: ITranslationDynamic,
   endDate?: number,
   link?: string
 }
