@@ -1,35 +1,23 @@
-import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { LANGUAGES } from '@app/core/constants';
 import { ITranslationDynamic } from '@app/interfaces';
-import { Subject } from 'rxjs';
-import { skip, takeUntil } from 'rxjs/operators';
 
 @Pipe({
   name: 'dynamicTranslate'
 })
-export class DynamicTranslatePipe implements PipeTransform, OnDestroy {
-
-  private destroy$ = new Subject<void>();
-  private value: any;
+export class DynamicTranslatePipe implements PipeTransform {
 
   constructor(
     private translateService: TranslateService
-  ) {
-    translateService.onLangChange.pipe(
-      skip(1),
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      this.transform(this.value);
-    });
-  }
+  ) { }
 
-  transform(value: ITranslationDynamic): string {
-    this.value = value;
-    return value[this.translateService.currentLang as LANGUAGES.EN | LANGUAGES.UA] ?? '';
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
+  transform(value: ITranslationDynamic): Observable<string> {
+    return this.translateService.onLangChange.pipe(
+      startWith(this.translateService.currentLang),
+      map(() => value[this.translateService.currentLang as LANGUAGES.EN | LANGUAGES.UA])
+    );
   }
 }

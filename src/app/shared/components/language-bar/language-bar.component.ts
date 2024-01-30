@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { ILanguage } from '@app/interfaces';
 import { BehaviorSubject } from 'rxjs';
+import { ILanguage } from '@app/interfaces';
 
 
 @Component({

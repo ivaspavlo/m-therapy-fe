@@ -1,15 +1,14 @@
 <button
-  *ngIf="(current$ | async) as currentItem"
   #activateButton
   clickOutside
   (clickOutside)="onCloseMenu()"
   (click)="onToggleMenu()"
   tabindex="0"
-  [attr.aria-label]="'language-bar.title' | translate:{'x': currentItem.aria | translate}"
+  [attr.aria-label]="'language-bar.title' | translate:{'x': (current$.value?.aria || '') | translate}"
   [ngClass]="{'menu--active': isOpened$ | async}"
   class="menu">
     <a id="currentItem" class="menu__current">
-      <span>{{ currentItem.title | uppercase }}</span>
+      <span>{{ current$.value?.title | uppercase }}</span>
     </a>
     <div class="menu__list">
       <a

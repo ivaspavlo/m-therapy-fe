@@ -1,6 +1,6 @@
 <div *ngIf="ad && isVisible" class="ad-bar">
   <a [routerLink]="ad.link || null" class="ad-bar__content">
-    <span>{{ad.content}}</span>
+    <span>{{ad.content | dynamicTranslate | async}}</span>
     <app-icon (click)="onClose()" name="x-button-white" class="ad-bar__close"></app-icon>
   </a>
 </div>
