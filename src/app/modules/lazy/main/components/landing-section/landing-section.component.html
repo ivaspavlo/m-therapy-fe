@@ -17,8 +17,8 @@
       <app-icon name="discount" size="xxl" class="landing-countdown__icon"></app-icon>
 
       <header class="landing-countdown__header">
-        <p class="landing-countdown__title">{{ad.title | dynamicTranslate}}</p>
-        <p>{{ad.content | dynamicTranslate}}</p>
+        <p class="landing-countdown__title">{{ad.title | dynamicTranslate | async}}</p>
+        <p>{{ad.content | dynamicTranslate | async}}</p>
       </header>
 
       <app-ad-countdown [targetDate]="ad.endDate" class="landing-countdown__timer"></app-ad-countdown>
