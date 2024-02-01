@@ -1,7 +1,7 @@
 <section tabindex="0" attr.aria-label="{{ 'products.aria' | translate }}" class="product-section">
 
   <ul class="product-content">
-    <ng-container *ngFor="let product of products; trackBy: trackByProductId; let index = index;">
+    <ng-container *ngFor="let product of (products$ | async); trackBy: trackByProductId; let index = index;">
       <li
         *ngIf="index < displayLimit"
         tabindex="0"
@@ -10,7 +10,7 @@
       >
         <h3 class="product-tile__title">{{ product.title | translate }}</h3>
         <p class="product-tile__price">UAH {{ product.price | number:'2.2' }}</p>
-        <div class="product-tile__image" [ngStyle]="{'background-image': 'url(' + product.img + ')'}"></div>
+        <div class="product-tile__image" [ngStyle]="{'background-image': 'url(' + product.imgUrl + ')'}"></div>
         <app-arrow-link title="{{ 'products.select' | translate }}"></app-arrow-link>
       </li>
     </ng-container>
