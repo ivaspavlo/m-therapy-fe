@@ -1,20 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IResponse, IAd } from '@app/interfaces';
+import { IResponse, IContent } from '@app/interfaces';
 import { API_URL } from '@env/environment';
+import { Cache } from '@app/core/decorators'
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdApiService {
+export class ContentApiService {
 
   constructor(
     private http: HttpClient
   ) { }
 
-  public getAds(): Observable<IResponse<IAd[]>> {
-    return this.http.get<IResponse<IAd[]>>(`${API_URL}/ad`);
+  @Cache()
+  public getContent(): Observable<IResponse<IContent>> {
+    return this.http.get<IResponse<IContent>>(`${API_URL}/content`);
   }
 }

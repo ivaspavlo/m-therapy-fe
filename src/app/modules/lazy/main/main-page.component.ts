@@ -2,8 +2,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay, takeUntil } from 'rxjs/operators';
 import { ScrollTargetElements } from '@app/core/constants';
-import { AdApiService } from '@app/core/services';
-import { IAd, IResponse } from '@app/interfaces';
+import { ContentApiService } from '@app/core/services';
+import { IAd, IContent, IResponse } from '@app/interfaces';
 import { DestroySubscriptions } from '@app/shared/classes';
 
 
@@ -18,7 +18,7 @@ export class MainPageComponent extends DestroySubscriptions {
   public ads$!: Observable<IAd[]>;
 
   constructor(
-    private adService: AdApiService
+    private contentApiService: ContentApiService
   ) {
     super();
   }
@@ -28,10 +28,10 @@ export class MainPageComponent extends DestroySubscriptions {
   }
 
   private initAds(): void {
-    this.ads$ = this.adService.getAds().pipe(
+    this.ads$ = this.contentApiService.getContent().pipe(
       takeUntil(this.componentDestroyed$),
       catchError(() => of(null)),
-      map((res: IResponse<IAd[]> | null) => res ? res.data : []),
+      map((res: IResponse<IContent> | null) => res ? res.data.ads : []),
       shareReplay()
     );
   }

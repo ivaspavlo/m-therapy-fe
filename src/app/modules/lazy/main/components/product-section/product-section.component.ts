@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { IProduct, IResponse } from '@app/interfaces';
-import { ProductApiService } from '@app/core/services';
+import { IContent, IProduct, IResponse } from '@app/interfaces';
+import { ContentApiService } from '@app/core/services';
 
 
 @Component({
@@ -19,13 +19,13 @@ export class ProductSectionComponent {
   public products$!: Observable<IProduct[]>;
 
   constructor(
-    private productService: ProductApiService
+    private contentApiService: ContentApiService
   ) { }
 
   ngOnInit() {
-    this.products$ = this.productService.getProducts().pipe(
+    this.products$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
-      map((res: IResponse<IProduct[]> | null) => res ? res.data : [])
+      map((res: IResponse<IContent> | null) => res ? res.data.products : [])
     );
   }
 
