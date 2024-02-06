@@ -1,1 +1,1 @@
-export * from './cache.decorator';
+export * from './cache-api-call.decorator';
