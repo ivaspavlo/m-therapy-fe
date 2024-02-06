@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IResponse, IContent } from '@app/interfaces';
 import { API_URL } from '@env/environment';
-import { Cache } from '@app/core/decorators'
+import { CacheApiCall } from '@app/core/decorators'
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ContentApiService {
     private http: HttpClient
   ) { }
 
-  @Cache()
+  @CacheApiCall()
   public getContent(): Observable<IResponse<IContent>> {
     return this.http.get<IResponse<IContent>>(`${API_URL}/content`);
   }
