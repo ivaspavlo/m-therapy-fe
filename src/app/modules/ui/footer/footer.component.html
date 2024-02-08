@@ -29,11 +29,17 @@
         </li>
       </ul>
 
-      <ul class="mx-4 mb-4 d-flex flex-column align-items-center align-items-md-start">
+      <ul *ngIf="contacts$ && (contacts$ | async) as contacts" class="mx-4 mb-4 d-flex flex-column align-items-center align-items-md-start">
         <li class="item--title">
           <span>{{ 'footer.contact' | translate }}</span>
         </li>
-        <li class="item">
+        <li *ngFor="let contact of contacts">
+          <p class="item__text">
+            <app-icon [name]="contact.type | lowercase" size="md" class="d-flex align-items-center mr-1"></app-icon>
+            <span>{{ contact.value }}</span>
+          </p>
+        </li>
+        <!-- <li class="item">
           <p class="item__text">
             <app-icon name="phone" size="md" class="d-flex align-items-center mr-1"></app-icon>
             <span>{{ 'footer.mobile-phone' | translate }}</span>
@@ -50,7 +56,7 @@
             <app-icon name="telegram" size="md" class="d-flex align-items-center mr-1"></app-icon>
             <span>{{ 'footer.telegram' | translate }}</span>
           </p>
-        </li>
+        </li> -->
       </ul>
     </div>
 
