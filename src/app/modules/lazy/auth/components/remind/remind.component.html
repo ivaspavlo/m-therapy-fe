@@ -1,11 +1,14 @@
-<form *ngIf="!isRemindLinkSent" [formGroup]="remindForm" class="auth-page__content">
+<div *ngIf="!isRemindLinkSent" class="auth-page__content">
   <h1 class="auth-page__title">{{'auth.remind.title' | translate}}</h1>
-  <app-input
-    controlName="email"
-    label="{{'auth.email' | translate | titlecase}}"
-    plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}"
-    [type]="INPUT_TYPES.EMAIL"
-  ></app-input>
+
+  <form [formGroup]="remindForm">
+    <app-input
+      controlName="email"
+      label="{{'auth.email' | translate | titlecase}}"
+      plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}"
+      [type]="INPUT_TYPES.EMAIL"
+    ></app-input>
+  </form>
 
   <div class="mt-4 d-flex justify-content-center">
     <app-primary-button
@@ -29,7 +32,7 @@
       class="mx-1"
     ></app-link-button>
   </div>
-</form>
+</div>
 
 <div *ngIf="isRemindLinkSent" class="d-flex flex-column align-items-center">
   <h1 class="auth-page__title">

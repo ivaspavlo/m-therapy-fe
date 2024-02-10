@@ -1,12 +1,14 @@
-<form *ngIf="!isReset" [formGroup]="resetForm" class="auth-page__content">
+<div *ngIf="!isReset" class="auth-page__content">
   <h1 class="auth-page__title">{{'auth.reset.title' | translate}}</h1>
 
-  <app-input
-    controlName="password"
-    label="{{'auth.password' | translate | titlecase}}"
-    plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}"
-    [type]="INPUT_TYPES.PASSWORD"
-  ></app-input>
+  <form [formGroup]="resetForm">
+    <app-input
+      controlName="password"
+      label="{{'auth.password' | translate | titlecase}}"
+      plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}"
+      [type]="INPUT_TYPES.PASSWORD"
+    ></app-input>
+  </form>
 
   <app-input
     controlName="confirmPassword"
@@ -31,7 +33,7 @@
       class="mx-1"
     ></app-link-button>
   </div>
-</form>
+</div>
 
 <div *ngIf="isReset" class="d-flex flex-column align-items-center">
   <app-icon size="xxl" name="success" class="mb-3"></app-icon>
