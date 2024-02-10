@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogin(event: MouseEvent): void {
+    debugger;
     event.stopPropagation();
     event.preventDefault();
     this.isLoading = true;
