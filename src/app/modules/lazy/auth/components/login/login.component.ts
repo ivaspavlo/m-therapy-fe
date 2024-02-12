@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogin(event: MouseEvent): void {
-    debugger;
     event.stopPropagation();
     event.preventDefault();
     this.isLoading = true;
@@ -61,8 +60,8 @@ export class LoginComponent implements OnInit {
         }
       }),
       switchMap((res: null | IResponse<ILoginRes>) => res
-        ? this.userApiService.getUserById(res.data.id)
-        : of(res)
+        ? this.userApiService.getUserById(res.data.id).pipe(catchError(() => of(null)))
+        : of(null)
       )
     ).subscribe((res: null | IResponse<IUser>) => {
       this.isLoading = false;
@@ -74,11 +73,8 @@ export class LoginComponent implements OnInit {
         return;
       }
 
-      this.router.navigateByUrl('/');
-
-      this.localStorage[USER_NAME] = res.data.firstname;
-
       this.userManagementService.setUser(res.data);
+      this.router.navigateByUrl('/');
     });
   }
 
