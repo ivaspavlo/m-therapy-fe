@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { IUser } from '@app/interfaces';
@@ -18,6 +17,7 @@ export class UserManagementService {
   ) { }
 
   public setUser(user: IUser): void {
+    this.localStorage[USER_NAME] = user.firstname;
     this._currentUser$.next(user);
   }
 
