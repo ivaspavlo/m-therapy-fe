@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
       tap((res: null | IResponse<ILoginRes>) => {
         if (res) {
           this.localStorage[ACCESS_TOKEN] = res.data.jwtToken;
-          this.localStorage[USER_ID] = res.data.id;
         }
       }),
       switchMap((res: null | IResponse<ILoginRes>) => res
