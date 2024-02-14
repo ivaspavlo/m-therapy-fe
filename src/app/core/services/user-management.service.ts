@@ -17,6 +17,7 @@ export class UserManagementService {
   ) { }
 
   public setUser(user: IUser): void {
+    this.localStorage[USER_ID] = user.id;
     this.localStorage[USER_NAME] = user.firstname;
     this._currentUser$.next(user);
   }
