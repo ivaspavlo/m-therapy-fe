@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
     this.userApiService.getUserById(userId).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<IUser> | null) => {
-      debugger;
       if (!res) {
         return;
       }
