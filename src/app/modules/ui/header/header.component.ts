@@ -3,9 +3,9 @@ import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angu
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { LANGUAGES_ITEMS, ScrollTargetElements } from '@app/core/constants';
+import { LANGUAGES_ITEMS, ScrollTargetElements, ToastType } from '@app/core/constants';
 import { IHeaderControl, ILanguage } from '@app/interfaces';
-import { ScrollService, UserManagementService } from '@app/core/services';
+import { ScrollService, ToasterService, UserManagementService } from '@app/core/services';
 import { Router } from '@angular/router';
 
 
@@ -38,13 +38,17 @@ export class HeaderComponent implements OnInit {
     { id: 'app-header.services.login', uiName: 'header.user.login', link: '/auth/login' }
   ];
   public isShrinked$!: Observable<boolean>;
+  private messages: Record<string, string> = {
+    logout: 'auth.logout'
+  }
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private translateService: TranslateService,
     private scrollService: ScrollService,
     private userManagementService: UserManagementService,
-    private router: Router
+    private router: Router,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -71,6 +75,7 @@ export class HeaderComponent implements OnInit {
     if (control.id === this.userLogoutButtonId) {
       this.userManagementService.logout();
       this.isLoggedIn = false;
+      this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS)
       this.router.navigateByUrl(control.link!);
     }
     if (control.link) {

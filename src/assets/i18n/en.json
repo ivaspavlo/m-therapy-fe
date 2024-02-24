@@ -71,6 +71,7 @@
     "confirmPassword": "confirm password",
     "dateOfBirth": "date of birth",
     "submit": "Submit",
+    "logout": "You are logged out.",
     "register": {
       "title": "Register",
       "success": "Confirmation email was sent to the address that you have entered.",
