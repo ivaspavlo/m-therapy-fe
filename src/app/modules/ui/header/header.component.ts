@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
     if (control.id === this.userLogoutButtonId) {
       this.userManagementService.logout();
       this.isLoggedIn = false;
-      this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS)
+      this.toasterService.show(this.translateService.instant(this.messages.logout), ToastType.SUCCESS)
       this.router.navigateByUrl(control.link!);
     }
     if (control.link) {
