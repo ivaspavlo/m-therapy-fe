@@ -9,7 +9,7 @@ import { DestroySubscriptions } from '@app/shared/classes';
 import { TeamModalComponent } from './team-modal/team-modal.component';
 import { UpdatesModalComponent } from './updates-modal/updates-modal.component';
 import { CertModalComponent } from './cert-modal/cert-modal.component';
-import { ContentApiService } from '@app/core/services';
+import { ContentApiService, UserApiService } from '@app/core/services';
 import { Observable, of } from 'rxjs';
 import { IContact } from '@app/interfaces/api/contact.interface';
 import { IContent, IResponse } from '@app/interfaces';
@@ -24,7 +24,7 @@ import { IContent, IResponse } from '@app/interfaces';
 export class FooterComponent extends DestroySubscriptions implements OnInit {
 
   public formGroup!: FormGroup;
-  public controlName: string = 'newsletter';
+  public controlName: string = 'email';
   public currentYear: string = '';
   public INPUT_TYPES = INPUT_TYPES;
   public contacts$: Observable<IContact[]> | null = null;
@@ -37,7 +37,8 @@ export class FooterComponent extends DestroySubscriptions implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private readonly fb: FormBuilder,
     private dialogService: DialogService,
-    private contentApiService: ContentApiService
+    private contentApiService: ContentApiService,
+    private userApiService: UserApiService
   ) {
     super();
   }
@@ -73,4 +74,9 @@ export class FooterComponent extends DestroySubscriptions implements OnInit {
     this.dialogService.open(CertModalComponent, this.testDialogConfig);
   }
 
+  public onInputSubmit(): void {
+    this.userApiService.subscribeAdEmails(this.formGroup.value).pipe(
+      catchError(() => of(null))
+    ).subscribe();
+  }
 }

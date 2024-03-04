@@ -12,3 +12,7 @@ export interface IAd {
   endDate?: number,
   link?: string
 }
+
+export interface ISubscribeAdEmailsReq {
+  email: string
+}
