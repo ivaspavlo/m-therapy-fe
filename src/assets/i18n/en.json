@@ -71,13 +71,13 @@
     "confirmPassword": "confirm password",
     "dateOfBirth": "date of birth",
     "submit": "Submit",
-    "logout": "Logged out.",
+    "logout": "Logged out",
     "register": {
       "title": "Register",
-      "success": "Confirmation email was sent to the address that you have entered.",
-      "failure": "Something went wrong when trying to register you.",
+      "success": "Confirmation email was sent to the address that you have entered",
+      "failure": "Something went wrong when trying to register you",
       "thanks": "Thank you for registering!",
-      "after": "Please check your email box and follow instructions."
+      "after": "Please check your email box and follow instructions"
     },
     "confirmEmail": {
       "thanks": "Thank you for confirming the email",
@@ -86,8 +86,8 @@
     },
     "login": {
       "title": "Login",
-      "success": "Logged in successfully.",
-      "failure": "Oops, something went wrong when logging you in."
+      "success": "Logged in successfully",
+      "failure": "Oops, something went wrong when logging you in"
     },
     "remind": {
       "title": "Remind password",
