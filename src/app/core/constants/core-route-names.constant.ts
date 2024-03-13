@@ -6,5 +6,6 @@ export enum CORE_ROUTE_NAMES {
   BOOKING = 'booking',
   PROFILE = 'profile',
   OTHER = '**',
-  NOT_FOUND = '404'
+  NOT_FOUND = '404',
+  ADMIN = 'admin'
 }
