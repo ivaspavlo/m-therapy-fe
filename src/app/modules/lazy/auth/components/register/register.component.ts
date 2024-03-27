@@ -42,7 +42,8 @@ export class RegisterComponent {
       password: ['',  [Validators.required, PasswordValidators.default]],
       confirmPassword: ['', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]],
       birthday: ['', [Validators.required, DateValidators.birthDate]],
-      lang: ['']
+      lang: [''],
+      hasEmailConsent: [true]
     });
   }
 
