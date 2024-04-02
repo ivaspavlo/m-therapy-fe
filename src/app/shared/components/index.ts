@@ -16,7 +16,7 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 import { PrimaryButtonComponent } from './primary-button/primary-button.component';
 import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
-
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 export const COMPONENTS = [
   LogoComponent,
@@ -36,5 +36,6 @@ export const COMPONENTS = [
   DialogContentComponent,
   PrimaryButtonComponent,
   SecondaryButtonComponent,
-  LinkButtonComponent
+  LinkButtonComponent,
+  CheckboxComponent
 ];

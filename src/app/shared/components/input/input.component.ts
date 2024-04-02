@@ -10,7 +10,6 @@ import { INPUT_TYPES } from '@app/core/constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements OnInit {
-
   @Output() inputSubmit: EventEmitter<void> = new EventEmitter();
 
   @Input() controlName!: string;
@@ -48,5 +47,4 @@ export class InputComponent implements OnInit {
   private initInnerInputType(): void {
     this.type = !this.type ? INPUT_TYPES.TEXT : this.type;
   }
-
 }
