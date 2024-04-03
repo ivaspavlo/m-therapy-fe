@@ -1,4 +1,4 @@
-<div class="checkbox-wrapper">
+<div class="checkbox">
   <input [formControl]="control" type="checkbox" [id]="'toggle_' + controlName" class="toggle"/>
   <label for="toggle" class="toggle-label" [ngClass]="{'has-error': (control.touched || control.dirty) && hasErrors}"></label>
 </div>
