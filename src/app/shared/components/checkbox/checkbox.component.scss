@@ -1,60 +1,58 @@
 @import 'variables';
 
-.checkbox-wrapper {
-  --borderColor: #0db981;
-  --borderWidth: 0.1em;
-  margin-block-end: 0.5em;
-  margin-inline-start: 0.5em;
-}
+.checkbox {
+  --borderWidth: 0.18rem;
+  --transition: 100ms;
 
-.checkbox-wrapper input[type=checkbox] {
-  -webkit-appearance: none;
-  appearance: none;
-  vertical-align: middle;
-  background: transparent;
-  font-size: 1.8em;
-  display: inline-block;
-  border: 1px solid var(--borderColor);
-  width: 0.75em;
-  aspect-ratio: 1;
-  position: relative;
-}
+  input[type=checkbox] {
+    font-size: 3.24rem;
+    border: 1px solid $primary;
+    width: 1.35rem;
+    height: 1.35rem;
+    vertical-align: middle;
+    background: transparent;
+    display: inline-block;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
 
-.checkbox-wrapper input[type=checkbox]:before,
-.checkbox-wrapper input[type=checkbox]:after {
-  content: "";
-  position: absolute;
-  background: var(--borderColor);
-  width: calc(var(--borderWidth) * 3);
-  height: var(--borderWidth);
-  top: 50%;
-  left: 10%;
-  transform-origin: left center;
-}
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 10%;
+      top: 50%;
+      background: $primary;
+      width: calc(var(--borderWidth) * 2);
+      height: var(--borderWidth);
+      transform-origin: left center;
+    }
 
-.checkbox-wrapper input[type=checkbox]:before {
-  transform: rotate(45deg) translate(calc(var(--borderWidth) / -2), calc(var(--borderWidth) / -2)) scaleX(0);
-  transition: transform 200ms ease-in 200ms;
-}
+    &:before {
+      transform: rotate(45deg) translate(calc(var(--borderWidth) / -2), calc(var(--borderWidth) / -2)) scaleX(0);
+      transition: transform var(--transition) ease-in var(--transition);
+    }
 
-.checkbox-wrapper input[type=checkbox]:after {
-  width: calc(var(--borderWidth) * 5);
-  transform: rotate(-45deg) translateY(calc(var(--borderWidth) * 2)) scaleX(0);
-  transform-origin: left center;
-  transition: transform 200ms ease-in;
-}
+    &:after {
+      width: calc(var(--borderWidth) * 5);
+      transform: rotate(-45deg) translateY(calc(var(--borderWidth) * 2)) scaleX(0);
+      transform-origin: left center;
+      transition: transform var(--transition) ease-in;
+    }
 
-.checkbox-wrapper input[type=checkbox]:checked:before {
-  transform: rotate(45deg) translate(calc(var(--borderWidth) / -2), calc(var(--borderWidth) / -2)) scaleX(1);
-  transition: transform 200ms ease-in;
-}
+    &[type=checkbox]:checked:before {
+      transform: rotate(45deg) translate(calc(var(--borderWidth) / -2), calc(var(--borderWidth) / -2)) scaleX(1);
+      transition: transform var(--transition) ease-in;
+    }
 
-.checkbox-wrapper input[type=checkbox]:checked:after {
-  width: calc(var(--borderWidth) * 5);
-  transform: rotate(-45deg) translateY(calc(var(--borderWidth) * 2)) scaleX(1);
-  transition: transform 200ms ease-out 200ms;
-}
+    &[type=checkbox]:checked:after {
+      width: calc(var(--borderWidth) * 5);
+      transform: rotate(-45deg) translateY(calc(var(--borderWidth) * 2)) scaleX(1);
+      transition: transform var(--transition) ease-out var(--transition);
+    }
 
-.checkbox-wrapper input[type=checkbox]:focus {
-  outline: calc(var(--borderWidth) / 2) dotted rgba(0, 0, 0, 0.25);
+    &[type=checkbox]:focus {
+      outline: calc(var(--borderWidth) / 2) dotted rgba(0, 0, 0, 0.25);
+    }
+  }
 }
