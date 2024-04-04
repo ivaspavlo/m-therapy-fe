@@ -1,21 +1,37 @@
 @import 'variables';
+@import 'mixins';
 
 .checkbox {
   --borderWidth: 0.18rem;
   --transition: 100ms;
+  position: relative;
+
+  &.has-error {
+    input[type=checkbox] {
+      border: rem(1px) solid $warn;
+      &:before, &:after {
+        background: $warn;
+      }
+    }
+    .label {
+      color: $warn;
+    }
+    .error {
+      opacity: 1;
+    }
+  }
 
   input[type=checkbox] {
-    font-size: 3.24rem;
-    border: 1px solid $primary;
-    width: 1.35rem;
-    height: 1.35rem;
+    font-size: rem(52px);
+    border: rem(1px) solid $primary;
+    width: rem(22px);
+    height: rem(22px);
     vertical-align: middle;
     background: transparent;
     display: inline-block;
     position: relative;
     appearance: none;
     -webkit-appearance: none;
-    cursor: pointer;
 
     &:before, &:after {
       content: '';
@@ -55,4 +71,20 @@
       outline: calc(var(--borderWidth) / 2) dotted rgba(0, 0, 0, 0.25);
     }
   }
+}
+
+.label {
+  margin-left: rem(6px);
+  font-size: rem(14px);
+  color: $primary;
+
+  &.has-error {
+    color: $warn;
+  }
+}
+
+.error {
+  width: 100%;
+  position: absolute; bottom: rem(-15px);
+  opacity: 0;
 }

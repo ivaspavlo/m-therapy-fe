@@ -1,4 +1,14 @@
-<div class="checkbox">
-  <input [formControl]="control" type="checkbox" [id]="'toggle_' + controlName" class="toggle"/>
-  <label for="toggle" class="toggle-label" [ngClass]="{'has-error': (control.touched || control.dirty) && hasErrors}"></label>
+<div class="checkbox" [ngClass]="{'has-error': true}">
+  <input
+    [formControl]="control"
+    [id]="'toggle_'+controlName"
+    type="checkbox"
+  />
+  <label
+    class="label"
+    [for]="'toggle_'+controlName"
+  >test</label>
+  <div class="error">
+    <app-form-error [errors]="control.errors"></app-form-error>
+  </div>
 </div>
