@@ -5,6 +5,8 @@
   --borderWidth: 0.18rem;
   --transition: 100ms;
   position: relative;
+  display: flex;
+  align-items: center;
 
   &.has-error {
     input[type=checkbox] {
@@ -26,7 +28,8 @@
     border: rem(1px) solid $primary;
     width: rem(22px);
     height: rem(22px);
-    vertical-align: middle;
+    display: flex;
+    flex-shrink: 0;
     background: transparent;
     display: inline-block;
     position: relative;
@@ -77,6 +80,7 @@
   margin-left: rem(6px);
   font-size: rem(14px);
   color: $primary;
+  line-height: 12px;
 
   &.has-error {
     color: $warn;

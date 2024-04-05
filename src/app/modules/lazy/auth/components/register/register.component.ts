@@ -75,4 +75,8 @@ export class RegisterComponent {
       );
     });
   }
+
+  public onShowConditions(): void {
+    console.log('test');
+  }
 }
