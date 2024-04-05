@@ -1,18 +1,14 @@
 import { Component, ChangeDetectionStrategy, Input, Optional } from '@angular/core';
-import { ControlContainer, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: CheckboxComponent,
-    multi: true
-  }]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent {
+  @Input() label: string = '';
   @Input() controlName!: string;
   @Input() hasErrors = false;
 
