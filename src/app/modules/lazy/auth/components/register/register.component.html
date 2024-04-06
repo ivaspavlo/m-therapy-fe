@@ -9,11 +9,11 @@
     <app-input controlName="phone" label="{{'auth.phoneNumber' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.phoneNumber' | translate} }}" [type]="INPUT_TYPES.PHONE"></app-input>
     <app-input controlName="password" label="{{'auth.password' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
     <app-input controlName="confirmPassword" label="{{'auth.confirmPassword' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
-    <app-checkbox controlName="hasEmailConsent" label="{{'auth.hasEmailConsent' | translate }}" class="d-flex mb-4"></app-checkbox>
-    <app-checkbox controlName="hasEmailConsent" class="d-flex mb-4">
+    <app-checkbox controlName="hasEmailConsent" label="{{'auth.hasEmailConsent' | translate }}" class="d-flex my-4"></app-checkbox>
+    <app-checkbox controlName="hasConditionsConsent" class="d-flex mb-4">
       <p>
         <span>{{'auth.hasConditionsConsent' | translate }}</span>
-        <a (click)="onShowConditions()">{{'auth.conditions' | translate }}</a>
+        <a class="app-register__conditions" (click)="onShowConditions($event)">{{'auth.conditions' | translate }}</a>
       </p>
     </app-checkbox>
   </form>

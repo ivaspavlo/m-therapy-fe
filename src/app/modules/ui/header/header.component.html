@@ -15,7 +15,7 @@
 
       <li class="app-header__item">
         <app-header-user-menu (clickMenuItem)="onClickUserMenu($event)" [items]="isLoggedIn ? authUserControls : notAuthUserControls">
-          <a [attr.aria-label]="'header.user-button' | translate" class="app-header__link default-hover user-link">
+          <a [attr.aria-label]="'header.user-button' | translate" class="app-header__link user-link">
             <app-icon name="user" size="xl"></app-icon>
           </a>
         </app-header-user-menu>
