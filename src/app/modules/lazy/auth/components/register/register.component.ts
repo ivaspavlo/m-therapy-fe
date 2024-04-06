@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { AuthApiService, ToasterService } from '@app/core/services';
+import { DestroySubscriptions } from '@app/shared/classes';
 import { IResponse } from '@app/interfaces';
+import { DialogService } from '@app/modules/ui';
 import { DateValidators, PasswordValidators } from '../../constants';
+import { TestModalComponent } from '../test-modal/test-modal.component';
 
 
 @Component({
@@ -15,7 +18,7 @@ import { DateValidators, PasswordValidators } from '../../constants';
   styleUrls: ['./register.component.scss', '../../auth-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterComponent {
+export class RegisterComponent extends DestroySubscriptions {
   public registerForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
   public isLoading: boolean = false;
@@ -30,8 +33,11 @@ export class RegisterComponent {
     private cdr: ChangeDetectorRef,
     private authService: AuthApiService,
     private toasterService: ToasterService,
-    private translateService: TranslateService
-  ) { }
+    private translateService: TranslateService,
+    private dialogService: DialogService
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -43,7 +49,8 @@ export class RegisterComponent {
       confirmPassword: ['', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]],
       birthday: ['', [Validators.required, DateValidators.birthDate]],
       lang: [''],
-      hasEmailConsent: [true]
+      hasEmailConsent: [false],
+      hasConditionsConsent: [false, Validators.required]
     });
   }
 
@@ -76,7 +83,13 @@ export class RegisterComponent {
     });
   }
 
-  public onShowConditions(): void {
-    console.log('test');
+  public onShowConditions(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.dialogService.open(TestModalComponent, {}).afterClosed.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe(() => {
+      console.log('works');
+    });
   }
 }
