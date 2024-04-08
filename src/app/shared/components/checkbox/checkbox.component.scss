@@ -81,10 +81,6 @@
   font-size: rem(14px);
   color: $primary;
   line-height: 12px;
-
-  &.has-error {
-    color: $warn;
-  }
 }
 
 .error {

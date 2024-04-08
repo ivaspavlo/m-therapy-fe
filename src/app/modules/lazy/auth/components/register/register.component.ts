@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { AuthApiService, ToasterService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
-import { IResponse } from '@app/interfaces';
+import { IRegisterReq, IResponse } from '@app/interfaces';
 import { DialogService } from '@app/modules/ui';
 import { DateValidators, PasswordValidators } from '../../constants';
 import { TestModalComponent } from '../test-modal/test-modal.component';
@@ -48,9 +48,8 @@ export class RegisterComponent extends DestroySubscriptions {
       password: ['',  [Validators.required, PasswordValidators.default]],
       confirmPassword: ['', [Validators.required, PasswordValidators.default, PasswordValidators.passwordsEqual()]],
       birthday: ['', [Validators.required, DateValidators.birthDate]],
-      lang: [''],
       hasEmailConsent: [false],
-      hasConditionsConsent: [false, Validators.required]
+      hasConditionsConsent: [false, Validators.requiredTrue]
     });
   }
 
@@ -58,11 +57,10 @@ export class RegisterComponent extends DestroySubscriptions {
     event.stopPropagation();
     event.preventDefault();
     this.isLoading = true;
-    const req = {
-      ...this.registerForm.value,
-      lang: this.translateService.currentLang
-    };
-    this.authService.register(req).pipe(
+
+    this.authService.register(
+      this.getFormattedRequestBody(this.registerForm)
+    ).pipe(
       catchError(() => of(null))
     ).subscribe((res: null | IResponse<object>) => {
       this.isLoading = false;
@@ -89,7 +87,22 @@ export class RegisterComponent extends DestroySubscriptions {
     this.dialogService.open(TestModalComponent, {}).afterClosed.pipe(
       takeUntil(this.componentDestroyed$)
     ).subscribe(() => {
+      // to be developed
       console.log('works');
     });
+  }
+
+  private getFormattedRequestBody(form: FormGroup): IRegisterReq {
+    const formValue = form.value;
+    return {
+      firstname: formValue.firstname,
+      lastname: formValue.lastname,
+      email: formValue.email,
+      phone: formValue.phone,
+      birthday: formValue.birthday,
+      password: formValue.password,
+      hasEmailConsent: formValue.hasEmailConsent,
+      lang: this.translateService.currentLang
+    }
   }
 }

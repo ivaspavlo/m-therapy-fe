@@ -1,4 +1,4 @@
-<div class="checkbox" [ngClass]="{'has-error': (control.touched || control.dirty) && hasErrors}">
+<div class="checkbox" [ngClass]="{'has-error': control.errors && (control.dirty || control.touched)}">
   <input
     [formControl]="control"
     [id]="'toggle_'+controlName"
@@ -9,7 +9,7 @@
     class="label"
     [for]="'toggle_'+controlName"
   >
-    <span>{{label}}</span>
+    <span *ngIf="label">{{label}}</span>
     <ng-content></ng-content>
   </label>
 
