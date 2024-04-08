@@ -15,7 +15,8 @@ export interface IRegisterReq {
   phone: string,
   birthday: number,
   password: string,
-  lang: string
+  lang: string,
+  hasEmailConsent: boolean
 }
 
 // export interface ILoginReq {
