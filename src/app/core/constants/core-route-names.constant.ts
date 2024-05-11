@@ -7,5 +7,6 @@ export enum CORE_ROUTE_NAMES {
   PROFILE = 'profile',
   OTHER = '**',
   NOT_FOUND = '404',
-  ADMIN = 'admin'
+  ADMIN = 'admin',
+  UNSUBSCRIBE = 'unsubscribe/token'
 }
