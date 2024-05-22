@@ -15,7 +15,7 @@ export class UserApiService {
   ) { }
 
   public getUserById(userId: string): Observable<IResponse<IUser>> {
-    return this.http.get<IResponse<IUser>>(`${API_URL}/profile?id=${userId}`);
+    return this.http.get<IResponse<IUser>>(`${API_URL}/user`);
   }
 
   public subscribeAdEmails(req: ISubscribeAdEmailsReq): Observable<IResponse<null>> {
