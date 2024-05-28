@@ -25,6 +25,10 @@
     "landing": {
       "register": "Become a member",
       "pricing": "See pricing"
+    },
+    "subscribe": {
+      "success": "You have successfully subscribed!",
+      "failure": "Ooops, something went wrong with the subscribtion..."
     }
   },
   "countdown": {

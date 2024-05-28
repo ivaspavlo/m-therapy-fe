@@ -18,7 +18,7 @@ export class UserApiService {
     return this.http.get<IResponse<IUser>>(`${API_URL}/user`);
   }
 
-  public subscribeAdEmails(req: ISubscribeAdEmailsReq): Observable<IResponse<null>> {
-    return this.http.put<IResponse<null>>(`${API_URL}/user/subscribe`, req);
+  public subscribeAdEmails(req: ISubscribeAdEmailsReq): Observable<IResponse<ISubscribeAdEmailsReq>> {
+    return this.http.post<IResponse<ISubscribeAdEmailsReq>>(`${API_URL}/user/subscribe`, req);
   }
 }
