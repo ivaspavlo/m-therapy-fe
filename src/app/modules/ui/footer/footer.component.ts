@@ -2,17 +2,18 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, map, takeUntil } from 'rxjs/operators';
-import { INPUT_TYPES } from '@app/core/constants';
+import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { DialogService } from '@app/modules/ui/dialog';
 import { DestroySubscriptions } from '@app/shared/classes';
 
 import { TeamModalComponent } from './team-modal/team-modal.component';
 import { UpdatesModalComponent } from './updates-modal/updates-modal.component';
 import { CertModalComponent } from './cert-modal/cert-modal.component';
-import { ContentApiService, UserApiService } from '@app/core/services';
+import { ContentApiService, ToasterService, UserApiService } from '@app/core/services';
 import { Observable, of } from 'rxjs';
 import { IContact } from '@app/interfaces/api/contact.interface';
-import { IContent, IResponse } from '@app/interfaces';
+import { IContent, IResponse, ISubscribeAdEmailsReq } from '@app/interfaces';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -32,13 +33,19 @@ export class FooterComponent extends DestroySubscriptions implements OnInit {
   private testDialogConfig = {
     test: 'TEST'
   };
+  private messages = {
+    subscribeSuccess: 'main.subscribe.success',
+    subscribeFailure: 'main.subscribe.failure'
+  }
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private readonly fb: FormBuilder,
     private dialogService: DialogService,
     private contentApiService: ContentApiService,
-    private userApiService: UserApiService
+    private userApiService: UserApiService,
+    private toasterService: ToasterService,
+    private translateService: TranslateService
   ) {
     super();
   }
@@ -77,8 +84,12 @@ export class FooterComponent extends DestroySubscriptions implements OnInit {
   public onInputSubmit(): void {
     this.userApiService.subscribeAdEmails(this.formGroup.value).pipe(
       catchError(() => of(null))
-    ).subscribe((res: any) => {
-      // to be implemented
+    ).subscribe((res: IResponse<ISubscribeAdEmailsReq> | null) => {
+      if (res !== null) {
+        this.formGroup.reset();
+        return this.toasterService.show(this.translateService.instant(this.messages.subscribeSuccess), ToastType.SUCCESS)
+      }
+      this.toasterService.show(this.translateService.instant(this.messages.subscribeFailure), ToastType.ERROR);
     });
   }
 }
