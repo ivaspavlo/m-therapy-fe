@@ -57,3 +57,6 @@ tools/gulp-tasks/cldr/cldr-data/
 
 # Husky
 .husky/_
+
+# Task planner
+NEXT_TASK.md
