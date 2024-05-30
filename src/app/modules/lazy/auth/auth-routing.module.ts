@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { RemindComponent } from './components/remind/remind.component';
 import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { UnsubscribePageComponent } from './components/unsubscribe-page/unsubscribe-page.component';
 
 
 const AUTH_ROUTE_NAMES = {
@@ -16,7 +17,8 @@ const AUTH_ROUTE_NAMES = {
   REGISTER: 'register',
   REGISTER_CONFIRM: 'register-confirm/:token',
   REMIND_PASSWORD: 'remind',
-  RESET_PASSWORD: 'reset/:token'
+  RESET_PASSWORD: 'reset/:token',
+  UNSUBSCRIBE: 'unsubscribe'
 };
 
 const authRouts: Route[] = [
@@ -50,6 +52,9 @@ const authRouts: Route[] = [
     }, {
       path: AUTH_ROUTE_NAMES.RESET_PASSWORD,
       component: ResetComponent
+    }, {
+      path: AUTH_ROUTE_NAMES.UNSUBSCRIBE,
+      component: UnsubscribePageComponent
     }]
   }
 ];
