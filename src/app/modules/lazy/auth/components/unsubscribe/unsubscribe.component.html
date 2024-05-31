@@ -1,0 +1,16 @@
+<div class="auth-page__content">
+  <ng-container *ngIf="isUnsubscribed$ | async">
+    <app-icon size="xxl" name="sad" class="d-flex justify-content-center mb-3"></app-icon>
+
+    <h1 class="auth-page__title">
+      <span>{{'auth.unsubscribe.thanks' | translate}}</span>
+      <span>{{'auth.unsubscribre.after' | translate}}</span>
+    </h1>
+  </ng-container>
+
+  <ng-container *ngIf="!(isUnsubscribed$ | async)">
+    <h1 class="auth-page__title">
+      <span>{{'auth.unsubscribe.failure' | translate}}</span>
+    </h1>
+  </ng-container>
+</div>

@@ -23,5 +23,4 @@ export class RegisterConfirmComponent implements OnInit {
       map(({ data }) => data)
     );
   }
-
 }
