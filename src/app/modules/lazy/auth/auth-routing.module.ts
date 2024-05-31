@@ -1,6 +1,7 @@
 import { NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRouteSnapshot, Route, RouterModule } from '@angular/router';
+
 import { AuthApiService } from '@app/core/services';
 import { AuthPageComponent } from './auth-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -8,8 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { RemindComponent } from './components/remind/remind.component';
 import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
 import { ResetComponent } from './components/reset/reset.component';
-import { UnsubscribePageComponent } from './components/unsubscribe-page/unsubscribe-page.component';
-
+import { UnsubscribeComponent } from './components/unsubscribe/unsubscribe.component';
 
 const AUTH_ROUTE_NAMES = {
   BLANK: '',
@@ -18,7 +18,7 @@ const AUTH_ROUTE_NAMES = {
   REGISTER_CONFIRM: 'register-confirm/:token',
   REMIND_PASSWORD: 'remind',
   RESET_PASSWORD: 'reset/:token',
-  UNSUBSCRIBE: 'unsubscribe'
+  UNSUBSCRIBE: 'unsubscribe/:token'
 };
 
 const authRouts: Route[] = [
@@ -54,7 +54,12 @@ const authRouts: Route[] = [
       component: ResetComponent
     }, {
       path: AUTH_ROUTE_NAMES.UNSUBSCRIBE,
-      component: UnsubscribePageComponent
+      component: UnsubscribeComponent,
+      resolve: {
+        data: (route: ActivatedRouteSnapshot) => {
+          return inject(AuthApiService).unsubscribe(route.paramMap.get('token')!);
+        }
+      }
     }]
   }
 ];

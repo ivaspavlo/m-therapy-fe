@@ -34,4 +34,8 @@ export class AuthApiService {
   public reset(req: IUpdateReq, token: string): Observable<IResponse<object>> {
     return this.http.post<IResponse<object>>(`${API_URL}/reset?token=${token}`, req);
   }
+
+  public unsubscribe(token: string): Observable<IResponse<any>> {
+    return this.http.delete<IResponse<any>>(`${API_URL}/user/unsubscribe?token=${token}`);
+  }
 }

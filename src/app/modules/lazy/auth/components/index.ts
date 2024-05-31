@@ -4,7 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { RemindComponent } from './remind/remind.component';
 import { ResetComponent } from './reset/reset.component';
 import { TestModalComponent } from './test-modal/test-modal.component';
-import { UnsubscribePageComponent } from './unsubscribe-page/unsubscribe-page.component';
+import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 
 
 export const COMPONENTS = [
@@ -14,5 +14,5 @@ export const COMPONENTS = [
   ResetComponent,
   TestModalComponent,
   RegisterConfirmComponent,
-  UnsubscribePageComponent
+  UnsubscribeComponent
 ];
