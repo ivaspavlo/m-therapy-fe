@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute, Data } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-unsubscribe',
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnsubscribeComponent {
-  public isUnsubscribed$: Observable<boolean> | null = null;
+  public isUnsubscribed$!: Observable<boolean>;
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -18,7 +18,12 @@ export class UnsubscribeComponent {
 
   ngOnInit(): void {
     this.isUnsubscribed$ = this.activatedRoute.data.pipe(
-      map(({ data }) => data)
+      map((res: Data) => {
+        return typeof res.data.success === 'boolean'
+          ? res.data.success
+          : false;
+      }),
+      catchError(() => of(false))
     );
   }
 }
