@@ -28,7 +28,12 @@
     },
     "subscribe": {
       "success": "You have successfully subscribed!",
-      "failure": "Ooops, something went wrong with the subscribtion..."
+      "failure": "Ooops... something went wrong with the subscribtion"
+    },
+    "unsubscribe": {
+      "thanks": "Sorry to see you go...",
+      "after": "You have unsubscribed from the mailing list",
+      "failure": "Ooops... Something went wrong while unsubscribing you"
     }
   },
   "countdown": {
