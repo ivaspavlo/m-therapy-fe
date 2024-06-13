@@ -22,6 +22,7 @@
     "activate": "{{x}} language. Click to activate"
   },
   "main": {
+    "unpredicted": "Ooops...",
     "landing": {
       "register": "Become a member",
       "pricing": "See pricing"
@@ -32,8 +33,9 @@
     },
     "unsubscribe": {
       "thanks": "Sorry to see you go...",
-      "after": "You have unsubscribed from the mailing list",
-      "failure": "Ooops... Something went wrong while unsubscribing you"
+      "after": "You have been unsubscribed from the mailing list",
+      "failure": "Something went wrong with unsubscribing",
+      "failure-reason": "Please try once more, and in case of the error contact our support"
     }
   },
   "countdown": {

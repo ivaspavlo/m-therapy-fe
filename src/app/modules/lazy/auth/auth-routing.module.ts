@@ -1,6 +1,8 @@
 import { NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRouteSnapshot, Route, RouterModule } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { AuthApiService } from '@app/core/services';
 import { AuthPageComponent } from './auth-page.component';
@@ -57,7 +59,9 @@ const authRouts: Route[] = [
       component: UnsubscribeComponent,
       resolve: {
         data: (route: ActivatedRouteSnapshot) => {
-          return inject(AuthApiService).unsubscribe(route.paramMap.get('token')!);
+          return inject(AuthApiService).unsubscribe(route.paramMap.get('token')!).pipe(
+            catchError(() => of(null))
+          );
         }
       }
     }]
