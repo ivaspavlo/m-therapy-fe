@@ -1,3 +1,4 @@
+import { LANGUAGES } from "@app/core/constants";
 import { ITranslationDynamic } from "../language.interface";
 
 export enum AdType {
@@ -14,5 +15,6 @@ export interface IAd {
 }
 
 export interface ISubscribeAdEmailsReq {
-  email: string
+  email: string,
+  lang: LANGUAGES
 }
