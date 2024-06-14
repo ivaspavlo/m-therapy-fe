@@ -82,7 +82,7 @@ export class FooterComponent extends DestroySubscriptions implements OnInit {
   }
 
   public onInputSubmit(): void {
-    this.userApiService.subscribeAdEmails(this.formGroup.value).pipe(
+    this.userApiService.subscribeAdEmails({...this.formGroup.value, lang: this.translateService.currentLang}).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<ISubscribeAdEmailsReq> | null) => {
       if (res !== null) {
