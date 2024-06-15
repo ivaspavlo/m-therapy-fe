@@ -4,8 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { first, map, shareReplay, tap } from 'rxjs/operators';
 
-import { ToastType } from '@app/core/constants';
+import { LANGUAGES, ToastType } from '@app/core/constants';
 import { ToasterService } from '@app/core/services';
+import { IResponse } from '@app/interfaces';
 
 @Component({
   selector: 'app-unsubscribe',
@@ -29,9 +30,12 @@ export class UnsubscribeComponent {
     this.isUnsubscribed$ = this.activatedRoute.data.pipe(
       first(),
       map((res: Data) => {
-        return typeof res.data?.success === 'boolean'
-          ? res.data.success
-          : false;
+        if (res === null) {
+          return false;
+        }
+        const responseBody = res.data as IResponse<{lang: LANGUAGES}>;
+        this.translateService.setDefaultLang(responseBody.data.lang);
+        return responseBody.success;
       }),
       tap((res: boolean) => {
         if (!res) {
