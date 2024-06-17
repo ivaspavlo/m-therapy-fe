@@ -21,6 +21,10 @@ const coreRouts: Route[] = [
     data: { animationState: 'Two' },
     loadChildren: () => import('@app/modules/lazy/admin/admin.module').then(m => m.AdminModule)
   }, {
+    path: CORE_ROUTE_NAMES.PRODUCT,
+    data: { animationState: 'Two' },
+    loadChildren: () => import('@app/modules/lazy/product/product.module').then(m => m.ProductModule)
+  }, {
     path: CORE_ROUTE_NAMES.OTHER,
     pathMatch: 'full',
     redirectTo: CORE_ROUTE_NAMES.HOME
