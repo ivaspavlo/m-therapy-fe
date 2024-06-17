@@ -3,7 +3,6 @@ import { ScrollTargetElements } from '@app/core/constants';
 import { UserManagementService, ScrollService } from '@app/core/services';
 import { AdType, IAd } from '@app/interfaces';
 
-
 @Component({
   selector: 'app-landing-section',
   templateUrl: './landing-section.component.html',
