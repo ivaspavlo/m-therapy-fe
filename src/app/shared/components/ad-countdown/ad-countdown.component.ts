@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inje
   selector: 'app-ad-countdown',
   templateUrl: './ad-countdown.component.html',
   styleUrls: ['./ad-countdown.component.scss'],
-  providers: [ DecimalPipe ],
+  providers: [DecimalPipe],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdCountdownComponent implements OnDestroy {
@@ -47,7 +47,8 @@ export class AdCountdownComponent implements OnDestroy {
   ) { }
 
   private setUp(value: number): void {
-    this._targetDate = this.getTargetDate(value);
+    const temp = new Date();
+    this._targetDate = this.getTargetDate(temp.valueOf());
     if (!this._targetDate) {
       return;
     }
