@@ -11,7 +11,7 @@
         <h3 class="product-tile__title">{{ product.title | translate }}</h3>
         <p class="product-tile__price">UAH {{ product.price | number:'2.2' }}</p>
         <div class="product-tile__image" [ngStyle]="{'background-image': 'url(' + product.imgUrl + ')'}"></div>
-        <app-arrow-link title="{{ 'products.select' | translate }}"></app-arrow-link>
+        <app-arrow-link (click)="onSelectProduct(product)" title="{{ 'products.select' | translate }}"></app-arrow-link>
       </li>
     </ng-container>
   </ul>

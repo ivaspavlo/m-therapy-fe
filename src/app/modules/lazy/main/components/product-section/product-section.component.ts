@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { IContent, IProduct, IResponse } from '@app/interfaces';
 import { ContentApiService } from '@app/core/services';
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
 
 
 @Component({
@@ -19,7 +22,8 @@ export class ProductSectionComponent {
   public products$!: Observable<IProduct[]>;
 
   constructor(
-    private contentApiService: ContentApiService
+    private contentApiService: ContentApiService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,4 +44,7 @@ export class ProductSectionComponent {
     this.displayLimit = this.displayLimit + this.displayLimit;
   }
 
+  public onSelectProduct(product: IProduct): void {
+    this.router.navigateByUrl(`${CORE_ROUTE_NAMES.PRODUCT}/${product.id}`);
+  }
 }
