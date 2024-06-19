@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         }
       }),
       switchMap((res: null | IResponse<ILoginRes>) => res
-        ? this.userApiService.getUserById(res.data.id).pipe(catchError(() => of(null)))
+        ? this.userApiService.getUserById().pipe(catchError(() => of(null)))
         : of(null)
       )
     ).subscribe((res: null | IResponse<IUser>) => {

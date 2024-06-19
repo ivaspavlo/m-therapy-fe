@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     if (!userId) {
       return;
     }
-    this.userApiService.getUserById(userId).pipe(
+    this.userApiService.getUserById().pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<IUser> | null) => {
       if (!res) {
