@@ -1,8 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IProduct } from '@app/interfaces';
 
 import { API_URL } from '@env/environment';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+
+interface IProductBooking {
+  product: IProduct,
+  dates: [number,number]
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +19,20 @@ export class ProductService {
     private http: HttpClient
   ) {}
 
-  public getProduct(productId: string): any {
-    // start here https://stackoverflow.com/questions/42992212/in-angular-what-is-pathmatch-full-and-what-effect-does-it-have
+  public getProduct(productId: string): Observable<IProductBooking> {
+    console.log('productId', productId);
     return of({
-
+      product: {
+        "id": "1",
+        "title": "Test1",
+        "price": 1000,
+        "createdAt": 1708427169311,
+        "desc": "Test test test test test test test test test test test test",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/mt-stage-db6be.appspot.com/o/test.png?alt=media&token=738df6d7-4b6f-4bb5-bf1a-d683dac512dc"
+      },
+      dates: [1718865725252, 1718866505252]
     });
-    // this.http.get(`${API_URL}/product/${productId}`);
+    // this.http.get<IProductBooking>(`${API_URL}/product/${productId}`);
   }
 
 }
