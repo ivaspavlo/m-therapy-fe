@@ -1,6 +1,8 @@
 <section class="product">
-  <app-booking (selectSlot)="onSelectSlot()"></app-booking>
-  <div class="product__desc">
-    <img src="" alt="Product image">
-  </div>
+  <ng-container *ngIf="">
+    <app-booking (selectSlot)="onSelectSlot()"></app-booking>
+    <div class="product__desc">
+      <img src="" alt="Product image">
+    </div>
+  </ng-container>
 </section>

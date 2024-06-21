@@ -44,7 +44,9 @@ const authRouts: Route[] = [
       component: RegisterConfirmComponent,
       resolve: {
         data: (route: ActivatedRouteSnapshot) => {
-          return inject(AuthApiService).registerConfirm(route.paramMap.get('token')!);
+          return inject(AuthApiService).registerConfirm(route.paramMap.get('token')!).pipe(
+            catchError(() => of(null))
+          );
         }
       }
     }, {
