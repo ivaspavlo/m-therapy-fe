@@ -19,7 +19,6 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // https://medium.com/@pottimo/4-ways-to-use-angular-local-variable-in-html-b87fe4918700
     this.product$ = this.activatedRoute.data.pipe(
       map((res: Data) => res.data),
       shareReplay()
