@@ -1,10 +1,8 @@
-<div>
-  <h5>{{ product.booking.date | translate }}</h5>
-  <app-date-picker></app-date-picker>
+<form [formGroup]="form">
+  <h5>{{ 'product.booking.date' | translate }}</h5>
+  <app-date-picker controlName="startDate"></app-date-picker>
 
   <ul>
-    <li *ngFor="let date of dates">
-      
-    </li>
+    <li *ngFor="let date of product.dates">{{ date | json }}</li>
   </ul>
-</div>
+</form>

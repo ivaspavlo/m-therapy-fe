@@ -1,7 +1,7 @@
 <section class="product">
   <ng-container *ngIf="(product$ | async) as product">
 
-    <app-booking (selectSlot)="onSelectSlot()"></app-booking>
+    <app-booking (selectSlot)="onSelectSlot()" [product]="product"></app-booking>
 
     <div class="product__desc">
       <img src="" alt="Product image">
