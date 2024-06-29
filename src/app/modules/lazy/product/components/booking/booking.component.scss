@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'mixins';
+
+.booking {
+
+}
+
+.booking-slot {
+  border: 1px solid $primary;
+  padding: rem(18px) rem(12px);
+  margin-bottom: rem(8px);
+}
