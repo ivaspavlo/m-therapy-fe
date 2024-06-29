@@ -10,11 +10,10 @@ import { FormErrors } from '@app/core/constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatePickerContainerComponent {
-
   @Input() controlName!: string;
   @Input() plh = '';
   @Input() label = '';
-  @Input() errorsMap: { [key:string]: string; } = FormErrors;
+  @Input() errorsMap: {[key:string]: string} = FormErrors;
 
   public get form(): FormGroup { return this.controlContainer?.control as FormGroup; }
   public get control(): FormControl { return this.form?.get(this.controlName) as FormControl; }

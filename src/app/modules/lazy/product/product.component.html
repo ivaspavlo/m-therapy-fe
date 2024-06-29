@@ -1,11 +1,11 @@
 <section class="product">
-  <ng-container *ngIf="(product$ | async) as product">
+  <h2>{{'product.booking.title' | translate}}</h2>
 
-    <app-booking (selectSlot)="onSelectSlot()" [product]="product"></app-booking>
+  <div *ngIf="(product$ | async) as product" class="d-flex">
+    <app-booking (selectSlot)="onSelectSlot()" [product]="product" class="w-50 mr-3"></app-booking>
 
-    <div class="product__desc">
+    <div class="product__desc w-50 ml-3">
       <img src="" alt="Product image">
     </div>
-
-  </ng-container>
+  </div>
 </section>

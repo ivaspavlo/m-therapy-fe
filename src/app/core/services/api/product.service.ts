@@ -26,6 +26,16 @@ export class ProductService {
         'imgUrl': 'https://firebasestorage.googleapis.com/v0/b/mt-stage-db6be.appspot.com/o/test.png?alt=media&token=738df6d7-4b6f-4bb5-bf1a-d683dac512dc'
       },
       dates: [
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
+        {start: 1718865725252, end: 1718866505252},
         {start: 1718865725252, end: 1718866505252}
       ]
     });
