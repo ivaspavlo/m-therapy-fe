@@ -1,11 +1,25 @@
 <section class="product">
   <h2>{{'product.booking.title' | translate}}</h2>
 
-  <div *ngIf="(product$ | async) as product" class="d-flex">
-    <app-booking (selectSlot)="onSelectSlot()" [product]="product" class="w-50 mr-3"></app-booking>
+  <div *ngIf="(product$ | async) as product" class="d-flex h-100">
+
+    <div class="w-50 mr-3 pb-3 d-flex position-relative">
+      <form [formGroup]="form" class="scroll-container">
+
+        <app-date-picker controlName="startDate" label="{{'product.booking.date' | translate}}"></app-date-picker>
+        
+        <div class="scroll-content">
+          <ul class="booking">
+            <li *ngFor="let date of product.dates" class="booking-slot">{{ date }}</li>
+          </ul>
+        </div>
+
+      </form>
+    </div>
 
     <div class="product__desc w-50 ml-3">
       <img src="" alt="Product image">
     </div>
+
   </div>
 </section>
