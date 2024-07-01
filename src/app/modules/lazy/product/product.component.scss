@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 .product {
   width: 100%;
@@ -6,3 +7,31 @@
   background-color: $thirdly;
   padding: 2rem;
 }
+
+.booking {
+  // position: absolute;
+  // width: 100%;
+}
+
+.booking-slot {
+  border: 1px solid $primary;
+  padding: rem(18px) rem(12px);
+  margin-bottom: rem(8px);
+}
+
+.scroll-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+.scroll-content {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+//https://codepen.io/stephenbunch/pen/KWBNVo
