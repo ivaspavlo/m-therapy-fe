@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from '@app/modules/ui';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 
+import { SharedModule } from '@app/shared/shared.module';
 import { COMPONENTS } from './components';
 import { ProductRoutingModule } from './product-routing.module';
 
@@ -16,6 +17,7 @@ import { ProductRoutingModule } from './product-routing.module';
     ReactiveFormsModule,
     ProductRoutingModule,
     DatePickerModule,
+    SharedModule,
     CoreTranslationModule.forChild()
   ]
 })

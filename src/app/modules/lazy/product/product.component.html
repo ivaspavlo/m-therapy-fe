@@ -10,7 +10,9 @@
         
         <div class="scroll-content">
           <ul class="booking">
-            <li *ngFor="let date of product.dates" class="booking-slot">{{ date }}</li>
+            <li *ngFor="let date of product.dates" class="booking-slot">
+              <span>{{ date.start | date:'MMMM' | monthTranslate | async  }}</span>
+            </li>
           </ul>
         </div>
 
