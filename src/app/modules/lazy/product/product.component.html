@@ -9,9 +9,17 @@
         <app-date-picker controlName="startDate" label="{{'product.booking.date' | translate}}"></app-date-picker>
         
         <div class="scroll-content">
-          <ul class="booking">
+          <ul class="pt-2">
             <li *ngFor="let date of product.dates" class="booking-slot">
-              <span>{{ date.start | date:'MMMM' | monthTranslate | async  }}</span>
+              <p class="mr-3">
+                <span>{{date.start | date:'MMMM' | monthTranslate | async | titlecase}}&nbsp;</span>
+                <span>{{date.start | date:'dd'}}</span>
+              </p>
+              <p>
+                <span>{{date.start | date:'HH'}}:{{date.start | date:'mm'}}</span>
+                <span class="mx-1">-</span>
+                <span>{{date.end | date:'HH'}}:{{date.end | date:'mm'}}</span>
+              </p>
             </li>
           </ul>
         </div>

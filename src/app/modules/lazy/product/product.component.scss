@@ -8,15 +8,23 @@
   padding: 2rem;
 }
 
-.booking {
-  // position: absolute;
-  // width: 100%;
-}
-
 .booking-slot {
   border: 1px solid $primary;
-  padding: rem(18px) rem(12px);
+  padding: rem(12px) rem(24px) rem(12px) rem(12px);
   margin-bottom: rem(8px);
+  display: flex;
+  color: $primary;
+  font-weight: bold;
+  transition: $transition-1;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &--selected {
+    color: $white;
+  }
 }
 
 .scroll-container {

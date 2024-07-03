@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { IProductBooking } from '@app/interfaces';
@@ -10,7 +10,7 @@ import { IProductBooking } from '@app/interfaces';
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
-  providers: [DatePipe, AsyncPipe],
+  providers: [DatePipe, AsyncPipe, TitleCasePipe],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit {

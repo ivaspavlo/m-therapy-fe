@@ -13,10 +13,13 @@ export class MonthTranslatePipe implements PipeTransform {
     private translateService: TranslateService
   ) { }
 
-  transform(value: string): Observable<string> {
+  transform(value: string | null): Observable<string> {
     return this.translateService.onLangChange.pipe(
       startWith(this.translateService.currentLang),
       map(() => {
+        if (!value) {
+          return '';
+        }
         return this.translateService.currentLang === LANGUAGES.EN
           ? value
           : this.translateService.instant(`month.${value.toLowerCase()}`)
