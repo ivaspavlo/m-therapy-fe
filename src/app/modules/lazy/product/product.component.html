@@ -1,13 +1,16 @@
 <section class="product">
-  <h2>{{'product.booking.title' | translate}}</h2>
+  <header class="d-flex align-items-center mb-3">
+    <app-icon name="shevron-left" size="xl" class="product__back-button"></app-icon>
+    <h2 class="product__title">{{'products.booking.title' | translate}}</h2>
+  </header>
 
   <div *ngIf="(product$ | async) as product" class="d-flex h-100">
 
     <div class="w-50 mr-3 pb-3 d-flex position-relative">
       <form [formGroup]="form" class="scroll-container">
 
-        <app-date-picker controlName="startDate" label="{{'product.booking.date' | translate}}"></app-date-picker>
-        
+        <app-date-picker controlName="startDate" label="{{'products.booking.date' | translate}}"></app-date-picker>
+
         <div class="scroll-content">
           <ul class="pt-2">
             <li *ngFor="let date of product.dates" class="booking-slot">
@@ -28,7 +31,10 @@
     </div>
 
     <div class="product__desc w-50 ml-3">
-      <img src="" alt="Product image">
+      <figure>
+        <img src="{{product.product.imgUrl}}" alt="Product image" class="product-image">
+        <figcaption>test</figcaption>
+      </figure>
     </div>
 
   </div>
