@@ -69,6 +69,10 @@
       "title": "Massage Therapy Card",
       "desc": "Would you like to treat yourself or someone you know to a great massage or something from our gift shop? A gift card from Massage Therapy is the perfect gift for any holiday. Available in several different quantities to suit any budget, this is the perfect gift for birthdays, anniversaries, special occasions or for employees.",
       "details-button": "See details"
+    },
+    "booking": {
+      "title": "Book massage session",
+      "date": "Choos date from..."
     }
   },
   "auth": {
