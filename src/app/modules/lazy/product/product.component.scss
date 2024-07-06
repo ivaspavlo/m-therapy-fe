@@ -3,9 +3,11 @@
 
 .product {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $thirdly;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 
   &__title {
     color: $secondary;
@@ -57,7 +59,18 @@
 }
 
 .product-image {
-  width: 100%;
-  border-radius: $b-radius-primary;
-  box-shadow: $b-shadow-2;
+  height: 20%;
+  display: flex;
+  position: relative;
+
+  &__img {
+    height: 100%;
+    position: absolute;
+    border-radius: $b-radius-primary;
+    box-shadow: $b-shadow-2;
+  }
+
+  &__caption {
+    color: $secondary;
+  }
 }
