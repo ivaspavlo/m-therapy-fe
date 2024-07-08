@@ -3,7 +3,7 @@
 
 .product {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-color: $thirdly;
   padding: 2rem;
   display: flex;
@@ -43,12 +43,15 @@
 }
 
 .scroll-container {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   padding-bottom: 2rem;
+  @include md {
+    position: absolute;
+  }
 }
 
 .scroll-content {
@@ -60,17 +63,49 @@
 
 .product-image {
   height: 20%;
-  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
   position: relative;
 
   &__img {
     height: 100%;
-    position: absolute;
     border-radius: $b-radius-primary;
     box-shadow: $b-shadow-2;
   }
 
   &__caption {
     color: $secondary;
+  }
+}
+
+.product-content {
+  display: flex;
+  flex-grow: 1;
+  overflow: auto;
+  flex-direction: column;
+
+  @include md {
+    flex-direction: row;
+    overflow: hidden;
+  }
+
+  &__dates {
+    width: 100%;
+    margin-right: 1rem;
+    display: flex;
+    position: relative;
+    order: 2;
+    @include md {
+      width: 50%;
+    }
+  }
+
+  &__desc {
+    width: 100%;
+    margin-left: 1rem;
+    order: 2;
+    @include md {
+      width: 50%;
+    }
   }
 }

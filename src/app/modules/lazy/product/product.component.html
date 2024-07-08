@@ -4,9 +4,9 @@
     <h2 class="product__title">{{'products.booking.title' | translate}}</h2>
   </header>
 
-  <div *ngIf="(product$ | async) as product" class="d-flex h-100 flex-grow-1">
+  <div *ngIf="(product$ | async) as product" class="product-content">
 
-    <div class="w-50 mr-3 pb-3 d-flex position-relative">
+    <div class="product-content__dates">
       <form [formGroup]="form" class="scroll-container">
 
         <app-date-picker controlName="startDate" label="{{'products.booking.date' | translate}}"></app-date-picker>
@@ -30,11 +30,11 @@
       </form>
     </div>
 
-    <div class="product__desc w-50 ml-3">
+    <div class="product__desc">
       <figure class="product-image">
         <img src="{{product.product.imgUrl}}" alt="Product image" class="product-image__img">
+        <figcaption class="product-image__caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, aliquam! Pariatur odio distinctio eius explicabo nemo nostrum molestiae ad nam ab officiis voluptatem maxime, porro, atque quibusdam? Velit, assumenda sapiente.</figcaption>
       </figure>
-      <figcaption class="product-image__caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, aliquam! Pariatur odio distinctio eius explicabo nemo nostrum molestiae ad nam ab officiis voluptatem maxime, porro, atque quibusdam? Velit, assumenda sapiente.</figcaption>
     </div>
 
   </div>
