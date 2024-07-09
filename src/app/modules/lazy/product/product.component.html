@@ -1,14 +1,12 @@
 <section class="product">
-  <header class="d-flex align-items-center mb-3">
+  <header class="d-flex align-items-center m-3">
     <app-icon [routerLink]="CoreRouteNames.HOME" name="shevron-left" size="xl" class="product__back-button"></app-icon>
     <h2 class="product__title">{{'products.booking.title' | translate}}</h2>
   </header>
 
   <div *ngIf="(product$ | async) as product" class="product-content">
-
     <div class="product-content__dates">
       <form [formGroup]="form" class="scroll-container">
-
         <app-date-picker controlName="startDate" label="{{'products.booking.date' | translate}}"></app-date-picker>
 
         <div class="scroll-content">
@@ -26,16 +24,12 @@
             </li>
           </ul>
         </div>
-
       </form>
     </div>
 
-    <div class="product__desc">
-      <figure class="product-image">
-        <img src="{{product.product.imgUrl}}" alt="Product image" class="product-image__img">
-        <figcaption class="product-image__caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, aliquam! Pariatur odio distinctio eius explicabo nemo nostrum molestiae ad nam ab officiis voluptatem maxime, porro, atque quibusdam? Velit, assumenda sapiente.</figcaption>
-      </figure>
+    <div class="product-content__desc">
+      <img src="{{product.product.imgUrl}}" alt="Product image" class="product-image">
+      <p class="product-image__caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, aliquam! Pariatur odio distinctio eius explicabo nemo nostrum molestiae ad nam ab officiis voluptatem maxime, porro, atque quibusdam? Velit, assumenda sapiente.</p>
     </div>
-
   </div>
 </section>
