@@ -5,7 +5,6 @@
   width: 100%;
   height: 100vh;
   background-color: $thirdly;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
 
@@ -20,6 +19,10 @@
     &:hover {
       transform: translateX(-3px);
     }
+  }
+
+  @include md {
+    padding: 2rem;
   }
 }
 
@@ -48,7 +51,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 2rem;
+
   @include md {
     position: absolute;
   }
@@ -62,19 +65,12 @@
 }
 
 .product-image {
-  height: 20%;
-  margin-top: 1rem;
-  flex-direction: column;
-  position: relative;
+  max-height: 250px;
+  border-radius: $b-radius-primary;
+  box-shadow: $b-shadow-2;
 
-  &__img {
-    height: 100%;
-    border-radius: $b-radius-primary;
-    box-shadow: $b-shadow-2;
-  }
-
-  &__caption {
-    color: $secondary;
+  @include md {
+    margin-top: 1rem;
   }
 }
 
@@ -83,6 +79,7 @@
   flex-grow: 1;
   overflow: auto;
   flex-direction: column;
+  padding: 2rem;
 
   @include md {
     flex-direction: row;
@@ -95,17 +92,21 @@
     display: flex;
     position: relative;
     order: 2;
+
     @include md {
       width: 50%;
+      order: 1;
     }
   }
 
   &__desc {
     width: 100%;
-    margin-left: 1rem;
-    order: 2;
+    order: 1;
+
     @include md {
       width: 50%;
+      margin-left: 1rem;
+      order: 2;
     }
   }
 }
