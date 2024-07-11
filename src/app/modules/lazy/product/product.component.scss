@@ -68,7 +68,8 @@
   max-width: 768px;
   display: flex;
   flex-grow: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
   padding: 2rem;
 
@@ -98,6 +99,7 @@
       width: 50%;
       margin-left: 1rem;
       order: 2;
+      overflow: auto;
     }
   }
 }
@@ -106,7 +108,12 @@
   border-radius: $b-radius-primary;
   box-shadow: $b-shadow-2;
   margin-bottom: 0.5rem;
-  max-height: 200px;
+  width: 100%;
+
+  @include sm {
+    width: auto;
+    max-height: 200px;
+  }
 
   @include md {
     margin-top: 1rem;
