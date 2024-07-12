@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { IProductBooking } from '@app/interfaces';
+import { IBookingSlot, IProductBooking } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
 
 @Component({
@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
   public product$!: Observable<IProductBooking | null>;
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
+  public selectedSlots = new Map();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,7 +38,11 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  public onSelectSlot(): void {
-    console.log('works');
+  public onClickSlot(index: number, value: IBookingSlot): void {
+    if (this.selectedSlots.has(index)) {
+      this.selectedSlots.delete(index);
+      return;
+    }
+    this.selectedSlots.set(index, value);
   }
 }
