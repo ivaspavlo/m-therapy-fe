@@ -145,4 +145,8 @@
 .selection {
   display: flex;
   flex-direction: column;
+  border: 1px solid $primary;
+  padding: rem(12px) rem(24px) rem(12px) rem(12px);
+  color: $secondary;
+  background-color: $white;
 }
