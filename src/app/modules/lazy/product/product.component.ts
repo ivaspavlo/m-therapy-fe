@@ -45,4 +45,8 @@ export class ProductComponent implements OnInit {
     }
     this.selectedSlots.set(index, value);
   }
+
+  public onSubmit(): void {
+    
+  }
 }
