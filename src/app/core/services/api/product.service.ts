@@ -42,4 +42,7 @@ export class ProductService {
     // this.http.get<IProductBooking>(`${API_URL}/product/${productId}`);
   }
 
+  public getBookingSlots(): any {
+    return this.http.get<any>('booking');
+  }
 }
