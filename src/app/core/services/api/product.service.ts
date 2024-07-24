@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IProductBooking } from '@app/interfaces';
+import { IBookingSlot, IProductBooking } from '@app/interfaces';
 
 import { API_URL } from '@env/environment';
 import { Observable, of } from 'rxjs';
@@ -42,7 +42,7 @@ export class ProductService {
     // this.http.get<IProductBooking>(`${API_URL}/product/${productId}`);
   }
 
-  public getBookingSlots(): any {
-    return this.http.get<any>('booking');
+  public getBookingSlots(fromDate?: number): Observable<IBookingSlot[]> {
+    return this.http.get<IBookingSlot[]>(`booking?fromDate=${fromDate || Date.now}`);
   }
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+
 import { IBookingSlot, IProductBooking } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
 
