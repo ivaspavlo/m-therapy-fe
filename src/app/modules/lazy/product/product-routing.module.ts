@@ -38,7 +38,7 @@ const productRoutes: Route[] = [
               map((res: any) => {
                 return {
                   product,
-                  slots: res
+                  dates: res
                 }
               })
             );
