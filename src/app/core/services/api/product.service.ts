@@ -43,6 +43,6 @@ export class ProductService {
   }
 
   public getBookingSlots(fromDate?: number): Observable<IBookingSlot[]> {
-    return this.http.get<IBookingSlot[]>(`booking?fromDate=${fromDate || Date.now}`);
+    return this.http.get<IBookingSlot[]>(`booking?fromDate=${fromDate || Date.now()}`);
   }
 }
