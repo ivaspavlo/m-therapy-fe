@@ -31,7 +31,6 @@ const productRoutes: Route[] = [
             return productService.getBookingSlots().pipe(
               catchError(() => of(null)),
               map((res: IResponse<IBookingSlot[]> | null) => {
-                debugger;
                 if (res === null || !res?.success) {
                   router.navigateByUrl(CORE_ROUTE_NAMES.HOME);
                   return;

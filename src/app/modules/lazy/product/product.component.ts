@@ -29,11 +29,8 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.product$ = this.activatedRoute.data.pipe(
-      map((res: any) => {
-        debugger;
-        return res;
-      }),
+    this.product$ = this.activatedRoute.firstChild!.data.pipe(
+      map((res: Data) => res.product),
       shareReplay()
     );
     this.form = this.fb.group({
