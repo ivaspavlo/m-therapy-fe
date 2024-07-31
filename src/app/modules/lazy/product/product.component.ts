@@ -7,6 +7,7 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { IBookingSlot, IProductBooking } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
+import { ProductService } from '@app/core/services';
 
 @Component({
   selector: 'app-product',
@@ -25,7 +26,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,6 @@ export class ProductComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    
+    this.productService.setBooking();
   }
 }

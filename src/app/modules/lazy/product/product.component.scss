@@ -74,6 +74,7 @@
 }
 
 .scroll-content {
+  border-top: 1px solid $primary;
   border-bottom: 1px solid $primary;
   flex-grow: 1;
   overflow: auto;
