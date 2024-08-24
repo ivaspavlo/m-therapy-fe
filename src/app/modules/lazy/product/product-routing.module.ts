@@ -1,5 +1,5 @@
 import { NgModule, inject } from '@angular/core';
-import { Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterModule } from '@angular/router';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -7,7 +7,12 @@ import { of } from 'rxjs';
 import { ProductService } from '@app/core/services';
 import { ProductComponent } from './product.component';
 import { IBookingSlot, IResponse } from '@app/interfaces';
+import { ConfirmBookingComponent } from '../auth/components/confirm-booking/confirm-booking.component';
 
+
+export enum PRODUCT_ROUTE_NAMES {
+  CONFIRM_BOOKING = 'confirm-booking:token'
+}
 
 const productRoutes: Route[] = [
   {
@@ -45,6 +50,16 @@ const productRoutes: Route[] = [
         }
       }
     ]
+  }, {
+    path: PRODUCT_ROUTE_NAMES.CONFIRM_BOOKING,
+    component: ConfirmBookingComponent,
+    resolve: {
+      preBooking: (route: ActivatedRouteSnapshot) => {
+        return inject(ProductService).getPreBooking(route.paramMap.get('token')!).pipe(
+          catchError(() => of(null))
+        );
+      }
+    }
   }
 ];
 
