@@ -4,7 +4,7 @@ import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { ProductService } from '@app/core/services';
+import { BookingApiService } from '@app/core/services';
 import { ProductComponent } from './product.component';
 import { IBookingSlot, IResponse } from '@app/interfaces';
 import { ConfirmBookingComponent } from '../auth/components/confirm-booking/confirm-booking.component';
@@ -25,7 +25,7 @@ const productRoutes: Route[] = [
         resolve: {
           product: () => {
             const router = inject(Router);
-            const productService = inject(ProductService);
+            const bookingService = inject(BookingApiService);
 
             const product = router.getCurrentNavigation()?.extras?.state;
             if (!product) {
@@ -33,7 +33,7 @@ const productRoutes: Route[] = [
               return;
             }
 
-            return productService.getBookingSlots().pipe(
+            return bookingService.getBookingSlots().pipe(
               catchError(() => of(null)),
               map((res: IResponse<IBookingSlot[]> | null) => {
                 if (res === null || !res?.success) {
@@ -55,7 +55,7 @@ const productRoutes: Route[] = [
     component: ConfirmBookingComponent,
     resolve: {
       preBooking: (route: ActivatedRouteSnapshot) => {
-        return inject(ProductService).getPreBooking(route.paramMap.get('token')!).pipe(
+        return inject(BookingApiService).getPreBooking(route.paramMap.get('token')!).pipe(
           catchError(() => of(null))
         );
       }
