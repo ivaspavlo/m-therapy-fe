@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IBookingSlot, IPreBooking, IResponse } from '@app/interfaces';
-
-import { API_URL } from '@env/environment';
 import { Observable, of } from 'rxjs';
+
+import { IBookingSlot, IPreBooking, IResponse } from '@app/interfaces';
+import { API_URL } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class BookingApiService {
   }
 
   public getPreBooking(preBookingId: string): Observable<IResponse<IPreBooking>> {
-    return this.http.get<IResponse<IPreBooking>>(`${API_URL}/pre-booking?token=${preBookingId}`);
+    return this.http.get<IResponse<IPreBooking>>(`${API_URL}/booking/pre-booking?token=${preBookingId}`);
   }
 
   public setBooking(): Observable<any> {

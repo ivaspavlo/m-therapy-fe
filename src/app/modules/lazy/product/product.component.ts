@@ -17,7 +17,6 @@ import { BookingApiService } from '@app/core/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit {
-
   public product$!: Observable<IProductBooking | null>;
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
