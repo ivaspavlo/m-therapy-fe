@@ -2,7 +2,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { IUser } from '@app/interfaces';
 import { LOCAL_STORAGE } from '../providers';
-import { USER_ID, USER_NAME } from '../constants';
+import { USER_EMAIL, USER_ID, USER_NAME } from '../constants';
 
 
 @Injectable({
@@ -19,15 +19,17 @@ export class UserManagementService {
   public setUser(user: IUser): void {
     this.localStorage[USER_ID] = user.id;
     this.localStorage[USER_NAME] = user.firstname;
+    this.localStorage[USER_EMAIL] = user.email;
     this._currentUser$.next(user);
   }
 
-  public isLoggedIn(): boolean {
+  public get isLoggedIn(): boolean {
     return !!this.localStorage.getItem(USER_NAME);
   }
 
   public logout(): void {
     this.localStorage.removeItem(USER_NAME);
     this.localStorage.removeItem(USER_ID);
+    this.localStorage.removeItem(USER_EMAIL);
   }
 }

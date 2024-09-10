@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initIsShrinkedObservable();
-    this.isLoggedIn = this.userManagementService.isLoggedIn();
+    this.isLoggedIn = this.userManagementService.isLoggedIn;
   }
 
   public onLanguageChange(language: ILanguage): void {

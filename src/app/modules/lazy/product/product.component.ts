@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, TitleCasePipe } from '@angular/common';
@@ -7,7 +7,10 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { IBookingSlot, IProductBooking } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
-import { BookingApiService } from '@app/core/services';
+import { BookingApiService, UserManagementService } from '@app/core/services';
+import { LOCAL_STORAGE } from '@app/core/providers';
+import { USER_EMAIL } from '@app/core/constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product',
@@ -23,14 +26,17 @@ export class ProductComponent implements OnInit {
   public selectedSlots = new Map();
 
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: Storage,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private datePipe: DatePipe,
-    private bookingApiService: BookingApiService
+    private bookingApiService: BookingApiService,
+    private userService: UserManagementService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
-    this.product$ = this.activatedRoute.firstChild!.data.pipe(
+    this.product$ = this.activatedRoute.data.pipe(
       map((res: Data) => res.product),
       shareReplay()
     );
@@ -49,6 +55,16 @@ export class ProductComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    if (this.userService.isLoggedIn) {
+      console.log('dialog');
+      return;
+    }
+    const req = {
+      email: this.localStorage.getItem(USER_EMAIL),
+      bookingSlots: Array.from(this.selectedSlots, ([_, value]) => value),
+      lang: this.translateService.currentLang
+    }
+    console.log(req);
     this.bookingApiService.setBooking();
   }
 }
