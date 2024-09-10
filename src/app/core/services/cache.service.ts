@@ -13,8 +13,6 @@ interface ICacheContent {
 export class CacheService {
   private cache = new Map<string, ICacheContent>();
 
-  constructor() {}
-
   public get(key: string): Observable<any> | undefined {
     const data = this.cache.get(key);
     if (!data) {

@@ -7,14 +7,12 @@ import { DatePickerModule, DialogModule } from '@app/modules/ui';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthPageComponent } from './auth-page.component';
 import { COMPONENTS } from './components';
-import { ConfirmBookingComponent } from './components/confirm-booking/confirm-booking.component';
 
 
 @NgModule({
   declarations: [
     AuthPageComponent,
-    ...COMPONENTS,
-    ConfirmBookingComponent,
+    ...COMPONENTS
   ],
   imports: [
     CommonModule,

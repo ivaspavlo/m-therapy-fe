@@ -12,8 +12,8 @@
         <div class="scroll-content">
           <ul class="pt-2">
             <li
-              (click)="onClickSlot(index, date)"
               *ngFor="let date of product.dates; let index = index;"
+              (click)="onClickSlot(index, date)"
               class="booking-slot"
               [ngClass]="{'booking-slot--selected': selectedSlots.has(index)}"
             >

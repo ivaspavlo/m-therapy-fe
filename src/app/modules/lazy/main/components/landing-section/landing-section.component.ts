@@ -25,7 +25,7 @@ export class LandingSectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.userManagementService.isLoggedIn();
+    this.isLoggedIn = this.userManagementService.isLoggedIn;
   }
 
   public onPricingClick(): void {
