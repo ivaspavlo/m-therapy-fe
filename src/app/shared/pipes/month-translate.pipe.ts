@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { LANGUAGES } from '@app/core/constants';
+import { LANGUAGE } from '@app/core/constants';
 
 @Pipe({
   name: 'monthTranslate'
@@ -20,7 +20,7 @@ export class MonthTranslatePipe implements PipeTransform {
         if (!value) {
           return '';
         }
-        return this.translateService.currentLang === LANGUAGES.EN
+        return this.translateService.currentLang === LANGUAGE.EN
           ? value
           : this.translateService.instant(`month.${value.toLowerCase()}`)
       })

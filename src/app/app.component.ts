@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/cor
 import { RouterOutlet } from '@angular/router';
 import { of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreRoutingAnimations, LANGUAGES, USER_ID, USER_NAME } from '@app/core/constants';
+import { CoreRoutingAnimations, LANGUAGE, USER_ID, USER_NAME } from '@app/core/constants';
 import { LOCALE, LOCAL_STORAGE } from './core/providers';
 import { IResponse, IUser } from './interfaces';
 import { catchError } from 'rxjs/operators';
@@ -18,7 +18,7 @@ import { UserApiService, UserManagementService } from './core/services';
 export class AppComponent implements OnInit {
 
   constructor(
-    @Inject(LOCALE) private locale: LANGUAGES,
+    @Inject(LOCALE) private locale: LANGUAGE,
     @Inject(LOCAL_STORAGE) private localStorage: Storage,
     private userApiService: UserApiService,
     private translateService: TranslateService,

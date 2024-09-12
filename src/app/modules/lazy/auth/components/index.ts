@@ -1,3 +1,4 @@
+import { AuthPageComponent } from '../auth-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterConfirmComponent } from './register-confirm/register-confirm.component';
 import { RegisterComponent } from './register/register.component';
@@ -8,6 +9,7 @@ import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 
 
 export const COMPONENTS = [
+  AuthPageComponent,
   LoginComponent,
   RegisterComponent,
   RemindComponent,
