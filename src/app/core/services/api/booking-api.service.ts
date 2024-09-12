@@ -22,7 +22,7 @@ export class BookingApiService {
     return this.http.get<IResponse<IPreBooking>>(`${API_URL}/booking/pre-booking?token=${preBookingId}`);
   }
 
-  public setBooking(): Observable<any> {
-    return of(null);
+  public setPreBooking(preBooking: IPreBooking): Observable<IResponse<{id: string}>> {
+    return this.http.post<IResponse<{id: string}>>(`${API_URL}/booking/pre-booking`, preBooking);
   }
 }

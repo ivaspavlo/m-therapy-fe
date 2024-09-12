@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { first, map, shareReplay, tap } from 'rxjs/operators';
 
-import { LANGUAGES, ToastType } from '@app/core/constants';
+import { LANGUAGE, ToastType } from '@app/core/constants';
 import { ToasterService } from '@app/core/services';
 import { IResponse } from '@app/interfaces';
 
@@ -33,7 +33,7 @@ export class UnsubscribeComponent {
         if (res === null) {
           return false;
         }
-        const responseBody = res.data as IResponse<{lang: LANGUAGES}>;
+        const responseBody = res.data as IResponse<{lang: LANGUAGE}>;
         this.translateService.setDefaultLang(responseBody.data.lang);
         return responseBody.success;
       }),

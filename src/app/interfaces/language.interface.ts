@@ -1,12 +1,12 @@
-import { LANGUAGES } from '@app/core/constants';
+import { LANGUAGE } from '@app/core/constants';
 
 
 export interface ILanguage {
-  title: LANGUAGES,
+  title: LANGUAGE,
   aria: string
 }
 
 export interface ITranslationDynamic {
-  [LANGUAGES.EN]: string,
-  [LANGUAGES.UA]: string
+  [LANGUAGE.EN]: string,
+  [LANGUAGE.UA]: string
 }

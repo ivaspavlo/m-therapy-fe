@@ -1,4 +1,4 @@
-import { LANGUAGES } from '@app/core/constants';
+import { LANGUAGE } from '@app/core/constants';
 import { IProduct } from '../product.interface';
 
 export interface IBookingSlot {
@@ -14,5 +14,5 @@ export interface IProductBooking {
 export interface IPreBooking {
   bookingSlots: IBookingSlot[],
   email: string,
-  lang: LANGUAGES
+  lang: LANGUAGE
 }

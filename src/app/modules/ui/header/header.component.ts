@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angu
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { LANGUAGES_ITEMS, ScrollTargetElements, ToastType } from '@app/core/constants';
+import { LANGUAGE_ITEMS, ScrollTargetElements, ToastType } from '@app/core/constants';
 import { IHeaderControl, ILanguage } from '@app/interfaces';
 import { ScrollService, ToasterService, UserManagementService } from '@app/core/services';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   public isMenuOpen = false;
   public isUserMenuOpen = false;
-  public languages: ILanguage[] = LANGUAGES_ITEMS;
+  public languages: ILanguage[] = LANGUAGE_ITEMS;
   public isLoggedIn: boolean = false;
   public headerControls: IHeaderControl[] = [
     { id: 'app-header.services.button', uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
