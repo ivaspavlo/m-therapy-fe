@@ -5,12 +5,15 @@ import { DatePickerModule, DialogModule } from '@app/modules/ui';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { COMPONENTS } from './components';
+import { PreBookingDialogComponent, BookingConfirmComponent } from './components';
+import { ProductComponent } from './product.component';
 import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    PreBookingDialogComponent,
+    BookingConfirmComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
