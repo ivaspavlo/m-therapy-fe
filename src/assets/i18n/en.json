@@ -97,7 +97,8 @@
       "success": "Confirmation email was sent to the address that you have entered",
       "failure": "Something went wrong when trying to register you",
       "thanks": "Thank you for registering!",
-      "after": "Please check your email box and follow instructions"
+      "after": "Please check your email box and follow instructions",
+      "duplicate": "User with this email is already registered"
     },
     "confirmEmail": {
       "thanks": "Thank you for confirming the email",

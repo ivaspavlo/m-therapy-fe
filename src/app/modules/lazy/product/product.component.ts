@@ -60,14 +60,13 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
   }
 
   public onSubmit(): void {
-    if (this.userService.isLoggedIn) {
-      console.log(PreBookingDialogComponent);
-      // this.dialogService.open(PreBookingDialogComponent, {}).afterClosed.pipe(
-      //   takeUntil(this.componentDestroyed$)
-      // ).subscribe(() => {
-      //   // to be developed
-      //   console.log('works');
-      // });
+    if (!this.userService.isLoggedIn) {
+      this.dialogService.open(PreBookingDialogComponent, {}).afterClosed.pipe(
+        takeUntil(this.componentDestroyed$)
+      ).subscribe(() => {
+        // to be developed
+        console.log('works');
+      });
       return;
     }
     const req = {

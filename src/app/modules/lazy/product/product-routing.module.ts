@@ -47,23 +47,23 @@ const productRoutes: Route[] = [
   }, {
     path: PRODUCT_ROUTE_NAMES.CONFIRM_BOOKING,
     component: BookingConfirmComponent,
-    // resolve: {
-    //   preBooking: (route: ActivatedRouteSnapshot) => {
-    //     const router = inject(Router);
+    resolve: {
+      preBooking: (route: ActivatedRouteSnapshot) => {
+        const router = inject(Router);
 
-    //     return inject(BookingApiService).getPreBooking(route.paramMap.get('token')!).pipe(
-    //       catchError(() => of(null)),
-    //       map((res: IResponse<IPreBooking> | null) => {
-    //         debugger
-    //         if (res === null || !res?.success) {
-    //           router.navigateByUrl(CORE_ROUTE_NAMES.HOME);
-    //           return;
-    //         }
-    //         return res.data;
-    //       })
-    //     );
-    //   }
-    // }
+        return inject(BookingApiService).getPreBooking(route.paramMap.get('token')!).pipe(
+          catchError(() => of(null)),
+          map((res: IResponse<IPreBooking> | null) => {
+            debugger
+            if (res === null || !res?.success) {
+              router.navigateByUrl(CORE_ROUTE_NAMES.HOME);
+              return;
+            }
+            return res.data;
+          })
+        );
+      }
+    }
   }
 ];
 

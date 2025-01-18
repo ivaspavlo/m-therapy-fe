@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { ACCESS_TOKEN, INPUT_TYPES, ToastType, USER_ID, USER_NAME } from '@app/core/constants';
+import { ACCESS_TOKEN, INPUT_TYPES, ToastType } from '@app/core/constants';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { AuthApiService, ToasterService, UserApiService, UserManagementService } from '@app/core/services';
 import { ILoginReq, ILoginRes, IResponse, IUser } from '@app/interfaces';
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   public isLoading: boolean = false;
   private messages = {
     success: 'auth.login.success',
-    failure: 'auth.login.failure'
+    failure: 'auth.login.failure',
   }
 
   constructor(
@@ -82,5 +82,4 @@ export class LoginComponent implements OnInit {
       ? this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS)
       : this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
   }
-
 }

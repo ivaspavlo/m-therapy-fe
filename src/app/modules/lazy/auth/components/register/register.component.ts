@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { INPUT_TYPES, ToastType } from '@app/core/constants';
+import { INPUT_TYPES, RESPONSE_STATUS, ToastType } from '@app/core/constants';
 import { AuthApiService, ToasterService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { IRegisterReq, IResponse } from '@app/interfaces';
@@ -25,7 +26,8 @@ export class RegisterComponent extends DestroySubscriptions {
   public isEmailConfirmationRequired: boolean = false;
   private messages = {
     success: 'auth.register.success',
-    failure: 'auth.register.failure'
+    failure: 'auth.register.failure',
+    duplicate: 'auth.register.duplicate'
   }
 
   constructor(
@@ -61,15 +63,19 @@ export class RegisterComponent extends DestroySubscriptions {
     this.authService.register(
       this.getFormattedRequestBody(this.registerForm)
     ).pipe(
-      catchError(() => of(null))
-    ).subscribe((res: null | IResponse<object>) => {
+      catchError((res: HttpErrorResponse) => of(res.error))
+    ).subscribe((res: IResponse<object | null>) => {
       this.isLoading = false;
       this.cdr.markForCheck();
-      if (!res) {
-        this.toasterService.show(
-          this.translateService.instant(this.messages.failure),
-          ToastType.ERROR
-        );
+      if (!res.success) {
+        if (res?.status === RESPONSE_STATUS.DUPLICATE) {
+          this.toasterService.show(this.translateService.instant(this.messages.duplicate), ToastType.ERROR);
+        } else {
+          this.toasterService.show(
+            this.translateService.instant(this.messages.failure),
+            ToastType.ERROR
+          );
+        }
         return;
       }
       this.isEmailConfirmationRequired = true;
