@@ -1,16 +1,23 @@
-<app-dialog-content size="xs">
+<app-dialog-content>
   <div class="pre-booking">
-    <h2>Booking confirmation</h2>
-    <p>Please regsiter or provide your email address</p>
-    <p>By registering you will have access to your account and be able to manage your bookings, as well as receive discounts and receive important updates</p>
-    <app-primary-button title="{{ 'main.landing.register' | translate }}" url="/auth/register" class=""></app-primary-button>
-    <app-input
-      (inputSubmit)="onInputSubmit()"
-      [type]="INPUT_TYPES.STANDALONE"
-      [controlName]="controlName"
-      label="{{'footer.email-control' | translate}}"
-      color="secondary"
-      plh="{{'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
-    ></app-input>
+    <h2 class="pre-booking__title">Booking confirmation</h2>
+
+    <div class="pre-booking-content">
+      <p class="pre-booking-content__text">By registering you will have access to your account and be able to manage your bookings, as well as receive discounts and receive important updates</p>
+
+      <div class="pre-booking-content__controls">
+        <app-primary-button title="{{ 'main.landing.register' | translate }}" url="/auth/register"></app-primary-button>
+        <app-secondary-button (buttonClick)="goWithoutRegistering()" title="{{ 'main.landing.register' | translate }}" url="/auth/register"></app-secondary-button>
+      </div>
+
+      <app-input
+        *ngIf="noRegistering"
+        [type]="INPUT_TYPES.STANDALONE"
+        [controlName]="controlName"
+        label="{{'footer.email-control' | translate}}"
+        color="secondary"
+        plh="{{'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
+      ></app-input>
+    </div>
   </div>
 </app-dialog-content>

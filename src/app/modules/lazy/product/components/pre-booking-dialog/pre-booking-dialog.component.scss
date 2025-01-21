@@ -1,4 +1,29 @@
+@import 'variables';
+
 .pre-booking {
   max-width: 600px;
-  min-height: 400px;
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $primary;
+    padding: 0 1rem;
+  }
+}
+
+.pre-booking-content {
+  margin-top: 2rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__text {
+    color: $secondary;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+  }
 }

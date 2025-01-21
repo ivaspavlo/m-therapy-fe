@@ -12,6 +12,7 @@ export class PreBookingDialogComponent implements OnInit {
   public INPUT_TYPES = INPUT_TYPES;
   public controlName: string = 'email';
   public formGroup!: FormGroup;
+  public noRegistering: boolean = false;
 
   constructor(
     private fb: FormBuilder
@@ -23,7 +24,7 @@ export class PreBookingDialogComponent implements OnInit {
     });
   }
 
-  public onInputSubmit(): void {
-    console.log('works');
+  public goWithoutRegistering(): void {
+    this.noRegistering = !this.noRegistering;
   }
 }
