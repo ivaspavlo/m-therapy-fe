@@ -74,7 +74,9 @@
       "title": "Book massage session",
       "date": "Choos date from...",
       "totalPrice": "Total price",
-      "slotsQty": "{{slots}} hours selected"
+      "slotsQty": "{{slots}} hours selected",
+      "proceed-no-register": "Without registering",
+      "confirm-no-register": "Proceed"
     }
   },
   "auth": {

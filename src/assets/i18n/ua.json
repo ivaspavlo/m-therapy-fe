@@ -117,7 +117,9 @@
       "title": "Замовлення массажу",
       "date": "Виберіть дату...",
       "totalPrice": "Загальна вартість",
-      "slotsQty": "{{slots}} hours selected"
+      "slotsQty": "{{slots}} годин вибрано",
+      "proceed-no-register": "Без регістрації",
+      "confirm-no-register": "Продовжити"
     }
   }
 }

@@ -2,22 +2,32 @@
   <div class="pre-booking">
     <h2 class="pre-booking__title">Booking confirmation</h2>
 
-    <div class="pre-booking-content">
+    <form [formGroup]="formGroup" class="pre-booking-content">
       <p class="pre-booking-content__text">By registering you will have access to your account and be able to manage your bookings, as well as receive discounts and receive important updates</p>
 
       <div class="pre-booking-content__controls">
         <app-primary-button title="{{ 'main.landing.register' | translate }}" url="/auth/register"></app-primary-button>
-        <app-secondary-button (buttonClick)="goWithoutRegistering()" title="{{ 'main.landing.register' | translate }}" url="/auth/register"></app-secondary-button>
+        <app-secondary-button
+          *ngIf="!noRegistering"
+          (buttonClick)="goWithoutRegistering()"
+          title="{{ 'products.booking.proceed-no-register' | translate }}"
+        ></app-secondary-button>
+
+        <app-secondary-button
+          *ngIf="noRegistering"
+          (buttonClick)="goWithoutRegistering()"
+          title="{{ 'products.booking.confirm-no-register' | translate }}"
+        ></app-secondary-button>
       </div>
 
       <app-input
         *ngIf="noRegistering"
-        [type]="INPUT_TYPES.STANDALONE"
+        [type]="INPUT_TYPES.EMAIL"
         [controlName]="controlName"
         label="{{'footer.email-control' | translate}}"
         color="secondary"
         plh="{{'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
       ></app-input>
-    </div>
+    </form>
   </div>
 </app-dialog-content>
