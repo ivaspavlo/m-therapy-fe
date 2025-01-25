@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
 
 @Component({
@@ -15,7 +17,9 @@ export class PreBookingDialogComponent implements OnInit {
   public noRegistering: boolean = false;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private dialog: DialogRef
   ) {}
 
   ngOnInit(): void {
@@ -26,5 +30,10 @@ export class PreBookingDialogComponent implements OnInit {
 
   public goWithoutRegistering(): void {
     this.noRegistering = !this.noRegistering;
+  }
+
+  public onRegister(): void {
+    this.router.navigateByUrl('/auth/register');
+    this.dialog.close();
   }
 }

@@ -3,10 +3,17 @@
     <h2 class="pre-booking__title">Booking confirmation</h2>
 
     <form [formGroup]="formGroup" class="pre-booking-content">
-      <p class="pre-booking-content__text">By registering you will have access to your account and be able to manage your bookings, as well as receive discounts and receive important updates</p>
+      <p class="pre-booking-content__text">
+        <span>{{ 'products.booking.register-benefits' | translate }}</span>
+        <app-icon name="discount" size="xl" class="pre-booking-content__icon"></app-icon>
+      </p>
 
       <div class="pre-booking-content__controls">
-        <app-primary-button title="{{ 'main.landing.register' | translate }}" url="/auth/register"></app-primary-button>
+        <app-primary-button
+          (buttonClick)="onRegister()"
+          title="{{ 'main.landing.register' | translate }}"
+        ></app-primary-button>
+
         <app-secondary-button
           *ngIf="!noRegistering"
           (buttonClick)="goWithoutRegistering()"
@@ -24,9 +31,9 @@
         *ngIf="noRegistering"
         [type]="INPUT_TYPES.EMAIL"
         [controlName]="controlName"
-        label="{{'footer.email-control' | translate}}"
+        label="{{ 'footer.email-control' | translate }}"
         color="secondary"
-        plh="{{'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
+        plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
       ></app-input>
     </form>
   </div>

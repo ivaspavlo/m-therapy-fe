@@ -76,7 +76,8 @@
       "totalPrice": "Total price",
       "slotsQty": "{{slots}} hours selected",
       "proceed-no-register": "Without registering",
-      "confirm-no-register": "Proceed"
+      "confirm-no-register": "Proceed",
+      "register-benefits": "By registering you will have access to your account, receive discounts and special offers"
     }
   },
   "auth": {
