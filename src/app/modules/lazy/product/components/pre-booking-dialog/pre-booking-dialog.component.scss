@@ -14,12 +14,17 @@
 
 .pre-booking-content {
   margin-top: 2rem;
-  gap: 2rem;
+  gap: 1rem;
   display: flex;
   flex-direction: column;
 
   &__text {
     color: $secondary;
+  }
+
+  &__icon {
+    margin-left: 0.5rem;
+    display: inline-flex;
   }
 
   &__controls {
