@@ -36,4 +36,8 @@ export class PreBookingDialogComponent implements OnInit {
     this.router.navigateByUrl('/auth/register');
     this.dialog.close();
   }
+
+  public onFileChange(value: any): void {
+    console.log(value);
+  }
 }
