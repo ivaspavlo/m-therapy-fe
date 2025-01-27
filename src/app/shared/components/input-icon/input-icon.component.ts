@@ -28,5 +28,4 @@ export class InputIconComponent implements OnInit {
       this.togglePasswordVisibility.emit(this.isPasswordHidden);
     }
   }
-
 }

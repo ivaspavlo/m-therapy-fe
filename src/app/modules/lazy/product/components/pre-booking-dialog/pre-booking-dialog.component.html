@@ -1,6 +1,6 @@
 <app-dialog-content>
   <div class="pre-booking">
-    <h2 class="pre-booking__title">Booking confirmation</h2>
+    <h2 class="pre-booking__title">{{ 'products.booking.confirm-title' | translate }}</h2>
 
     <form [formGroup]="formGroup" class="pre-booking-content">
       <p class="pre-booking-content__text">
@@ -27,14 +27,29 @@
         ></app-secondary-button>
       </div>
 
-      <app-input
-        *ngIf="noRegistering"
-        [type]="INPUT_TYPES.EMAIL"
-        [controlName]="controlName"
-        label="{{ 'footer.email-control' | translate }}"
-        color="secondary"
-        plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
-      ></app-input>
+      <ng-container *ngIf="noRegistering">
+        <app-input
+          [type]="INPUT_TYPES.EMAIL"
+          [controlName]="controlName"
+          label="{{ 'footer.email-control' | translate }}"
+          color="secondary"
+          plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
+        ></app-input>
+  
+        <div class="">
+          <label for="id-upload-image" class="app-cropper__button">
+            <i class="app-cropper__icon app-cropper__icon--browse"></i>
+            <span>{{ 'core.button.open' | translate }}</span>
+          </label>
+  
+          <!-- <button [disabled]="!croppedImage" (click)="onSave()" class="app-cropper__button">
+            <i class="app-cropper__icon app-cropper__icon--load"></i>
+            <span>{{ 'core.button.load' | translate }}</span>
+          </button> -->
+      
+          <input (change)="onFileChange($event)" type="file" id="id-upload-image" accept="image/*" class="d-none">
+        </div>
+      </ng-container>
     </form>
   </div>
 </app-dialog-content>
