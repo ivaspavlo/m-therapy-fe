@@ -19,12 +19,6 @@
           (buttonClick)="goWithoutRegistering()"
           title="{{ 'products.booking.proceed-no-register' | translate }}"
         ></app-secondary-button>
-
-        <app-secondary-button
-          *ngIf="noRegistering"
-          (buttonClick)="goWithoutRegistering()"
-          title="{{ 'products.booking.confirm-no-register' | translate }}"
-        ></app-secondary-button>
       </div>
 
       <ng-container *ngIf="noRegistering">
@@ -35,20 +29,34 @@
           color="secondary"
           plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
         ></app-input>
-  
-        <div class="">
-          <label for="id-upload-image" class="app-cropper__button">
-            <i class="app-cropper__icon app-cropper__icon--browse"></i>
-            <span>{{ 'core.button.open' | translate }}</span>
+
+        <div class="payment-confirm">
+          <div class="payment-options">
+            <h6 class="payment-options__title">{{ 'products.booking.payment-options' | translate }}</h6>
+
+            <p class="payment-options__item">
+              <span>{{ 'products.booking.payment-options.privat' | translate }}</span>
+              <app-icon name="discount" size="md"></app-icon>
+            </p>
+
+            <p class="payment-options__item">
+              <span>{{ 'products.booking.payment-options.universal' | translate }}</span>
+              <app-icon name="discount" size="md"></app-icon>
+            </p>
+          </div>
+
+          <label for="id-upload-image" class="file-picker">
+            <span>{{ 'products.booking.select-file' | translate }}</span>
+            <app-icon name="browse" size="md" class="file-picker__icon"></app-icon>
           </label>
-  
-          <!-- <button [disabled]="!croppedImage" (click)="onSave()" class="app-cropper__button">
-            <i class="app-cropper__icon app-cropper__icon--load"></i>
-            <span>{{ 'core.button.load' | translate }}</span>
-          </button> -->
-      
+
           <input (change)="onFileChange($event)" type="file" id="id-upload-image" accept="image/*" class="d-none">
         </div>
+
+        <app-secondary-button
+          (buttonClick)="goWithoutRegistering()"
+          title="{{ 'products.booking.confirm-no-register' | translate }}"
+        ></app-secondary-button>
       </ng-container>
     </form>
   </div>

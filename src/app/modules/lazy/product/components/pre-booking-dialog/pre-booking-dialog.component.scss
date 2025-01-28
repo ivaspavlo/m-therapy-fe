@@ -33,6 +33,33 @@
   }
 }
 
+.file-picker {
+  width: 200px;
+  height: 57px;
+  padding: rem(18px) rem(12px);
+  border: 1px solid $primary;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $primary;
+  background-color: transparent;
+  cursor: pointer;
+
+  &__icon {
+    margin: 0 rem(8px);
+  }
+
+  &:disabled {
+    background: $light-grey;
+  }
+
+  &:hover:not([disabled]) {
+    opacity: .8;
+  }
+}
+
 .app-cropper {
   display: flex;
   flex-direction: column;
@@ -66,31 +93,6 @@
     }
   }
   &__button {
-    width: 130px;
-    height: 40px;
-    margin: 0 10px;
-    border: 2px solid $primary;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: $primary;
-    background-color: transparent;
-    cursor: pointer;
-    &:disabled {
-      border: 2px solid gray;
-      color: gray;
-      cursor: not-allowed;
-      .app-cropper__icon--load {
-        @include bg-img('/assets/img/svg/upload-cloud-grey.svg');
-      }
-    }
-    &:hover:not([disabled]) {
-      opacity: .8;
-    }
+    
   }
 }
