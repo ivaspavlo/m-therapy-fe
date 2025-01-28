@@ -78,7 +78,8 @@
       "proceed-no-register": "Without registering",
       "confirm-no-register": "Confirm booking",
       "register-benefits": "By registering you will have access to your account, receive discounts and special offers",
-      "confirm-title": "Booking confirmation"
+      "confirm-title": "Booking confirmation",
+      "select-file": "Select file"
     }
   },
   "auth": {

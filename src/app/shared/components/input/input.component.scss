@@ -39,22 +39,27 @@ $border-radius: 0;
     background-color: transparent;
     transition: border-color .2s;
     outline: 0;
+
     &:required,
     &:invalid {
       box-shadow: none;
     }
+
     &::placeholder {
       color: transparent;
       transition: .3s;
     }
+
     &:focus, &--has-value {
       border-width: 1px;
       border-color: $border-color;
+
       ~ label {
         transform: translateY(rem(-15px));
         color: $border-color;
         font-size: 12px;
       }
+
       &::placeholder {
         color: $text-color;
       }
