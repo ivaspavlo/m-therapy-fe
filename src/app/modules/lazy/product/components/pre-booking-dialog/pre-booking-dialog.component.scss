@@ -20,10 +20,11 @@
 
   &__text {
     color: $secondary;
+    line-height: 1.3rem;
   }
 
   &__icon {
-    margin-left: 0.5rem;
+    margin-left: rem(4px);
     display: inline-flex;
   }
 
@@ -34,7 +35,8 @@
 }
 
 .file-picker {
-  width: 200px;
+  min-width: 160px;
+  max-width: 200px;
   height: 57px;
   padding: rem(18px) rem(12px);
   border: 1px solid $primary;
@@ -60,39 +62,19 @@
   }
 }
 
-.app-cropper {
+.payment-options {
   display: flex;
   flex-direction: column;
-  &__container {
-    width: 75%;
-    @include sm {
-      width: 50%;
-      padding: 0 16px;
-    }
+  gap: rem(12px);
+  margin-bottom: rem(20px);
+
+  &__title {
+    color: $primary;
+    font-size: rem(18px);
   }
-  &__preview {
-    width: 100%;
-    padding: 5px;
-  }
-  &__image {
-    width: 100%;
-    display: flex;
-    margin-bottom: 30px;
-    border-radius: 4px;
-  }
-  &__icon {
-    width: 15px;
-    height: 15px;
-    margin-right: 4px;
-    display: flex;
-    &--browse {
-      @include bg-img('/assets/img/svg/browse.svg');
-    }
-    &--load {
-      @include bg-img('/assets/img/svg/upload-cloud.svg');
-    }
-  }
-  &__button {
-    
+
+  &__item {
+    line-height: 1.3rem;
+    color: $secondary;
   }
 }
