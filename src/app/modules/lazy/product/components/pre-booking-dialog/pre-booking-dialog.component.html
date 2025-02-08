@@ -5,7 +5,7 @@
     <form [formGroup]="formGroup" class="pre-booking-content">
       <p class="pre-booking-content__text">
         <span>{{ 'products.booking.register-benefits' | translate }}</span>
-        <app-icon name="discount" size="xl" class="pre-booking-content__icon"></app-icon>
+        <app-icon name="gift" size="lg" class="pre-booking-content__icon"></app-icon>
       </p>
 
       <div class="pre-booking-content__controls">
@@ -32,31 +32,35 @@
 
         <div class="payment-confirm">
           <div class="payment-options">
-            <h6 class="payment-options__title">{{ 'products.booking.payment-options' | translate }}</h6>
+            <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
+
+            <p class="payment-options__item">
+              <span>{{ 'products.booking.payment-options.info' | translate }}</span>
+            </p>
 
             <p class="payment-options__item">
               <span>{{ 'products.booking.payment-options.privat' | translate }}</span>
-              <app-icon name="discount" size="md"></app-icon>
             </p>
 
             <p class="payment-options__item">
               <span>{{ 'products.booking.payment-options.universal' | translate }}</span>
-              <app-icon name="discount" size="md"></app-icon>
             </p>
           </div>
 
           <label for="id-upload-image" class="file-picker">
             <span>{{ 'products.booking.select-file' | translate }}</span>
-            <app-icon name="browse" size="md" class="file-picker__icon"></app-icon>
+            <app-icon name="browse" size="lg" class="file-picker__icon"></app-icon>
           </label>
 
           <input (change)="onFileChange($event)" type="file" id="id-upload-image" accept="image/*" class="d-none">
         </div>
 
-        <app-secondary-button
-          (buttonClick)="goWithoutRegistering()"
-          title="{{ 'products.booking.confirm-no-register' | translate }}"
-        ></app-secondary-button>
+        <div class="d-flex justify-content-end mt-4">
+          <app-primary-button
+            (buttonClick)="goWithoutRegistering()"
+            title="{{ 'products.booking.confirm-no-register' | translate }}"
+          ></app-primary-button>
+        </div>
       </ng-container>
     </form>
   </div>

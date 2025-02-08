@@ -77,9 +77,15 @@
       "slotsQty": "{{slots}} hours selected",
       "proceed-no-register": "Without registering",
       "confirm-no-register": "Confirm booking",
-      "register-benefits": "By registering you will have access to your account, receive discounts and special offers",
+      "register-benefits": "By registering you will have full control to your account and bookings, you will receive discounts, special offers, gifts and more",
       "confirm-title": "Booking confirmation",
-      "select-file": "Select file"
+      "select-file": "Select file",
+      "payment-options": {
+        "info": "Please proceed with the payment by the bank requisites noted below, attach the payment receipt and click «Confirm booking» button.",
+        "title": "Payment options",
+        "privat": "PrivatBank",
+        "universal": "Universal Bank"
+      }
     }
   },
   "auth": {
