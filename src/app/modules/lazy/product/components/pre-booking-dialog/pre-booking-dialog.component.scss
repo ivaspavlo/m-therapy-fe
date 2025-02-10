@@ -76,5 +76,12 @@
   &__item {
     line-height: 1.3rem;
     color: $secondary;
+    display: flex;
+    align-items: center;
+  }
+
+  &__bank {
+    max-height: rem(12px);
+    margin: 0 0.5rem;
   }
 }
