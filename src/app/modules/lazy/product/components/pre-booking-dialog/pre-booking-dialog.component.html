@@ -34,21 +34,33 @@
           <div class="payment-options">
             <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
 
-            <p class="payment-options__item">
+            <p class="payment-options__data">
               <span>{{ 'products.booking.payment-options.info' | translate }}</span>
             </p>
 
-            <p class="payment-options__item">
-              <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
-              <span>{{ 'products.booking.payment-options.privat' | translate }}</span>
-              <img src="/assets/images/vector/privat.svg" alt="Privatbank logo" class="payment-options__bank">
-            </p>
+            <div class="payment-data flex-column">
+              <p class="d-flex">
+                <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
+                <span>{{ 'products.booking.payment-options.privat' | translate }}</span>
+                <img src="/assets/images/vector/privat.svg" alt="Privatbank logo" class="payment-data__bank-logo">
+              </p>
 
-            <p class="payment-options__item">
-              <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
-              <span>{{ 'products.booking.payment-options.universal' | translate }}</span>
-              <img src="/assets/images/vector/universal.svg" alt="Universalbank logo" class="payment-options__bank">
-            </p>
+              <p class="payment-data__card">
+                <span>{{ '5152 1111 2222 3333' }}</span>
+              </p>
+            </div>
+
+            <div class="payment-data flex-column">
+              <p class="d-flex">
+                <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
+                <span>{{ 'products.booking.payment-options.universal' | translate }}</span>
+                <img src="/assets/images/vector/universal.svg" alt="Universalbank logo" class="payment-data__bank-logo">
+              </p>
+
+              <p class="payment-data__card">
+                <span>{{ '5153 1111 2222 3333' }}</span>
+              </p>
+            </div>
           </div>
 
           <label for="id-upload-image" class="file-picker">
