@@ -27,9 +27,6 @@ $background-color: whitesmoke;
   &--closing {
     animation: dialogOut .3s;
   }
-  @media only screen and (min-width: 370px) {
-    border-radius: 16px;
-  }
 }
 
 @keyframes dialogIn {

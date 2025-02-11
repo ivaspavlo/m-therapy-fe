@@ -72,16 +72,21 @@
     color: $primary;
     font-size: rem(18px);
   }
+}
 
-  &__item {
-    line-height: 1.3rem;
-    color: $secondary;
-    display: flex;
-    align-items: center;
-  }
+.payment-data {
+  line-height: 1.3rem;
+  color: $secondary;
+  display: flex;
 
-  &__bank {
+  &__bank-logo {
     max-height: rem(12px);
     margin: 0 0.5rem;
+  }
+
+  &__card {
+    margin-left: 2rem;
+    margin-top: rem(4px);
+    font-weight: bold;
   }
 }
