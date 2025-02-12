@@ -61,7 +61,9 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
 
   public onSubmit(): void {
     if (!this.userService.isLoggedIn) {
-      this.dialogService.open(PreBookingDialogComponent, {}).afterClosed.pipe(
+      this.dialogService.open(PreBookingDialogComponent, {
+        datesSelected: this.selectedSlots
+      }).afterClosed.pipe(
         takeUntil(this.componentDestroyed$)
       ).subscribe(() => {
         // to be developed
@@ -69,11 +71,13 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
       });
       return;
     }
+
     const req = {
       email: this.localStorage.getItem(USER_EMAIL) as string,
       bookingSlots: Array.from(this.selectedSlots, ([_, value]) => value),
       lang: this.translateService.currentLang as LANGUAGE
     }
+
     this.bookingApiService.setPreBooking(req);
   }
 }
