@@ -10,7 +10,6 @@ import { DIALOG_SIZES } from '@app/core/constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogContentComponent implements OnInit {
-  
   @Input() set size(value: string) {
     this._size = value && DIALOG_SIZES[value]
       ? DIALOG_SIZES[value]

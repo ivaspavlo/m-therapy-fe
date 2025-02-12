@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DialogRef } from '@app/modules/ui';
+import { DialogConfig, DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
 
 @Component({
@@ -19,10 +19,13 @@ export class PreBookingDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private dialog: DialogRef
+    private dialog: DialogRef,
+    private config: DialogConfig
   ) {}
 
   ngOnInit(): void {
+    this.config;
+    debugger;
     this.formGroup = this.fb.group({
       [this.controlName]: this.fb.control('', [Validators.required, Validators.email])
     });
