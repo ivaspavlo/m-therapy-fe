@@ -1,10 +1,10 @@
 import { ComponentFactory } from '@angular/core';
 
 
-export class DialogConfig {
+export class DialogConfig<T> {
   
   public contentFactory: ComponentFactory<any>;
-  public data: any;
+  public data: T;
   
   constructor(contentFactory: ComponentFactory<any>, data?: any) {
     this.contentFactory = contentFactory;

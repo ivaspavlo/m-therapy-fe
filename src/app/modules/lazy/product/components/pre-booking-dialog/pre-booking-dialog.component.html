@@ -3,19 +3,18 @@
     <h2 class="pre-booking__title">{{ 'products.booking.confirm-title' | translate }}</h2>
 
     <form [formGroup]="formGroup" class="pre-booking-content">
-      <p class="pre-booking-content__text">
+      <p *ngIf="!noRegistering" class="pre-booking-content__text">
         <span>{{ 'products.booking.register-benefits' | translate }}</span>
         <app-icon name="gift" size="lg" class="pre-booking-content__icon"></app-icon>
       </p>
 
-      <div class="pre-booking-content__controls">
+      <div *ngIf="!noRegistering" class="pre-booking-content__controls">
         <app-primary-button
           (buttonClick)="onRegister()"
           title="{{ 'main.landing.register' | translate }}"
         ></app-primary-button>
 
         <app-secondary-button
-          *ngIf="!noRegistering"
           (buttonClick)="goWithoutRegistering()"
           title="{{ 'products.booking.proceed-no-register' | translate }}"
         ></app-secondary-button>

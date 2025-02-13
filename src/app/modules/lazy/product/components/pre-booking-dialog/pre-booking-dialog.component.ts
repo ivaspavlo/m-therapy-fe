@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DialogConfig, DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
+import { IBookingSlot } from '@app/interfaces';
 
 @Component({
   selector: 'app-pre-booking-dialog',
@@ -20,14 +21,13 @@ export class PreBookingDialogComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private dialog: DialogRef,
-    private config: DialogConfig
+    private config: DialogConfig<{ datesSelected: IBookingSlot[], price: number }>
   ) {}
 
   ngOnInit(): void {
-    this.config;
-    debugger;
     this.formGroup = this.fb.group({
-      [this.controlName]: this.fb.control('', [Validators.required, Validators.email])
+      [this.controlName]: this.fb.control('', [Validators.required, Validators.email]),
+      datesSelected: this.config.data.datesSelected
     });
   }
 
