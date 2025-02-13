@@ -10,7 +10,7 @@ import { DialogConfig, DialogRef } from '@app/modules/ui';
 export class TestModalComponent implements OnInit {
 
   constructor(
-    private config: DialogConfig,
+    private config: DialogConfig<unknown>,
     private dialog: DialogRef
   ) { }
 

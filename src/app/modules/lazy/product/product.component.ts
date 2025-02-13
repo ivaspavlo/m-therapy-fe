@@ -46,8 +46,7 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
       shareReplay()
     );
     this.form = this.fb.group({
-      startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd'),
-      datesSelected: []
+      startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
     });
   }
 
@@ -59,11 +58,14 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
     this.selectedSlots.set(index, value);
   }
 
-  public onSubmit(): void {
+  public onSubmit(price: number): void {
     if (!this.userService.isLoggedIn) {
-      this.dialogService.open(PreBookingDialogComponent, {
-        datesSelected: this.selectedSlots
-      }).afterClosed.pipe(
+      const dialogData = {
+        price,
+        datesSelected: Array.from(this.selectedSlots.values())
+      };
+
+      this.dialogService.open(PreBookingDialogComponent, dialogData).afterClosed.pipe(
         takeUntil(this.componentDestroyed$)
       ).subscribe(() => {
         // to be developed

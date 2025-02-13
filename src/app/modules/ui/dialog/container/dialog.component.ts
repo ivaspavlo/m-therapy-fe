@@ -18,7 +18,7 @@ export class DialogComponent implements AfterViewInit {
   public isClosing = false;
 
   constructor(
-    private dialogConfig: DialogConfig,
+    private dialogConfig: DialogConfig<unknown>,
     public dialogRef: DialogRef,
     private cdr: ChangeDetectorRef
   ) { }

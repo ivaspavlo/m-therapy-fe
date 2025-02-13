@@ -44,7 +44,7 @@
       </div>
 
       <app-primary-button
-        (buttonClick)="onSubmit()"
+        (buttonClick)="onSubmit(selectedSlots.size * product.product.price)"
         [isLoading]="false"
         title="{{'auth.submit' | translate}}"
         class="product-content__submit-btn"
