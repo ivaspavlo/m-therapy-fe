@@ -13,12 +13,12 @@
 }
 
 .pre-booking-content {
-  margin-top: 2rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
 
   &__text {
+    margin-top: 2rem;
     color: $secondary;
     line-height: 1.3rem;
   }
@@ -89,4 +89,14 @@
     margin-top: rem(4px);
     font-weight: bold;
   }
+}
+
+.selection {
+  padding: rem(12px) rem(24px) rem(12px) rem(12px);
+  transition: $transition-1;
+  margin-top: 2rem;
+  flex-direction: column;
+  border: 1px solid $primary;
+  color: $secondary;
+  background-color: $white;
 }
