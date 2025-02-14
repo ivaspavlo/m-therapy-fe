@@ -21,7 +21,7 @@ export class PreBookingDialogComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private dialog: DialogRef,
-    private config: DialogConfig<{ datesSelected: IBookingSlot[], price: number }>
+    public config: DialogConfig<{ datesSelected: IBookingSlot[], price: number }>
   ) {}
 
   ngOnInit(): void {
