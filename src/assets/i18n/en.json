@@ -84,7 +84,8 @@
         "info": "Please proceed with the payment by the bank requisites noted below, attach the payment receipt and click «Confirm booking» button.",
         "title": "Payment options",
         "privat": "PrivatBank",
-        "universal": "Universal Bank"
+        "universal": "Universal Bank",
+        "email-desc": "Please enter your email for us to be able to send the confirmation to you:"
       }
     }
   },
