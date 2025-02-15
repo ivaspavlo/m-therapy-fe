@@ -85,6 +85,7 @@
 
         <div class="d-flex justify-content-end mt-4">
           <app-primary-button
+            [disabled]="!formGroup.valid"
             (buttonClick)="goWithoutRegistering()"
             title="{{ 'products.booking.confirm-no-register' | translate }}"
           ></app-primary-button>
