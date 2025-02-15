@@ -13,12 +13,12 @@
 }
 
 .pre-booking-content {
-  gap: 1rem;
   display: flex;
   flex-direction: column;
 
   &__text {
     margin-top: 2rem;
+    margin-bottom: 2rem;
     color: $secondary;
     line-height: 1.3rem;
   }
@@ -69,12 +69,14 @@
   margin-bottom: rem(20px);
 
   &__title {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
     color: $primary;
     font-size: rem(18px);
   }
 }
 
-.payment-data {
+.payment-info {
   line-height: 1.3rem;
   color: $secondary;
   display: flex;
@@ -83,12 +85,15 @@
     max-height: rem(12px);
     margin: 0 0.5rem;
   }
+}
 
-  &__card {
-    margin-left: 2rem;
-    margin-top: rem(4px);
-    font-weight: bold;
-  }
+.payment-card {
+  line-height: 1.3rem;
+  color: $secondary;
+  display: flex;
+  margin-left: 2rem;
+  margin-top: rem(4px);
+  font-weight: bold;
 }
 
 .selection {
@@ -99,4 +104,6 @@
   border: 1px solid $primary;
   color: $secondary;
   background-color: $white;
+  gap: rem(6px);
+  display: flex;
 }

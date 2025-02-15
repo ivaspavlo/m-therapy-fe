@@ -164,9 +164,11 @@
   border: 1px solid $primary;
   color: $secondary;
   background-color: $white;
+  gap: rem(6px);
+  display: flex;
 
   &--visible {
-    height: 64px;
+    height: 70px;
     opacity: 1;
     padding: rem(12px) rem(24px) rem(12px) rem(12px);
   }
