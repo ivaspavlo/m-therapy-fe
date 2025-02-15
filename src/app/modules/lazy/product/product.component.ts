@@ -45,6 +45,7 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
       map((res: Data) => res.product),
       shareReplay()
     );
+
     this.form = this.fb.group({
       startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
     });
