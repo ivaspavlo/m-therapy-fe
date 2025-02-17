@@ -1,6 +1,7 @@
 export interface IPaymentCard {
-  label: string;
-  card: string;
+  name: string;
+  uiName: string;
+  number: string;
 }
 
 export interface IPaymentData {

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DialogConfig, DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
 import { IBookingSlot } from '@app/interfaces';
+import { IPaymentData } from '@app/interfaces/api/payment-data.interface';
 
 @Component({
   selector: 'app-pre-booking-dialog',
@@ -21,7 +22,7 @@ export class PreBookingDialogComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private dialog: DialogRef,
-    public config: DialogConfig<{ datesSelected: IBookingSlot[], price: number }>
+    public config: DialogConfig<{ datesSelected: IBookingSlot[], price: number, paymentData: IPaymentData }>
   ) {}
 
   ngOnInit(): void {

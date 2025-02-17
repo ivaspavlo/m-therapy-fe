@@ -4,7 +4,7 @@ const cacheMap = new Map<string, any>();
 
 export function CacheApiCall(ttl: number = 60000) {
   return function (
-    target: Object,
+    _: Object,
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
