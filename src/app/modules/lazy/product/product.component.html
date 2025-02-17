@@ -1,10 +1,10 @@
-<section class="product">
+<section *ngIf="(data$ | async) as data" class="product">
   <header class="d-flex align-items-center m-3">
     <app-icon [routerLink]="CoreRouteNames.HOME" name="shevron-left" size="xl" class="product__back-button"></app-icon>
     <h2 class="product__title">{{'products.booking.title' | translate}}</h2>
   </header>
 
-  <div *ngIf="(product$ | async) as product" class="product-content">
+  <div *ngIf="data.product as product" class="product-content">
     <div class="product-content__dates">
       <form [formGroup]="form" class="scroll-container">
         <app-date-picker controlName="startDate" label="{{'products.booking.date' | translate}}"></app-date-picker>
@@ -37,7 +37,7 @@
       </form>
     </div>
 
-    <div class="product-content__info">
+    <div *ngIf="data.content?.payment as paymentData" class="product-content__info">
       <div class="selection" [ngClass]="{'selection--visible': selectedSlots.size}">
         <p>{{'products.booking.slotsQty'|translate:{slots: selectedSlots.size} }}</p>
 
@@ -45,7 +45,7 @@
       </div>
 
       <app-primary-button
-        (buttonClick)="onSubmit(selectedSlots.size * product.product.price)"
+        (buttonClick)="onSubmit(selectedSlots.size * product.product.price, paymentData)"
         [isLoading]="false"
         title="{{'auth.submit' | translate}}"
         class="product-content__submit-btn"
