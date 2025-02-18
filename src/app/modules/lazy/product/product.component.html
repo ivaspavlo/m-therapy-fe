@@ -37,7 +37,8 @@
       </form>
     </div>
 
-    <div *ngIf="data.content?.payment as paymentData" class="product-content__info">
+    <!-- *ngIf="data.content?.payment as paymentData" -->
+    <div class="product-content__info">
       <div class="selection" [ngClass]="{'selection--visible': selectedSlots.size}">
         <p>{{'products.booking.slotsQty'|translate:{slots: selectedSlots.size} }}</p>
 
@@ -45,7 +46,7 @@
       </div>
 
       <app-primary-button
-        (buttonClick)="onSubmit(selectedSlots.size * product.product.price, paymentData)"
+        (buttonClick)="onSubmit(selectedSlots.size * product.product.price, {})"
         [isLoading]="false"
         title="{{'auth.submit' | translate}}"
         class="product-content__submit-btn"

@@ -17,6 +17,7 @@ export class PreBookingDialogComponent implements OnInit {
   public controlName: string = 'email';
   public formGroup!: FormGroup;
   public noRegistering: boolean = false;
+  public fileName: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +42,14 @@ export class PreBookingDialogComponent implements OnInit {
     this.dialog.close();
   }
 
-  public onFileChange(value: any): void {
-    console.log(value);
+  public onFileChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      this.fileName = `${target.files[0].name.substring(0, 30)}...`;;
+    }
+  }
+
+  public onClearFile(): void {
+    this.fileName = '';
   }
 }
