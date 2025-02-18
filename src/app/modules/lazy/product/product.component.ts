@@ -72,7 +72,7 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
     this.selectedSlots.set(index, value);
   }
 
-  public onSubmit(price: number, paymentData: IPaymentData): void {
+  public onSubmit(price: number, paymentData: any): void {
     if (!this.userService.isLoggedIn) {
       const dialogData = {
         price,
