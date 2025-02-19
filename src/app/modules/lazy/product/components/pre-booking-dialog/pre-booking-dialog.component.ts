@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DialogConfig, DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
-import { IBookingSlot } from '@app/interfaces';
-import { IPaymentData } from '@app/interfaces/api/payment-data.interface';
+import { IBookingSlot, IPaymentData } from '@app/interfaces';
 
 @Component({
   selector: 'app-pre-booking-dialog',
@@ -13,6 +12,8 @@ import { IPaymentData } from '@app/interfaces/api/payment-data.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreBookingDialogComponent implements OnInit {
+  @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
+
   public INPUT_TYPES = INPUT_TYPES;
   public controlName: string = 'email';
   public formGroup!: FormGroup;
@@ -45,11 +46,12 @@ export class PreBookingDialogComponent implements OnInit {
   public onFileChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
-      this.fileName = `${target.files[0].name.substring(0, 30)}...`;;
+      this.fileName = `${target.files[0].name.substring(0, 30)}...`;
     }
   }
 
   public onClearFile(): void {
     this.fileName = '';
+    this.paymentFileInput.nativeElement.value = '';
   }
 }
