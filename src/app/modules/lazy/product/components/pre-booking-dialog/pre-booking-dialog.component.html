@@ -89,12 +89,12 @@
 
           
           <div class="d-flex align-items-center">
-            <label for="id-upload-image" class="file-picker">
+            <label for="id-payment-file" class="file-picker">
               <span>{{ 'products.booking.select-file' | translate }}</span>
               <app-icon name="browse" size="lg" class="file-picker__icon"></app-icon>
             </label>
 
-            <input (change)="onFileChange($event)" type="file" id="id-upload-image" accept="image/*" class="d-none">
+            <input (change)="onFileChange($event)" type="file" #paymentFileInput id="id-payment-file" accept="image/*" class="d-none">
 
             <p *ngIf="fileName" class="payment-file">
               <span>{{ fileName }}</span>
