@@ -5,6 +5,8 @@ import { DialogConfig, DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
 import { IBookingSlot, IPaymentData } from '@app/interfaces';
 
+import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
+
 @Component({
   selector: 'app-pre-booking-dialog',
   templateUrl: './pre-booking-dialog.component.html',
@@ -30,7 +32,8 @@ export class PreBookingDialogComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       [this.controlName]: this.fb.control('', [Validators.required, Validators.email]),
-      datesSelected: this.config.data.datesSelected
+      datesSelected: this.config.data.datesSelected,
+      paymentFile: null
     });
   }
 
@@ -39,7 +42,7 @@ export class PreBookingDialogComponent implements OnInit {
   }
 
   public onRegister(): void {
-    this.router.navigateByUrl('/auth/register');
+    this.router.navigateByUrl(`${AUTH_ROUTE_NAMES.SELF}/${AUTH_ROUTE_NAMES.REGISTER}`);
     this.dialog.close();
   }
 
@@ -47,11 +50,13 @@ export class PreBookingDialogComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       this.fileName = `${target.files[0].name.substring(0, 30)}...`;
+      this.formGroup.controls.paymentFile.setValue(target.files[0]);
     }
   }
 
   public onClearFile(): void {
     this.fileName = '';
     this.paymentFileInput.nativeElement.value = '';
+    this.formGroup.controls.paymentFile.reset();
   }
 }
