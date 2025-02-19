@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Route, RouterModule } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { AuthApiService } from '@app/core/services';
 import { AuthPageComponent } from './auth-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -13,7 +14,8 @@ import { RegisterConfirmComponent } from './components/register-confirm/register
 import { ResetComponent } from './components/reset/reset.component';
 import { UnsubscribeComponent } from './components/unsubscribe/unsubscribe.component';
 
-const AUTH_ROUTE_NAMES = {
+export const AUTH_ROUTE_NAMES = {
+  SELF: CORE_ROUTE_NAMES.AUTH,
   BLANK: '',
   LOGIN: 'login',
   REGISTER: 'register',
