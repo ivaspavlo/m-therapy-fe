@@ -76,7 +76,7 @@
       "totalPrice": "Total price",
       "slotsQty": "{{slots}} hours selected",
       "proceed-no-register": "Without registering",
-      "confirm-no-register": "Confirm booking",
+      "confirm-booking": "Confirm booking",
       "register-benefits": "By registering you will have full control to your account and bookings, you will receive discounts, special offers, gifts and more",
       "confirm-title": "Booking confirmation",
       "select-file": "Select file",
@@ -85,7 +85,8 @@
         "title": "Payment options",
         "privat": "PrivatBank",
         "universal": "Universal Bank",
-        "email-desc": "Please enter your email for us to be able to send the confirmation to you:"
+        "email-desc": "Please enter your email for us to be able to send the confirmation to you:",
+        "file-requirements": "Max file size: 10 MB. Supported formats: PDF, JPG, PNG"
       }
     }
   },

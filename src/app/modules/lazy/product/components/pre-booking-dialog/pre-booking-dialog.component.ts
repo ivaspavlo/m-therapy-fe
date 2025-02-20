@@ -21,6 +21,10 @@ export class PreBookingDialogComponent implements OnInit {
   public formGroup!: FormGroup;
   public noRegistering: boolean = false;
   public fileName: string = '';
+  public fileHasError: boolean = false;
+
+  private maxSize = 10 * 1024 * 1024; // 10MB in bytes
+  private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
 
   constructor(
     private fb: FormBuilder,
@@ -49,6 +53,7 @@ export class PreBookingDialogComponent implements OnInit {
   public onFileChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
+      this.fileHasError = !this.isFileValid(target.files);
       this.fileName = `${target.files[0].name.substring(0, 30)}...`;
       this.formGroup.controls.paymentFile.setValue(target.files[0]);
     }
@@ -58,5 +63,16 @@ export class PreBookingDialogComponent implements OnInit {
     this.fileName = '';
     this.paymentFileInput.nativeElement.value = '';
     this.formGroup.controls.paymentFile.reset();
+    this.fileHasError = false;
+  }
+
+  private isFileValid(files: FileList): boolean {
+    const file = files[0];
+
+    if (file.size > this.maxSize || !this.allowedFormats.includes(file.type)) {
+      return false;
+    }
+
+    return true;
   }
 }
