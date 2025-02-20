@@ -122,3 +122,13 @@
     }
   }
 }
+
+.file-requirements {
+  font-size: rem(12px);
+  margin-bottom: rem(8px);
+  color: $secondary;
+
+  &--has-error {
+    color: $warn;
+  }
+}
