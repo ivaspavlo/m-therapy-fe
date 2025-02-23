@@ -5,24 +5,24 @@ import { DatePickerModule, DialogModule } from '@app/modules/ui';
 import { CoreTranslationModule } from '@app/core/core-translation.module';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { PreBookingDialogComponent, BookingConfirmComponent } from './components';
-import { ProductComponent } from './product.component';
-import { ProductRoutingModule } from './product-routing.module';
+import { BookingPaymentComponent, BookingSelectComponent } from './components';
+import { BookingPageComponent } from './booking-page.component';
+import { BookingRoutingModule } from './booking-routing.module';
 
 @NgModule({
   declarations: [
-    PreBookingDialogComponent,
-    BookingConfirmComponent,
-    ProductComponent
+    BookingPaymentComponent,
+    BookingSelectComponent,
+    BookingPageComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ProductRoutingModule,
+    BookingRoutingModule,
     DatePickerModule,
     SharedModule,
     CoreTranslationModule.forChild(),
     DialogModule
   ]
 })
-export class ProductModule { }
+export class BookingModule { }

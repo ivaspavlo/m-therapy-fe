@@ -1,23 +1,31 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DialogConfig, DialogRef } from '@app/modules/ui';
 import { INPUT_TYPES } from '@app/core/constants';
-import { IBookingSlot, IPaymentData } from '@app/interfaces';
+import { ICart } from '@app/interfaces';
 
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
+import { BookingManagementService } from '@app/core/services/booking-management.service';
+
+enum CONTROL_NAME {
+  EMAIL = 'email',
+  PHONE = 'phone',
+  COMMENT = 'comment'
+}
 
 @Component({
-  selector: 'app-pre-booking-dialog',
-  templateUrl: './pre-booking-dialog.component.html',
-  styleUrls: ['./pre-booking-dialog.component.scss'],
+  selector: 'app-booking-payment',
+  templateUrl: './booking-payment.component.html',
+  styleUrls: ['./booking-payment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PreBookingDialogComponent implements OnInit {
+export class BookingPaymentComponent {
   @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
+  
+  public cart!: ICart;
 
   public INPUT_TYPES = INPUT_TYPES;
-  public controlName: string = 'email';
+  public emailControlName: string = 'email';
   public formGroup!: FormGroup;
   public noRegistering: boolean = false;
   public fileName: string = '';
@@ -29,16 +37,14 @@ export class PreBookingDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private dialog: DialogRef,
-    public config: DialogConfig<{ datesSelected: IBookingSlot[], price: number, paymentData: IPaymentData }>
+    private bookingManagementService: BookingManagementService
   ) {}
 
   ngOnInit(): void {
-    this.formGroup = this.fb.group({
-      [this.controlName]: this.fb.control('', [Validators.required, Validators.email]),
-      datesSelected: this.config.data.datesSelected,
-      paymentFile: null
-    });
+    if (this.bookingManagementService.cart) {
+      this.cart = this.bookingManagementService.cart;
+      this.initForm(this.cart);
+    }
   }
 
   public goWithoutRegistering(): void {
@@ -47,7 +53,6 @@ export class PreBookingDialogComponent implements OnInit {
 
   public onRegister(): void {
     this.router.navigateByUrl(`${AUTH_ROUTE_NAMES.SELF}/${AUTH_ROUTE_NAMES.REGISTER}`);
-    this.dialog.close();
   }
 
   public onFileChange(event: Event): void {
@@ -74,5 +79,16 @@ export class PreBookingDialogComponent implements OnInit {
     }
 
     return true;
+  }
+
+  private initForm(cart: ICart): void {
+    this.formGroup = this.fb.group({
+      [CONTROL_NAME.EMAIL]: this.fb.control(cart.email || '', [Validators.required, Validators.email]),
+      [CONTROL_NAME.PHONE]: this.fb.control(cart.phone || '', [Validators.required]),
+      [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
+      price: cart.price || null,
+      datesSelected: cart.datesSelected,
+      paymentFile: null
+    });
   }
 }

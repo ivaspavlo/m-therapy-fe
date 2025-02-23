@@ -1,0 +1,7 @@
+<section class="booking-page">
+  <div [@authAnimate]="prepareRoute(outlet)">
+    <app-brand size="sm" class="booking-page__brand"></app-brand>
+
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</section>
