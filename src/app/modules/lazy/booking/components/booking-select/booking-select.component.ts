@@ -1,28 +1,25 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, RouterLink } from '@angular/router';
+import { ActivatedRoute, Data, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsyncPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { combineLatest, Observable, of } from 'rxjs';
-import { catchError, map, takeUntil } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 import { IBookingSlot, IContent, IProductBooking, IResponse } from '@app/interfaces';
 import { CORE_ROUTE_NAMES, LANGUAGE, USER_EMAIL } from '@app/core/constants';
 import { BookingApiService, ContentApiService, UserManagementService } from '@app/core/services';
 import { LOCAL_STORAGE } from '@app/core/providers';
-import { DialogService } from '@app/modules/ui';
 import { DestroySubscriptions } from '@app/shared/classes';
-import { PreBookingDialogComponent } from './components';
-import { IPaymentData } from '@app/interfaces/api/payment-data.interface';
+import { BookingManagementService } from '@app/core/services/booking-management.service';
+import { BOOKING_ROUTE_NAMES } from '../../booking-routing.module';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
-  providers: [DatePipe, AsyncPipe, TitleCasePipe, RouterLink],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-booking-select',
+  templateUrl: './booking-select.component.html',
+  styleUrls: ['./booking-select.component.scss']
 })
-export class ProductComponent extends DestroySubscriptions implements OnInit {
+export class BookingSelectComponent extends DestroySubscriptions implements OnInit {
   public data$!: Observable<{ product: IProductBooking | null, content: IContent | null}>;
   public content$!: Observable<IContent | null>;
   public product$!: Observable<IProductBooking | null>;
@@ -40,7 +37,8 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
     private contentApiService: ContentApiService,
     private userService: UserManagementService,
     private translateService: TranslateService,
-    private dialogService: DialogService
+    private router: Router,
+    private bookingManagementService: BookingManagementService
   ) {
     super();
   }
@@ -77,16 +75,13 @@ export class ProductComponent extends DestroySubscriptions implements OnInit {
       const dialogData = {
         price,
         paymentData,
-        datesSelected: Array.from(this.selectedSlots.values())
+        datesSelected: Array.from(this.selectedSlots.values()),
+        lang: this.translateService.currentLang as LANGUAGE
       };
 
-      this.dialogService.open(PreBookingDialogComponent, dialogData).afterClosed.pipe(
-        takeUntil(this.componentDestroyed$)
-      ).subscribe(() => {
-        // to be developed
-        console.log('works');
-      });
-      return;
+      this.bookingManagementService.addToCart(dialogData);
+
+      this.router.navigateByUrl(`${BOOKING_ROUTE_NAMES.ROOT}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
     }
 
     const req = {
