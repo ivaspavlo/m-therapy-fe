@@ -8,19 +8,18 @@ import { BookingApiService } from '@app/core/services';
 import { IBookingSlot, IResponse } from '@app/interfaces';
 import { BookingPaymentComponent, BookingSelectComponent } from './components';
 import { BookingPageComponent } from './booking-page.component';
-
-export enum BOOKING_ROUTE_NAMES {
-  ROOT = CORE_ROUTE_NAMES.BOOKING,
-  BOOKING_SELECT = 'booking-select',
-  BOOKING_PAYMENT = 'booking-payment'
-}
+import { BOOKING_ROUTE_NAMES } from './constants';
 
 const bookingRoutes: Route[] = [
   {
-    path: CORE_ROUTE_NAMES.BLANK,
+    path: '',
     component: BookingPageComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: BOOKING_ROUTE_NAMES.BOOKING_SELECT
+      }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_SELECT,
         component: BookingSelectComponent,
         data: { animationState: 'One' },

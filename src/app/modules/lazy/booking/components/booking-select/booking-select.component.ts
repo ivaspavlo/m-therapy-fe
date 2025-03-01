@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AsyncPipe, DatePipe, TitleCasePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { combineLatest, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,12 +12,14 @@ import { BookingApiService, ContentApiService, UserManagementService } from '@ap
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { BookingManagementService } from '@app/core/services/booking-management.service';
-import { BOOKING_ROUTE_NAMES } from '../../booking-routing.module';
+import { BOOKING_ROUTE_NAMES } from '../../constants';
 
 @Component({
   selector: 'app-booking-select',
   templateUrl: './booking-select.component.html',
-  styleUrls: ['./booking-select.component.scss']
+  styleUrls: ['./booking-select.component.scss'],
+  providers: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingSelectComponent extends DestroySubscriptions implements OnInit {
   public data$!: Observable<{ product: IProductBooking | null, content: IContent | null}>;
@@ -72,16 +74,16 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
 
   public onSubmit(price: number, paymentData: any): void {
     if (!this.userService.isLoggedIn) {
-      const dialogData = {
+      const bookingData = {
         price,
         paymentData,
         datesSelected: Array.from(this.selectedSlots.values()),
         lang: this.translateService.currentLang as LANGUAGE
       };
 
-      this.bookingManagementService.addToCart(dialogData);
+      this.bookingManagementService.addToCart(bookingData);
 
-      this.router.navigateByUrl(`${BOOKING_ROUTE_NAMES.ROOT}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
+      this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
     }
 
     const req = {
