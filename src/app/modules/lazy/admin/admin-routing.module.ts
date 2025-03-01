@@ -6,7 +6,7 @@ import { AdminPageComponent } from './admin-page.component';
 
 const mainRouts: Route[] = [
   {
-    path: CORE_ROUTE_NAMES.BLANK,
+    path: '',
     pathMatch: 'full',
     component: AdminPageComponent
   }

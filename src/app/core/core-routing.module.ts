@@ -5,7 +5,7 @@ import { CORE_ROUTE_NAMES } from './constants';
 
 const coreRouts: Route[] = [
   {
-    path: CORE_ROUTE_NAMES.BLANK,
+    path: '',
     pathMatch: 'full',
     redirectTo: CORE_ROUTE_NAMES.HOME
   }, {

@@ -45,6 +45,6 @@ export class ProductSectionComponent {
   }
 
   public onSelectProduct(product: IProduct): void {
-    this.router.navigate([CORE_ROUTE_NAMES.PRODUCT], {state: product});
+    this.router.navigate([CORE_ROUTE_NAMES.BOOKING], {state: product});
   }
 }
