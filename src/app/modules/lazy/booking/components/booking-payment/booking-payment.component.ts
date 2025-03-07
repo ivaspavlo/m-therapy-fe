@@ -2,10 +2,12 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { INPUT_TYPES } from '@app/core/constants';
-import { ICart } from '@app/interfaces';
+import { ICart, IContent, IResponse } from '@app/interfaces';
 
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
-import { BookingManagementService } from '@app/core/services/booking-management.service';
+import { BookingManagementService, ContentApiService } from '@app/core/services';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -30,6 +32,7 @@ export class BookingPaymentComponent {
   public noRegistering: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
+  public content$: Observable<IContent | null>;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -37,8 +40,14 @@ export class BookingPaymentComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private bookingManagementService: BookingManagementService
-  ) {}
+    private bookingManagementService: BookingManagementService,
+    private contentApiService: ContentApiService
+  ) {
+    this.content$ = this.contentApiService.getContent().pipe(
+      catchError(() => of(null)),
+      map((res: IResponse<IContent> | null) => res?.data || null)
+    );
+  }
 
   ngOnInit(): void {
     if (this.bookingManagementService.cart) {
