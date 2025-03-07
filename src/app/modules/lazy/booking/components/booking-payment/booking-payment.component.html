@@ -49,19 +49,23 @@
             <span>{{ 'products.booking.payment-options.info' | translate }}</span>
           </p>
 
-          <!-- <div *ngFor="let card of data.paymentData.cards" class="d-flex flex-column">
-            <p class="payment-info">
-              <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
-              <span>{{ ('products.booking.payment-options.' + card.name) | translate }}</span>
-              <img src="{{ '/assets/images/vector/' + card.name + '.svg'}}" alt="{{card.name + 'logo'}}" class="payment-info__bank-logo">
-            </p>
+          <p>{{ (content$ | async)?.paymentData| json }}</p>
 
-            <p class="payment-card">
-              <span>{{ card.number }}</span>
-            </p>
-          </div> -->
+          <ng-container *ngIf="(content$ | async) as content">
+            <div *ngFor="let card of content.paymentData.cards" class="d-flex flex-column">
+              <p class="payment-info">
+                <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
+                <span>{{ ('products.booking.payment-options.' + card.name) | translate }}</span>
+                <img src="{{ '/assets/images/vector/' + card.name + '.svg'}}" alt="{{card.name + 'logo'}}" class="payment-info__bank-logo">
+              </p>
+  
+              <p class="payment-card">
+                <span>{{ card.number }}</span>
+              </p>
+            </div>
+          </ng-container>
 
-          <div class="d-flex flex-column">
+          <!-- <div class="d-flex flex-column">
             <p class="payment-info">
               <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
               <span>{{ 'products.booking.payment-options.privat' | translate }}</span>
@@ -83,9 +87,8 @@
             <p class="payment-card">
               <span>{{ '5153 1111 2222 3333' }}</span>
             </p>
-          </div>
+          </div> -->
         </div>
-
         
         <div class="d-flex flex-column">
           <p

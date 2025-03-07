@@ -7,5 +7,5 @@ export interface IContent {
   ads: IAd[],
   products: IProduct[],
   contacts: IContact[],
-  payment: IPaymentData
+  paymentData: IPaymentData
 }
