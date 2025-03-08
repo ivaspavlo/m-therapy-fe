@@ -3,7 +3,3 @@ export interface IPaymentCard {
   uiName: string;
   number: string;
 }
-
-export interface IPaymentData {
-  cards: IPaymentCard[]
-}

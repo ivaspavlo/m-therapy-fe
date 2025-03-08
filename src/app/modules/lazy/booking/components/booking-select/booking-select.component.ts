@@ -6,7 +6,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { IBookingSlot, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingSlot, IContent, IProduct, IProductBooking, IResponse } from '@app/interfaces';
 import { CORE_ROUTE_NAMES, LANGUAGE, USER_EMAIL } from '@app/core/constants';
 import { BookingApiService, ContentApiService, UserManagementService } from '@app/core/services';
 import { LOCAL_STORAGE } from '@app/core/providers';
@@ -72,11 +72,10 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.selectedSlots.set(index, value);
   }
 
-  public onSubmit(price: number, paymentData: any): void {
+  public onSubmit(product: IProduct): void {
     if (!this.userService.isLoggedIn) {
       const bookingData = {
-        price,
-        paymentData,
+        product,
         datesSelected: Array.from(this.selectedSlots.values()),
         lang: this.translateService.currentLang as LANGUAGE
       };
