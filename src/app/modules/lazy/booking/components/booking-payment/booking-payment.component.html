@@ -1,9 +1,12 @@
-<div *ngIf="cart"  class="booking-payment">
-  <h2 class="booking-payment__title">{{ 'products.booking.confirm-title' | translate }}</h2>
+<div *ngIf="cart" class="booking-payment">
+  <header class="d-flex align-items-center">
+    <app-icon [routerLink]="'/select'" name="shevron-left" size="xl" class="booking-payment__back"></app-icon>
+    <h2 class="booking-payment__title">{{ 'products.booking.confirm-title' | translate }}</h2>
+  </header>
 
   <div class="selection">
     <p>{{ 'products.booking.slotsQty' | translate: { slots: cart.datesSelected.length } }}</p>
-    <p>{{ 'products.booking.totalPrice' | translate }}: {{ cart.datesSelected.length * cart.price |number:'2.2' }} UAH</p>
+    <p>{{ 'products.booking.totalPrice' | translate }}: {{ cart.datesSelected.length * cart.product.price | number:'2.2' }} UAH</p>
   </div>
 
   <div class="booking-payment-content">
@@ -49,10 +52,8 @@
             <span>{{ 'products.booking.payment-options.info' | translate }}</span>
           </p>
 
-          <p>{{ (content$ | async)?.paymentData| json }}</p>
-
           <ng-container *ngIf="(content$ | async) as content">
-            <div *ngFor="let card of content.paymentData.cards" class="d-flex flex-column">
+            <div *ngFor="let card of content.paymentCards" class="d-flex flex-column">
               <p class="payment-info">
                 <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
                 <span>{{ ('products.booking.payment-options.' + card.name) | translate }}</span>
@@ -64,30 +65,6 @@
               </p>
             </div>
           </ng-container>
-
-          <!-- <div class="d-flex flex-column">
-            <p class="payment-info">
-              <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
-              <span>{{ 'products.booking.payment-options.privat' | translate }}</span>
-              <img src="/assets/images/vector/privat.svg" alt="Privatbank logo" class="payment-info__bank-logo">
-            </p>
-
-            <p class="payment-card">
-              <span>{{ '5152 1111 2222 3333' }}</span>
-            </p>
-          </div>
-
-          <div class="d-flex flex-column">
-            <p class="payment-info">
-              <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
-              <span>{{ 'products.booking.payment-options.universal' | translate }}</span>
-              <img src="/assets/images/vector/universal.svg" alt="Universalbank logo" class="payment-info__bank-logo">
-            </p>
-
-            <p class="payment-card">
-              <span>{{ '5153 1111 2222 3333' }}</span>
-            </p>
-          </div> -->
         </div>
         
         <div class="d-flex flex-column">

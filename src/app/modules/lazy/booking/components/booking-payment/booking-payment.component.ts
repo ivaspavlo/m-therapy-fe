@@ -95,7 +95,7 @@ export class BookingPaymentComponent {
       [CONTROL_NAME.EMAIL]: this.fb.control(cart.email || '', [Validators.required, Validators.email]),
       [CONTROL_NAME.PHONE]: this.fb.control(cart.phone || '', [Validators.required]),
       [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
-      price: cart.price || null,
+      price: cart.product.price || null,
       datesSelected: cart.datesSelected,
       paymentFile: null
     });

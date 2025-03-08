@@ -1,6 +1,6 @@
 import { LANGUAGE } from '@app/core/constants';
 import { IProduct } from '../product.interface';
-import { IPaymentData } from './payment-data.interface';
+import { IPaymentCard } from './payment-data.interface';
 
 export interface IBookingSlot {
   start: number,
@@ -20,8 +20,7 @@ export interface IPreBooking {
 
 export interface ICart {
   datesSelected: IBookingSlot[],
-  price: number,
-  paymentData: IPaymentData,
+  product: IProduct,
   email?: string,
   comment?: string,
   phone?: string,
