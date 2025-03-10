@@ -1,8 +1,12 @@
 @import 'variables';
 
+@mixin input-width {
+  max-width: rem(450px);
+}
+
 .booking-payment {
   width: 100%;
-  max-width: 768px;
+  max-width: rem(768px);
   min-height: 100vh;
   padding: 5rem 1rem 2rem 1rem;
   display: flex;
@@ -22,9 +26,26 @@
   }
 }
 
-.booking-payment-content {
+.payment-content {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  overflow-y: auto;
+
+  &__container {
+    padding-right: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    @include input-width;
+    margin-top: 2rem;
+  }
 
   &__text {
     margin-top: 2rem;
