@@ -54,6 +54,7 @@ export class BookingPaymentComponent {
       this.cart = this.bookingManagementService.cart;
       this.initForm(this.cart);
     }
+    // window.scrollTo(0, document.body.scrollHeight);
   }
 
   public goWithoutRegistering(): void {
