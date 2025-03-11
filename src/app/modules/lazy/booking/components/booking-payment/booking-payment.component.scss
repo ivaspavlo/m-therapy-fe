@@ -1,9 +1,5 @@
 @import 'variables';
 
-@mixin input-width {
-  max-width: rem(450px);
-}
-
 .booking-payment {
   width: 100%;
   max-width: rem(768px);
@@ -43,8 +39,8 @@
   }
 
   &__input {
-    @include input-width;
-    margin-top: 2rem;
+    max-width: rem(450px);
+    margin-top: 1.5rem;
   }
 
   &__text {
@@ -66,9 +62,9 @@
 }
 
 .file-picker {
-  min-width: 160px;
-  max-width: 200px;
-  height: 57px;
+  min-width: rem(160px);
+  max-width: rem(200px);
+  height: rem(57px);
   padding: rem(18px) rem(12px);
   border: 1px solid $primary;
   font-size: 1rem;
@@ -100,7 +96,6 @@
   margin-bottom: rem(20px);
 
   &__title {
-    margin-top: 1.5rem;
     margin-bottom: 1rem;
     color: $primary;
     font-size: rem(18px);
@@ -129,13 +124,14 @@
 
 .selection {
   padding: rem(12px) rem(24px) rem(12px) rem(12px);
-  transition: $transition-1;
+  margin-bottom: 1.5rem;
   margin-top: 2rem;
-  flex-direction: column;
   border: 1px solid $primary;
+  gap: rem(6px);
+  transition: $transition-1;
+  flex-direction: column;
   color: $secondary;
   background-color: $white;
-  gap: rem(6px);
   display: flex;
 }
 
@@ -145,7 +141,7 @@
   display: flex;
 
   &__icon {
-    margin-left: 8px;
+    margin-left: rem(8px);
     cursor: pointer;
 
     &:hover {
