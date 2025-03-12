@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { INPUT_TYPES } from '@app/core/constants';
 import { ICart, IContent, IResponse } from '@app/interfaces';
 
@@ -8,6 +8,7 @@ import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
 import { BookingManagementService, ContentApiService } from '@app/core/services';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { BOOKING_ROUTE_NAMES } from '../../constants';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -33,6 +34,7 @@ export class BookingPaymentComponent {
   public fileName: string = '';
   public fileHasError: boolean = false;
   public content$: Observable<IContent | null>;
+  public backUrl: string[] = ['../', BOOKING_ROUTE_NAMES.BOOKING_SELECT];
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -40,6 +42,7 @@ export class BookingPaymentComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private bookingManagementService: BookingManagementService,
     private contentApiService: ContentApiService
   ) {
@@ -79,6 +82,11 @@ export class BookingPaymentComponent {
     this.paymentFileInput.nativeElement.value = '';
     this.formGroup.controls.paymentFile.reset();
     this.fileHasError = false;
+  }
+
+  public onTest(): void {
+    debugger;
+    this.router.navigate([ '../', 'select' ], { relativeTo: this.activatedRoute });
   }
 
   private isFileValid(files: FileList): boolean {
