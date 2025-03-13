@@ -4,7 +4,7 @@ import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { BookingApiService } from '@app/core/services';
+import { BookingApiService, BookingManagementService } from '@app/core/services';
 import { IBookingSlot, IResponse } from '@app/interfaces';
 import { BookingPaymentComponent, BookingSelectComponent } from './components';
 import { BookingPageComponent } from './booking-page.component';
@@ -26,15 +26,16 @@ const bookingRoutes: Route[] = [
         resolve: {
           product: () => {
             const router = inject(Router);
-            const bookingService = inject(BookingApiService);
+            const managementService = inject(BookingManagementService);
+            const apiService = inject(BookingApiService);
     
-            const product = router.getCurrentNavigation()?.extras?.state;
+            const product = managementService.currentProduct;
             if (!product) {
               router.navigateByUrl(CORE_ROUTE_NAMES.HOME);
               return;
             }
     
-            return bookingService.getBookingSlots().pipe(
+            return apiService.getBookingSlots().pipe(
               catchError(() => of(null)),
               map((res: IResponse<IBookingSlot[]> | null) => {
                 if (res === null || !res?.success) {

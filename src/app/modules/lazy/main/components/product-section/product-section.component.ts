@@ -4,9 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { IContent, IProduct, IResponse } from '@app/interfaces';
-import { ContentApiService } from '@app/core/services';
+import { BookingManagementService, ContentApiService } from '@app/core/services';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
-
 
 @Component({
   selector: 'app-product-section',
@@ -23,7 +22,8 @@ export class ProductSectionComponent {
 
   constructor(
     private contentApiService: ContentApiService,
-    private router: Router
+    private router: Router,
+    private bookingService: BookingManagementService
   ) { }
 
   ngOnInit() {
@@ -45,6 +45,7 @@ export class ProductSectionComponent {
   }
 
   public onSelectProduct(product: IProduct): void {
-    this.router.navigate([CORE_ROUTE_NAMES.BOOKING], {state: product});
+    this.bookingService.setCurrentProduct(product);
+    this.router.navigate([CORE_ROUTE_NAMES.BOOKING]);
   }
 }

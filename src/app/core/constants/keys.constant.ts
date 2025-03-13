@@ -4,3 +4,4 @@ export const USER_EMAIL = 'user_email';
 export const ACCESS_TOKEN = 'access';
 export const IS_ADMIN = 'is_admin';
 export const BRAND_NAME = 'Massage Therapy';
+export const CART = 'Cart';

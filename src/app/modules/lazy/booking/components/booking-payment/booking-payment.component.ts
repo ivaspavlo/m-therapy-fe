@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { INPUT_TYPES } from '@app/core/constants';
 import { ICart, IContent, IResponse } from '@app/interfaces';
 
@@ -42,7 +42,6 @@ export class BookingPaymentComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private bookingManagementService: BookingManagementService,
     private contentApiService: ContentApiService
   ) {
@@ -53,11 +52,11 @@ export class BookingPaymentComponent {
   }
 
   ngOnInit(): void {
+    debugger;
     if (this.bookingManagementService.cart) {
       this.cart = this.bookingManagementService.cart;
       this.initForm(this.cart);
     }
-    // window.scrollTo(0, document.body.scrollHeight);
   }
 
   public goWithoutRegistering(): void {
@@ -82,11 +81,6 @@ export class BookingPaymentComponent {
     this.paymentFileInput.nativeElement.value = '';
     this.formGroup.controls.paymentFile.reset();
     this.fileHasError = false;
-  }
-
-  public onTest(): void {
-    debugger;
-    this.router.navigate([ '../', 'select' ], { relativeTo: this.activatedRoute });
   }
 
   private isFileValid(files: FileList): boolean {
