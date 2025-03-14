@@ -25,7 +25,6 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   public data$!: Observable<{ product: IProductBooking | null, content: IContent | null}>;
   public content$!: Observable<IContent | null>;
   public product$!: Observable<IProductBooking | null>;
-
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
@@ -46,22 +45,8 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   ngOnInit(): void {
-    const product$ = this.activatedRoute.data.pipe(
-      map((res: Data) => res?.product || null)
-    );
-
-    const content$ = this.contentApiService.getContent().pipe(
-      catchError(() => of(null)),
-      map((res: IResponse<IContent> | null) => res?.data || null)
-    );
-
-    this.data$ = combineLatest([product$, content$]).pipe(
-      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content }))
-    );
-
-    this.form = this.fb.group({
-      startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
-    });
+    this.initData();
+    this.initForm();
   }
 
   public onClickSlot(index: number, value: IBookingSlot): void {
@@ -92,5 +77,26 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     }
 
     this.bookingApiService.setPreBooking(req);
+  }
+
+  private initData(): void {
+    const product$ = this.activatedRoute.data.pipe(
+      map((res: Data) => res?.product || null)
+    );
+
+    const content$ = this.contentApiService.getContent().pipe(
+      catchError(() => of(null)),
+      map((res: IResponse<IContent> | null) => res?.data || null)
+    );
+
+    this.data$ = combineLatest([product$, content$]).pipe(
+      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content }))
+    );
+  }
+
+  private initForm(): void {
+    this.form = this.fb.group({
+      startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
+    });
   }
 }
