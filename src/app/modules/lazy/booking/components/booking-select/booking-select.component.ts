@@ -3,7 +3,7 @@ import { ActivatedRoute, Data, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { combineLatest, Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, first, map, shareReplay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 import { IBookingSlot, IContent, IProduct, IProductBooking, IResponse } from '@app/interfaces';
@@ -57,40 +57,68 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.selectedSlots.set(index, value);
   }
 
-  public onSubmit(product: IProduct): void {
-    if (!this.userService.isLoggedIn) {
-      const bookingData = {
-        product,
-        datesSelected: Array.from(this.selectedSlots.values()),
-        lang: this.translateService.currentLang as LANGUAGE
-      };
+  public onSubmit(): void {
+    const cart = this.bookingManagementService.cart;
+    const cartSlots = this.bookingManagementService.currentBookings?.dates || [];
+    const currentSlots = Array.from(this.selectedSlots.values());
 
-      this.bookingManagementService.addToCart(bookingData);
+    // Combine selected dates with dates from the cart and remove duplicates.
+    const currentDates = Object.values([...cartSlots, ...currentSlots].reduce((acc, curr)=> {
+      acc[curr.startDate] = curr;
+      return acc;
+    }, {}));
 
-      this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
+    const currentBookings = {
+      product: this.bookingManagementService.currentBookings?.product,
+      dates: currentDates
     }
 
-    const req = {
-      email: this.localStorage.getItem(USER_EMAIL) as string,
-      bookingSlots: Array.from(this.selectedSlots, ([_, value]) => value),
+    const bookingData = {
+      bookings: [...cart?.bookings || [], currentBookings],
+      email: this.localStorage.getItem(USER_EMAIL),
       lang: this.translateService.currentLang as LANGUAGE
     }
 
-    this.bookingApiService.setPreBooking(req);
+    // bookings: IProductBooking[],
+    // email?: string,
+    // comment?: string,
+    // phone?: string,
+    // lang: LANGUAGE
+
+    this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
+
+    // if (!this.userService.isLoggedIn) {
+    //   const bookingData = {
+    //     product,
+    //     datesSelected: Array.from(this.selectedSlots.values()),
+    //     lang: this.translateService.currentLang as LANGUAGE
+    //   };
+
+    //   this.bookingManagementService.addToCart(bookingData);
+
+    //   this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
+    // }
+
+    // const req = {
+    //   email: this.localStorage.getItem(USER_EMAIL) as string,
+    //   bookingSlots: Array.from(this.selectedSlots, ([_, value]) => value),
+    //   lang: this.translateService.currentLang as LANGUAGE
+    // }
+
+    // this.bookingApiService.setPreBooking(req);
   }
 
   private initData(): void {
-    const product$ = this.activatedRoute.data.pipe(
-      map((res: Data) => res?.product || null)
-    );
+    const currentBookings$ = of(this.bookingManagementService.currentBookings);
 
     const content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.data$ = combineLatest([product$, content$]).pipe(
-      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content }))
+    this.data$ = combineLatest([currentBookings$, content$]).pipe(
+      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content })),
+      shareReplay()
     );
   }
 
