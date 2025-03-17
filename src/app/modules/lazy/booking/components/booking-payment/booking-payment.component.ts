@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { INPUT_TYPES } from '@app/core/constants';
+import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
 import { ICart, IContent, IResponse } from '@app/interfaces';
 
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
-import { BookingManagementService, ContentApiService } from '@app/core/services';
+import { BookingApiService, BookingManagementService, ContentApiService, UserManagementService } from '@app/core/services';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
+import { LOCAL_STORAGE } from '@app/core/providers';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -35,11 +36,15 @@ export class BookingPaymentComponent {
   public fileHasError: boolean = false;
   public content$: Observable<IContent | null>;
   public backUrl: string[] = ['../', BOOKING_ROUTE_NAMES.BOOKING_SELECT];
+  public loggedInEmail: string | null = null;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
 
   constructor(
+    @Inject(LOCAL_STORAGE) private localStorage: Storage,
+    // private userService: UserManagementService,
+    // private bookingApiService: BookingApiService,
     private fb: FormBuilder,
     private router: Router,
     private bookingManagementService: BookingManagementService,
@@ -52,9 +57,9 @@ export class BookingPaymentComponent {
   }
 
   ngOnInit(): void {
-    debugger;
     if (this.bookingManagementService.cart) {
       this.cart = this.bookingManagementService.cart;
+      this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
     }
   }
@@ -83,6 +88,12 @@ export class BookingPaymentComponent {
     this.fileHasError = false;
   }
 
+  public onConfirmBooking(): void {
+    const req = this.formGroup.value;
+
+    // this.bookingApiService.setPreBooking(req);
+  }
+
   private isFileValid(files: FileList): boolean {
     const file = files[0];
 
@@ -95,11 +106,11 @@ export class BookingPaymentComponent {
 
   private initForm(cart: ICart): void {
     this.formGroup = this.fb.group({
-      [CONTROL_NAME.EMAIL]: this.fb.control(cart.email || '', [Validators.required, Validators.email]),
+      [CONTROL_NAME.EMAIL]: this.fb.control(this.loggedInEmail || cart.email || '', [Validators.required, Validators.email]),
       [CONTROL_NAME.PHONE]: this.fb.control(cart.phone || '', [Validators.required]),
       [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
-      price: cart.product.price || null,
-      datesSelected: cart.datesSelected,
+      bookings: cart.bookings,
+      lang: cart.lang,
       paymentFile: null
     });
   }

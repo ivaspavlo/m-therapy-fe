@@ -93,7 +93,7 @@
         <div class="d-flex justify-content-end mt-4">
           <app-primary-button
             [disabled]="!formGroup.valid || !fileName"
-            (buttonClick)="goWithoutRegistering()"
+            (buttonClick)="onConfirmBooking()"
             title="{{ 'products.booking.confirm-booking' | translate }}"
           ></app-primary-button>
         </div>
