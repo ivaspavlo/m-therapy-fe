@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChi
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
-import { ICart, IContent, IResponse } from '@app/interfaces';
+import { ICart, IContent, IProductBooking, IResponse } from '@app/interfaces';
 
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
 import { BookingApiService, BookingManagementService, ContentApiService, UserManagementService } from '@app/core/services';
@@ -26,7 +26,8 @@ enum CONTROL_NAME {
 export class BookingPaymentComponent {
   @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
   
-  public cart!: ICart;
+  public cart: ICart | null = null;
+  public currentBookings: IProductBooking | null = null;
 
   public INPUT_TYPES = INPUT_TYPES;
   public emailControlName: string = 'email';
@@ -57,8 +58,10 @@ export class BookingPaymentComponent {
   }
 
   ngOnInit(): void {
-    if (this.bookingManagementService.cart) {
-      this.cart = this.bookingManagementService.cart;
+    this.cart = this.bookingManagementService.cart;
+    this.currentBookings = this.bookingManagementService.currentBookings;
+
+    if (this.cart && this.currentBookings) {
       this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
     }
