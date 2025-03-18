@@ -1,12 +1,12 @@
-<div *ngIf="cart" class="booking-payment">
+<div *ngIf="cart && currentBookings" class="booking-payment">
   <header class="d-flex align-items-center">
     <app-icon [routerLink]="backUrl" name="shevron-left" size="xl" class="booking-payment__back"></app-icon>
     <h2 class="booking-payment__title">{{ 'products.booking.confirm-title' | translate }}</h2>
   </header>
 
   <div class="selection">
-    <p>{{ 'products.booking.slotsQty' | translate: { slots: cart.datesSelected.length } }}</p>
-    <p>{{ 'products.booking.totalPrice' | translate }}: {{ cart.datesSelected.length * cart.product.price | number:'2.2' }} UAH</p>
+    <p>{{ 'products.booking.slotsQty' | translate: { slots: currentBookings.dates.length } }}</p>
+    <p>{{ 'products.booking.totalPrice' | translate }}: {{ currentBookings.product.price * currentBookings.dates.length | number:'2.2' }} UAH</p>
   </div>
 
   <div class="payment-content">
