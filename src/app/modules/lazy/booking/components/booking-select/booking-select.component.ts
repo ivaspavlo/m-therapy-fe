@@ -6,11 +6,10 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { IBookingSlot, IContent, IProduct, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingSlot, IContent, IProductBooking, IResponse } from '@app/interfaces';
 import { CORE_ROUTE_NAMES, LANGUAGE } from '@app/core/constants';
-import { ContentApiService } from '@app/core/services';
+import { ContentApiService, BookingManagementService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
-import { BookingManagementService } from '@app/core/services/booking-management.service';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
 
 @Component({
@@ -22,17 +21,17 @@ import { BOOKING_ROUTE_NAMES } from '../../constants';
 })
 export class BookingSelectComponent extends DestroySubscriptions implements OnInit {
 
-  public data$!: Observable<{ bookings: IProductBooking | null, content: IContent | null, product: IProduct | null }>;
+  public data$!: Observable<{ product: IProductBooking | null, content: IContent | null }>;
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private datePipe: DatePipe,
     private contentApiService: ContentApiService,
     private translateService: TranslateService,
-    private router: Router,
     private bookingManagementService: BookingManagementService
   ) {
     super();
@@ -76,15 +75,13 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   private initData(): void {
-    const currentBookings$ = of(this.bookingManagementService.currentBookings);
-
     const content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.data$ = combineLatest([currentBookings$, content$, this.bookingManagementService.currentProduct$]).pipe(
-      map(([bookings, content, product]: [IProductBooking | null, IContent | null, IProduct | null]) => ({ bookings, content, product })),
+    this.data$ = combineLatest([this.bookingManagementService.currentProduct$, content$]).pipe(
+      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content })),
       shareReplay()
     );
   }
