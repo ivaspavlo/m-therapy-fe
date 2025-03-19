@@ -36,7 +36,6 @@ export class BookingManagementService {
   }
 
   public addToCart(value: ICart): void {
-    debugger;
     // this.localStorage.setItem(CART, JSON.stringify(value));
     // this._cart$.next(value);
   }

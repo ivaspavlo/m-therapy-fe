@@ -6,7 +6,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { IBookingSlot, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingSlot, IContent, IProduct, IProductBooking, IResponse } from '@app/interfaces';
 import { CORE_ROUTE_NAMES, LANGUAGE } from '@app/core/constants';
 import { ContentApiService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
@@ -21,9 +21,8 @@ import { BOOKING_ROUTE_NAMES } from '../../constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingSelectComponent extends DestroySubscriptions implements OnInit {
-  public data$!: Observable<{ product: IProductBooking | null, content: IContent | null}>;
-  public content$!: Observable<IContent | null>;
-  public product$!: Observable<IProductBooking | null>;
+
+  public data$!: Observable<{ bookings: IProductBooking | null, content: IContent | null, product: IProduct | null }>;
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
@@ -37,8 +36,6 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     private bookingManagementService: BookingManagementService
   ) {
     super();
-
-    
   }
 
   ngOnInit(): void {
@@ -86,8 +83,8 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.data$ = combineLatest([currentBookings$, content$]).pipe(
-      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content })),
+    this.data$ = combineLatest([currentBookings$, content$, this.bookingManagementService.currentProduct$]).pipe(
+      map(([bookings, content, product]: [IProductBooking | null, IContent | null, IProduct | null]) => ({ bookings, content, product })),
       shareReplay()
     );
   }
