@@ -1,13 +1,13 @@
 <section *ngIf="(data$ | async) as data" class="product">
   <header class="d-flex align-items-center">
     <app-icon [routerLink]="CoreRouteNames.HOME" name="shevron-left" size="xl" class="product__back-button"></app-icon>
-    <h2 class="product__title">{{'products.booking.title' | translate}}</h2>
+    <h2 class="product__title">{{ 'products.booking.title' | translate }}</h2>
   </header>
 
-  <!-- <div *ngIf="data.product as product" class="product-content">
+  <div *ngIf="data.product as product" class="product-content">
     <div class="product-content__dates">
       <form [formGroup]="form" class="scroll-container">
-        <app-date-picker controlName="startDate" label="{{'products.booking.date' | translate}}"></app-date-picker>
+        <app-date-picker controlName="startDate" label="{{ 'products.booking.date' | translate }}"></app-date-picker>
 
         <div class="scroll-content">
           <ul class="pt-2">
@@ -18,18 +18,18 @@
               [ngClass]="{'booking-slot--selected': selectedSlots.has(index)}"
             >
               <p class="mr-3">
-                <span>{{date.start | date:'MMMM' | monthTranslate | async | titlecase}}&nbsp;</span>
-                <span>{{date.start | date:'dd'}}</span>
+                <span>{{ date.start | date:'MMMM' | monthTranslate | async | titlecase }}&nbsp;</span>
+                <span>{{ date.start | date:'dd' }}</span>
               </p>
               <p>
-                <span>{{date.start | date:'HH'}}:{{date.start | date:'mm'}}</span>
+                <span>{{ date.start | date:'HH' }}:{{date.start | date:'mm'}}</span>
                 <span class="mx-1">-</span>
-                <span>{{date.end | date:'HH'}}:{{date.end | date:'mm'}}</span>
+                <span>{{ date.end | date:'HH'}}:{{date.end | date:'mm' }}</span>
               </p>
               <app-icon
                 name="check"
                 class="booking-slot__check"
-                [ngClass]="{'booking-slot__check--selected': selectedSlots.has(index)}"
+                [ngClass]="{ 'booking-slot__check--selected': selectedSlots.has(index) }"
               ></app-icon>
             </li>
           </ul>
@@ -38,23 +38,23 @@
     </div>
 
     <div class="product-content__info">
-      <div class="selection" [ngClass]="{'selection--visible': selectedSlots.size}">
-        <p>{{'products.booking.slotsQty'|translate:{slots: selectedSlots.size} }}</p>
+      <div class="selection" [ngClass]="{ 'selection--visible': selectedSlots.size }">
+        <p>{{ 'products.booking.slotsQty' | translate:{ slots: selectedSlots.size } }}</p>
 
-        <p>{{'products.booking.totalPrice'|translate}}: {{selectedSlots.size * product.product.price|number:'2.2'}} UAH</p>
+        <p>{{ 'products.booking.totalPrice' | translate }}: {{ selectedSlots.size * product.product.price|number:'2.2' }} UAH</p>
       </div>
 
       <app-primary-button
         (buttonClick)="onSubmit()"
         [isLoading]="false"
-        title="{{'auth.submit' | translate}}"
+        title="{{ 'auth.submit' | translate }}"
         class="product-content__submit-btn"
         [ngClass]="{'product-content__submit-btn--visible': selectedSlots.size}"
       ></app-primary-button>
 
-      <img src="{{product.product.imgUrl}}" alt="Product image" class="product-image">
+      <img src="{{ product.product.imgUrl }}" alt="Product image" class="product-image">
 
       <p class="product-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, aliquam! Pariatur odio distinctio eius explicabo nemo nostrum molestiae ad nam ab officiis voluptatem maxime, porro, atque quibusdam? Velit, assumenda sapiente.</p>
     </div>
-  </div> -->
+  </div>
 </section>

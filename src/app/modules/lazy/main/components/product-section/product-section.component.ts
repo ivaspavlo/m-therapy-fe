@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, first, map } from 'rxjs/operators';
 
-import { IContent, IProduct, IResponse } from '@app/interfaces';
-import { BookingManagementService, ContentApiService } from '@app/core/services';
+import { IBookingSlot, IContent, IProduct, IResponse } from '@app/interfaces';
+import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
 
 @Component({
@@ -23,7 +23,8 @@ export class ProductSectionComponent {
   constructor(
     private contentApiService: ContentApiService,
     private router: Router,
-    private bookingService: BookingManagementService
+    private bookingService: BookingManagementService,
+    private bookingApiService: BookingApiService
   ) { }
 
   ngOnInit() {
@@ -45,7 +46,21 @@ export class ProductSectionComponent {
   }
 
   public onSelectProduct(product: IProduct): void {
-    this.bookingService.setCurrentProduct(product);
-    this.router.navigate([CORE_ROUTE_NAMES.BOOKING]);
+    this.bookingApiService.getBookingSlots().pipe(
+      first(),
+      catchError(() => of(null)),
+      map((res: IResponse<IBookingSlot[]> | null) => {
+        if (res === null || !res?.success) {
+          return;
+        }
+
+        this.bookingService.setCurrentProduct({
+          product,
+          dates: res.data
+        });
+
+        this.router.navigate([CORE_ROUTE_NAMES.BOOKING]);
+      })
+    ).subscribe();
   }
 }
