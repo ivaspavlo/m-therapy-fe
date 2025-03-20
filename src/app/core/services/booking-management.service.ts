@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { ICart, IProductBooking } from '@app/interfaces';
+import { ICart, IProduct, IProductBooking } from '@app/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { LOCAL_STORAGE } from '../providers';
 import { CART } from '../constants';
@@ -16,7 +16,7 @@ export class BookingManagementService {
   }
 
   // Includes current product and all the timeslots available.
-  private _currentProduct$ = new BehaviorSubject<IProductBooking | null>(null);
+  private _currentProduct$ = new BehaviorSubject<IProduct | null>(null);
   public currentProduct$ = this._currentProduct$.asObservable();
   public get currentProduct() {
     return this._currentProduct$.value;
@@ -34,7 +34,8 @@ export class BookingManagementService {
     if (this.cart === null || !this.currentProduct === null) {
       return null;
     }
-    return this.cart.bookings.find((i) => i.product.id === this.currentProduct?.product.id) || null;
+
+    return this.cart.bookings.find((i) => i.product.id === this.currentProduct?.id) || null;
   }
 
   public addToCart(value: ICart): void {
@@ -47,7 +48,7 @@ export class BookingManagementService {
     this._cart$.next(null);
   }
 
-  public setCurrentProduct(product: IProductBooking) {
+  public setCurrentProduct(product: IProduct) {
     this._currentProduct$.next(product);
   }
 }

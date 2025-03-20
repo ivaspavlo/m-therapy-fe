@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChi
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
-import { ICart, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingSlot, ICart, IContent, IProductBooking, IResponse } from '@app/interfaces';
 
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
 import { BookingApiService, BookingManagementService, ContentApiService, UserManagementService } from '@app/core/services';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
 import { LOCAL_STORAGE } from '@app/core/providers';
@@ -25,7 +25,10 @@ enum CONTROL_NAME {
 })
 export class BookingPaymentComponent {
   @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
-  
+
+  private bookingSlots$: Observable<IBookingSlot[] | null>;
+  public content$: Observable<IContent | null>;
+
   public cart: ICart | null = null;
   public currentBookings: IProductBooking | null = null;
 
@@ -35,7 +38,7 @@ export class BookingPaymentComponent {
   public noRegistering: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
-  public content$: Observable<IContent | null>;
+  
   public backUrl: string[] = ['../', BOOKING_ROUTE_NAMES.BOOKING_SELECT];
   public loggedInEmail: string | null = null;
 
@@ -45,22 +48,28 @@ export class BookingPaymentComponent {
   constructor(
     @Inject(LOCAL_STORAGE) private localStorage: Storage,
     // private userService: UserManagementService,
-    // private bookingApiService: BookingApiService,
+    private bookingApiService: BookingApiService,
     private fb: FormBuilder,
     private router: Router,
     private bookingManagementService: BookingManagementService,
     private contentApiService: ContentApiService
   ) {
+    this.bookingSlots$ = this.bookingApiService.getBookingSlots().pipe(
+      first(),
+      catchError(() => of(null)),
+      map((res: IResponse<IBookingSlot[]> | null) => res === null || !res.success ? null : res.data)
+    );
+
     this.content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
+
+    this.cart = this.bookingManagementService.cart;
+    this.currentBookings = this.bookingManagementService.currentBookings;
   }
 
   ngOnInit(): void {
-    this.cart = this.bookingManagementService.cart;
-    this.currentBookings = this.bookingManagementService.currentBookings;
-
     if (this.cart && this.currentBookings) {
       this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
