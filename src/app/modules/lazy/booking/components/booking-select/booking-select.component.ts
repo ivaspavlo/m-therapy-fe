@@ -6,7 +6,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { IBookingSlot, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingSlot, IContent, IProduct, IProductBooking, IResponse } from '@app/interfaces';
 import { CORE_ROUTE_NAMES, LANGUAGE } from '@app/core/constants';
 import { ContentApiService, BookingManagementService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
@@ -59,28 +59,34 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     const currentDates = Object.values([...cartSlots, ...currentSlots].reduce((acc, curr)=> {
       acc[curr.startDate] = curr;
       return acc;
-    }, {}));
+    }, {})) as IBookingSlot[];
 
     const currentBookings = {
-      product: this.bookingManagementService.currentBookings?.product,
+      // Product is a prerequisite for this page.
+      product: this.bookingManagementService.currentProduct as IProduct,
       dates: currentDates
     }
 
-    const bookingData = {
+    const updateCart = {
+      ...cart,
       bookings: [...cart?.bookings || [], currentBookings],
       lang: this.translateService.currentLang as LANGUAGE
     }
+
+    this.bookingManagementService.addToCart(updateCart);
 
     this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
   }
 
   private initData(): void {
+    const currentBookings$ = of(this.bookingManagementService.currentBookings);
+
     const content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.data$ = combineLatest([this.bookingManagementService.currentProduct$, content$]).pipe(
+    this.data$ = combineLatest([currentBookings$, content$]).pipe(
       map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content })),
       shareReplay()
     );
