@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { combineLatest, Observable, of } from 'rxjs';
-import { catchError, map, shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, first, map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { IBookingSlot, IContent, IProduct, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingSlot, IProduct, IResponse } from '@app/interfaces';
 import { CORE_ROUTE_NAMES, LANGUAGE } from '@app/core/constants';
-import { ContentApiService, BookingManagementService } from '@app/core/services';
+import { BookingManagementService, BookingApiService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
 
@@ -21,7 +21,9 @@ import { BOOKING_ROUTE_NAMES } from '../../constants';
 })
 export class BookingSelectComponent extends DestroySubscriptions implements OnInit {
 
-  public data$!: Observable<{ product: IProductBooking | null, content: IContent | null }>;
+  public product!: IProduct | null;
+  public bookingSlots$!: Observable<IBookingSlot[] | null>;
+  
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
@@ -30,15 +32,17 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     private fb: FormBuilder,
     private router: Router,
     private datePipe: DatePipe,
-    private contentApiService: ContentApiService,
     private translateService: TranslateService,
+    private bookingApiService: BookingApiService,
     private bookingManagementService: BookingManagementService
   ) {
     super();
   }
 
   ngOnInit(): void {
-    this.initData();
+    this.product = this.bookingManagementService.currentProduct;
+    this.initBookingSlots();
+    this.initSelectedSlots();
     this.initForm();
   }
 
@@ -78,23 +82,22 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
   }
 
-  private initData(): void {
-    const currentBookings$ = of(this.bookingManagementService.currentBookings);
-
-    const content$ = this.contentApiService.getContent().pipe(
-      catchError(() => of(null)),
-      map((res: IResponse<IContent> | null) => res?.data || null)
-    );
-
-    this.data$ = combineLatest([currentBookings$, content$]).pipe(
-      map(([product, content]: [IProductBooking | null, IContent | null]) => ({ product, content })),
-      shareReplay()
-    );
-  }
-
   private initForm(): void {
     this.form = this.fb.group({
       startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
     });
+  }
+
+  private initSelectedSlots(): void {
+    this.selectedSlots = new Map(Object.entries(this.bookingManagementService.currentBookings?.dates || []));
+    debugger;
+  }
+
+  private initBookingSlots(): void {
+    this.bookingSlots$ = this.bookingApiService.getBookingSlots().pipe(
+      first(),
+      catchError(() => of(null)),
+      map((res: IResponse<IBookingSlot[]> | null) => res === null || !res.success ? null : res.data)
+    );
   }
 }
