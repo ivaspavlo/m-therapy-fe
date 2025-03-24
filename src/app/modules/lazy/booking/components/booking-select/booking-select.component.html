@@ -13,10 +13,10 @@
         <div class="scroll-content">
           <ul class="pt-2">
             <li
-              *ngFor="let date of dates; let index = index;"
-              (click)="onClickSlot(index, date)"
+              *ngFor="let date of dates"
+              (click)="onClickSlot(date)"
               class="booking-slot"
-              [ngClass]="{'booking-slot--selected': selectedSlots.has(index)}"
+              [ngClass]="{'booking-slot--selected': selectedSlots.has(date.start)}"
             >
               <p class="mr-3">
                 <span>{{ date.start | date:'MMMM' | monthTranslate | async | titlecase }}&nbsp;</span>
@@ -32,7 +32,7 @@
               <app-icon
                 name="check"
                 class="booking-slot__check"
-                [ngClass]="{ 'booking-slot__check--selected': selectedSlots.has(index) }"
+                [ngClass]="{ 'booking-slot__check--selected': selectedSlots.has(date.start) }"
               ></app-icon>
             </li>
           </ul>
