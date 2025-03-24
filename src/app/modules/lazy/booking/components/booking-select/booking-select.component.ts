@@ -41,17 +41,18 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
 
   ngOnInit(): void {
     this.product = this.bookingManagementService.currentProduct;
+
     this.initBookingSlots();
     this.initSelectedSlots();
     this.initForm();
   }
 
-  public onClickSlot(index: number, value: IBookingSlot): void {
-    if (this.selectedSlots.has(index)) {
-      this.selectedSlots.delete(index);
+  public onClickSlot(value: IBookingSlot): void {
+    if (this.selectedSlots.has(value.start)) {
+      this.selectedSlots.delete(value.start);
       return;
     }
-    this.selectedSlots.set(index, value);
+    this.selectedSlots.set(value.start, value);
   }
 
   public onSubmit(): void {
@@ -89,8 +90,8 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   private initSelectedSlots(): void {
-    this.selectedSlots = new Map(Object.entries(this.bookingManagementService.currentBookings?.dates || []));
-    debugger;
+    const bookings = this.bookingManagementService.currentBookings?.dates || [];
+    this.selectedSlots = new Map(bookings.map(b => [b.start, b]));
   }
 
   private initBookingSlots(): void {
