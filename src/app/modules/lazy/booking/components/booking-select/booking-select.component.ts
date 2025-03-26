@@ -78,6 +78,7 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
       lang: this.translateService.currentLang as LANGUAGE
     }
 
+    debugger;
     this.bookingManagementService.addToCart(updateCart);
 
     this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
