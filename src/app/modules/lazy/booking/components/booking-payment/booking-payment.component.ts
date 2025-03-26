@@ -61,6 +61,7 @@ export class BookingPaymentComponent {
   }
 
   ngOnInit(): void {
+    debugger;
     if (this.cart && this.currentBookings) {
       this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
