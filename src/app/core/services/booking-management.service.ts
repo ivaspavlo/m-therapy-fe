@@ -29,13 +29,8 @@ export class BookingManagementService {
     this._cart$.next(savedCart ? JSON.parse(savedCart) : null);
   }
 
-  // Returns timeslots selected.
-  public get currentBookings(): IProductBooking | null {
-    if (this.cart === null || !this.currentProduct === null) {
-      return null;
-    }
-
-    return this.cart.bookings.find((i) => i.product.id === this.currentProduct?.id) || null;
+  public addBookings(value: IProductBooking): void {
+    // To be implemented
   }
 
   public addToCart(value: ICart): void {
