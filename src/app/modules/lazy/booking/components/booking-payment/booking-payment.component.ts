@@ -57,11 +57,10 @@ export class BookingPaymentComponent {
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.currentBookings = this.bookingManagementService.currentBookings;
+    // this.currentBookings = this.bookingManagementService.currentBookings;
   }
 
   ngOnInit(): void {
-    debugger;
     if (this.cart && this.currentBookings) {
       this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);

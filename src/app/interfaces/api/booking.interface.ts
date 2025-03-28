@@ -19,8 +19,8 @@ export interface IPreBooking {
 
 export interface ICart {
   bookings: IProductBooking[],
-  lang: LANGUAGE,
   paymentFile?: FormData,
+  lang?: LANGUAGE,
   email?: string,
   comment?: string,
   phone?: string
