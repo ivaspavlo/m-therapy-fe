@@ -4,10 +4,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 
 import { IBookingSlot, IProduct, IResponse } from '@app/interfaces';
-import { CORE_ROUTE_NAMES, LANGUAGE } from '@app/core/constants';
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { BookingManagementService, BookingApiService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
@@ -23,7 +22,6 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
 
   public product!: IProduct | null;
   public bookingSlots$!: Observable<IBookingSlot[] | null>;
-  
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
@@ -32,7 +30,6 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     private fb: FormBuilder,
     private router: Router,
     private datePipe: DatePipe,
-    private translateService: TranslateService,
     private bookingApiService: BookingApiService,
     private bookingManagementService: BookingManagementService
   ) {
@@ -42,9 +39,11 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   ngOnInit(): void {
     this.product = this.bookingManagementService.currentProduct;
 
-    this.initBookingSlots();
-    this.initSelectedSlots();
-    this.initForm();
+    if (this.product) {
+      this.initBookingSlots();
+      this.initSelectedSlots();
+      this.initForm();
+    }
   }
 
   public onClickSlot(value: IBookingSlot): void {
@@ -56,29 +55,28 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   public onSubmit(): void {
-    const cart = this.bookingManagementService.cart;
-    const cartSlots = this.bookingManagementService.currentBookings?.dates || [];
+    const allBookings = this.bookingManagementService.cart?.bookings || [];
+    const datesForCurrentProduct = allBookings.find(b => b.product.id === this.product?.id)?.dates || [];
     const currentSlots = Array.from(this.selectedSlots.values());
 
     // Combine selected dates with dates from the cart and remove duplicates.
-    const currentDates = Object.values([...cartSlots, ...currentSlots].reduce((acc, curr)=> {
+    const combinedDates = Object.values([...datesForCurrentProduct, ...currentSlots].reduce((acc, curr)=> {
       acc[curr.startDate] = curr;
       return acc;
     }, {})) as IBookingSlot[];
 
     const currentBookings = {
-      // Product is a prerequisite for this page.
-      product: this.bookingManagementService.currentProduct as IProduct,
-      dates: currentDates
+      product: this.product as IProduct,
+      dates: combinedDates
     }
 
     const updateCart = {
-      ...cart,
-      bookings: [...cart?.bookings || [], currentBookings],
-      lang: this.translateService.currentLang as LANGUAGE
+      ...this.bookingManagementService.cart,
+      bookings: !!datesForCurrentProduct.length
+        ? allBookings.map(b => b.product.id === currentBookings.product?.id ? currentBookings : b)
+        : [currentBookings]
     }
 
-    debugger;
     this.bookingManagementService.addToCart(updateCart);
 
     this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
@@ -91,8 +89,9 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   private initSelectedSlots(): void {
-    const bookings = this.bookingManagementService.currentBookings?.dates || [];
-    this.selectedSlots = new Map(bookings.map(b => [b.start, b]));
+    const allBookings = this.bookingManagementService.cart?.bookings || [];
+    const datesForCurrentProduct = allBookings.find(b => b.product.id === this.product?.id)?.dates || [];
+    this.selectedSlots = new Map(datesForCurrentProduct.map(b => [b.start, b]));
   }
 
   private initBookingSlots(): void {
