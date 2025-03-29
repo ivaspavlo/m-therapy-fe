@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { ICart, IProduct, IProductBooking } from '@app/interfaces';
+import { IBookingSlot, ICart, IProduct, IProductBooking } from '@app/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { LOCAL_STORAGE } from '../providers';
 import { CART } from '../constants';
@@ -15,7 +15,6 @@ export class BookingManagementService {
     return this._cart$.value;
   }
 
-  // Includes current product and all the timeslots available.
   private _currentProduct$ = new BehaviorSubject<IProduct | null>(null);
   public currentProduct$ = this._currentProduct$.asObservable();
   public get currentProduct() {
@@ -29,8 +28,9 @@ export class BookingManagementService {
     this._cart$.next(savedCart ? JSON.parse(savedCart) : null);
   }
 
-  public addBookings(value: IProductBooking): void {
-    // To be implemented
+  public getCurrentBooking(): IProductBooking | null {
+    const allBookings = this.cart?.bookings || [];
+    return allBookings.find(b => b.product.id === this.currentProduct?.id) || null;
   }
 
   public addToCart(value: ICart): void {
@@ -45,5 +45,37 @@ export class BookingManagementService {
 
   public setCurrentProduct(product: IProduct) {
     this._currentProduct$.next(product);
+  }
+
+  public addSelectedDatesToCart(selectedSlots: IBookingSlot[]): void {
+    const currentBooking = this.getCurrentBooking();
+
+    if (!currentBooking) {
+      return;
+    }
+
+    const slotsWithDuplicates = [...currentBooking.slots, ...selectedSlots];
+
+    // Combine selected dates with dates from the cart and remove duplicates.
+    const updatedSlots = Object.values(slotsWithDuplicates.reduce<Record<number, IBookingSlot>>((acc, curr)=> {
+      acc[curr.start] = curr;
+      return acc;
+    }, {})) as IBookingSlot[];
+
+    const updatedProductBooking = {
+      product: this.currentProduct as IProduct,
+      dates: updatedSlots
+    }
+
+    const updateCart = {
+      // Cart might be null.
+      ...(this.cart || {}),
+
+      // Replace to the updated product booking.
+      bookings: this.cart?.bookings
+        ? this.cart.bookings.map(b => b.product.id === currentBooking.product?.id ? updatedProductBooking : b)
+        : [updatedProductBooking]
+    }
+
   }
 }

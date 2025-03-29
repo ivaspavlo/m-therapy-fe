@@ -8,7 +8,7 @@ export interface IBookingSlot {
 
 export interface IProductBooking {
   product: IProduct,
-  dates: IBookingSlot[]
+  slots: IBookingSlot[]
 }
 
 export interface IPreBooking {

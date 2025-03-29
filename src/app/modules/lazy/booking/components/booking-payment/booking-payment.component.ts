@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+
 import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
 import { ICart, IContent, IProductBooking, IResponse } from '@app/interfaces';
-
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
-import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
-import { catchError, first, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { BOOKING_ROUTE_NAMES } from '../../constants';
 import { LOCAL_STORAGE } from '@app/core/providers';
+import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
+import { BOOKING_ROUTE_NAMES } from '../../constants';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -23,23 +23,21 @@ enum CONTROL_NAME {
   styleUrls: ['./booking-payment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookingPaymentComponent {
+export class BookingPaymentComponent implements OnInit {
   @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
 
   public content$: Observable<IContent | null>;
-
+  public currentBooking: IProductBooking | null = null;
   public cart: ICart | null = null;
-  public currentBookings: IProductBooking | null = null;
-
   public INPUT_TYPES = INPUT_TYPES;
-  public emailControlName: string = 'email';
+  public CONTROL_NAME = CONTROL_NAME;
   public formGroup!: FormGroup;
   public noRegistering: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
-  
   public backUrl: string[] = ['../', BOOKING_ROUTE_NAMES.BOOKING_SELECT];
-  public loggedInEmail: string | null = null;
+
+  public loggedInEmail: string | null = null; // ?
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -57,11 +55,12 @@ export class BookingPaymentComponent {
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    // this.currentBookings = this.bookingManagementService.currentBookings;
+    this.currentBooking = this.bookingManagementService.getCurrentBooking();
+    this.cart = this.bookingManagementService.cart;
   }
 
   ngOnInit(): void {
-    if (this.cart && this.currentBookings) {
+    if (this.cart && this.currentBooking) {
       this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
     }
@@ -92,9 +91,7 @@ export class BookingPaymentComponent {
   }
 
   public onConfirmBooking(): void {
-    const req = this.formGroup.value;
-
-    // this.bookingApiService.setPreBooking(req);
+    // TBD
   }
 
   private isFileValid(files: FileList): boolean {

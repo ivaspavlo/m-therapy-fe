@@ -1,4 +1,4 @@
-<div *ngIf="cart && currentBookings" class="booking-payment">
+<div *ngIf="cart && currentBooking" class="booking-payment">
   <header class="d-flex align-items-center">
     <app-icon [routerLink]="backUrl" name="shevron-left" size="xl" class="booking-payment__back"></app-icon>
 
@@ -6,9 +6,9 @@
   </header>
 
   <div class="selection">
-    <p>{{ 'products.booking.slotsQty' | translate: { slots: currentBookings.dates.length } }}</p>
+    <p>{{ 'products.booking.slotsQty' | translate: { slots: currentBooking.slots.length } }}</p>
 
-    <p>{{ 'products.booking.totalPrice' | translate }}: {{ currentBookings.product.price * currentBookings.dates.length | number:'2.2' }} UAH</p>
+    <p>{{ 'products.booking.totalPrice' | translate }}: {{ currentBooking.product.price * currentBooking.slots.length | number:'2.2' }} UAH</p>
   </div>
 
   <div class="payment-content">
@@ -44,7 +44,7 @@
   
               <app-input
                 [type]="INPUT_TYPES.EMAIL"
-                [controlName]="emailControlName"
+                [controlName]="CONTROL_NAME.EMAIL"
                 label="{{ 'footer.email-control' | translate }}"
                 color="secondary"
                 plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
