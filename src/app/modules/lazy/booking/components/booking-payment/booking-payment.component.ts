@@ -10,6 +10,7 @@ import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
+import { TranslateService } from '@ngx-translate/core';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -48,7 +49,8 @@ export class BookingPaymentComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private bookingManagementService: BookingManagementService,
-    private contentApiService: ContentApiService
+    private contentApiService: ContentApiService,
+    private translateService: TranslateService
   ) {
     this.content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
@@ -91,7 +93,7 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onConfirmBooking(): void {
-    // TBD
+    this.bookingApiService.book(this.formGroup.value).subscribe();
   }
 
   private isFileValid(files: FileList): boolean {
@@ -109,8 +111,8 @@ export class BookingPaymentComponent implements OnInit {
       [CONTROL_NAME.EMAIL]: this.fb.control(this.loggedInEmail || cart.email || '', [Validators.required, Validators.email]),
       [CONTROL_NAME.PHONE]: this.fb.control(cart.phone || '', [Validators.required]),
       [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
+      lang: cart.lang || this.translateService.currentLang,
       bookings: cart.bookings,
-      lang: cart.lang,
       paymentFile: null
     });
   }

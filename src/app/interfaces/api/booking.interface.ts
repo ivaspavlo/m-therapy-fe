@@ -11,12 +11,6 @@ export interface IProductBooking {
   slots: IBookingSlot[]
 }
 
-export interface IPreBooking {
-  bookingSlots: IBookingSlot[],
-  email: string,
-  lang: LANGUAGE
-}
-
 export interface ICart {
   bookings: IProductBooking[],
   paymentFile?: FormData,
