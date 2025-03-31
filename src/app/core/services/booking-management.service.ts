@@ -48,12 +48,11 @@ export class BookingManagementService {
   }
 
   public addSelectedDatesToCart(selectedSlots: IBookingSlot[]): void {
-    const currentBooking = this.getCurrentBooking();
-
-    if (!currentBooking) {
+    if (!this.currentProduct) {
       return;
     }
 
+    const currentBooking = this.getCurrentBooking() || { product: this.currentProduct as IProduct, slots: [] };
     const slotsWithDuplicates = [...currentBooking.slots, ...selectedSlots];
 
     // Combine selected dates with dates from the cart and remove duplicates.
@@ -62,10 +61,10 @@ export class BookingManagementService {
       return acc;
     }, {})) as IBookingSlot[];
 
-    const updatedProductBooking = {
-      product: this.currentProduct as IProduct,
-      dates: updatedSlots
-    }
+    const updatedBooking = {
+      ...currentBooking,
+      slots: updatedSlots
+    };
 
     const updateCart = {
       // Cart might be null.
@@ -73,9 +72,10 @@ export class BookingManagementService {
 
       // Replace to the updated product booking.
       bookings: this.cart?.bookings
-        ? this.cart.bookings.map(b => b.product.id === currentBooking.product?.id ? updatedProductBooking : b)
-        : [updatedProductBooking]
+        ? this.cart.bookings.map(b => b.product.id === updatedBooking.product?.id ? updatedBooking : b)
+        : [updatedBooking]
     }
 
+    this.addToCart(updateCart);
   }
 }
