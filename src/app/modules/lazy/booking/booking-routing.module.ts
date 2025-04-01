@@ -1,9 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import { inject, NgModule } from '@angular/core';
+import { CanActivateFn, Route, Router, RouterModule, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 
+import { CORE_ROUTE_NAMES } from '@app/core/constants';
+import { BookingManagementService } from '@app/core/services';
 import { BookingPaymentComponent, BookingSelectComponent } from './components';
 import { BookingPageComponent } from './booking-page.component';
 import { BOOKING_ROUTE_NAMES } from './constants';
+
+const BookingGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
+  return !!inject(BookingManagementService).currentProduct
+    ? true
+    : inject(Router).createUrlTree([CORE_ROUTE_NAMES.HOME]);
+};
 
 const bookingRoutes: Route[] = [
   {
@@ -16,10 +25,12 @@ const bookingRoutes: Route[] = [
         redirectTo: BOOKING_ROUTE_NAMES.BOOKING_SELECT
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_SELECT,
-        component: BookingSelectComponent,
+        canActivate: [BookingGuard],
+        component: BookingSelectComponent
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_PAYMENT,
         component: BookingPaymentComponent,
+        canActivate: [BookingGuard],
         data: { animationState: 'One' }
       }
     ]
