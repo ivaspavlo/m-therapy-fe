@@ -66,14 +66,17 @@ export class BookingManagementService {
       slots: updatedSlots
     };
 
+    const hasSlotsForCurrentProduct = this.cart?.bookings.find(b => b.product.id === this.currentProduct?.id);
+    const bookings = !this.cart?.bookings
+      ? [updatedBooking]
+      : hasSlotsForCurrentProduct
+        ? this.cart.bookings.map(b => b.product.id === updatedBooking.product?.id ? updatedBooking : b) // Replace to the updated product booking.
+        : [...this.cart.bookings, updatedBooking]
+
     const updateCart = {
       // Cart might be null.
       ...(this.cart || {}),
-
-      // Replace to the updated product booking.
-      bookings: this.cart?.bookings
-        ? this.cart.bookings.map(b => b.product.id === updatedBooking.product?.id ? updatedBooking : b)
-        : [updatedBooking]
+      bookings
     }
 
     this.addToCart(updateCart);
