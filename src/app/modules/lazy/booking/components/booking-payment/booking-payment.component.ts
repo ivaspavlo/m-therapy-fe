@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
@@ -10,7 +11,6 @@ import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
-import { TranslateService } from '@ngx-translate/core';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
