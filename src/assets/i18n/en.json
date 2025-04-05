@@ -87,6 +87,9 @@
         "universal": "Universal Bank",
         "email-desc": "Please enter your email for us to be able to send the confirmation to you:",
         "file-requirements": "Max file size: 10 MB. Supported formats: PDF, JPG, PNG"
+      },
+      "cart": {
+        "title": "Selected massages"
       }
     }
   },
