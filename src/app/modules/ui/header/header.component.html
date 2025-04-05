@@ -24,9 +24,9 @@
       <li class="app-header__item app-header__item--delimiter"></li>
 
       <li class="app-header__item">
-        <a tabindex="0" [attr.aria-label]="'header.cart-button' | translate" class="app-header__link cart hover-opacity">
+        <a (click)="onClickCart()" tabindex="0" [attr.aria-label]="'header.cart-button' | translate" class="app-header__link cart">
           <app-icon name="cart" size="xl"></app-icon>
-          <i class="cart__qty">1</i>
+          <i *ngIf="true" class="cart__qty">{{ cartItemsQty }}</i>
         </a>
       </li>
     </ul>
@@ -61,8 +61,9 @@
       <li class="app-header__item app-header__item--delimiter"></li>
 
       <li class="app-header__item app-header__item--mobile-icon">
-        <a tabindex="0" class="app-header__link">
+        <a (click)="onClickCart()" tabindex="0" class="app-header__link cart">
           <app-icon name="cart" size="xl"></app-icon>
+          <i *ngIf="true" class="cart__qty">{{ cartItemsQty }}</i>
         </a>
       </li>
 
