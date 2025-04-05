@@ -3,10 +3,11 @@ import { Component, OnInit, ChangeDetectionStrategy, Inject, Input } from '@angu
 import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { LANGUAGE_ITEMS, ScrollTargetElements, ToastType } from '@app/core/constants';
+import { CORE_ROUTE_NAMES, LANGUAGE_ITEMS, ScrollTargetElements, ToastType } from '@app/core/constants';
 import { IHeaderControl, ILanguage } from '@app/interfaces';
-import { ScrollService, ToasterService, UserManagementService } from '@app/core/services';
+import { BookingManagementService, ScrollService, ToasterService, UserManagementService } from '@app/core/services';
 import { Router } from '@angular/router';
+import { BOOKING_ROUTE_NAMES } from '@app/modules/lazy/booking/constants';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
   public isUserMenuOpen = false;
   public languages: ILanguage[] = LANGUAGE_ITEMS;
   public isLoggedIn: boolean = false;
+  public cartItemsQty: number = 0;
   public headerControls: IHeaderControl[] = [
     { id: 'app-header.services.button', uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
     { id: 'app-header.services.gifts', uiName: 'header.gifts', scrollTarget: ScrollTargetElements.GIFTS_SECTION },
@@ -48,12 +50,14 @@ export class HeaderComponent implements OnInit {
     private scrollService: ScrollService,
     private userManagementService: UserManagementService,
     private router: Router,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private bookingManagementService: BookingManagementService
   ) { }
 
   ngOnInit(): void {
     this.initIsShrinkedObservable();
     this.isLoggedIn = this.userManagementService.isLoggedIn;
+    this.cartItemsQty = this.bookingManagementService.cart?.bookings?.length || 0;
   }
 
   public onLanguageChange(language: ILanguage): void {
@@ -95,6 +99,10 @@ export class HeaderComponent implements OnInit {
 
   public onToggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  public onClickCart(): void {
+    this.router.navigate([CORE_ROUTE_NAMES.BOOKING, BOOKING_ROUTE_NAMES.CART]);
   }
 
   private initIsShrinkedObservable(): void {
