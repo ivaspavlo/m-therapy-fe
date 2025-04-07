@@ -21,4 +21,26 @@
       transform: translateX(-3px);
     }
   }
+
+  &__selected {
+    margin: 2rem 2rem 0;
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+  }
+}
+
+.scroll-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+}
+
+.cart-item {
+  height: 50px;
+  border: 1px solid green;
 }
