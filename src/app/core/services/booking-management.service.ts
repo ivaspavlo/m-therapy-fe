@@ -70,7 +70,7 @@ export class BookingManagementService {
     const bookings = !this.cart?.bookings
       ? [updatedBooking]
       : hasSlotsForCurrentProduct
-        ? this.cart.bookings.map(b => b.product.id === updatedBooking.product?.id ? updatedBooking : b) // Replace to the updated product booking.
+        ? this.cart.bookings.map(b => b.product.id === updatedBooking.product?.id ? updatedBooking : b)
         : [...this.cart.bookings, updatedBooking]
 
     const updateCart = {
@@ -80,5 +80,13 @@ export class BookingManagementService {
     }
 
     this.addToCart(updateCart);
+  }
+
+  public getTotals(): { slotsQty: number; price: number; } | null {
+    // tbd
+    return {
+      slotsQty: 2,
+      price: 2000
+    }
   }
 }
