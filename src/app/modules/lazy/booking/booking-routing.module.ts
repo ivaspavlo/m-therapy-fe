@@ -10,7 +10,9 @@ import { BOOKING_ROUTE_NAMES } from './constants';
 import { CartComponent } from './components/cart/cart.component';
 
 const BookingGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
-  return !!inject(BookingManagementService).currentProduct
+  const bookingManagementService = inject(BookingManagementService);
+
+  return bookingManagementService.getTotals()
     ? true
     : inject(Router).createUrlTree([CORE_ROUTE_NAMES.HOME]);
 };

@@ -51,31 +51,31 @@
   border: 1px solid $primary;
   display: flex;
   align-items: center;
+  transition: .3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $white;
+
+    .cart-item__image {
+      transform: scale(1.05);
+    }
+  }
 
   &__image {
     height: 82px;
     width: auto;
     box-shadow: $b-shadow-2;
+    transition: .3s;
   }
 
   &__desc {
-    height: 100%;
+    border-right: 1px solid $primary;;
     font-size: 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: $primary;
-  }
-
-  &__desc-button {
-    background-color: transparent;
-    border: 0;
-  }
-
-  &__delimiter {
-    width: 1px;
-    height: 100%;
-    background-color: $primary;
   }
 
   &__details {
