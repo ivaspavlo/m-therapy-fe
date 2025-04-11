@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
 
@@ -30,7 +30,8 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     private router: Router,
     private datePipe: DatePipe,
     private bookingApiService: BookingApiService,
-    private bookingManagementService: BookingManagementService
+    private bookingManagementService: BookingManagementService,
+    private location: Location
   ) {
     super();
 
@@ -67,6 +68,10 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.form = this.fb.group({
       startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
     });
+  }
+
+  public onBack(): void {
+    this.location.back();
   }
 
   private initSelectedSlots(): void {

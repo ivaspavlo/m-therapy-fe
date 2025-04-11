@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
-import { ICart, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { ICart, ICartTotals, IContent, IResponse } from '@app/interfaces';
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
-import { BOOKING_ROUTE_NAMES } from '../../constants';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -28,7 +28,7 @@ export class BookingPaymentComponent implements OnInit {
   @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
 
   public content$: Observable<IContent | null>;
-  public currentBooking: IProductBooking | null = null;
+  public cartTotals: ICartTotals | null = null;
   public cart: ICart | null = null;
   public INPUT_TYPES = INPUT_TYPES;
   public CONTROL_NAME = CONTROL_NAME;
@@ -36,7 +36,6 @@ export class BookingPaymentComponent implements OnInit {
   public noRegistering: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
-  public backUrl: string[] = ['../', BOOKING_ROUTE_NAMES.BOOKING_SELECT];
 
   public loggedInEmail: string | null = null; // ?
 
@@ -50,19 +49,20 @@ export class BookingPaymentComponent implements OnInit {
     private router: Router,
     private bookingManagementService: BookingManagementService,
     private contentApiService: ContentApiService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private location: Location
   ) {
     this.content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.currentBooking = this.bookingManagementService.getCurrentBooking();
+    this.cartTotals = this.bookingManagementService.getTotals();
     this.cart = this.bookingManagementService.cart;
   }
 
   ngOnInit(): void {
-    if (this.cart && this.currentBooking) {
+    if (this.cart && this.cartTotals) {
       this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
     }
@@ -90,6 +90,10 @@ export class BookingPaymentComponent implements OnInit {
     this.paymentFileInput.nativeElement.value = '';
     this.formGroup.controls.paymentFile.reset();
     this.fileHasError = false;
+  }
+
+  public onBack(): void {
+    this.location.back();
   }
 
   public onConfirmBooking(): void {

@@ -9,10 +9,18 @@ import { BookingPageComponent } from './booking-page.component';
 import { BOOKING_ROUTE_NAMES } from './constants';
 import { CartComponent } from './components/cart/cart.component';
 
-const BookingGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
+const PaymentPageGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
   const bookingManagementService = inject(BookingManagementService);
 
   return bookingManagementService.getTotals()
+    ? true
+    : inject(Router).createUrlTree([CORE_ROUTE_NAMES.HOME]);
+};
+
+const SelectPageGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
+  const bookingManagementService = inject(BookingManagementService);
+
+  return bookingManagementService.getCurrentBooking()
     ? true
     : inject(Router).createUrlTree([CORE_ROUTE_NAMES.HOME]);
 };
@@ -28,12 +36,12 @@ const bookingRoutes: Route[] = [
         redirectTo: BOOKING_ROUTE_NAMES.BOOKING_SELECT
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_SELECT,
-        canActivate: [BookingGuard],
+        canActivate: [SelectPageGuard],
         component: BookingSelectComponent
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_PAYMENT,
         component: BookingPaymentComponent,
-        canActivate: [BookingGuard],
+        canActivate: [PaymentPageGuard],
         data: { animationState: 'One' }
       }, {
         path: BOOKING_ROUTE_NAMES.CART,
