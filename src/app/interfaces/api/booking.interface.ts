@@ -19,3 +19,8 @@ export interface ICart {
   comment?: string,
   phone?: string
 }
+
+export interface ICartTotals {
+  slotsQty: number;
+  price: number;
+}

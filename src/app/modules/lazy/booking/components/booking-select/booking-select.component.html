@@ -1,6 +1,6 @@
 <section *ngIf="product" class="product">
   <header class="d-flex align-items-center">
-    <app-icon [routerLink]="CoreRouteNames.HOME" name="shevron-left" size="xl" class="product__back-button"></app-icon>
+    <app-icon (click)="onBack()" name="shevron-left" size="xl" class="product__back-button"></app-icon>
 
     <h2 class="product__title">{{ 'products.booking.title' | translate }}</h2>
   </header>

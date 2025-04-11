@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { IBookingSlot, ICart, IProduct, IProductBooking } from '@app/interfaces';
+import { IBookingSlot, ICart, ICartTotals, IProduct, IProductBooking } from '@app/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { LOCAL_STORAGE } from '../providers';
 import { CART } from '../constants';
@@ -82,7 +82,7 @@ export class BookingManagementService {
     this.addToCart(updateCart);
   }
 
-  public getTotals(): { slotsQty: number; price: number; } | null {
+  public getTotals(): ICartTotals| null {
     // tbd
     return {
       slotsQty: 2,
