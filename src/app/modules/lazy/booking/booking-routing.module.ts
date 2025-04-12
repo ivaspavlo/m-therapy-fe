@@ -37,15 +37,17 @@ const bookingRoutes: Route[] = [
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_SELECT,
         canActivate: [SelectPageGuard],
-        component: BookingSelectComponent
+        component: BookingSelectComponent,
+        data: { animationState: 'One' }
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_PAYMENT,
         component: BookingPaymentComponent,
         canActivate: [PaymentPageGuard],
-        data: { animationState: 'One' }
+        data: { animationState: 'Two' }
       }, {
         path: BOOKING_ROUTE_NAMES.CART,
-        component: CartComponent
+        component: CartComponent,
+        data: { animationState: 'One' }
       }
     ]
   }

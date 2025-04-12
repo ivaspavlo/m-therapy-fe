@@ -70,11 +70,7 @@
   }
 
   &__desc {
-    border-right: 1px solid $primary;;
     font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     color: $primary;
   }
 
@@ -84,6 +80,12 @@
     font-size: 14px;
     display: flex;
     flex-direction: column;
+  }
+
+  &__delimiter {
+    height: 100%;
+    width: 1px;
+    background-color: $primary;
   }
 }
 
