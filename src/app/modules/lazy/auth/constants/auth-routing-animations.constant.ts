@@ -1,6 +1,5 @@
 import { trigger, transition, style, query, animateChild, group, animate } from '@angular/animations';
 
-
 export const AppRoutingAnimations = trigger('authAnimate', [
 	transition('void => *', animate(0)),
 	transition('* => *', [
