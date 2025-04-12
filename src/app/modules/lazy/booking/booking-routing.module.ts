@@ -38,7 +38,6 @@ const bookingRoutes: Route[] = [
         path: BOOKING_ROUTE_NAMES.BOOKING_SELECT,
         canActivate: [SelectPageGuard],
         component: BookingSelectComponent,
-        data: { animationState: 'One' }
       }, {
         path: BOOKING_ROUTE_NAMES.BOOKING_PAYMENT,
         component: BookingPaymentComponent,
