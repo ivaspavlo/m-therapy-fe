@@ -6,11 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
+import { ICart, ICartTotals, IContent, IProductBooking, IResponse } from '@app/interfaces';
 import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
-import { ICart, ICartTotals, IContent, IResponse } from '@app/interfaces';
-import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/auth-routing.module';
-import { LOCAL_STORAGE } from '@app/core/providers';
 import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
+import { LOCAL_STORAGE } from '@app/core/providers';
+import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/constants';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
@@ -30,14 +30,15 @@ export class BookingPaymentComponent implements OnInit {
   public content$: Observable<IContent | null>;
   public cartTotals: ICartTotals | null = null;
   public cart: ICart | null = null;
+  private currentBooking: IProductBooking | null = null; 
+
   public INPUT_TYPES = INPUT_TYPES;
   public CONTROL_NAME = CONTROL_NAME;
   public formGroup!: FormGroup;
   public noRegistering: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
-
-  public loggedInEmail: string | null = null; // ?
+  public loggedInEmail: string | null = null;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -57,8 +58,13 @@ export class BookingPaymentComponent implements OnInit {
       map((res: IResponse<IContent> | null) => res?.data || null)
     );
 
-    this.cartTotals = this.bookingManagementService.getTotals();
     this.cart = this.bookingManagementService.cart;
+    this.currentBooking = this.bookingManagementService.getCurrentBooking();
+    this.cartTotals = this.bookingManagementService.getTotals();
+
+    this.cartTotals = this.currentBooking
+      ? { slotsQty: this.currentBooking.slots.length, price: this.currentBooking.product.price * this.currentBooking.slots.length }
+      : this.cartTotals;
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe, Location } from '@angular/common';
@@ -18,7 +18,7 @@ import { BOOKING_ROUTE_NAMES } from '../../constants';
   providers: [DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookingSelectComponent extends DestroySubscriptions implements OnInit {
+export class BookingSelectComponent extends DestroySubscriptions implements OnInit, OnDestroy {
   public product: IProduct | null;
   public bookingSlots$: Observable<IBookingSlot[] | null>;
   public form!: FormGroup;
@@ -78,5 +78,9 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.selectedSlots = new Map(
       (this.bookingManagementService.getCurrentBooking()?.slots || []).map(b => [b.start, b])
     );
+  }
+
+  ngOnDestroy(): void {
+    this.bookingManagementService.resetCurrentProduct();
   }
 }
