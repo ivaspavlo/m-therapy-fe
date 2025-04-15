@@ -43,8 +43,12 @@ export class BookingManagementService {
     this._cart$.next(null);
   }
 
-  public setCurrentProduct(product: IProduct) {
+  public setCurrentProduct(product: IProduct): void {
     this._currentProduct$.next(product);
+  }
+
+  public resetCurrentProduct(): void {
+    this._currentProduct$.next(null);
   }
 
   public addSelectedDatesToCart(selectedSlots: IBookingSlot[]): void {
