@@ -86,11 +86,16 @@ export class BookingManagementService {
     this.addToCart(updateCart);
   }
 
-  public getTotals(): ICartTotals| null {
-    // tbd
-    return {
-      slotsQty: 2,
-      price: 2000
+  public getTotals(): ICartTotals | null {
+    if (!this.cart) {
+      return null;
     }
+
+    return this.cart?.bookings.reduce((acc, curr) => {
+      return {
+        slotsQty: acc.slotsQty + curr.slots.length,
+        price: acc.price + curr.product.price * curr.slots.length
+      }
+    }, { slotsQty: 0, price: 0 }) as ICartTotals;
   }
 }

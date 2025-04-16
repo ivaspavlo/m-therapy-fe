@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IProduct, IProductBooking } from '@app/interfaces';
+import { ICartTotals, IProduct, IProductBooking } from '@app/interfaces';
 import { CORE_ROUTE_NAMES } from '@app/core/constants';
 import { BookingManagementService } from '@app/core/services';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
@@ -15,12 +15,14 @@ import { BOOKING_ROUTE_NAMES } from '../../constants';
 export class CartComponent {
 
   public productBookings: IProductBooking[];
+  public cartTotals: ICartTotals | null;
 
   constructor(
     private router: Router,
     private bookingManagementService: BookingManagementService
   ) {
     this.productBookings = this.bookingManagementService.cart?.bookings || [];
+    this.cartTotals = this.bookingManagementService.getTotals();
   }
 
   public onConfirmBooking(): void {
