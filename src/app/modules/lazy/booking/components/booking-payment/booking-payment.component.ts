@@ -41,7 +41,7 @@ export class BookingPaymentComponent implements OnInit {
   public loggedInEmail: string | null = null;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
-  private allowedFormats = ['application/pdf', 'image/jpeg', 'image/png'];
+  private allowedFormats = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
 
   constructor(
     @Inject(LOCAL_STORAGE) private localStorage: Storage,

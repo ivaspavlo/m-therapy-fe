@@ -98,10 +98,10 @@
   "auth": {
     "back": "Back to Main",
     "enter": "Enter {{x}}",
-    "firstName": "first name",
+    "first-name": "first name",
     "lastName": "last name",
     "email": "email",
-    "phoneNumber": "phone number",
+    "phone-number": "phone number",
     "password": "password",
     "confirmPassword": "confirm password",
     "dateOfBirth": "date of birth",

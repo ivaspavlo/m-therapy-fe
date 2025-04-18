@@ -50,6 +50,15 @@
                 plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
                 class="payment-content__input"
               ></app-input>
+
+              <app-input
+                [type]="INPUT_TYPES.PHONE"
+                [controlName]="CONTROL_NAME.PHONE"
+                label="{{ 'auth.phone-number' | translate | titlecase }}"
+                color="secondary"
+                plh="{{ 'auth.enter' | translate:{x: 'auth.phone-number' | translate} }}"
+                class="payment-content__input"
+              ></app-input>
             </form>
   
             <p class="payment-info">
@@ -82,9 +91,9 @@
                 <span>{{ 'products.booking.select-file' | translate }}</span>
                 <app-icon name="browse" size="lg" class="file-picker__icon"></app-icon>
               </label>
-  
-              <input (change)="onFileChange($event)" type="file" #paymentFileInput id="id-payment-file" accept="image/*" class="d-none">
-  
+
+              <input (change)="onFileChange($event)" type="file" #paymentFileInput id="id-payment-file" class="d-none">
+
               <p *ngIf="fileName" class="payment-file">
                 <span>{{ fileName }}</span>
                 <app-icon (click)="onClearFile()" name="x-button" size="lg" class="payment-file__icon"></app-icon>
@@ -95,7 +104,7 @@
   
         <div class="d-flex justify-content-end mt-4">
           <app-primary-button
-            [disabled]="!formGroup.valid || !fileName"
+            [disabled]="!formGroup.valid || !fileName || fileHasError"
             (buttonClick)="onConfirmBooking()"
             title="{{ 'products.booking.confirm-booking' | translate }}"
           ></app-primary-button>

@@ -2,11 +2,11 @@
   <h1 class="auth-page__title">{{'auth.register.title' | translate }}</h1>
 
   <form [formGroup]="registerForm">
-    <app-input controlName="firstname" label="{{'auth.firstName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.firstName' | translate} }}"></app-input>
+    <app-input controlName="firstname" label="{{'auth.first-name' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.first-name' | translate} }}"></app-input>
     <app-input controlName="lastname" label="{{'auth.lastName' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.lastName' | translate} }}"></app-input>
     <app-date-picker controlName="birthday" label="{{'auth.dateOfBirth' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.dateOfBirth' | translate} }}"></app-date-picker>
     <app-input controlName="email" label="{{'auth.email' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
-    <app-input controlName="phone" label="{{'auth.phoneNumber' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.phoneNumber' | translate} }}" [type]="INPUT_TYPES.PHONE"></app-input>
+    <app-input controlName="phone" label="{{'auth.phone-number' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.phone-number' | translate} }}" [type]="INPUT_TYPES.PHONE"></app-input>
     <app-input controlName="password" label="{{'auth.password' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
     <app-input controlName="confirmPassword" label="{{'auth.confirmPassword' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
     <app-checkbox controlName="hasEmailConsent" label="{{'auth.hasEmailConsent' | translate }}" class="d-flex my-4"></app-checkbox>
