@@ -3,8 +3,8 @@
     <app-icon size="xxl" name="success" class="mb-3"></app-icon>
   
     <h1 class="auth-page__title">
-      <span>{{'auth.confirmEmail.thanks' | translate}}</span>
-      <span>{{'auth.confirmEmail.after' | translate}}</span>
+      <span>{{'auth.confirm-email.thanks' | translate}}</span>
+      <span>{{'auth.confirm-email.after' | translate}}</span>
     </h1>
   
     <app-primary-button
@@ -16,7 +16,7 @@
 
   <ng-container *ngIf="!(isEmailConfirmed$ | async)">
     <h1 class="auth-page__title">
-      <span>{{'auth.confirmEmail.failure' | translate}}</span>
+      <span>{{'auth.confirm-email.failure' | translate}}</span>
     </h1>
   </ng-container>
 </div>
