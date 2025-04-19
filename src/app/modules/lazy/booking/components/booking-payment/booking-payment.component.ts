@@ -46,6 +46,7 @@ export class BookingPaymentComponent implements OnInit {
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+  private buyNowMode: boolean = false;
 
   constructor(
     @Inject(LOCAL_STORAGE) private localStorage: Storage,
@@ -65,11 +66,11 @@ export class BookingPaymentComponent implements OnInit {
 
     this.cart = this.bookingManagementService.cart;
     this.currentBooking = this.bookingManagementService.getCurrentBooking();
-    this.cartTotals = this.bookingManagementService.getTotals();
+    this.buyNowMode = !!this.currentBooking;
 
     this.cartTotals = this.currentBooking
       ? { slotsQty: this.currentBooking.slots.length, price: this.currentBooking.product.price * this.currentBooking.slots.length }
-      : this.cartTotals;
+      : this.bookingManagementService.getTotals();
   }
 
   ngOnInit(): void {
@@ -111,11 +112,20 @@ export class BookingPaymentComponent implements OnInit {
     this.bookingApiService.book(this.formGroup.value).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<IBookingRes> | null) => {
-      res
-        ? this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS)
-        : this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
+      if (!res) {
+        this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
+        return;
+      }
 
-      
+      this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
+
+      if (!this.buyNowMode) {
+        this.bookingManagementService.resetCart();
+      } else {
+        this.bookingManagementService.removeProductFromCart(this.currentBooking!.product);
+      }
+
+      this.router.navigate(['/']);
     });
   }
 
