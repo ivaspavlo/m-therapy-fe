@@ -98,4 +98,13 @@ export class BookingManagementService {
       }
     }, { slotsQty: 0, price: 0 }) as ICartTotals;
   }
+
+  public removeProductFromCart(product: IProduct): void {
+    if (this.cart) {
+      this._cart$.next({
+        ...this.cart,
+        bookings: this.cart.bookings.filter(b => b.product.id !== product.id)
+      });
+    }
+  }
 }
