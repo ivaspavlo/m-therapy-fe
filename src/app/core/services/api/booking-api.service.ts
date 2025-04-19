@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IBookingSlot, ICart, IResponse } from '@app/interfaces';
+import { IBookingRes, IBookingSlot, ICart, IResponse } from '@app/interfaces';
 import { API_URL } from '@env/environment';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class BookingApiService {
     return this.http.get<IResponse<IBookingSlot[]>>(`${API_URL}/booking?fromDate=${fromDate || Date.now()}`);
   }
 
-  public book(cart: ICart): Observable<IResponse<any>> {
-    return this.http.post<IResponse<any>>(`${API_URL}/booking`, cart);
+  public book(cart: ICart): Observable<IResponse<IBookingRes>> {
+    return this.http.post<IResponse<IBookingRes>>(`${API_URL}/booking`, cart);
   }
 }

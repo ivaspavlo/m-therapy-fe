@@ -6,9 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { ICart, ICartTotals, IContent, IProductBooking, IResponse } from '@app/interfaces';
-import { INPUT_TYPES, USER_EMAIL } from '@app/core/constants';
-import { BookingApiService, BookingManagementService, ContentApiService } from '@app/core/services';
+import { IBookingRes, ICart, ICartTotals, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { INPUT_TYPES, ToastType, USER_EMAIL } from '@app/core/constants';
+import { BookingApiService, BookingManagementService, ContentApiService, ToasterService } from '@app/core/services';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/constants';
 
@@ -31,6 +31,10 @@ export class BookingPaymentComponent implements OnInit {
   public cartTotals: ICartTotals | null = null;
   public cart: ICart | null = null;
   private currentBooking: IProductBooking | null = null; 
+  private messages = {
+    success: 'products.booking.success',
+    failure: 'products.booking.failure',
+  }
 
   public INPUT_TYPES = INPUT_TYPES;
   public CONTROL_NAME = CONTROL_NAME;
@@ -51,7 +55,8 @@ export class BookingPaymentComponent implements OnInit {
     private bookingManagementService: BookingManagementService,
     private contentApiService: ContentApiService,
     private translateService: TranslateService,
-    private location: Location
+    private location: Location,
+    private toasterService: ToasterService
   ) {
     this.content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
@@ -103,7 +108,15 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onConfirmBooking(): void {
-    this.bookingApiService.book(this.formGroup.value).subscribe();
+    this.bookingApiService.book(this.formGroup.value).pipe(
+      catchError(() => of(null))
+    ).subscribe((res: IResponse<IBookingRes> | null) => {
+      res
+        ? this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS)
+        : this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
+
+      
+    });
   }
 
   private isFileValid(files: FileList): boolean {
