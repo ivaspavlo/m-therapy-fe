@@ -145,11 +145,11 @@
     "required": "This field is required",
     "minlength": "Value is too short",
     "email": "Email is not correct",
-    "noNumeric": "Must contain numeric symbol",
-    "noUpperCase": "Must contain upper-case symbol",
-    "noLowerCase": "Must contain lower-case symbol",
-    "minEightChar": "Must have at least 8 symbols",
-    "notEqual": "Password is not equal",
-    "birthDate": "Incorrect date of birth"
+    "no-numeric": "Must contain numeric symbol",
+    "no-upper-case": "Must contain upper-case symbol",
+    "no-lower-case": "Must contain lower-case symbol",
+    "min-eight-char": "Must have at least 8 symbols",
+    "not-equal": "Password is not equal",
+    "birth-date": "Incorrect date of birth"
   }
 }
