@@ -79,4 +79,8 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
       (this.bookingManagementService.getCurrentBooking()?.slots || []).map(b => [b.start, b])
     );
   }
+
+  ngOnDestroy(): void {
+    this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
+  }
 }
