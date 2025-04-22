@@ -56,18 +56,25 @@ export class BookingManagementService {
       return;
     }
 
-    const currentBooking = this.getCurrentBooking() || { product: this.currentProduct as IProduct, slots: [] };
-    const slotsWithDuplicates = [...currentBooking.slots, ...selectedSlots];
+    if (!selectedSlots.length) {
+      const updateCart = {
+        // Cart might be null.
+        ...(this.cart || {}),
+        bookings: this.cart?.bookings
+          ? this.cart?.bookings.filter(b => b.product.id !== this.currentProduct!.id)
+          : []
+      }
 
-    // Combine selected dates with dates from the cart and remove duplicates.
-    const updatedSlots = Object.values(slotsWithDuplicates.reduce<Record<number, IBookingSlot>>((acc, curr)=> {
-      acc[curr.start] = curr;
-      return acc;
-    }, {})) as IBookingSlot[];
+      this.addToCart(updateCart);
+
+      return;
+    }
+
+    const currentBooking = this.getCurrentBooking() || { product: this.currentProduct as IProduct, slots: [] };
 
     const updatedBooking = {
       ...currentBooking,
-      slots: updatedSlots
+      slots: selectedSlots
     };
 
     const hasSlotsForCurrentProduct = this.cart?.bookings.find(b => b.product.id === this.currentProduct?.id);
