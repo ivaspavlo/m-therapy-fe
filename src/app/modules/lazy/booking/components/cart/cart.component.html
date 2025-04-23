@@ -2,40 +2,49 @@
   <header class="d-flex align-items-center">
     <app-icon routerLink="/" name="shevron-left" size="xl" class="cart__back"></app-icon>
 
-    <h2 class="cart__title">{{ 'products.booking.cart-title' | translate }}</h2>
+    <h2 class="cart__title">{{ 'products.booking.cart.title' | translate }}</h2>
   </header>
 
-  <div class="selection">
-    <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty} }}</p>
+  <ng-container *ngIf="cartTotals.slotsQty">
+    <div class="selection">
+      <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty} }}</p>
+  
+      <p>{{ 'products.booking.totalPrice' | translate }}: {{ cartTotals.price| number:'2.2' }} UAH</p>
+    </div>
+  
+    <div *ngIf="true" class="cart__selected">
+  
+      <ul class="scroll-content">
+        <li *ngFor="let booking of productBookings" (click)="onBookingItemClick(booking.product)" class="cart-item">
+          <img src="/assets/images/graphic/test.png" alt="" class="cart-item__image">
+  
+          <p class="cart-item__desc">
+            <span>{{ booking.product.desc }}</span>
+          </p>
+  
+          <i class="cart-item__delimiter"></i>
+  
+          <div class="cart-item__details">
+            <p>{{ 'products.booking.slotsQty' | translate: { slots: booking.slots.length } }}</p>
+  
+            <p>{{ 'products.booking.totalPrice' | translate }}: {{ booking.slots.length * booking.product.price | number:'2.2' }} UAH</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="d-flex justify-content-end mt-4">
+      <app-primary-button
+        (buttonClick)="onConfirmBooking()"
+        title="{{ 'products.booking.confirm-booking' | translate }}"
+      ></app-primary-button>
+    </div>
+  </ng-container>
 
-    <p>{{ 'products.booking.totalPrice' | translate }}: {{ cartTotals.price| number:'2.2' }} UAH</p>
-  </div>
-
-  <div *ngIf="true" class="cart__selected">
-
-    <ul class="scroll-content">
-      <li *ngFor="let booking of productBookings" (click)="onBookingItemClick(booking.product)" class="cart-item">
-        <img src="/assets/images/graphic/test.png" alt="" class="cart-item__image">
-
-        <p class="cart-item__desc">
-          <span>{{ booking.product.desc }}</span>
-        </p>
-
-        <i class="cart-item__delimiter"></i>
-
-        <div class="cart-item__details">
-          <p>{{ 'products.booking.slotsQty' | translate: { slots: booking.slots.length } }}</p>
-
-          <p>{{ 'products.booking.totalPrice' | translate }}: {{ booking.slots.length * booking.product.price | number:'2.2' }} UAH</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="d-flex justify-content-end mt-4">
-    <app-primary-button
-      (buttonClick)="onConfirmBooking()"
-      title="{{ 'products.booking.confirm-booking' | translate }}"
-    ></app-primary-button>
+  <div class="cart-empty" *ngIf="!cartTotals.slotsQty">
+    <app-icon size="xxl" name="cart" class="d-flex justify-content-center mb-3"></app-icon>
+    <h1 class="cart-empty__title">{{ 'products.booking.cart.empty-title' | translate }}</h1>
+    <h5 class="cart-empty__subtitle">{{ 'products.booking.cart.empty-subtitle' | translate }}</h5>
+    <app-primary-button title="{{ 'auth.back' | translate }}" url="/" class="mt-4 d-flex justify-content-center"></app-primary-button>
   </div>
 </div>
