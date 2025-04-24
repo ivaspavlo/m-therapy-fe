@@ -3,13 +3,16 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe, Location } from '@angular/common';
 import { Observable, of } from 'rxjs';
-import { catchError, first, map } from 'rxjs/operators';
+import { catchError, first, map, takeUntil } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 import { IBookingSlot, IProduct, IResponse } from '@app/interfaces';
-import { CORE_ROUTE_NAMES } from '@app/core/constants';
-import { BookingManagementService, BookingApiService } from '@app/core/services';
+import { CORE_ROUTE_NAMES, ToastType } from '@app/core/constants';
+import { BookingManagementService, BookingApiService, ToasterService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
+import { DialogService } from '@app/modules/ui';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
+import { TestModalComponent } from '@app/modules/lazy/auth/components/test-modal/test-modal.component';
 
 @Component({
   selector: 'app-booking-select',
@@ -24,6 +27,9 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   public form!: FormGroup;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
+  private messages = {
+    success: 'Added to the cart'
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +37,10 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     private datePipe: DatePipe,
     private bookingApiService: BookingApiService,
     private bookingManagementService: BookingManagementService,
-    private location: Location
+    private location: Location,
+    private dialogService: DialogService,
+    private toasterService: ToasterService,
+    private translateService: TranslateService
   ) {
     super();
 
@@ -59,9 +68,20 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.selectedSlots.set(value.start, value);
   }
 
-  public onSubmit(): void {
+  public onBookNow(): void {
     this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
     this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
+  }
+
+  public onAddToCart(): void {
+    this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
+    this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
+
+    this.dialogService.open(TestModalComponent, {}).afterClosed.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe(() => {
+      
+    });
   }
 
   private initForm(): void {
