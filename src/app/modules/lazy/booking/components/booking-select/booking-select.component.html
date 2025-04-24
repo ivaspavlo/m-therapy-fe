@@ -49,7 +49,7 @@
 
       <div class="d-flex justify-content-between">
         <app-secondary-button
-          (buttonClick)="onSubmit()"
+          (buttonClick)="onAddToCart()"
           [isLoading]="false"
           title="{{ 'products.booking.add-to-cart' | translate }}"
           class="product-content__submit-btn"
@@ -57,7 +57,7 @@
         ></app-secondary-button>
 
         <app-primary-button
-          (buttonClick)="onSubmit()"
+          (buttonClick)="onBookNow()"
           [isLoading]="false"
           title="{{ 'products.booking.book-now' | translate }}"
           class="product-content__submit-btn"

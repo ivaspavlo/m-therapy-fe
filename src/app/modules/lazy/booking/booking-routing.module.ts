@@ -19,10 +19,7 @@ const PaymentPageGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Prom
 
 const SelectPageGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
   const bookingManagementService = inject(BookingManagementService);
-
-  return bookingManagementService.getCurrentBooking()
-    ? true
-    : inject(Router).createUrlTree([CORE_ROUTE_NAMES.HOME]);
+  return !!bookingManagementService.currentProduct;
 };
 
 const bookingRoutes: Route[] = [
