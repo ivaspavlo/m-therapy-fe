@@ -12,7 +12,7 @@ import { BookingManagementService, BookingApiService, ToasterService } from '@ap
 import { DestroySubscriptions } from '@app/shared/classes';
 import { DialogService } from '@app/modules/ui';
 import { BOOKING_ROUTE_NAMES } from '../../constants';
-import { TestModalComponent } from '@app/modules/lazy/auth/components/test-modal/test-modal.component';
+import { GoToCartDialogComponent } from '../go-to-cart-dialog/go-to-cart-dialog.component';
 
 @Component({
   selector: 'app-booking-select',
@@ -77,7 +77,7 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
     this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
 
-    this.dialogService.open(TestModalComponent, {}).afterClosed.pipe(
+    this.dialogService.open(GoToCartDialogComponent, {}).afterClosed.pipe(
       takeUntil(this.componentDestroyed$)
     ).subscribe(() => {
       

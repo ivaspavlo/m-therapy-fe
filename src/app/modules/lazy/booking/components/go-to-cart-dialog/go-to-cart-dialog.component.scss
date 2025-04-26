@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+
+.go-to-cart {
+  width: 100%;
+  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    color: $primary;
+    display: flex;
+    gap: rem(8px);
+  }
+}
