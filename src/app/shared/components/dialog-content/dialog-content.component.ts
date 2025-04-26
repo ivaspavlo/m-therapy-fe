@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { DialogRef } from '@app/modules/ui/dialog';
 import { DIALOG_SIZES } from '@app/core/constants';
-
 
 @Component({
   selector: 'app-dialog-content',
@@ -9,7 +8,7 @@ import { DIALOG_SIZES } from '@app/core/constants';
   styleUrls: ['./dialog-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DialogContentComponent implements OnInit {
+export class DialogContentComponent {
   @Input() set size(value: string) {
     this._size = value && DIALOG_SIZES[value]
       ? DIALOG_SIZES[value]
@@ -21,7 +20,5 @@ export class DialogContentComponent implements OnInit {
   constructor(
     public dialog: DialogRef
   ) { }
-
-  ngOnInit(): void { }
 
 }

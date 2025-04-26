@@ -1,0 +1,22 @@
+<app-dialog-content size="md">
+  <div class="go-to-cart">
+    <h1 class="go-to-cart__title">
+      <span>{{ 'products.booking.cart.go-to' | translate }}</span>
+      <app-icon name="cart" size="xl"></app-icon>
+    </h1>
+  
+    <div class="d-flex justify-content-between">
+      <app-secondary-button
+        (buttonClick)="onStay()"
+        [isLoading]="false"
+        title="{{ 'products.booking.cart.keep-booking' | translate }}"
+      ></app-secondary-button>
+  
+      <app-primary-button
+        (buttonClick)="onBookNow()"
+        [isLoading]="false"
+        title="{{ 'products.booking.cart.book-now' | translate }}"
+      ></app-primary-button>
+    </div>
+  </div>
+</app-dialog-content>
