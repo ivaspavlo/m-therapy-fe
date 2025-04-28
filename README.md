@@ -4,7 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Features
 
-tbd
+The entry point is app.component.ts, it loads among others CoreModule and SharedModule, inits i18n logic.
+- core --> contains singletons, constants, decorators, upper-level routing and i18n.
+- shared --> contains dumb UI components, pipes, utils, directives and abstract classes.
+- interfaces --> is the entry point for all app-wide interfaces that are used in more than one module.
+- modules --> is the place for business modules (in "lazy" folder because they are lazy loadable) and UI modules (e.g. dialog).
 
 ## Styles
 
