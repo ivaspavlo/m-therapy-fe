@@ -77,11 +77,15 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
     this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
 
-    this.dialogService.open(GoToCartDialogComponent, {}).afterClosed.pipe(
-      takeUntil(this.componentDestroyed$)
-    ).subscribe(() => {
-      
-    });
+    setTimeout(() => {
+      this.dialogService.open(GoToCartDialogComponent, {}).afterClosed.pipe(
+        takeUntil(this.componentDestroyed$)
+      ).subscribe((value: boolean) => {
+        if (value) {
+          this.router.navigate([CORE_ROUTE_NAMES.BOOKING, BOOKING_ROUTE_NAMES.CART]);
+        }
+      });
+    }, 1000);
   }
 
   private initForm(): void {

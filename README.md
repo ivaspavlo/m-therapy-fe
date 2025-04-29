@@ -4,7 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Features
 
-The entry point is app.component.ts, it loads among others CoreModule and SharedModule, inits i18n logic.
+All the main modules (e.g. CoreModule and SharedModule) are loaded into AppModule.
+The entry point for application-related logic is app.component.ts, it loads among others CoreModule and SharedModule, inits i18n logic.
 - core --> contains singletons, constants, decorators, upper-level routing and i18n.
 - shared --> contains dumb UI components, pipes, utils, directives and abstract classes.
 - interfaces --> is the entry point for all app-wide interfaces that are used in more than one module.
