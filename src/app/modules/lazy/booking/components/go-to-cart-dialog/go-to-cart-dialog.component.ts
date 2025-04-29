@@ -15,11 +15,10 @@ export class GoToCartDialogComponent {
   ) {}
 
   public onStay(): void {
-
+    this.dialog.close(false);
   }
 
   public onBookNow(): void {
-    
+    this.dialog.close(true);
   }
-
 }
