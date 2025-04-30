@@ -18,8 +18,8 @@
   }
 
   &__close {
-    @include bg-img('/assets/img/svg/x-button-red.svg');
-    position: absolute; top: 15px; right: 15px;
+    @include bg-img('/assets/images/vector/x-button-red.svg');
+    position: absolute; top: 20px; right: 25px;
     width: 25px;
     height: 25px;
     transform: translate(50%, -50%) scale(1);

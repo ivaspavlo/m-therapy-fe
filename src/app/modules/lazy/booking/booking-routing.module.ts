@@ -18,8 +18,14 @@ const PaymentPageGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Prom
 };
 
 const SelectPageGuard: CanActivateFn = (): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree=> {
+  const router = inject(Router);
   const bookingManagementService = inject(BookingManagementService);
-  return !!bookingManagementService.currentProduct;
+
+  if (!bookingManagementService.currentProduct) {
+    router.navigateByUrl('/');
+    return false;
+  }
+  return true;
 };
 
 const bookingRoutes: Route[] = [

@@ -94,9 +94,9 @@
         "title": "Selected massages",
         "empty-title": "Cart is empty",
         "empty-subtitle": "Select the massage therapy in the main page",
-        "go-to": "Would you like to go to checkout?",
+        "go-to": "Would you like to go to cart?",
         "keep-booking": "Keep booking",
-        "book-now": "Yes, go to checkout"
+        "book-now": "Yes, go to cart"
       },
       "success": "Booking was successfully sent",
       "failure": "Ooops... something went wrong with the booking"
