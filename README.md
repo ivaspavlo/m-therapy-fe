@@ -1,8 +1,17 @@
 # Massage Therapy
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+This is a system for booking time slots for massage sessions. It includes authentication and admin functionality.
 
 ## Features
+
+Features are located in the `src/app/modules/lazy` folder: they are all routable and loaded lazily.
+- main - contains the landing page with components that represent sections of the page.
+- auth - contains authentication flow and logic: register, login, reset password etc.
+- booking - contains the booking flow and logic: cart, select product page, checkout page etc.
+- admin - has all the logic related to the content management.
+
+## Folders overview
 
 All the main modules (e.g. CoreModule and SharedModule) are loaded into AppModule.
 The entry point for application-related logic is app.component.ts, it loads among others CoreModule and SharedModule, inits i18n logic.
@@ -17,7 +26,7 @@ External packages used:
 - bootstrap-4-grid - lightweight collection of utility classes from Bootstrap.
 Wherever it is possible BEM structure is used, where block__element and block__element--modifier syntax is used.
 The application uses SCSS preprocessor as well as SCSS variables.
-Global styles are conventionally in /src/assets/styles folder, which are then imported to /styles.scss.
+Global styles are conventionally in `/src/assets/styles folder`, which are then imported to /styles.scss.
 Structure and semantics of global style files:
 - components.scss - contains SCSS classes used for styling of entire components.
 - fonts.scss - collection of @font-face to include fonts to the global SCSS styles.
@@ -27,17 +36,17 @@ Structure and semantics of global style files:
 - util-classes.scss - collection of classes for most used cases, e.g. .bg-white.
 - variables.scss - collection of global SCSS variables.
 
-## Localization
+## i18n
 
 External packages used:
-- @ngx-translate/core
-- @ngx-translate/http-loader
+- [@ngx-translate/core](https://github.com/ngx-translate/core)
+- [@ngx-translate/http-loader](https://github.com/ngx-translate/http-loader)
 There is a wrapper over @ngx-translate functionality: CoreTranslationModule, which has forRoot and forChild methods.
 This module is included into CoreModule.
 Supported languages:
 - English;
 - Ukrainian;
-Language specific files stored conventionally in /src/assets/i18n.
+Language specific files stored conventionally in `/src/assets/i18n`.
 Initial setup is done in app.component.ts, based on the current browser settings.
 
 ## Environments
