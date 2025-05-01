@@ -5,111 +5,122 @@
     <h2 class="booking-payment__title">{{ 'products.booking.confirm-title' | translate }}</h2>
   </header>
 
-  <div class="selection">
-    <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty } }}</p>
-
-    <p>{{ 'products.booking.totalPrice' | translate }}: {{ cartTotals.price | number:'2.2' }} UAH</p>
-  </div>
-
-  <div class="payment-content">
-    <div class="payment-content__container">
-      <p *ngIf="!noRegistering" class="payment-content__text">
-        <span>{{ 'products.booking.register-benefits' | translate }}</span>
-
-        <app-icon name="gift" size="lg" class="payment-content__icon"></app-icon>
-      </p>
+  <ng-container *ngIf="isSuccessfullyBooked">
+    <div class="selection">
+      <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty } }}</p>
   
-      <div *ngIf="!noRegistering" class="payment-content__controls">
-        <app-primary-button
-          (buttonClick)="onRegister()"
-          title="{{ 'main.landing.register' | translate }}"
-        ></app-primary-button>
+      <p>{{ 'products.booking.totalPrice' | translate }}: {{ cartTotals.price | number:'2.2' }} UAH</p>
+    </div>
   
-        <app-secondary-button
-          (buttonClick)="goWithoutRegistering()"
-          title="{{ 'products.booking.proceed-no-register' | translate }}"
-        ></app-secondary-button>
-      </div>
+    <div class="payment-content">
+      <div class="payment-content__container">
+        <p *ngIf="!isNoRegister" class="payment-content__text">
+          <span>{{ 'products.booking.register-benefits' | translate }}</span>
   
-      <ng-container *ngIf="noRegistering">
-        <div class="payment-confirm">
-          <div class="payment-options">
+          <app-icon name="gift" size="lg" class="payment-content__icon"></app-icon>
+        </p>
+    
+        <div *ngIf="!isNoRegister" class="payment-content__controls">
+          <app-primary-button
+            (buttonClick)="onRegister()"
+            title="{{ 'main.landing.register' | translate }}"
+          ></app-primary-button>
+    
+          <app-secondary-button
+            (buttonClick)="goWithoutRegistering()"
+            title="{{ 'products.booking.proceed-no-register' | translate }}"
+          ></app-secondary-button>
+        </div>
   
-            <form [formGroup]="formGroup" class="d-flex flex-column">
-              <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
-              
-              <p class="payment-info">
-                <span>{{ 'products.booking.payment-options.email-desc' | translate }}</span>
-              </p>
-  
-              <app-input
-                [type]="INPUT_TYPES.EMAIL"
-                [controlName]="CONTROL_NAME.EMAIL"
-                label="{{ 'footer.email-control' | translate }}"
-                color="secondary"
-                plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
-                class="payment-content__input"
-              ></app-input>
-
-              <app-input
-                [type]="INPUT_TYPES.PHONE"
-                [controlName]="CONTROL_NAME.PHONE"
-                label="{{ 'auth.phone-number' | translate | titlecase }}"
-                color="secondary"
-                plh="{{ 'auth.enter' | translate:{x: 'auth.phone-number' | translate} }}"
-                class="payment-content__input"
-              ></app-input>
-            </form>
-  
-            <p class="payment-info">
-              <span>{{ 'products.booking.payment-options.info' | translate }}</span>
-            </p>
-  
-            <ng-container *ngIf="(content$ | async) as content">
-              <div *ngFor="let card of content.paymentCards" class="d-flex flex-column">
+        <ng-container *ngIf="isNoRegister">
+          <div class="payment-confirm">
+            <div class="payment-options">
+    
+              <form [formGroup]="formGroup" class="d-flex flex-column">
+                <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
+                
                 <p class="payment-info">
-                  <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
-                  <span>{{ ('products.booking.payment-options.' + card.name) | translate }}</span>
-                  <img src="{{ '/assets/images/vector/' + card.name + '.svg'}}" alt="{{card.name + 'logo'}}" class="payment-info__bank-logo">
+                  <span>{{ 'products.booking.payment-options.email-desc' | translate }}</span>
                 </p>
     
-                <p class="payment-card">
-                  <span>{{ card.number }}</span>
+                <app-input
+                  [type]="INPUT_TYPES.EMAIL"
+                  [controlName]="CONTROL_NAME.EMAIL"
+                  label="{{ 'footer.email-control' | translate }}"
+                  color="secondary"
+                  plh="{{ 'auth.enter' | translate:{x: 'footer.email-control' | translate | lowercase} }}"
+                  class="payment-content__input"
+                ></app-input>
+  
+                <app-input
+                  [type]="INPUT_TYPES.PHONE"
+                  [controlName]="CONTROL_NAME.PHONE"
+                  label="{{ 'auth.phone-number' | translate | titlecase }}"
+                  color="secondary"
+                  plh="{{ 'auth.enter' | translate:{x: 'auth.phone-number' | translate} }}"
+                  class="payment-content__input"
+                ></app-input>
+              </form>
+    
+              <p class="payment-info">
+                <span>{{ 'products.booking.payment-options.info' | translate }}</span>
+              </p>
+    
+              <ng-container *ngIf="(content$ | async) as content">
+                <div *ngFor="let card of content.paymentCards" class="d-flex flex-column">
+                  <p class="payment-info">
+                    <app-icon name="circle" size="md" class="file-picker__icon"></app-icon>
+                    <span>{{ ('products.booking.payment-options.' + card.name) | translate }}</span>
+                    <img src="{{ '/assets/images/vector/' + card.name + '.svg'}}" alt="{{card.name + 'logo'}}" class="payment-info__bank-logo">
+                  </p>
+      
+                  <p class="payment-card">
+                    <span>{{ card.number }}</span>
+                  </p>
+                </div>
+              </ng-container>
+            </div>
+            
+            <div class="d-flex flex-column">
+              <p
+                class="file-requirements"
+                [ngClass]="{ 'file-requirements--has-error': fileHasError }"
+              >{{ 'products.booking.payment-options.file-requirements' | translate }}</p>
+    
+              <div class="d-flex align-items-center">
+                <label for="id-payment-file" class="file-picker">
+                  <span>{{ 'products.booking.select-file' | translate }}</span>
+                  <app-icon name="browse" size="lg" class="file-picker__icon"></app-icon>
+                </label>
+  
+                <input (change)="onFileChange($event)" type="file" #paymentFileInput id="id-payment-file" class="d-none">
+  
+                <p *ngIf="fileName" class="payment-file">
+                  <span>{{ fileName }}</span>
+                  <app-icon (click)="onClearFile()" name="x-button" size="lg" class="payment-file__icon"></app-icon>
                 </p>
               </div>
-            </ng-container>
-          </div>
-          
-          <div class="d-flex flex-column">
-            <p
-              class="file-requirements"
-              [ngClass]="{ 'file-requirements--has-error': fileHasError }"
-            >{{ 'products.booking.payment-options.file-requirements' | translate }}</p>
-  
-            <div class="d-flex align-items-center">
-              <label for="id-payment-file" class="file-picker">
-                <span>{{ 'products.booking.select-file' | translate }}</span>
-                <app-icon name="browse" size="lg" class="file-picker__icon"></app-icon>
-              </label>
-
-              <input (change)="onFileChange($event)" type="file" #paymentFileInput id="id-payment-file" class="d-none">
-
-              <p *ngIf="fileName" class="payment-file">
-                <span>{{ fileName }}</span>
-                <app-icon (click)="onClearFile()" name="x-button" size="lg" class="payment-file__icon"></app-icon>
-              </p>
             </div>
           </div>
-        </div>
-  
-        <div class="d-flex justify-content-end mt-4">
-          <app-primary-button
-            [disabled]="!formGroup.valid || !fileName || fileHasError"
-            (buttonClick)="onConfirmBooking()"
-            title="{{ 'products.booking.confirm-booking' | translate }}"
-          ></app-primary-button>
-        </div>
-      </ng-container>
+    
+          <div class="d-flex justify-content-end mt-4">
+            <app-primary-button
+              [disabled]="!formGroup.valid || !fileName || fileHasError"
+              (buttonClick)="onConfirmBooking()"
+              title="{{ 'products.booking.confirm-booking' | translate }}"
+            ></app-primary-button>
+          </div>
+        </ng-container>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isSuccessfullyBooked">
+    <div class="booked">
+      <app-icon size="xxl" name="cart" class="d-flex justify-content-center mb-3"></app-icon>
+      <h1 class="cart-empty__title">{{ 'products.booking.cart.empty-title' | translate }}</h1>
+      <h5 class="cart-empty__subtitle">{{ 'products.booking.cart.empty-subtitle' | translate }}</h5>
+      <app-primary-button title="{{ 'auth.back' | translate }}" url="/" class="mt-4 d-flex justify-content-center"></app-primary-button>
+    </div>
+  </ng-container>
 </div>

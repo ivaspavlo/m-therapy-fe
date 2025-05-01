@@ -39,7 +39,8 @@ export class BookingPaymentComponent implements OnInit {
   public INPUT_TYPES = INPUT_TYPES;
   public CONTROL_NAME = CONTROL_NAME;
   public formGroup!: FormGroup;
-  public noRegistering: boolean = false;
+  public isNoRegister: boolean = false;
+  public isSuccessfullyBooked: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
   public loggedInEmail: string | null = null;
@@ -81,7 +82,7 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public goWithoutRegistering(): void {
-    this.noRegistering = !this.noRegistering;
+    this.isNoRegister = !this.isNoRegister;
   }
 
   public onRegister(): void {
@@ -112,10 +113,12 @@ export class BookingPaymentComponent implements OnInit {
     this.bookingApiService.book(this.formGroup.value).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<IBookingRes> | null) => {
-      if (!res) {
-        this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
-        return;
-      }
+      // if (!res) {
+      //   this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
+      //   return;
+      // }
+
+      this.isSuccessfullyBooked = true;
 
       this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
 
