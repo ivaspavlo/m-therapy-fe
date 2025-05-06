@@ -8,6 +8,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { BookingPaymentComponent, BookingSelectComponent, CartComponent, GoToCartDialogComponent } from './components';
 import { BookingPageComponent } from './booking-page.component';
 import { BookingRoutingModule } from './booking-routing.module';
+import { InfoBlockModule } from '@app/modules/ui/info-block/info-block.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BookingRoutingModule } from './booking-routing.module';
     DatePickerModule,
     SharedModule,
     CoreTranslationModule.forChild(),
-    DialogModule
+    DialogModule,
+    InfoBlockModule
   ]
 })
 export class BookingModule { }

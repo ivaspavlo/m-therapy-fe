@@ -1,0 +1,29 @@
+@import 'variables';
+
+@mixin title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $primary;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  flex-direction: column;
+
+  &__title {
+    @include title;
+    padding: 0 1rem;
+  }
+
+  &__subtitle {
+    @include title;
+    color: $secondary;
+    font-size: rem(14px);
+    margin: rem(4px) 0;
+    line-height: rem(20px);
+  }
+}

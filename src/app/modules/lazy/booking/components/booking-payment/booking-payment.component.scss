@@ -27,11 +27,12 @@
     }
   }
 
-  &__content {
+  &__content-wrapper {
     width: 100%;
     max-width: rem(768px);
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
 }
 
@@ -172,28 +173,7 @@
   }
 }
 
-.booked {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  flex-direction: column;
-
-  &__title {
-    @include title;
-    padding: 0 1rem;
-  }
-
-  &__subtitle {
-    @include title;
-    color: $secondary;
-    font-size: rem(14px);
-    margin: rem(4px) 0;
-    line-height: rem(20px);
-  }
-
-  &__order-number {
-    font-weight: bolder;
-    text-decoration: underline;
-  }
+.order-number {
+  font-weight: bolder;
+  text-decoration: underline;
 }

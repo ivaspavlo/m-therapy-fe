@@ -41,10 +41,9 @@
     </div>
   </div>
 
-  <div class="cart-empty" *ngIf="!cartTotals.slotsQty">
-    <app-icon size="xxl" name="cart" class="d-flex justify-content-center mb-3"></app-icon>
-    <h1 class="cart-empty__title">{{ 'products.booking.cart.empty-title' | translate }}</h1>
-    <h5 class="cart-empty__subtitle">{{ 'products.booking.cart.empty-subtitle' | translate }}</h5>
-    <app-primary-button title="{{ 'auth.back' | translate }}" url="/" class="mt-4 d-flex justify-content-center"></app-primary-button>
-  </div>
+  <app-info-block *ngIf="!cartTotals.slotsQty" iconName="cart" buttonTitle="{{ 'auth.back' | translate }}" buttonUrl="/" class="d-flex flex-grow-1">
+    <p title>{{ 'products.booking.cart.empty-title' | translate }}</p>
+
+    <p subtitle>{{ 'products.booking.cart.empty-subtitle' | translate }}</p>
+  </app-info-block>
 </div>

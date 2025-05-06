@@ -1,0 +1,13 @@
+<div class="info">
+  <app-icon size="xxl" [name]="iconName" class="d-flex justify-content-center mb-3"></app-icon>
+
+  <h1 class="info__title">
+    <ng-content select="[title]"></ng-content>
+  </h1>
+
+  <h5 class="info__subtitle">
+    <ng-content select="[subtitle]"></ng-content>
+  </h5>
+
+  <app-primary-button [title]="buttonTitle" [url]="buttonUrl" class="mt-4 d-flex justify-content-center"></app-primary-button>
+</div>

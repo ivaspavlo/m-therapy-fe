@@ -93,7 +93,7 @@
       "cart": {
         "title": "Selected massages",
         "empty-title": "Cart is empty",
-        "empty-subtitle": "Select the massage therapy in the main page",
+        "empty-subtitle": "Select the massage in the main page",
         "go-to": "Would you like to go to cart?",
         "keep-booking": "Keep booking",
         "book-now": "Yes, go to cart",
