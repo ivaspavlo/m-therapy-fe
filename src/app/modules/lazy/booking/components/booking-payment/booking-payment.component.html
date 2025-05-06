@@ -5,7 +5,7 @@
     <h2 class="booking-payment__title">{{ 'products.booking.confirm-title' | translate }}</h2>
   </header>
 
-  <div *ngIf="isSuccessfullyBooked" class="booking-payment__content-wrapper">
+  <div *ngIf="!isSuccessfullyBooked" class="booking-payment__content-wrapper">
     <div class="selection">
       <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty } }}</p>
   
@@ -115,7 +115,7 @@
     </div>
   </div>
 
-  <app-info-block *ngIf="!isSuccessfullyBooked" iconName="success" buttonTitle="{{ 'auth.back' | translate }}" buttonUrl="/" class="d-flex flex-grow-1">
+  <app-info-block *ngIf="isSuccessfullyBooked" iconName="success" buttonTitle="{{ 'auth.back' | translate }}" buttonUrl="/" class="d-flex flex-grow-1">
     <p title>{{ 'products.booking.cart.success-title' | translate }}</p>
 
     <div subtitle class="d-flex flex-column align-items-center">
