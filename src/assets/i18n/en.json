@@ -96,7 +96,10 @@
         "empty-subtitle": "Select the massage therapy in the main page",
         "go-to": "Would you like to go to cart?",
         "keep-booking": "Keep booking",
-        "book-now": "Yes, go to cart"
+        "book-now": "Yes, go to cart",
+        "success-title": "Your order is submitted",
+        "success-subtitle": "We will send confirmation to the email you have specified",
+        "order-number": "Order number is:"
       },
       "success": "Booking was successfully sent",
       "failure": "Ooops... something went wrong with the booking"
