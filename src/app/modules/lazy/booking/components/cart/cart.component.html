@@ -5,7 +5,7 @@
     <h2 class="cart__title">{{ 'products.booking.cart.title' | translate }}</h2>
   </header>
 
-  <ng-container *ngIf="cartTotals.slotsQty">
+  <div *ngIf="cartTotals.slotsQty" class="cart__content">
     <div class="selection">
       <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty} }}</p>
   
@@ -39,7 +39,7 @@
         title="{{ 'products.booking.confirm-booking' | translate }}"
       ></app-primary-button>
     </div>
-  </ng-container>
+  </div>
 
   <div class="cart-empty" *ngIf="!cartTotals.slotsQty">
     <app-icon size="xxl" name="cart" class="d-flex justify-content-center mb-3"></app-icon>

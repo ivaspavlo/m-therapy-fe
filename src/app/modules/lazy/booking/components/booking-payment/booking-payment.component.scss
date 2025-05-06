@@ -1,8 +1,14 @@
 @import 'variables';
 
+@mixin title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $primary;
+}
+
 .booking-payment {
   width: 100%;
-  max-width: rem(768px);
   min-height: 100vh;
   padding: 5rem 1rem 2rem 1rem;
   display: flex;
@@ -19,6 +25,13 @@
     &:hover {
       transform: translateX(-3px);
     }
+  }
+
+  &__content {
+    width: 100%;
+    max-width: rem(768px);
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -165,4 +178,22 @@
   justify-content: center;
   flex-grow: 1;
   flex-direction: column;
+
+  &__title {
+    @include title;
+    padding: 0 1rem;
+  }
+
+  &__subtitle {
+    @include title;
+    color: $secondary;
+    font-size: rem(14px);
+    margin: rem(4px) 0;
+    line-height: rem(20px);
+  }
+
+  &__order-number {
+    font-weight: bolder;
+    text-decoration: underline;
+  }
 }

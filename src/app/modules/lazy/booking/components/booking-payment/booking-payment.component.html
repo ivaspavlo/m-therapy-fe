@@ -5,7 +5,7 @@
     <h2 class="booking-payment__title">{{ 'products.booking.confirm-title' | translate }}</h2>
   </header>
 
-  <ng-container *ngIf="isSuccessfullyBooked">
+  <div *ngIf="isSuccessfullyBooked" class="booking-payment__content">
     <div class="selection">
       <p>{{ 'products.booking.slotsQty' | translate: { slots: cartTotals.slotsQty } }}</p>
   
@@ -113,14 +113,22 @@
         </ng-container>
       </div>
     </div>
-  </ng-container>
+  </div>
 
-  <ng-container *ngIf="!isSuccessfullyBooked">
-    <div class="booked">
-      <app-icon size="xxl" name="cart" class="d-flex justify-content-center mb-3"></app-icon>
-      <h1 class="cart-empty__title">{{ 'products.booking.cart.empty-title' | translate }}</h1>
-      <h5 class="cart-empty__subtitle">{{ 'products.booking.cart.empty-subtitle' | translate }}</h5>
-      <app-primary-button title="{{ 'auth.back' | translate }}" url="/" class="mt-4 d-flex justify-content-center"></app-primary-button>
-    </div>
-  </ng-container>
+  <div *ngIf="!isSuccessfullyBooked" class="booked">
+    <app-icon size="xxl" name="success" class="d-flex justify-content-center mb-3"></app-icon>
+
+    <h1 class="booked__title">{{ 'products.booking.cart.success-title' | translate }}</h1>
+
+    <h5 class="booked__subtitle">
+      <p>{{ 'products.booking.cart.success-subtitle' | translate }}</p>
+
+      <p class="d-flex">
+        <span>{{ 'products.booking.cart.order-number' | translate }}&nbsp;</span>
+        <span class="booked__order-number">10101010101</span>
+      </p>
+    </h5>
+
+    <app-primary-button title="{{ 'auth.back' | translate }}" url="/" class="mt-4 d-flex justify-content-center"></app-primary-button>
+  </div>
 </div>
