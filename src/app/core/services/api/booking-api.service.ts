@@ -14,7 +14,6 @@ export class BookingApiService {
     private http: HttpClient
   ) {}
 
-  // Booking slots are independant from the product.
   public getBookingSlots(fromDate?: number): Observable<IResponse<IBookingSlot[]>> {
     return this.http.get<IResponse<IBookingSlot[]>>(`${API_URL}/booking?fromDate=${fromDate || Date.now()}`);
   }
