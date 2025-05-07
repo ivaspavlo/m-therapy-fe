@@ -25,6 +25,10 @@ const coreRouts: Route[] = [
     data: { animationState: 'Two' },
     loadChildren: () => import('@app/modules/lazy/booking/booking.module').then(m => m.BookingModule)
   }, {
+    path: CORE_ROUTE_NAMES.USER,
+    data: { animationState: 'Two' },
+    loadChildren: () => import('@app/modules/lazy/user/user.module').then(m => m.UserModule)
+  }, {
     path: CORE_ROUTE_NAMES.OTHER,
     pathMatch: 'full',
     redirectTo: CORE_ROUTE_NAMES.HOME
