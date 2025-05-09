@@ -10,6 +10,7 @@ Features are located in the `src/app/modules/lazy` folder: they are all routable
 - auth - contains authentication flow and logic: register, login, reset password etc.
 - booking - contains the booking flow and logic: cart, select product page, checkout page etc.
 - admin - has all the logic related to the content management.
+- user - used for displaying user related data and bookings.
 
 ## Folders overview
 
