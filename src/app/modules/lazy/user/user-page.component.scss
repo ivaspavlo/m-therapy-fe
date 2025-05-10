@@ -1,0 +1,12 @@
+.user-page {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #ECFDF5;
+
+  &__brand {
+    position: fixed; top: 0; left: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 1;
+  }
+}
