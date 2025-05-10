@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { API_URL } from '@env/environment';
-import { IUser, IResponse, ISubscribeAdEmailsReq } from '@app/interfaces';
+import { IUser, IResponse, ISubscribeAdEmailsReq, IUserDetails } from '@app/interfaces';
 
 
 @Injectable({
@@ -21,5 +21,9 @@ export class UserApiService {
 
   public subscribeAdEmails(req: ISubscribeAdEmailsReq): Observable<IResponse<ISubscribeAdEmailsReq>> {
     return this.http.post<IResponse<ISubscribeAdEmailsReq>>(`${API_URL}/user/subscribe`, req);
+  }
+
+  public getUserDetails(): Observable<IResponse<IUserDetails>> {
+    return this.http.get<IResponse<ISubscribeAdEmailsReq>>(`${API_URL}/user/details`);
   }
 }

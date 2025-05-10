@@ -3,6 +3,7 @@ export * from './user.interface';
 export * from './header-control.interface';
 export * from './product.interface';
 export * from './booking-interface';
+export * from './user-details.interface';
 
 // API interfaces
 export * from './api/response.interface';
