@@ -1,7 +1,14 @@
-import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
-import { CORE_ROUTE_NAMES } from './constants';
+import { inject, NgModule } from '@angular/core';
+import { CanActivateFn, Route, RouterModule } from '@angular/router';
+import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from './constants';
+import { LOCAL_STORAGE } from './providers';
 
+export const AuthGuard: CanActivateFn = (): boolean => {
+  const localStorage = inject(LOCAL_STORAGE) as Storage;
+  const jwt = localStorage.get(ACCESS_TOKEN);
+  
+  return !!jwt;
+}
 
 const coreRouts: Route[] = [
   {
@@ -26,6 +33,7 @@ const coreRouts: Route[] = [
     loadChildren: () => import('@app/modules/lazy/booking/booking.module').then(m => m.BookingModule)
   }, {
     path: CORE_ROUTE_NAMES.USER,
+    canActivate: [AuthGuard],
     data: { animationState: 'Two' },
     loadChildren: () => import('@app/modules/lazy/user/user.module').then(m => m.UserModule)
   }, {
