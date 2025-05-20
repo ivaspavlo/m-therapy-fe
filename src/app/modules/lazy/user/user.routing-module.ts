@@ -12,11 +12,18 @@ const userRoutes: Route[] = [
     component: UserPageComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: USER_ROUTES.PROFILE
+      },
+      {
         path: USER_ROUTES.PROFILE,
+        data: { animationState: 'One' },
         component: UserProfileComponent
       },
       {
         path: USER_ROUTES.BOOKINGS,
+        data: { animationState: 'Two' },
         component: UserBookingsComponent
       }
     ]
@@ -24,8 +31,6 @@ const userRoutes: Route[] = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(userRoutes)
-  ]
+  imports: [RouterModule.forChild(userRoutes)]
 })
 export class UserRoutingModule { }
