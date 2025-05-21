@@ -1,13 +1,9 @@
-import { inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CanActivateFn, Route, RouterModule } from '@angular/router';
 import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from './constants';
-import { LOCAL_STORAGE } from './providers';
 
 export const AuthGuard: CanActivateFn = (): boolean => {
-  const localStorage = inject(LOCAL_STORAGE) as Storage;
-  const jwt = localStorage.get(ACCESS_TOKEN);
-  
-  return !!jwt;
+  return !!localStorage.getItem(ACCESS_TOKEN)
 }
 
 const coreRouts: Route[] = [
