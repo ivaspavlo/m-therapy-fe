@@ -1,1 +1,7 @@
-<p>user-profile works!</p>
+<div class="profile">
+  <header class="d-flex align-items-center">
+    <app-icon (click)="onBack()" name="shevron-left" size="xl" class="profile__back-button"></app-icon>
+
+    <h2 class="profile__title">{{ 'products.booking.title' | translate }}</h2>
+  </header>
+</div>
