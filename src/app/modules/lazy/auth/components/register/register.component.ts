@@ -12,7 +12,6 @@ import { DialogService } from '@app/modules/ui';
 import { DateValidators, PasswordValidators } from '../../constants';
 import { TestModalComponent } from '../test-modal/test-modal.component';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
