@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "massage-therapy-ui-v2": {
+    "m-therapy-fe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/massage-therapy-ui-v2",
+            "outputPath": "dist/m-therapy-fe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "massage-therapy-ui-v2:build:production"
+              "browserTarget": "m-therapy-fe:build:production"
             },
             "development": {
-              "browserTarget": "massage-therapy-ui-v2:build:development"
+              "browserTarget": "m-therapy-fe:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "massage-therapy-ui-v2:build"
+            "browserTarget": "m-therapy-fe:build"
           }
         },
         "test": {
