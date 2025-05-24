@@ -1,4 +1,4 @@
-# Massage Therapy
+# Massage Therapy FE
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 This is a system for booking time slots for massage sessions. It includes authentication and admin functionality.

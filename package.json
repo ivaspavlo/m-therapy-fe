@@ -1,6 +1,6 @@
 {
-  "name": "massage-therapy-ui-v2",
-  "version": "0.0.0",
+  "name": "m-therapy-fe",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
