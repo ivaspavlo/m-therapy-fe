@@ -1,6 +1,6 @@
 {
   "projects": {
     "default": "mt-stage-db6be",
-    "prod": "mt-prod-30347"
+    "prod": "mt-prod-17c09"
   }
 }
