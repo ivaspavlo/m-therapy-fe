@@ -7,7 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent {
-  public onBack(): void {
-    
-  }
+
+  
+
+  public onBack(): void { }
 }
