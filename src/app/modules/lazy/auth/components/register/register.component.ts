@@ -4,7 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { INPUT_TYPES, RESPONSE_STATUS, ToastType } from '@app/core/constants';
+
+import { INPUT_TYPES, RESPONSE_STATUS, ToastType, USER_DATA_FIELDS } from '@app/core/constants';
 import { AuthApiService, ToasterService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { IRegisterReq, IResponse } from '@app/interfaces';
@@ -21,8 +22,10 @@ import { TestModalComponent } from '../test-modal/test-modal.component';
 export class RegisterComponent extends DestroySubscriptions {
   public registerForm!: FormGroup;
   public INPUT_TYPES = INPUT_TYPES;
+  public USER_DATA_FIELDS = USER_DATA_FIELDS;
   public isLoading: boolean = false;
   public isEmailConfirmationRequired: boolean = false;
+
   private messages = {
     success: 'auth.register.success',
     failure: 'auth.register.failure',
@@ -99,15 +102,16 @@ export class RegisterComponent extends DestroySubscriptions {
 
   private getFormattedRequestBody(form: FormGroup): IRegisterReq {
     const formValue = form.value;
+
     return {
-      firstname: formValue.firstname,
-      lastname: formValue.lastname,
-      email: formValue.email,
-      phone: formValue.phone,
-      birthday: formValue.birthday,
-      password: formValue.password,
-      hasEmailConsent: formValue.hasEmailConsent,
-      lang: this.translateService.currentLang
+      [USER_DATA_FIELDS.FIRSTNAME]: formValue.firstname,
+      [USER_DATA_FIELDS.LASTNAME]: formValue.lastname,
+      [USER_DATA_FIELDS.EMAIL]: formValue.email,
+      [USER_DATA_FIELDS.PHONE]: formValue.phone,
+      [USER_DATA_FIELDS.BIRTHDAY]: formValue.birthday,
+      [USER_DATA_FIELDS.PASSWORD]: formValue.password,
+      [USER_DATA_FIELDS.HAS_EMAIL_CONSENT]: formValue.hasEmailConsent,
+      [USER_DATA_FIELDS.LANG]: this.translateService.currentLang
     }
   }
 }
