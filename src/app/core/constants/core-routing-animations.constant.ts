@@ -1,6 +1,5 @@
 import { trigger, transition, style, query, animateChild, group, animate } from '@angular/animations';
 
-
 export const CoreRoutingAnimations = trigger('triggerName', [
 	transition('One => Two, Two => Three, One => Three', [
 		style({ position: 'relative' }),
