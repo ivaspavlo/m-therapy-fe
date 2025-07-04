@@ -151,6 +151,11 @@
       "after": "Please login using your new password"
     }
   },
+  "user": {
+    "profile": {
+      "title": "My profile"
+    }
+  },
   "form-errors": {
     "required": "This field is required",
     "minlength": "Value is too short",
