@@ -7,6 +7,7 @@ import { UserPageComponent } from './user-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
 import { UserRoutingModule } from './user.routing-module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { UserRoutingModule } from './user.routing-module';
     CommonModule,
     SharedModule,
     UserRoutingModule,
+    ReactiveFormsModule,
     CoreTranslationModule.forChild(),
   ]
 })

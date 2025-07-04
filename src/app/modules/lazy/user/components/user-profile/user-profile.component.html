@@ -1,15 +1,21 @@
 <div class="profile">
   <header class="d-flex align-items-center">
-    <app-icon (click)="onBack()" name="shevron-left" size="xl" class="profile__back-button"></app-icon>
+    <a routerLink="/" class="profile__back-button">
+      <app-icon name="shevron-left" size="xl"></app-icon>
+    </a>
 
-    <h2 class="profile__title">{{ 'products.booking.title' | translate }}</h2>
+    <h2 class="profile__title">{{ 'user.profile.title' | translate }}</h2>
   </header>
 
   <div class="profile-content">
 
-    <ul>
-      <li></li>
-    </ul>
+    <form [formGroup]="form" class="user-data">
+      <div *ngFor="let fieldName of userFields">
+        <p>{{ fieldName }}</p>
+
+        <app-input controlName="firstname" label="{{'auth.first-name' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.first-name' | translate} }}"></app-input>
+      </div>
+    </form>
 
     <!-- <form>
       <app-input controlName="firstname" label="{{'auth.first-name' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.first-name' | translate} }}"></app-input>
