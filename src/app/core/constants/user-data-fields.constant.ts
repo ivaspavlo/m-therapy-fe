@@ -6,7 +6,7 @@ export enum USER_DATA_FIELDS {
   PHONE = 'phone',
   PASSWORD = 'password',
   CONFIRM_PASSWORD = 'confirmPassword',
-  HAS_EMAIL_CONSENT = 'hasEmailConsent',
-  HAS_CONDITIONS_CONSENT = 'hasConditionsConsent',
+  HAS_EMAIL_CONSENT = 'emailConsent',
+  HAS_CONDITIONS_CONSENT = 'conditionsConsent',
   LANG = 'lang'
 }

@@ -5,12 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { INPUT_TYPES, RESPONSE_STATUS, ToastType, USER_DATA_FIELDS } from '@app/core/constants';
+import { DateValidators, INPUT_TYPES, RESPONSE_STATUS, ToastType, USER_DATA_FIELDS } from '@app/core/constants';
 import { AuthApiService, ToasterService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 import { IRegisterReq, IResponse } from '@app/interfaces';
 import { DialogService } from '@app/modules/ui';
-import { DateValidators, PasswordValidators } from '../../constants';
+import { PasswordValidators } from '../../constants';
 import { TestModalComponent } from '../test-modal/test-modal.component';
 
 @Component({

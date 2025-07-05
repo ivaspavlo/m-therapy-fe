@@ -8,29 +8,20 @@
   </header>
 
   <div class="profile-content">
-
     <form [formGroup]="form" class="user-data">
-      <div *ngFor="let fieldName of userFields">
-        <p>{{ fieldName }}</p>
+      <ng-container *ngFor="let fieldName of userFieldsList">
+        <ng-container [ngSwitch]="fieldName">
+          <p>{{ ('auth.' + fieldName) | translate | titlecase }}</p>
 
-        <app-input controlName="firstname" label="{{'auth.first-name' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.first-name' | translate} }}"></app-input>
-      </div>
+          <div *ngSwitchCase="userFieldName.BIRTHDAY">
+            <app-date-picker [controlName]="fieldName" label="{{('auth.' + fieldName) | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: ('auth.' + fieldName) | translate} }}"></app-date-picker>
+          </div>
+
+          <div *ngSwitchDefault>
+            <app-input [controlName]="fieldName" label="{{('auth.' + fieldName) | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: ('auth.' + fieldName) | translate} }}"></app-input>
+          </div>
+        </ng-container>
+      </ng-container>
     </form>
-
-    <!-- <form>
-      <app-input controlName="firstname" label="{{'auth.first-name' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.first-name' | translate} }}"></app-input>
-      <app-input controlName="lastname" label="{{'auth.last-name' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.last-name' | translate} }}"></app-input>
-      <app-date-picker controlName="birthday" label="{{'auth.dob' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.dob' | translate} }}"></app-date-picker>
-      <app-input controlName="email" label="{{'auth.email' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.email' | translate} }}" [type]="INPUT_TYPES.EMAIL"></app-input>
-      <app-input controlName="phone" label="{{'auth.phone-number' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.phone-number' | translate} }}" [type]="INPUT_TYPES.PHONE"></app-input>
-      <app-input controlName="password" label="{{'auth.password' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
-      <app-input controlName="confirmPassword" label="{{'auth.confirm-password' | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: 'auth.password' | translate} }}" [type]="INPUT_TYPES.PASSWORD"></app-input>
-      <app-checkbox controlName="hasEmailConsent" label="{{'auth.has-email-consent' | translate }}" class="d-flex my-4"></app-checkbox>
-      <app-checkbox controlName="hasConditionsConsent" class="d-flex mb-4">
-        <span>{{'auth.has-conditions-consent' | translate }}</span>
-        <a class="app-register__conditions" (click)="onShowConditions($event)">{{'auth.conditions' | translate }}</a>
-      </app-checkbox>
-    </form> -->
-
   </div>
 </div>
