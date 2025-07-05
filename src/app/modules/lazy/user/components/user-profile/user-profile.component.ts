@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { USER_DATA_FIELDS } from '@app/core/constants';
+import { DateValidators, USER_DATA_FIELDS } from '@app/core/constants';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,13 +9,13 @@ import { USER_DATA_FIELDS } from '@app/core/constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit {
-  public userFields = [
+  public userFieldName = USER_DATA_FIELDS;
+  public userFieldsList = [
     USER_DATA_FIELDS.FIRSTNAME,
     USER_DATA_FIELDS.LASTNAME,
     USER_DATA_FIELDS.BIRTHDAY,
     USER_DATA_FIELDS.EMAIL,
-    USER_DATA_FIELDS.PHONE,
-    USER_DATA_FIELDS.LANG
+    USER_DATA_FIELDS.PHONE
   ];
   public form!: FormGroup;
 
@@ -30,13 +30,11 @@ export class UserProfileComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(12)]],
-      birthday: ['', [Validators.required]], // DateValidators.birthDate]
-      hasEmailConsent: [false],
-      hasConditionsConsent: [false, Validators.requiredTrue]
+      [USER_DATA_FIELDS.FIRSTNAME]: [''],
+      [USER_DATA_FIELDS.LASTNAME]: [''],
+      [USER_DATA_FIELDS.EMAIL]: ['', [Validators.email]],
+      [USER_DATA_FIELDS.PHONE]: ['', [Validators.minLength(12)]],
+      [USER_DATA_FIELDS.BIRTHDAY]: ['', [DateValidators.birthDate]]
     });
     this.cdr.detectChanges();
   }

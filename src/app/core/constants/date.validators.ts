@@ -1,6 +1,5 @@
 import { AbstractControl } from '@angular/forms';
 
-
 export class DateValidators {
   static birthDate(control: AbstractControl): any | null {
     if (!control.value) {

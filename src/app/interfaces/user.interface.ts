@@ -16,18 +16,5 @@ export interface IRegisterReq {
   birthday: number,
   password: string,
   lang: string,
-  hasEmailConsent: boolean
+  emailConsent: boolean
 }
-
-// export interface ILoginReq {
-//   email: string,
-//   password: string
-// }
-
-// export interface IRemindReq {
-//   email: string
-// }
-
-// export interface IUpdatePassword {
-//   password: string
-// }
