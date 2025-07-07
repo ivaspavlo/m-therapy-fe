@@ -30,11 +30,11 @@ export class UserProfileComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      [USER_DATA_FIELDS.FIRSTNAME]: [''],
-      [USER_DATA_FIELDS.LASTNAME]: [''],
-      [USER_DATA_FIELDS.EMAIL]: ['', [Validators.email]],
-      [USER_DATA_FIELDS.PHONE]: ['', [Validators.minLength(12)]],
-      [USER_DATA_FIELDS.BIRTHDAY]: ['', [DateValidators.birthDate]]
+      [USER_DATA_FIELDS.FIRSTNAME]: [{value: 'test', disabled: true}],
+      [USER_DATA_FIELDS.LASTNAME]: [{value: '', disabled: true}],
+      [USER_DATA_FIELDS.EMAIL]: [{value: '', disabled: true}, [Validators.email]],
+      [USER_DATA_FIELDS.PHONE]: [{value: '', disabled: true}, [Validators.minLength(12)]],
+      [USER_DATA_FIELDS.BIRTHDAY]: [{value: '', disabled: true}, [DateValidators.birthDate]]
     });
     this.cdr.detectChanges();
   }
