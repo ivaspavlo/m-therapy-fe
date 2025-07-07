@@ -7,7 +7,7 @@
     <h2 class="profile__title">{{ 'user.profile.title' | translate }}</h2>
   </header>
 
-  <div class="profile-content">
+  <div class="profile__content">
     <form [formGroup]="form" class="user-data">
       <ng-container *ngFor="let fieldName of userFieldsList">
         <ng-container [ngSwitch]="fieldName">
@@ -23,5 +23,11 @@
         </ng-container>
       </ng-container>
     </form>
+  </div>
+
+  <div class="proifle__controls">
+    <app-primary-button
+      title="{{ 'products.booking.confirm-booking' | translate }}"
+    ></app-primary-button>
   </div>
 </div>

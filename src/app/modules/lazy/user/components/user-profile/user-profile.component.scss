@@ -21,4 +21,23 @@
       transform: translateX(-3px);
     }
   }
+
+  &__content {
+    width: 100%;
+    max-width: 28.125rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    overflow-y: auto;
+  }
+}
+
+.user-data {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-right: 1rem;
 }
