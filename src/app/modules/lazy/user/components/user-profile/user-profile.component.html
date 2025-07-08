@@ -11,8 +11,6 @@
     <form [formGroup]="form" class="user-data">
       <ng-container *ngFor="let fieldName of userFieldsList">
         <ng-container [ngSwitch]="fieldName">
-          <p>{{ ('auth.' + fieldName) | translate | titlecase }}</p>
-
           <div *ngSwitchCase="userFieldName.BIRTHDAY">
             <app-date-picker [controlName]="fieldName" label="{{('auth.' + fieldName) | translate | titlecase }}" plh="{{'auth.enter' | translate:{x: ('auth.' + fieldName) | translate} }}"></app-date-picker>
           </div>
@@ -25,9 +23,15 @@
     </form>
   </div>
 
-  <div class="proifle__controls">
+  <div class="controls">
     <app-primary-button
-      title="{{ 'products.booking.confirm-booking' | translate }}"
+      (buttonClick)="onEdit()"
+      title="{{ 'user.profile.edit-button' | translate }}"
     ></app-primary-button>
+
+    <app-secondary-button
+      (buttonClick)="onSave()"
+      title="{{ 'user.profile.save-edit-button' | translate }}"
+    ></app-secondary-button>
   </div>
 </div>

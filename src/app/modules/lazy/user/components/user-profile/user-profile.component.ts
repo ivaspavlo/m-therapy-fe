@@ -28,14 +28,25 @@ export class UserProfileComponent implements OnInit {
     this.initForm();
   }
 
+  public onEdit(): void
+  {
+    this.form.enable();
+  }
+
+  public onSave(): void
+  {
+    console.log('works');
+  }
+
   private initForm(): void {
     this.form = this.fb.group({
-      [USER_DATA_FIELDS.FIRSTNAME]: [{value: 'test', disabled: true}],
-      [USER_DATA_FIELDS.LASTNAME]: [{value: '', disabled: true}],
-      [USER_DATA_FIELDS.EMAIL]: [{value: '', disabled: true}, [Validators.email]],
-      [USER_DATA_FIELDS.PHONE]: [{value: '', disabled: true}, [Validators.minLength(12)]],
-      [USER_DATA_FIELDS.BIRTHDAY]: [{value: '', disabled: true}, [DateValidators.birthDate]]
+      [USER_DATA_FIELDS.FIRSTNAME]: ['test'],
+      [USER_DATA_FIELDS.LASTNAME]: ['test'],
+      [USER_DATA_FIELDS.EMAIL]: ['test', [Validators.email]],
+      [USER_DATA_FIELDS.PHONE]: ['test', [Validators.minLength(12)]],
+      [USER_DATA_FIELDS.BIRTHDAY]: ['test', [DateValidators.birthDate]]
     });
+    this.form.disable();
     this.cdr.detectChanges();
   }
 }
