@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { IResponse, IUpdateReq } from '@app/interfaces';
 import { AuthApiService, ToasterService } from '@app/core/services';
 import { PasswordValidators, UPDATE_TOKEN } from '../../constants';
-
 
 @Component({
   selector: 'app-reset',
