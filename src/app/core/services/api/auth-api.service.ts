@@ -20,7 +20,7 @@ export class AuthApiService {
   }
 
   public registerConfirm(token: string): Observable<IResponse<object>> {
-    return this.http.get<IResponse<object>>(API_URL_FN(`?token=${token}`));
+    return this.http.get<IResponse<object>>(`${API_URL_FN('registerConfirm')}?token=${token}`);
   }
 
   public login(req: ILoginReq): Observable<IResponse<ILoginRes>> {
@@ -32,10 +32,10 @@ export class AuthApiService {
   }
 
   public reset(req: IUpdateReq, token: string): Observable<IResponse<object>> {
-    return this.http.post<IResponse<object>>(API_URL_FN(`reset?token=${token}`), req);
+    return this.http.post<IResponse<object>>(`${API_URL_FN('reset')}?token=${token}`, req);
   }
 
   public unsubscribe(token: string): Observable<IResponse<null>> {
-    return this.http.delete<IResponse<null>>(API_URL_FN('/user/unsubscribe'), {body: { token }});
+    return this.http.delete<IResponse<null>>(`${API_URL_FN('/user')}/unsubscribe`, {body: {token}});
   }
 }
