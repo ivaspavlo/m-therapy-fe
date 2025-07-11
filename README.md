@@ -53,8 +53,9 @@ Initial setup is done in app.component.ts, based on the current browser settings
 ## Environments
 
 The application has two environments:
-- development: environment.ts
-- production: environment.prod.ts
+- local: environment.ts
+- stage: environment.stage.ts
+- prod: environment.prod.ts
 
 ## CLI commands
 
