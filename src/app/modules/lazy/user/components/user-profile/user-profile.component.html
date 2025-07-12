@@ -30,6 +30,7 @@
     ></app-primary-button>
 
     <app-secondary-button
+      *ngIf="isEditMode"
       (buttonClick)="onSave()"
       title="{{ 'user.profile.save-edit-button' | translate }}"
     ></app-secondary-button>

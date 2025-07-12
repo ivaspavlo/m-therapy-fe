@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateValidators, USER_DATA_FIELDS } from '@app/core/constants';
+import { UserManagementService } from '@app/core/services';
+import { IUser } from '@app/interfaces';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,6 +12,7 @@ import { DateValidators, USER_DATA_FIELDS } from '@app/core/constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit {
+  public form!: FormGroup;
   public userFieldName = USER_DATA_FIELDS;
   public userFieldsList = [
     USER_DATA_FIELDS.FIRSTNAME,
@@ -17,20 +21,22 @@ export class UserProfileComponent implements OnInit {
     USER_DATA_FIELDS.EMAIL,
     USER_DATA_FIELDS.PHONE
   ];
-  public form!: FormGroup;
+  public isEditMode: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private userService: UserManagementService
   ) { }
 
   ngOnInit(): void {
-    this.initForm();
+    this.setupForm();
   }
 
   public onEdit(): void
   {
-    this.form.enable();
+    this.isEditMode = !this.isEditMode;
+    this.isEditMode ? this.form.enable() : this.form.disable();
   }
 
   public onSave(): void
@@ -38,15 +44,23 @@ export class UserProfileComponent implements OnInit {
     console.log('works');
   }
 
-  private initForm(): void {
-    this.form = this.fb.group({
-      [USER_DATA_FIELDS.FIRSTNAME]: ['test'],
-      [USER_DATA_FIELDS.LASTNAME]: ['test'],
-      [USER_DATA_FIELDS.EMAIL]: ['test', [Validators.email]],
-      [USER_DATA_FIELDS.PHONE]: ['test', [Validators.minLength(12)]],
-      [USER_DATA_FIELDS.BIRTHDAY]: ['test', [DateValidators.birthDate]]
+  private setupForm(): void {
+    this.userService.currentUser$.pipe(
+      first()
+    ).subscribe((user: IUser | null) => {
+      if (!user) {
+        return;
+      }
+      this.form = this.fb.group({
+        [USER_DATA_FIELDS.FIRSTNAME]: [user.firstname],
+        [USER_DATA_FIELDS.LASTNAME]: [user.lastname],
+        [USER_DATA_FIELDS.EMAIL]: [user.email, [Validators.email]],
+        [USER_DATA_FIELDS.PHONE]: [user.phone, [Validators.minLength(12)]],
+        [USER_DATA_FIELDS.BIRTHDAY]: [user.birthday, [DateValidators.birthDate]]
+      });
+
+      this.form.disable();
+      this.cdr.detectChanges();
     });
-    this.form.disable();
-    this.cdr.detectChanges();
   }
 }
