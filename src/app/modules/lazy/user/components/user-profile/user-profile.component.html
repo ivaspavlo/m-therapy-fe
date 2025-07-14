@@ -24,12 +24,8 @@
   </div>
 
   <div class="controls">
-    <app-primary-button
-      (buttonClick)="onEdit()"
-      title="{{ 'user.profile.edit-button' | translate }}"
-    ></app-primary-button>
-
     <app-secondary-button
+      [disabled]="!isFormChanged"
       (buttonClick)="onSave()"
       title="{{ 'user.profile.save-edit-button' | translate }}"
     ></app-secondary-button>

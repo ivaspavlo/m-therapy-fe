@@ -25,5 +25,5 @@
     <app-form-error [errors]="control.errors"></app-form-error>
   </div>
 
-  <i (click)="onClearDate()" [ngClass]="{'input__clear-button--visible': control.value}" class="input__clear-button"></i>
+  <i *ngIf="!control.disabled" (click)="onClearDate()" [ngClass]="{'input__clear-button--visible': control.value}" class="input__clear-button"></i>
 </div>
