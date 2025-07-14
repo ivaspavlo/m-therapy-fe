@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first, takeUntil } from 'rxjs/operators';
+
+import { IUser } from '@app/interfaces';
 import { DateValidators, USER_DATA_FIELDS } from '@app/core/constants';
 import { UserManagementService } from '@app/core/services';
-import { IUser } from '@app/interfaces';
-import { first } from 'rxjs/operators';
+import { DestroySubscriptions } from '@app/shared/classes';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +13,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./user-profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent extends DestroySubscriptions implements OnInit {
   public form!: FormGroup;
   public userFieldName = USER_DATA_FIELDS;
   public userFieldsList = [
@@ -22,21 +24,19 @@ export class UserProfileComponent implements OnInit {
     USER_DATA_FIELDS.PHONE
   ];
   public isEditMode: boolean = false;
+  public isFormChanged: boolean = false;
+  private initialFormValueSnapshot: string = '';
 
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private userService: UserManagementService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.setupForm();
-  }
-
-  public onEdit(): void
-  {
-    this.isEditMode = !this.isEditMode;
-    this.isEditMode ? this.form.enable() : this.form.disable();
   }
 
   public onSave(): void
@@ -59,8 +59,16 @@ export class UserProfileComponent implements OnInit {
         [USER_DATA_FIELDS.BIRTHDAY]: [user.birthday, [DateValidators.birthDate]]
       });
 
-      this.form.disable();
+      this.initialFormValueSnapshot = JSON.stringify(this.form.value);
+
+      this.listenToFormChanges();
       this.cdr.detectChanges();
     });
+  }
+
+  private listenToFormChanges(): void {
+    this.form.valueChanges.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((value: object) => this.isFormChanged = JSON.stringify(value) !== this.initialFormValueSnapshot);
   }
 }
