@@ -19,14 +19,14 @@ export class UserApiService {
   }
 
   public subscribeAdEmails(req: ISubscribeAdEmailsReq): Observable<IResponse<ISubscribeAdEmailsReq>> {
-    return this.http.post<IResponse<ISubscribeAdEmailsReq>>(API_URL_FN('/user/subscribe'), req);
+    return this.http.post<IResponse<ISubscribeAdEmailsReq>>(API_URL_FN('user/subscribe'), req);
   }
 
   public getUserDetails(): Observable<IResponse<IUserDetails>> {
-    return this.http.get<IResponse<ISubscribeAdEmailsReq>>(API_URL_FN('/user/details'));
+    return this.http.get<IResponse<ISubscribeAdEmailsReq>>(API_URL_FN('user/details'));
   }
 
   public updateUserDetails(req: IUserUpdate): Observable<IResponse<null>> {
-    return this.http.put<IResponse<null>>(API_URL_FN('/user/details'), req);
+    return this.http.put<IResponse<null>>(API_URL_FN('user'), req);
   }
 }

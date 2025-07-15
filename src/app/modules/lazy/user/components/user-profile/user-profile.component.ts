@@ -30,8 +30,8 @@ export class UserProfileComponent extends DestroySubscriptions implements OnInit
 
   private initialFormValueSnapshot: string = '';
   private messages = {
-    success: '',
-    error: ''
+    success: 'user.profile.update-success',
+    error: 'user.profile.update-error'
   }
 
   constructor(
@@ -67,6 +67,8 @@ export class UserProfileComponent extends DestroySubscriptions implements OnInit
           this.translateService.instant(this.messages.success),
           ToastType.SUCCESS
         );
+        this.initialFormValueSnapshot = JSON.stringify(this.form.value);
+        this.isFormChanged = false;
       });
     }
   }
