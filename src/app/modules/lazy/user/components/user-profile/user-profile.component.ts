@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first, takeUntil } from 'rxjs/operators';
+import { catchError, first, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
-import { IUser } from '@app/interfaces';
-import { DateValidators, USER_DATA_FIELDS } from '@app/core/constants';
-import { UserManagementService } from '@app/core/services';
+import { IResponse, IUser } from '@app/interfaces';
+import { DateValidators, ToastType, USER_DATA_FIELDS } from '@app/core/constants';
+import { ToasterService, UserApiService, UserManagementService } from '@app/core/services';
 import { DestroySubscriptions } from '@app/shared/classes';
 
 @Component({
@@ -23,14 +25,22 @@ export class UserProfileComponent extends DestroySubscriptions implements OnInit
     USER_DATA_FIELDS.EMAIL,
     USER_DATA_FIELDS.PHONE
   ];
-  public isEditMode: boolean = false;
+  public isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public isFormChanged: boolean = false;
+
   private initialFormValueSnapshot: string = '';
+  private messages = {
+    success: '',
+    error: ''
+  }
 
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private userService: UserManagementService
+    private userService: UserManagementService,
+    private userApiService: UserApiService,
+    private toasterService: ToasterService,
+    private translateService: TranslateService
   ) {
     super();
   }
@@ -41,7 +51,24 @@ export class UserProfileComponent extends DestroySubscriptions implements OnInit
 
   public onSave(): void
   {
-    console.log('works');
+    if (this.isFormChanged) {
+      this.isLoading$.next(true);
+      this.userApiService.updateUserDetails(this.form.value).pipe(
+        catchError(() => of(null))
+      ).subscribe((res: IResponse<null> | null) => {
+        this.isLoading$.next(false);
+        if (res === null) {
+          this.toasterService.show(
+            this.translateService.instant(this.messages.error),
+            ToastType.ERROR
+          );
+        }
+        this.toasterService.show(
+          this.translateService.instant(this.messages.success),
+          ToastType.SUCCESS
+        );
+      });
+    }
   }
 
   private setupForm(): void {

@@ -154,8 +154,9 @@
   "user": {
     "profile": {
       "title": "My profile",
-      "edit-button": "Edit data",
-      "save-edit-button": "Save edit"
+      "save-edit-button": "Save edit",
+      "update-success": "Profile data updated!",
+      "update-error": "We could not update profile data..."
     }
   },
   "form-errors": {

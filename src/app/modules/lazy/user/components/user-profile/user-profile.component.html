@@ -24,10 +24,11 @@
   </div>
 
   <div class="controls">
-    <app-secondary-button
+    <app-primary-button
       [disabled]="!isFormChanged"
+      [isLoading]="!!(isLoading$ | async)"
       (buttonClick)="onSave()"
       title="{{ 'user.profile.save-edit-button' | translate }}"
-    ></app-secondary-button>
+    ></app-primary-button>
   </div>
 </div>
