@@ -11,19 +11,6 @@ $width-content: 28.125rem;
   display: flex;
   flex-direction: column;
 
-  &__title {
-    color: $secondary;
-  }
-
-  &__back-button {
-    margin-right: rem(8px);
-    transition: $transition-1;
-    cursor: pointer;
-    &:hover {
-      transform: translateX(-3px);
-    }
-  }
-
   &__content {
     border-bottom: 1px solid $primary;
     width: 100%;
@@ -34,6 +21,35 @@ $width-content: 28.125rem;
     flex-grow: 1;
     position: relative;
     overflow-y: auto;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: $width-content;
+  }
+}
+
+.routing-button {
+  display: flex;
+  transition: $transition-1;
+  cursor: pointer;
+
+  &__title {
+    color: $secondary;
+    margin: 0 rem(8px);
+  }
+
+  &__icon {
+    transition: $transition-1;
+  }
+
+  &:hover {
+    .routing-button__icon {
+      transform: translateX(-3px);
+    }
   }
 }
 

@@ -153,10 +153,11 @@
   },
   "user": {
     "profile": {
-      "title": "My profile",
+      "my-profile": "My profile",
       "save-edit-button": "Save edit",
       "update-success": "Profile data updated!",
-      "update-error": "We could not update profile data..."
+      "update-error": "We could not update profile data...",
+      "my-orders": "My orders"
     }
   },
   "form-errors": {

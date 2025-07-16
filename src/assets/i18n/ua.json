@@ -151,10 +151,11 @@
   },
   "user": {
     "profile": {
-      "title": "Мій профіль",
+      "my-profile": "Мій профіль",
       "save-edit-button": "Оновити дані",
       "update-success": "Дані було оновлено!",
-      "update-error": "Ми не змогли оновити дані..."
+      "update-error": "Ми не змогли оновити дані...",
+      "my-orders": "Мої замовлення"
     }
   },
   "form-errors": {

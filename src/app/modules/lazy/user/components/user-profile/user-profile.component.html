@@ -1,10 +1,16 @@
 <div class="profile">
-  <header class="d-flex align-items-center">
-    <a routerLink="/" class="profile__back-button">
-      <app-icon name="shevron-left" size="xl"></app-icon>
+  <header class="profile__header">
+    <a routerLink="/" class="routing-button">
+      <app-icon name="shevron-left" size="xl" class="routing-button__icon"></app-icon>
+
+      <h2 class="routing-button__title">{{ 'user.profile.my-profile' | translate }}</h2>
     </a>
 
-    <h2 class="profile__title">{{ 'user.profile.title' | translate }}</h2>
+    <a routerLink="/" class="routing-button">   
+      <h2 class="routing-button__title">{{ 'user.profile.my-orders' | translate }}</h2>
+
+      <app-icon name="shevron-right" size="xl" class="routing-button__icon"></app-icon>
+    </a>
   </header>
 
   <div class="profile__content">

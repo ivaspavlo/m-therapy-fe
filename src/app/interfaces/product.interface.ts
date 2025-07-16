@@ -4,5 +4,5 @@ export interface IProduct {
   price: number,
   createdAt: number,
   desc: string,
-  imageUrl: string
+  imgUrl: string
 }
