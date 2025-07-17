@@ -154,10 +154,12 @@
   "user": {
     "profile": {
       "my-profile": "My profile",
+      "my-orders": "My orders",
+      "profile": "Profile",
+      "orders": "Orders",
       "save-edit-button": "Save edit",
       "update-success": "Profile data updated!",
-      "update-error": "We could not update profile data...",
-      "my-orders": "My orders"
+      "update-error": "We could not update profile data..."
     }
   },
   "form-errors": {
