@@ -152,10 +152,12 @@
   "user": {
     "profile": {
       "my-profile": "Мій профіль",
+      "my-orders": "Мої замовлення",
+      "profile": "Профіль",
+      "orders": "Замовлення",
       "save-edit-button": "Оновити дані",
       "update-success": "Дані було оновлено!",
-      "update-error": "Ми не змогли оновити дані...",
-      "my-orders": "Мої замовлення"
+      "update-error": "Ми не змогли оновити дані..."
     }
   },
   "form-errors": {

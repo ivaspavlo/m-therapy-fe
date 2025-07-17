@@ -1,15 +1,11 @@
-<div class="profile">
+<div *ngIf="form" class="profile">
   <header class="profile__header">
-    <a routerLink="/" class="routing-button">
-      <app-icon name="shevron-left" size="xl" class="routing-button__icon"></app-icon>
+    <h2 class="profile__title">{{ 'user.profile.my-profile' | translate }}</h2>
 
-      <h2 class="routing-button__title">{{ 'user.profile.my-profile' | translate }}</h2>
-    </a>
+    <a routerLink="../bookings" class="routing-button">   
+      <h2 class="routing-button__title">{{ 'user.profile.orders' | translate }}</h2>
 
-    <a routerLink="/" class="routing-button">   
-      <h2 class="routing-button__title">{{ 'user.profile.my-orders' | translate }}</h2>
-
-      <app-icon name="shevron-right" size="xl" class="routing-button__icon"></app-icon>
+      <app-icon name="shevron-right" size="lg" class="routing-button__icon"></app-icon>
     </a>
   </header>
 

@@ -30,16 +30,24 @@ $width-content: 28.125rem;
     width: 100%;
     max-width: $width-content;
   }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    color: $secondary;
+  }
 }
 
 .routing-button {
   display: flex;
+  align-items: center;
   transition: $transition-1;
   cursor: pointer;
 
   &__title {
+    font-size: 18px;
     color: $secondary;
-    margin: 0 rem(8px);
+    margin-right: rem(6px);
   }
 
   &__icon {
@@ -48,7 +56,7 @@ $width-content: 28.125rem;
 
   &:hover {
     .routing-button__icon {
-      transform: translateX(-3px);
+      transform: translateX(3px);
     }
   }
 }
