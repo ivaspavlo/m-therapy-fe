@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
       catchError(() => of(null))
     ).subscribe((res: IResponse<IUser> | null) => {
       if (!res) {
+        this.userManagementService.logout();
         return;
       }
       this.userManagementService.setUser(res.data);

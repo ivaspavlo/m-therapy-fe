@@ -31,5 +31,6 @@ export class UserManagementService {
     this.localStorage.removeItem(USER_NAME);
     this.localStorage.removeItem(USER_ID);
     this.localStorage.removeItem(USER_EMAIL);
+    this._currentUser$.next(null);
   }
 }

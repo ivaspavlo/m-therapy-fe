@@ -3,7 +3,7 @@ import { CanActivateFn, Route, RouterModule } from '@angular/router';
 import { ACCESS_TOKEN, CORE_ROUTE_NAMES } from './constants';
 
 export const AuthGuard: CanActivateFn = (): boolean => {
-  return !!localStorage.getItem(ACCESS_TOKEN)
+  return !!localStorage.getItem(ACCESS_TOKEN);
 }
 
 const coreRouts: Route[] = [
