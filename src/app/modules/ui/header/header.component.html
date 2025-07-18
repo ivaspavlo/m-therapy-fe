@@ -14,7 +14,7 @@
       <li class="app-header__item app-header__item--delimiter"></li>
 
       <li class="app-header__item">
-        <app-header-user-menu (clickMenuItem)="onClickUserMenu($event)" [items]="isLoggedIn ? authUserControls : notAuthUserControls">
+        <app-header-user-menu (clickMenuItem)="onClickUserMenu($event)" [items]="(isLoggedIn$ | async) ? authUserControls : notAuthUserControls">
           <a [attr.aria-label]="'header.user-button' | translate" class="app-header__link user-link">
             <app-icon name="user" size="xl"></app-icon>
           </a>
@@ -94,7 +94,7 @@
 
   <app-header-mobile-menu *ngIf="isUserMenuOpen" (close)="onToggleMenu()">
     <ul [ngClass]="{'mobile-menu--visible': isUserMenuOpen}" class="mobile-menu">
-      <ng-container *ngIf="isLoggedIn">
+      <ng-container *ngIf="isLoggedIn$ | async">
         <li *ngFor="let ctrl of authUserControls" class="my-3">
           <a
             #headerMobileMenuItem
@@ -106,7 +106,7 @@
         </li>
       </ng-container>
   
-      <ng-container *ngIf="!isLoggedIn">
+      <ng-container *ngIf="!(isLoggedIn$ | async)">
         <li *ngFor="let ctrl of notAuthUserControls" class="my-3">
           <a
             #headerMobileMenuItem

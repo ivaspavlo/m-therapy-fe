@@ -4,7 +4,7 @@ import { fromEvent, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { CORE_ROUTE_NAMES, LANGUAGE_ITEMS, ScrollTargetElements, ToastType } from '@app/core/constants';
-import { IHeaderControl, ILanguage } from '@app/interfaces';
+import { IHeaderControl, ILanguage, IUser } from '@app/interfaces';
 import { BookingManagementService, ScrollService, ToasterService, UserManagementService } from '@app/core/services';
 import { Router } from '@angular/router';
 import { BOOKING_ROUTE_NAMES } from '@app/modules/lazy/booking/constants';
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   public isMenuOpen = false;
   public isUserMenuOpen = false;
   public languages: ILanguage[] = LANGUAGE_ITEMS;
-  public isLoggedIn: boolean = false;
+  public isLoggedIn$!: Observable<boolean>;
   public cartItemsQty: number = 0;
   public headerControls: IHeaderControl[] = [
     { id: 'app-header.services.button', uiName: 'header.services', scrollTarget: ScrollTargetElements.SERVICES_SECTION },
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initIsShrinkedObservable();
-    this.isLoggedIn = this.userManagementService.isLoggedIn;
+    this.isLoggedIn$ = this.userManagementService.currentUser$.pipe(map((value: IUser | null) => !!value));
     this.cartItemsQty = this.bookingManagementService.cart?.bookings?.length || 0;
   }
 
@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
     this.onToggleUserMenu(false);
     if (control.id === this.userLogoutButtonId) {
       this.userManagementService.logout();
-      this.isLoggedIn = false;
       this.toasterService.show(this.translateService.instant(this.messages.logout), ToastType.SUCCESS)
       this.router.navigateByUrl(control.link!);
     }
