@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreRoutingAnimations, LANGUAGE, USER_ID, USER_NAME } from '@app/core/constants';
+
+import { CoreRoutingAnimations, LANGUAGE, USER_ID } from '@app/core/constants';
 import { LOCALE, LOCAL_STORAGE } from './core/providers';
 import { IResponse, IUser } from './interfaces';
-import { catchError } from 'rxjs/operators';
 import { UserApiService, UserManagementService } from './core/services';
-
 
 @Component({
   selector: 'app-root',

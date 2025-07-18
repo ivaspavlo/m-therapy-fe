@@ -1,1 +1,11 @@
-<p>user-bookings works!</p>
+<div class="bookings">
+  <header class="bookings__header">
+    <h2 class="bookings__title">{{ 'user.profile.my-bookings' | translate }}</h2>
+
+    <a routerLink="../profile" class="routing-button">   
+      <h2 class="routing-button__title">{{ 'user.profile.profile' | translate }}</h2>
+
+      <app-icon name="shevron-right" size="lg" class="routing-button__icon"></app-icon>
+    </a>
+  </header>
+</div>
