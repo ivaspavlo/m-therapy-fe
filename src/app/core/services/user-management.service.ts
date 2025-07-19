@@ -4,7 +4,6 @@ import { IUser } from '@app/interfaces';
 import { LOCAL_STORAGE } from '../providers';
 import { USER_EMAIL, USER_ID, USER_NAME } from '../constants';
 
-
 @Injectable({
   providedIn: 'root'
 })
