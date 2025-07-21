@@ -23,6 +23,7 @@ const userRoutes: Route[] = [
       },
       {
         path: USER_ROUTES.BOOKINGS,
+        data: { animationState: 'Two' },
         component: UserBookingsComponent
       }
     ]

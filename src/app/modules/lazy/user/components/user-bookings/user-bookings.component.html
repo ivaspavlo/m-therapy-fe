@@ -1,6 +1,6 @@
 <div class="bookings">
   <header class="bookings__header">
-    <h2 class="bookings__title">{{ 'user.profile.my-bookings' | translate }}</h2>
+    <h2 class="bookings__title">{{ 'user.profile.my-orders' | translate }}</h2>
 
     <a routerLink="../profile" class="routing-button">   
       <h2 class="routing-button__title">{{ 'user.profile.profile' | translate }}</h2>
@@ -8,4 +8,24 @@
       <app-icon name="shevron-right" size="lg" class="routing-button__icon"></app-icon>
     </a>
   </header>
+
+  <div class="bookings__content">
+    <ul class="scroll-content">
+      <li *ngFor="let booking of []" class="item">
+        <!-- <img src="/assets/images/graphic/test.png" alt="" class="item__image">
+
+        <p class="item__desc">
+          <span>{{ booking.product.desc }}</span>
+        </p>
+
+        <i class="item__delimiter"></i>
+
+        <div class="item__details">
+          <p>{{ 'products.booking.slotsQty' | translate: { slots: booking.slots.length } }}</p>
+
+          <p>{{ 'products.booking.totalPrice' | translate }}: {{ booking.slots.length * booking.product.price | number:'2.2' }} UAH</p>
+        </div> -->
+      </li>
+    </ul>
+  </div>
 </div>
