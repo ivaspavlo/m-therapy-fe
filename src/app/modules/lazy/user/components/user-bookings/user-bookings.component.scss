@@ -60,3 +60,48 @@ $width-content: 28.125rem;
     }
   }
 }
+
+.cart-item {
+  height: 100px;
+  padding: 0.5rem;
+  gap: 1rem;
+  border: 1px solid $primary;
+  display: flex;
+  align-items: center;
+  transition: .3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $white;
+
+    .cart-item__image {
+      transform: scale(1.05);
+    }
+  }
+
+  &__image {
+    height: 82px;
+    width: auto;
+    box-shadow: $b-shadow-2;
+    transition: .3s;
+  }
+
+  &__desc {
+    font-size: 14px;
+    color: $primary;
+  }
+
+  &__details {
+    gap: 0.25rem;
+    min-width: 200px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__delimiter {
+    height: 100%;
+    width: 1px;
+    background-color: $primary;
+  }
+}
