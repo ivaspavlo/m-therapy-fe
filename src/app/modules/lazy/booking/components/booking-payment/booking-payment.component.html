@@ -14,35 +14,16 @@
   
     <div class="payment-content">
       <div class="payment-content__container">
-        <p *ngIf="!isNoRegister" class="payment-content__text">
-          <span>{{ 'products.booking.register-benefits' | translate }}</span>
-  
-          <app-icon name="gift" size="lg" class="payment-content__icon"></app-icon>
-        </p>
-    
-        <div *ngIf="!isNoRegister" class="payment-content__controls">
-          <app-primary-button
-            (buttonClick)="onRegister()"
-            title="{{ 'main.landing.register' | translate }}"
-          ></app-primary-button>
-    
-          <app-secondary-button
-            (buttonClick)="goWithoutRegistering()"
-            title="{{ 'products.booking.proceed-no-register' | translate }}"
-          ></app-secondary-button>
-        </div>
-  
-        <ng-container *ngIf="isNoRegister">
+        <ng-container *ngIf="goWithoutRegister || (userData$ | async)">
           <div class="payment-confirm">
             <div class="payment-options">
-    
-              <form [formGroup]="formGroup" class="d-flex flex-column">
-                <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
-                
+              <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
+
+              <form *ngIf="!(userData$ | async)" [formGroup]="formGroup" class="d-flex flex-column">
                 <p class="payment-info">
                   <span>{{ 'products.booking.payment-options.email-desc' | translate }}</span>
                 </p>
-    
+
                 <app-input
                   [type]="INPUT_TYPES.EMAIL"
                   [controlName]="CONTROL_NAME.EMAIL"
@@ -55,9 +36,9 @@
                 <app-input
                   [type]="INPUT_TYPES.PHONE"
                   [controlName]="CONTROL_NAME.PHONE"
-                  label="{{ 'auth.phone-number' | translate | titlecase }}"
+                  label="{{ 'auth.phone' | translate | titlecase }}"
                   color="secondary"
-                  plh="{{ 'auth.enter' | translate:{x: 'auth.phone-number' | translate} }}"
+                  plh="{{ 'auth.enter' | translate:{x: 'auth.phone' | translate} }}"
                   class="payment-content__input"
                 ></app-input>
               </form>
@@ -109,6 +90,26 @@
               (buttonClick)="onConfirmBooking()"
               title="{{ 'products.booking.confirm-booking' | translate }}"
             ></app-primary-button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="!goWithoutRegister && !(userData$ | async)">
+          <p class="payment-content__text">
+            <span>{{ 'products.booking.register-benefits' | translate }}</span>
+    
+            <app-icon name="gift" size="lg" class="payment-content__icon"></app-icon>
+          </p>
+
+          <div class="payment-content__controls">
+            <app-primary-button
+              (buttonClick)="onRegister()"
+              title="{{ 'main.landing.register' | translate }}"
+            ></app-primary-button>
+      
+            <app-secondary-button
+              (buttonClick)="goWithoutRegistering()"
+              title="{{ 'products.booking.proceed-no-register' | translate }}"
+            ></app-secondary-button>
           </div>
         </ng-container>
       </div>
