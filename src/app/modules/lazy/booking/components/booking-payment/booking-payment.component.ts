@@ -6,9 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { IBookingRes, ICart, ICartTotals, IContent, IProductBooking, IResponse } from '@app/interfaces';
+import { IBookingRes, ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
 import { INPUT_TYPES, ToastType, USER_EMAIL } from '@app/core/constants';
-import { BookingApiService, BookingManagementService, ContentApiService, ToasterService } from '@app/core/services';
+import { BookingApiService, BookingManagementService, ContentApiService, ToasterService, UserManagementService } from '@app/core/services';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/constants';
 
@@ -39,11 +39,12 @@ export class BookingPaymentComponent implements OnInit {
   public INPUT_TYPES = INPUT_TYPES;
   public CONTROL_NAME = CONTROL_NAME;
   public formGroup!: FormGroup;
-  public isNoRegister: boolean = false;
+  public goWithoutRegister: boolean = false;
   public isSuccessfullyBooked: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
   public loggedInEmail: string | null = null;
+  public userData$!: Observable<IUser | null>;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
   private allowedFormats = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
@@ -58,7 +59,8 @@ export class BookingPaymentComponent implements OnInit {
     private contentApiService: ContentApiService,
     private translateService: TranslateService,
     private location: Location,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private userService: UserManagementService
   ) {
     this.content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
@@ -72,6 +74,8 @@ export class BookingPaymentComponent implements OnInit {
     this.cartTotals = this.currentBooking
       ? { slotsQty: this.currentBooking.slots.length, price: this.currentBooking.product.price * this.currentBooking.slots.length }
       : this.bookingManagementService.getTotals();
+
+    this.userData$ = this.userService.currentUser$;
   }
 
   ngOnInit(): void {
@@ -82,7 +86,7 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public goWithoutRegistering(): void {
-    this.isNoRegister = !this.isNoRegister;
+    this.goWithoutRegister = !this.goWithoutRegister;
   }
 
   public onRegister(): void {

@@ -9,13 +9,12 @@ import { API_URL_FN } from '@env/environment';
   providedIn: 'root'
 })
 export class BookingApiService {
-  
   constructor(
     private http: HttpClient
   ) {}
 
   public getBookingSlots(fromDate?: number): Observable<IResponse<IBookingSlot[]>> {
-    return this.http.get<IResponse<IBookingSlot[]>>(API_URL_FN(`/booking?fromDate=${fromDate || Date.now()}`));
+    return this.http.get<IResponse<IBookingSlot[]>>(`${API_URL_FN('booking')}?fromDate=${fromDate || Date.now()}`);
   }
 
   public book(cart: ICart): Observable<IResponse<IBookingRes>> {
