@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { IBookingRes, ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
-import { INPUT_TYPES, ToastType, USER_EMAIL } from '@app/core/constants';
+import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { BookingApiService, BookingManagementService, ContentApiService, ToasterService, UserManagementService } from '@app/core/services';
 import { LOCAL_STORAGE } from '@app/core/providers';
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/constants';
@@ -43,7 +43,6 @@ export class BookingPaymentComponent implements OnInit {
   public isSuccessfullyBooked: boolean = false;
   public fileName: string = '';
   public fileHasError: boolean = false;
-  public loggedInEmail: string | null = null;
   public userData$!: Observable<IUser | null>;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
@@ -80,7 +79,6 @@ export class BookingPaymentComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cart && this.cartTotals) {
-      this.loggedInEmail = this.localStorage.getItem(USER_EMAIL) || null;
       this.initForm(this.cart);
     }
   }
@@ -117,10 +115,10 @@ export class BookingPaymentComponent implements OnInit {
     this.bookingApiService.book(this.formGroup.value).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<IBookingRes> | null) => {
-      // if (!res) {
-      //   this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
-      //   return;
-      // }
+      if (!res) {
+        this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
+        return;
+      }
 
       this.isSuccessfullyBooked = true;
 
@@ -147,13 +145,15 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   private initForm(cart: ICart): void {
-    this.formGroup = this.fb.group({
-      [CONTROL_NAME.EMAIL]: this.fb.control(this.loggedInEmail || cart.email || '', [Validators.required, Validators.email]),
-      [CONTROL_NAME.PHONE]: this.fb.control(cart.phone || '', [Validators.required]),
-      [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
-      lang: cart.lang || this.translateService.currentLang,
-      bookings: cart.bookings,
-      paymentFile: null
+    this.userData$.pipe(first()).subscribe((user: IUser | null) => {
+      this.formGroup = this.fb.group({
+        [CONTROL_NAME.EMAIL]: this.fb.control(user?.email || cart.email || '', [Validators.required, Validators.email]),
+        [CONTROL_NAME.PHONE]: this.fb.control(user?.phone || cart.phone || '', [Validators.required]),
+        [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
+        lang: cart.lang || this.translateService.currentLang,
+        bookings: cart.bookings,
+        paymentFile: null
+      });
     });
   }
 }
