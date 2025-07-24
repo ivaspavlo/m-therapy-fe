@@ -15,7 +15,7 @@
     <div class="payment-content">
       <div class="payment-content__container">
         <ng-container *ngIf="goWithoutRegister || (userData$ | async)">
-          <div class="payment-confirm">
+          <div class="d-flex flex-column flex-grow-1">
             <div class="payment-options">
               <h6 class="payment-options__title">{{ 'products.booking.payment-options.title' | translate }}</h6>
 
