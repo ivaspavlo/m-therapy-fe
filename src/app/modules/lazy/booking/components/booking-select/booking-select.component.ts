@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe, Location } from '@angular/common';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { catchError, first, map, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -22,9 +22,10 @@ import { GoToCartDialogComponent } from '../go-to-cart-dialog/go-to-cart-dialog.
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingSelectComponent extends DestroySubscriptions implements OnInit, OnDestroy {
-  public product: IProduct | null;
-  public bookingSlots$: Observable<IBookingSlot[] | null>;
   public form!: FormGroup;
+  
+  public bookingSlotsAvailable$ = new BehaviorSubject<IBookingSlot[]>([]);
+  public product: IProduct | null = null;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
   private messages = {
@@ -43,20 +44,16 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     private translateService: TranslateService
   ) {
     super();
-
-    this.product = this.bookingManagementService.currentProduct;
-
-    this.bookingSlots$ = this.bookingApiService.getBookingSlots().pipe(
-      first(),
-      catchError(() => of(null)),
-      map((res: IResponse<IBookingSlot[]> | null) => res === null || !res.success ? null : res.data)
-    );
   }
 
   ngOnInit(): void {
+    this.product = this.bookingManagementService.currentProduct;
+
     if (this.product) {
+      this.getAvailableBookingSlots(this.product.id, Date.now());
       this.initSelectedSlots();
       this.initForm();
+      this.listenToDateChange();
     }
   }
 
@@ -75,6 +72,7 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
 
   public onAddToCart(): void {
     this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
+
     this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
 
     setTimeout(() => {
@@ -96,6 +94,24 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
 
   public onBack(): void {
     this.location.back();
+  }
+
+  private listenToDateChange(): void {
+    this.form.controls.startDate.valueChanges.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((value: string) => {
+      this.getAvailableBookingSlots(this.product!.id, new Date(value).getTime());
+    });
+  }
+
+  private getAvailableBookingSlots(id: string, date: number): void {
+    this.bookingApiService.getBookingSlots(id, date).pipe(
+      first(),
+      catchError(() => of(null)),
+      map((res: IResponse<IBookingSlot[]> | null) => res?.success ? null : res!.data)
+    ).subscribe((value: IBookingSlot[] | null) => {
+      this.bookingSlotsAvailable$.next(value || []);
+    });
   }
 
   private initSelectedSlots(): void {

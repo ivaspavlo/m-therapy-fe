@@ -10,6 +10,5 @@ export * from './api/response.interface';
 export * from './api/auth.interface';
 export * from './api/ad.interface';
 export * from './api/content.interface';
-export * from './api/booking.interface';
 export * from './api/payment-data.interface';
 export * from './api/user.interface';

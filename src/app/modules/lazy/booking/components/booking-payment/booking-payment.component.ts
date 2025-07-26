@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { IBookingRes, ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
+import { ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { BookingApiService, BookingManagementService, ContentApiService, ToasterService, UserManagementService } from '@app/core/services';
 import { LOCAL_STORAGE } from '@app/core/providers';
@@ -114,7 +114,7 @@ export class BookingPaymentComponent implements OnInit {
   public onConfirmBooking(): void {
     this.bookingApiService.book(this.formGroup.value).pipe(
       catchError(() => of(null))
-    ).subscribe((res: IResponse<IBookingRes> | null) => {
+    ).subscribe((res: IResponse<any> | null) => {
       if (!res) {
         this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
         return;

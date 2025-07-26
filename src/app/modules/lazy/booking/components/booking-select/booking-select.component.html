@@ -5,7 +5,7 @@
     <h2 class="product__title">{{ 'products.booking.title' | translate }}</h2>
   </header>
 
-  <div *ngIf="(bookingSlots$ | async) as dates" class="product-content">
+  <div *ngIf="(bookingSlotsAvailable$ | async) as dates" class="product-content">
     <div class="product-content__dates">
       <form [formGroup]="form" class="scroll-container">
         <app-date-picker controlName="startDate" label="{{ 'products.booking.date' | translate }}"></app-date-picker>
