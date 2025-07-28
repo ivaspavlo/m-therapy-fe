@@ -108,7 +108,7 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
     this.bookingApiService.getBookingSlots(id, date).pipe(
       first(),
       catchError(() => of(null)),
-      map((res: IResponse<IBookingSlot[]> | null) => res?.success ? null : res!.data)
+      map((res: IResponse<IBookingSlot[]> | null) => res?.success ? res!.data : null)
     ).subscribe((value: IBookingSlot[] | null) => {
       this.bookingSlotsAvailable$.next(value || []);
     });
