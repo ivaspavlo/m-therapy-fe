@@ -112,7 +112,12 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onConfirmBooking(): void {
-    this.bookingApiService.book(this.formGroup.value).pipe(
+    const paymentFile = new FormData();
+    paymentFile.append('file', this.formGroup.value.paypaymentFile);
+
+    const req = { ...this.formGroup.value, paymentFile };
+
+    this.bookingApiService.book(req).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<any> | null) => {
       if (!res) {
