@@ -2,8 +2,10 @@ import { LANGUAGE } from '@app/core/constants';
 import { IProduct } from './product.interface';
 
 export interface IBookingSlot {
-  start: number,
-  end: number
+  id: string;
+  start: number;
+  end: number;
+  productId: string;
 }
 
 export interface IProductBooking {

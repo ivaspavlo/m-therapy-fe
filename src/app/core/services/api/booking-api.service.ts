@@ -17,7 +17,7 @@ export class BookingApiService {
     return this.http.get<IResponse<IBookingSlot[]>>(`${API_URL_FN('booking')}?productId=${productId}&fromDate=${fromDate}`);
   }
 
-  public book(cart: ICart): Observable<IResponse<unknown>> {
+  public book(cart: FormData): Observable<IResponse<unknown>> {
     return this.http.post<IResponse<unknown>>(API_URL_FN('booking'), cart);
   }
 }

@@ -6,16 +6,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, first, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
+import { IBookingSlot, ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
 import { INPUT_TYPES, ToastType } from '@app/core/constants';
 import { BookingApiService, BookingManagementService, ContentApiService, ToasterService, UserManagementService } from '@app/core/services';
-import { LOCAL_STORAGE } from '@app/core/providers';
 import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/constants';
 
 enum CONTROL_NAME {
   EMAIL = 'email',
   PHONE = 'phone',
-  COMMENT = 'comment'
+  COMMENT = 'comment',
+  PAYMENT_FILE = 'paymentFile',
+  LANG = 'lang',
+  BOOKINGS = 'bookings'
 }
 
 @Component({
@@ -50,7 +52,6 @@ export class BookingPaymentComponent implements OnInit {
   private buyNowMode: boolean = false;
 
   constructor(
-    @Inject(LOCAL_STORAGE) private localStorage: Storage,
     private bookingApiService: BookingApiService,
     private fb: FormBuilder,
     private router: Router,
@@ -112,10 +113,19 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onConfirmBooking(): void {
-    const paymentFile = new FormData();
-    paymentFile.append('file', this.formGroup.value.paypaymentFile);
+    const formValue = this.formGroup.value;
+    const req = new FormData();
 
-    const req = { ...this.formGroup.value, paymentFile };
+    const bookedSlots = formValue[CONTROL_NAME.BOOKINGS].slots.map((s: IBookingSlot) => s.id);
+
+    req.append(CONTROL_NAME.PAYMENT_FILE, formValue[CONTROL_NAME.PAYMENT_FILE]);
+    req.append(CONTROL_NAME.EMAIL, formValue[CONTROL_NAME.EMAIL]);
+    req.append(CONTROL_NAME.PHONE, formValue[CONTROL_NAME.PHONE]);
+    req.append(CONTROL_NAME.COMMENT, formValue[CONTROL_NAME.COMMENT]);
+    req.append(CONTROL_NAME.BOOKINGS, JSON.stringify(bookedSlots));
+    req.append(CONTROL_NAME.LANG, formValue[CONTROL_NAME.LANG]);
+
+    debugger;
 
     this.bookingApiService.book(req).pipe(
       catchError(() => of(null))
@@ -155,9 +165,9 @@ export class BookingPaymentComponent implements OnInit {
         [CONTROL_NAME.EMAIL]: this.fb.control(user?.email || cart.email || '', [Validators.required, Validators.email]),
         [CONTROL_NAME.PHONE]: this.fb.control(user?.phone || cart.phone || '', [Validators.required]),
         [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
-        lang: cart.lang || this.translateService.currentLang,
-        bookings: cart.bookings,
-        paymentFile: null
+        [CONTROL_NAME.LANG]: cart.lang || this.translateService.currentLang,
+        [CONTROL_NAME.BOOKINGS]: cart.bookings,
+        [CONTROL_NAME.PAYMENT_FILE]: null
       });
     });
   }
