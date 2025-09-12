@@ -60,6 +60,9 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   public onClickSlot(value: IBookingSlot): void {
     if (this.selectedSlots.has(value.start)) {
       this.selectedSlots.delete(value.start);
+      if (this.selectedSlots.size === 0) {
+        this.bookingManagementService.resetCart();
+      }
       return;
     }
     this.selectedSlots.set(value.start, value);

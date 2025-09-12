@@ -125,8 +125,6 @@ export class BookingPaymentComponent implements OnInit {
     req.append(CONTROL_NAME.BOOKINGS, JSON.stringify(bookedSlots));
     req.append(CONTROL_NAME.LANG, formValue[CONTROL_NAME.LANG]);
 
-    debugger;
-
     this.bookingApiService.book(req).pipe(
       catchError(() => of(null))
     ).subscribe((res: IResponse<any> | null) => {
