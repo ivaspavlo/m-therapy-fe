@@ -82,6 +82,7 @@
       "select-file": "Select file",
       "add-to-cart": "Add to cart",
       "book-now": "Book now",
+      "name": "Name",
       "payment-options": {
         "info": "Please proceed with the payment by the bank requisites noted below, attach the payment receipt and click «Confirm booking» button.",
         "title": "Payment options",
