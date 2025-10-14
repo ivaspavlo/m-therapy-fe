@@ -20,7 +20,6 @@ export class CartComponent {
     private router: Router,
     private bookingManagementService: BookingManagementService
   ) {
-    debugger;
     this.productBookings = this.bookingManagementService.cart?.bookings || [];
     this.cartTotals = this.bookingManagementService.getTotals();
   }

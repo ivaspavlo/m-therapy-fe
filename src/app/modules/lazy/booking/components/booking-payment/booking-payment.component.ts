@@ -1,54 +1,82 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { catchError, first, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Location } from "@angular/common";
+import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { catchError, first, map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
 
-import { IBookingSlot, ICart, ICartTotals, IContent, IProductBooking, IResponse, IUser } from '@app/interfaces';
-import { INPUT_TYPES, ToastType } from '@app/core/constants';
-import { BookingApiService, BookingManagementService, ContentApiService, ToasterService, UserManagementService } from '@app/core/services';
-import { AUTH_ROUTE_NAMES } from '@app/modules/lazy/auth/constants';
+import {
+  IBookingSlot,
+  ICart,
+  ICartTotals,
+  IContent,
+  IProductBooking,
+  IResponse,
+  IUser,
+} from "@app/interfaces";
+import { INPUT_TYPES, ToastType } from "@app/core/constants";
+import {
+  BookingApiService,
+  BookingManagementService,
+  ContentApiService,
+  ToasterService,
+  UserManagementService,
+} from "@app/core/services";
+import { AUTH_ROUTE_NAMES } from "@app/modules/lazy/auth/constants";
 
 enum CONTROL_NAME {
-  EMAIL = 'email',
-  PHONE = 'phone',
-  COMMENT = 'comment',
-  PAYMENT_FILE = 'paymentFile',
-  LANG = 'lang',
-  BOOKINGS = 'bookings'
+  EMAIL = "email",
+  PHONE = "phone",
+  NAME = "name",
+  COMMENT = "comment",
+  PAYMENT_FILE = "paymentFile",
+  LANG = "lang",
+  BOOKINGS = "bookings",
 }
 
 @Component({
-  selector: 'app-booking-payment',
-  templateUrl: './booking-payment.component.html',
-  styleUrls: ['./booking-payment.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-booking-payment",
+  templateUrl: "./booking-payment.component.html",
+  styleUrls: ["./booking-payment.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookingPaymentComponent implements OnInit {
-  @ViewChild('paymentFileInput') paymentFileInput!: ElementRef;
+  @ViewChild("paymentFileInput") paymentFileInput!: ElementRef;
 
   public content$: Observable<IContent | null>;
   public cartTotals: ICartTotals | null = null;
   public cart: ICart | null = null;
-  private currentBooking: IProductBooking | null = null; 
+  private currentBooking: IProductBooking | null = null;
   private messages = {
-    success: 'products.booking.success',
-    failure: 'products.booking.failure',
-  }
+    success: "products.booking.success",
+    failure: "products.booking.failure",
+  };
 
   public INPUT_TYPES = INPUT_TYPES;
   public CONTROL_NAME = CONTROL_NAME;
   public formGroup!: FormGroup;
   public goWithoutRegister: boolean = false;
   public isSuccessfullyBooked: boolean = false;
-  public fileName: string = '';
+  public fileName: string = "";
   public fileHasError: boolean = false;
   public userData$!: Observable<IUser | null>;
+  public isBookingLoading: boolean = false;
 
   private maxSize = 10 * 1024 * 1024; // 10MB in bytes
-  private allowedFormats = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+  private allowedFormats = [
+    "application/pdf",
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+  ];
   private buyNowMode: boolean = false;
 
   constructor(
@@ -72,7 +100,12 @@ export class BookingPaymentComponent implements OnInit {
     this.buyNowMode = !!this.currentBooking;
 
     this.cartTotals = this.currentBooking
-      ? { slotsQty: this.currentBooking.slots.length, price: this.currentBooking.product.price * this.currentBooking.slots.length }
+      ? {
+          slotsQty: this.currentBooking.slots.length,
+          price:
+            this.currentBooking.product.price *
+            this.currentBooking.slots.length,
+        }
       : this.bookingManagementService.getTotals();
 
     this.userData$ = this.userService.currentUser$;
@@ -89,7 +122,9 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onRegister(): void {
-    this.router.navigateByUrl(`${AUTH_ROUTE_NAMES.SELF}/${AUTH_ROUTE_NAMES.REGISTER}`);
+    this.router.navigateByUrl(
+      `${AUTH_ROUTE_NAMES.SELF}/${AUTH_ROUTE_NAMES.REGISTER}`
+    );
   }
 
   public onFileChange(event: Event): void {
@@ -102,8 +137,8 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onClearFile(): void {
-    this.fileName = '';
-    this.paymentFileInput.nativeElement.value = '';
+    this.fileName = "";
+    this.paymentFileInput.nativeElement.value = "";
     this.formGroup.controls.paymentFile.reset();
     this.fileHasError = false;
   }
@@ -113,10 +148,14 @@ export class BookingPaymentComponent implements OnInit {
   }
 
   public onConfirmBooking(): void {
+    this.isBookingLoading = true;
+
     const formValue = this.formGroup.value;
     const req = new FormData();
 
-    const bookedSlots = formValue[CONTROL_NAME.BOOKINGS].slots.map((s: IBookingSlot) => s.id);
+    const bookedSlots = formValue[CONTROL_NAME.BOOKINGS].slots.map(
+      (s: IBookingSlot) => s.id
+    );
 
     req.append(CONTROL_NAME.PAYMENT_FILE, formValue[CONTROL_NAME.PAYMENT_FILE]);
     req.append(CONTROL_NAME.EMAIL, formValue[CONTROL_NAME.EMAIL]);
@@ -125,26 +164,37 @@ export class BookingPaymentComponent implements OnInit {
     req.append(CONTROL_NAME.BOOKINGS, JSON.stringify(bookedSlots));
     req.append(CONTROL_NAME.LANG, formValue[CONTROL_NAME.LANG]);
 
-    this.bookingApiService.book(req).pipe(
-      catchError(() => of(null))
-    ).subscribe((res: IResponse<any> | null) => {
-      if (!res) {
-        this.toasterService.show(this.translateService.instant(this.messages.failure), ToastType.ERROR);
-        return;
-      }
+    this.bookingApiService
+      .book(req)
+      .pipe(catchError(() => of(null)))
+      .subscribe((res: IResponse<any> | null) => {
+        if (!res) {
+          this.toasterService.show(
+            this.translateService.instant(this.messages.failure),
+            ToastType.ERROR
+          );
+          return;
+        }
 
-      this.isSuccessfullyBooked = true;
+        this.isSuccessfullyBooked = true;
 
-      this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
+        this.toasterService.show(
+          this.translateService.instant(this.messages.success),
+          ToastType.SUCCESS
+        );
 
-      if (!this.buyNowMode) {
-        this.bookingManagementService.resetCart();
-      } else {
-        this.bookingManagementService.removeProductFromCart(this.currentBooking!.product);
-      }
+        if (!this.buyNowMode) {
+          this.bookingManagementService.resetCart();
+        } else {
+          this.bookingManagementService.removeProductFromCart(
+            this.currentBooking!.product
+          );
+        }
 
-      this.router.navigate(['/']);
-    });
+        this.isBookingLoading = false;
+
+        this.router.navigate(["/"]);
+      });
   }
 
   private isFileValid(files: FileList): boolean {
@@ -160,12 +210,23 @@ export class BookingPaymentComponent implements OnInit {
   private initForm(cart: ICart): void {
     this.userData$.pipe(first()).subscribe((user: IUser | null) => {
       this.formGroup = this.fb.group({
-        [CONTROL_NAME.EMAIL]: this.fb.control(user?.email || cart.email || '', [Validators.required, Validators.email]),
-        [CONTROL_NAME.PHONE]: this.fb.control(user?.phone || cart.phone || '', [Validators.required]),
-        [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ''),
+        [CONTROL_NAME.EMAIL]: this.fb.control(user?.email || cart.email || "", [
+          Validators.required,
+          Validators.email,
+        ]),
+        [CONTROL_NAME.PHONE]: this.fb.control(user?.phone || cart.phone || "", [
+          Validators.required,
+        ]),
+        [CONTROL_NAME.NAME]: this.fb.control(
+          user?.firstname && user?.lastname
+            ? `${user?.firstname} ${user?.lastname}`
+            : "",
+          [Validators.required]
+        ),
+        [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ""),
         [CONTROL_NAME.LANG]: cart.lang || this.translateService.currentLang,
         [CONTROL_NAME.BOOKINGS]: cart.bookings,
-        [CONTROL_NAME.PAYMENT_FILE]: null
+        [CONTROL_NAME.PAYMENT_FILE]: null,
       });
     });
   }
