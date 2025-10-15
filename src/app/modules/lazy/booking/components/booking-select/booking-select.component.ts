@@ -1,36 +1,48 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { DatePipe, Location } from '@angular/common';
-import { BehaviorSubject, of } from 'rxjs';
-import { catchError, first, map, takeUntil } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { DatePipe, Location } from "@angular/common";
+import { BehaviorSubject, of } from "rxjs";
+import { catchError, first, map, takeUntil } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
 
-import { IBookingSlot, IProduct, IResponse } from '@app/interfaces';
-import { CORE_ROUTE_NAMES, ToastType } from '@app/core/constants';
-import { BookingManagementService, BookingApiService, ToasterService } from '@app/core/services';
-import { DestroySubscriptions } from '@app/shared/classes';
-import { DialogService } from '@app/modules/ui';
-import { BOOKING_ROUTE_NAMES } from '../../constants';
-import { GoToCartDialogComponent } from '../go-to-cart-dialog/go-to-cart-dialog.component';
+import { IBookingSlot, IProduct, IResponse } from "@app/interfaces";
+import { CORE_ROUTE_NAMES, ToastType } from "@app/core/constants";
+import {
+  BookingManagementService,
+  BookingApiService,
+  ToasterService,
+} from "@app/core/services";
+import { DestroySubscriptions } from "@app/shared/classes";
+import { DialogService } from "@app/modules/ui";
+import { BOOKING_ROUTE_NAMES } from "../../constants";
+import { GoToCartDialogComponent } from "../go-to-cart-dialog/go-to-cart-dialog.component";
 
 @Component({
-  selector: 'app-booking-select',
-  templateUrl: './booking-select.component.html',
-  styleUrls: ['./booking-select.component.scss'],
+  selector: "app-booking-select",
+  templateUrl: "./booking-select.component.html",
+  styleUrls: ["./booking-select.component.scss"],
   providers: [DatePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookingSelectComponent extends DestroySubscriptions implements OnInit, OnDestroy {
+export class BookingSelectComponent
+  extends DestroySubscriptions
+  implements OnInit, OnDestroy
+{
   public form!: FormGroup;
-  
+
   public bookingSlotsAvailable$ = new BehaviorSubject<IBookingSlot[]>([]);
   public product: IProduct | null = null;
   public CoreRouteNames = CORE_ROUTE_NAMES;
   public selectedSlots = new Map();
   private messages = {
-    success: 'Added to the cart'
-  }
+    success: "Added to the cart",
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -58,40 +70,56 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   public onClickSlot(value: IBookingSlot): void {
-    if (this.selectedSlots.has(value.start)) {
-      this.selectedSlots.delete(value.start);
+    if (this.selectedSlots.has(value.id)) {
+      this.selectedSlots.delete(value.id);
+
       if (this.selectedSlots.size === 0) {
         this.bookingManagementService.resetCart();
       }
+
       return;
     }
-    this.selectedSlots.set(value.start, value);
+
+    this.selectedSlots.set(value.id, value);
   }
 
   public onBookNow(): void {
-    this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
-    this.router.navigateByUrl(`${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`);
+    this.bookingManagementService.addSelectedDatesToCart(
+      Array.from(this.selectedSlots.values())
+    );
+    this.router.navigateByUrl(
+      `${CORE_ROUTE_NAMES.BOOKING}/${BOOKING_ROUTE_NAMES.BOOKING_PAYMENT}`
+    );
   }
 
   public onAddToCart(): void {
-    this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
+    this.bookingManagementService.addSelectedDatesToCart(
+      Array.from(this.selectedSlots.values())
+    );
 
-    this.toasterService.show(this.translateService.instant(this.messages.success), ToastType.SUCCESS);
+    this.toasterService.show(
+      this.translateService.instant(this.messages.success),
+      ToastType.SUCCESS
+    );
 
     setTimeout(() => {
-      this.dialogService.open(GoToCartDialogComponent, {}).afterClosed.pipe(
-        takeUntil(this.componentDestroyed$)
-      ).subscribe((value: boolean) => {
-        if (value) {
-          this.router.navigate([CORE_ROUTE_NAMES.BOOKING, BOOKING_ROUTE_NAMES.CART]);
-        }
-      });
+      this.dialogService
+        .open(GoToCartDialogComponent, {})
+        .afterClosed.pipe(takeUntil(this.componentDestroyed$))
+        .subscribe((value: boolean) => {
+          if (value) {
+            this.router.navigate([
+              CORE_ROUTE_NAMES.BOOKING,
+              BOOKING_ROUTE_NAMES.CART,
+            ]);
+          }
+        });
     }, 1000);
   }
 
   private initForm(): void {
     this.form = this.fb.group({
-      startDate: this.datePipe.transform(new Date(), 'YYYY-MM-dd')
+      startDate: this.datePipe.transform(new Date(), "YYYY-MM-dd"),
     });
   }
 
@@ -100,30 +128,42 @@ export class BookingSelectComponent extends DestroySubscriptions implements OnIn
   }
 
   private listenToDateChange(): void {
-    this.form.controls.startDate.valueChanges.pipe(
-      takeUntil(this.componentDestroyed$)
-    ).subscribe((value: string) => {
-      this.getAvailableBookingSlots(this.product!.id, new Date(value).getTime());
-    });
+    this.form.controls.startDate.valueChanges
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((value: string) => {
+        this.getAvailableBookingSlots(
+          this.product!.id,
+          new Date(value).getTime()
+        );
+      });
   }
 
   private getAvailableBookingSlots(id: string, date: number): void {
-    this.bookingApiService.getBookingSlots(id, date).pipe(
-      first(),
-      catchError(() => of(null)),
-      map((res: IResponse<IBookingSlot[]> | null) => res?.success ? res!.data : null)
-    ).subscribe((value: IBookingSlot[] | null) => {
-      this.bookingSlotsAvailable$.next(value || []);
-    });
+    this.bookingApiService
+      .getBookingSlots(id, date)
+      .pipe(
+        first(),
+        catchError(() => of(null)),
+        map((res: IResponse<IBookingSlot[]> | null) =>
+          res?.success ? res!.data : null
+        )
+      )
+      .subscribe((value: IBookingSlot[] | null) => {
+        this.bookingSlotsAvailable$.next(value || []);
+      });
   }
 
   private initSelectedSlots(): void {
     this.selectedSlots = new Map(
-      (this.bookingManagementService.getCurrentBooking()?.slots || []).map(b => [b.start, b])
+      (this.bookingManagementService.getCurrentBooking()?.slots || []).map(
+        (b) => [b.id, b]
+      )
     );
   }
 
   ngOnDestroy(): void {
-    this.bookingManagementService.addSelectedDatesToCart(Array.from(this.selectedSlots.values()));
+    this.bookingManagementService.addSelectedDatesToCart(
+      Array.from(this.selectedSlots.values())
+    );
   }
 }
