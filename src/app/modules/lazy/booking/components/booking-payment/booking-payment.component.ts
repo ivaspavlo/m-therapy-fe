@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Inject,
   OnInit,
   ViewChild,
 } from "@angular/core";
