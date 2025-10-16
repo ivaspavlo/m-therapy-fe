@@ -25,6 +25,10 @@ export class CartComponent {
   }
 
   public onConfirmBooking(): void {
+    if (this.productBookings.length) {
+      this.bookingManagementService.resetCurrentProduct();
+    }
+
     this.router.navigate([
       CORE_ROUTE_NAMES.BOOKING,
       BOOKING_ROUTE_NAMES.BOOKING_PAYMENT,
