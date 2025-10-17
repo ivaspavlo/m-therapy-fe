@@ -162,6 +162,7 @@ export class BookingPaymentComponent implements OnInit {
     req.append(CONTROL_NAME.COMMENT, formValue[CONTROL_NAME.COMMENT]);
     req.append(CONTROL_NAME.BOOKINGS, JSON.stringify(bookedSlots));
     req.append(CONTROL_NAME.LANG, formValue[CONTROL_NAME.LANG]);
+    req.append(CONTROL_NAME.NAME, formValue[CONTROL_NAME.NAME]);
 
     this.bookingApiService
       .book(req)
@@ -223,9 +224,11 @@ export class BookingPaymentComponent implements OnInit {
           [Validators.required]
         ),
         [CONTROL_NAME.COMMENT]: this.fb.control(cart.comment || ""),
-        [CONTROL_NAME.LANG]: cart.lang || this.translateService.currentLang,
-        [CONTROL_NAME.BOOKINGS]: cart.bookings,
-        [CONTROL_NAME.PAYMENT_FILE]: null,
+        [CONTROL_NAME.LANG]: this.fb.control(
+          cart.lang || this.translateService.currentLang
+        ),
+        [CONTROL_NAME.BOOKINGS]: this.fb.control(cart.bookings),
+        [CONTROL_NAME.PAYMENT_FILE]: this.fb.control(null),
       });
     });
   }
