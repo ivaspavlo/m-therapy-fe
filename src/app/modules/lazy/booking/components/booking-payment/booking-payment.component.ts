@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -87,7 +88,8 @@ export class BookingPaymentComponent implements OnInit {
     private translateService: TranslateService,
     private location: Location,
     private toasterService: ToasterService,
-    private userService: UserManagementService
+    private userService: UserManagementService,
+    private cdr: ChangeDetectorRef
   ) {
     this.content$ = this.contentApiService.getContent().pipe(
       catchError(() => of(null)),
@@ -152,8 +154,8 @@ export class BookingPaymentComponent implements OnInit {
     const formValue = this.formGroup.value;
     const req = new FormData();
 
-    const bookedSlots = formValue[CONTROL_NAME.BOOKINGS].slots.map(
-      (s: IBookingSlot) => s.id
+    const bookedSlots = formValue[CONTROL_NAME.BOOKINGS].flatMap(
+      (b: IProductBooking) => b.slots.map((s) => s.id)
     );
 
     req.append(CONTROL_NAME.PAYMENT_FILE, formValue[CONTROL_NAME.PAYMENT_FILE]);
@@ -168,6 +170,10 @@ export class BookingPaymentComponent implements OnInit {
       .book(req)
       .pipe(catchError(() => of(null)))
       .subscribe((res: IResponse<any> | null) => {
+        this.isBookingLoading = false;
+
+        this.cdr.detectChanges();
+
         if (!res) {
           this.toasterService.show(
             this.translateService.instant(this.messages.failure),
@@ -190,8 +196,6 @@ export class BookingPaymentComponent implements OnInit {
             this.currentBooking!.product
           );
         }
-
-        this.isBookingLoading = false;
 
         this.router.navigate(["/"]);
       });
