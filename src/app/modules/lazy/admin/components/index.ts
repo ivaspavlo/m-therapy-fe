@@ -1,8 +1,4 @@
-import { AdminPageComponent } from '../admin-page.component';
-import { AdminContentComponent } from './admin-content/admin-content.component';
+import { AdminPageComponent } from "../admin-page.component";
+import { AdminConfirmOrderComponent } from "./admin-confirm-order/admin-confirm-order.component";
 
-
-export const COMPONENTS = [
-  AdminContentComponent,
-  AdminPageComponent
-];
+export const COMPONENTS = [AdminPageComponent, AdminConfirmOrderComponent];

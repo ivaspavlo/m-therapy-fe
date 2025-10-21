@@ -1,0 +1,31 @@
+<div class="unsubscribe-page__content">
+  <ng-container>
+    <app-icon
+      size="xxl"
+      name="sad"
+      class="d-flex justify-content-center mb-3"
+    ></app-icon>
+
+    <h1 class="auth-page__title">
+      {{ "main.unsubscribe.thanks" | translate }}
+    </h1>
+
+    <h5 class="auth-page__subtitle">
+      {{ "main.unsubscribe.after" | translate }}
+    </h5>
+
+    <app-secondary-button
+      title="{{ 'auth.back' | translate }}"
+      url="/"
+      class="mt-4 d-flex justify-content-center"
+    ></app-secondary-button>
+  </ng-container>
+
+  <ng-container>
+    <h1 class="auth-page__title">{{ "main.unpredicted" | translate }}</h1>
+
+    <h1 class="auth-page__subtitle">
+      {{ "main.unsubscribe.failure" | translate }}
+    </h1>
+  </ng-container>
+</div>
