@@ -10,7 +10,6 @@ export enum ADMIN_ROUTE_NAME {
 const mainRouts: Route[] = [
   {
     path: "",
-    pathMatch: "full",
     component: AdminPageComponent,
     children: [
       {
